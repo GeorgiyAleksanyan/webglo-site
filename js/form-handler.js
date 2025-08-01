@@ -5,7 +5,7 @@
 
 class SimpleFormHandler {
   constructor() {
-    this.scriptUrl = 'https://script.google.com/macros/s/AKfycbxhn5f4EiT-c1FS80ssDg8sj5eyARC3J_RYxMpel4iCScDjxDpc4dJjGGehbd9jVZ1pHQ/exec';
+    this.scriptUrl = 'https://script.google.com/macros/s/AKfycbxtonT0H__IZAsENyE97Wb1IOu1Gfq-XI899L5Gecg3zk-JczZmjQOOrEwcIiX2YH0/exec';
     this.init();
   }
 
