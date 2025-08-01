@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Debug Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8 bg-gray-100">
+  <div class="max-w-md mx-auto bg-white p-6 rounded-lg shadow">
+    <h1 class="text-2xl font-bold mb-6">Form Debug Test</h1>
+    
+    <!-- Simple Contact Form -->
+    <form data-webglo-form="contact" class="space-y-4">
+      <div>
+        <label class="block text-sm font-medium mb-2">First Name</label>
+        <input type="text" name="firstName" required class="w-full p-2 border rounded">
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Last Name</label>
+        <input type="text" name="lastName" required class="w-full p-2 border rounded">
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Email</label>
+        <input type="email" name="email" required class="w-full p-2 border rounded">
+      </div>
+      <div>
+        <label class="block text-sm font-medium mb-2">Message</label>
+        <textarea name="message" required class="w-full p-2 border rounded"></textarea>
+      </div>
+      <!-- Honeypot -->
+      <input type="text" name="website" style="display: none;" tabindex="-1">
+      <button type="submit" class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+        Send Test Message
+      </button>
+    </form>
+
+    <!-- Simple Newsletter Form -->
+    <form data-webglo-form="newsletter" class="space-y-4 mt-8 pt-8 border-t">
+      <h3 class="font-bold">Newsletter Test</h3>
+      <div>
+        <label class="block text-sm font-medium mb-2">Email</label>
+        <input type="email" name="email" required class="w-full p-2 border rounded">
+      </div>
+      <!-- Honeypot -->
+      <input type="text" name="website" style="display: none;" tabindex="-1">
+      <button type="submit" class="w-full bg-green-500 text-white p-2 rounded hover:bg-green-600">
+        Subscribe Test
+      </button>
+    </form>
+
+    <!-- Debug Info -->
+    <div class="mt-8 p-4 bg-gray-100 rounded">
+      <h3 class="font-bold mb-2">Debug Info:</h3>
+      <div id="debug-info" class="text-sm space-y-1">
+        <div>Loading debug info...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load the form handler -->
+  <script src="js/form-handler.js"></script>
+  
+  <script>
+    // Debug script
+    function updateDebugInfo() {
+      const debugDiv = document.getElementById('debug-info');
+      const info = [];
+      
+      // Check if FormHandler exists
+      info.push(`FormHandler class: ${typeof FormHandler !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
+      
+      // Check if instance exists
+      info.push(`window.formHandler: ${typeof window.formHandler !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
+      
+      // Check forms
+      const forms = document.querySelectorAll('form[data-webglo-form]');
+      info.push(`Forms found: ${forms.length}`);
+      
+      // Check if forms are initialized
+      if (window.formHandler && window.formHandler.forms) {
+        info.push(`Forms initialized: ${window.formHandler.forms.size}`);
+        info.push(`Script URL: ${window.formHandler.scriptUrl}`);
+      }
+      
+      debugDiv.innerHTML = info.map(item => `<div>${item}</div>`).join('');
+    }
+
+    // Update debug info periodically
+    setInterval(updateDebugInfo, 1000);
+    
+    // Also update on load
+    window.addEventListener('load', updateDebugInfo);
+    
+    // Add extra logging
+    console.log('🔧 Debug page loaded');
+    console.log('Available globals:', {
+      FormHandler: typeof FormHandler,
+      formHandler: typeof window.formHandler,
+      webgloForms: typeof window.webgloForms
+    });
+  </script>
+</body>
+</html>

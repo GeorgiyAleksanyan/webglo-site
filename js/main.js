@@ -73,20 +73,16 @@ class WebGloMain {
 
   // Handle form submissions
   initFormHandling() {
-    // Check if FormHandler is already initialized
-    if (typeof window.formHandler !== 'undefined') {
-      console.log('✅ FormHandler already initialized');
-      return;
-    }
-    
-    // Initialize the FormHandler for WebGlo forms
-    if (typeof FormHandler !== 'undefined') {
-      window.formHandler = new FormHandler();
-      console.log('✅ FormHandler initialized successfully');
-    } else {
-      console.warn('⚠️ FormHandler not available, using fallback form handling');
-      this.initFallbackFormHandling();
-    }
+    // FormHandler handles its own initialization
+    // Just log if it's available for debugging
+    setTimeout(() => {
+      if (typeof window.formHandler !== 'undefined') {
+        console.log('✅ FormHandler is available and initialized');
+        console.log('Forms detected:', window.formHandler.forms.size);
+      } else {
+        console.warn('⚠️ FormHandler not available');
+      }
+    }, 1000);
   }
 
   initFallbackFormHandling() {
