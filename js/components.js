@@ -214,9 +214,6 @@ class WebGloComponents {
                 </a>
                 <!-- Instagram -->
                 <a href="https://www.instagram.com/webglo.media/?hl=en" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-[#0cead9] transition-colors" title="Follow us on Instagram">
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 0C4.478 0 0 4.478 0 10s4.478 10 10 10 10-4.478 10-10S15.522 0 10 0zm4.95 7.05L9.95 12.05a.7.7 0 01-.99 0L4.05 7.95a.7.7 0 010-.99l4.9-4.9a.7.7 0 01.99 0l5 5a.7.7 0 010 .99z" clip-rule="evenodd"></path>
-                  </svg>
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-2.296 0-4.162 1.866-4.162 4.163 0 2.296 1.866 4.162 4.162 4.162 2.296 0 4.163-1.866 4.163-4.162 0-2.297-1.867-4.163-4.163-4.163zm0 6.862c-1.493 0-2.7-1.207-2.7-2.699 0-1.493 1.207-2.7 2.7-2.7 1.492 0 2.699 1.207 2.699 2.7 0 1.492-1.207 2.699-2.699 2.699zm4.29-8.829c-.536 0-.97.434-.97.97 0 .536.434.97.97.97.536 0 .97-.434.97-.97 0-.536-.434-.97-.97-.97z"/>
                   </svg>
@@ -271,12 +268,13 @@ class WebGloComponents {
           </div>
         </div>
       </footer>
+      <!-- Updated: ${new Date().toISOString()} -->
     `;
 
     const footerContainer = document.getElementById('webglo-footer');
     if (footerContainer) {
       footerContainer.innerHTML = footer;
-      console.log('Footer rendered successfully');
+      console.log('Footer rendered successfully with updated business info');
     } else {
       console.error('Footer container not found - make sure element with id="webglo-footer" exists');
     }
