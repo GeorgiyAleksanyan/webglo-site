@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact WebGlo - EMERGENCY MODE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .emergency-banner {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Emergency Banner -->
+    <div class="emergency-banner text-white text-center py-2 text-sm font-medium">
+        🚨 EMERGENCY MODE: Forms using backup system while fixing CORS issues
+    </div>
+
+    <div class="max-w-2xl mx-auto p-6">
+        <h1 class="text-3xl font-bold text-center mb-8">Contact WebGlo</h1>
+        
+        <!-- Contact Form -->
+        <div class="bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl font-semibold mb-4">Send Us a Message</h2>
+            
+            <form data-webglo-form="contact" class="space-y-4">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">First Name *</label>
+                        <input type="text" name="firstName" required 
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Last Name *</label>
+                        <input type="text" name="lastName" required 
+                               class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+                    <input type="email" name="email" required 
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                    <input type="tel" name="phone" 
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Company/Business Name</label>
+                    <input type="text" name="company" 
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Service Interested In</label>
+                    <select name="service" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        <option value="">Select a service</option>
+                        <option value="web-design">Web Design</option>
+                        <option value="web-development">Web Development</option>
+                        <option value="seo">SEO Services</option>
+                        <option value="digital-marketing">Digital Marketing</option>
+                        <option value="consulting">Consulting</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Project Budget Range</label>
+                    <select name="budget" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        <option value="">Select budget range</option>
+                        <option value="under-1k">Under $1,000</option>
+                        <option value="1k-5k">$1,000 - $5,000</option>
+                        <option value="5k-10k">$5,000 - $10,000</option>
+                        <option value="10k-25k">$10,000 - $25,000</option>
+                        <option value="25k-plus">$25,000+</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Project Timeline</label>
+                    <select name="timeline" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        <option value="">Select timeline</option>
+                        <option value="asap">ASAP</option>
+                        <option value="1-month">Within 1 month</option>
+                        <option value="2-3-months">2-3 months</option>
+                        <option value="3-6-months">3-6 months</option>
+                        <option value="6-plus-months">6+ months</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Tell us about your project *</label>
+                    <textarea name="message" required rows="4" 
+                              placeholder="Describe your project, goals, and any specific requirements..."
+                              class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"></textarea>
+                </div>
+                
+                <!-- Honeypot -->
+                <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+                
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-purple-700 hover:to-blue-600 transition-all transform hover:scale-105">
+                    Send Message
+                </button>
+            </form>
+        </div>
+        
+        <!-- Newsletter Form -->
+        <div class="bg-white rounded-lg shadow-lg p-6 mt-8">
+            <h2 class="text-xl font-semibold mb-4">Never Miss an Update</h2>
+            <p class="text-gray-600 mb-4">Get weekly insights, exclusive tips, and free resources delivered to your inbox.</p>
+            
+            <form data-webglo-form="newsletter" class="space-y-4">
+                <div>
+                    <input type="email" name="email" required 
+                           placeholder="Enter your email address"
+                           class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                </div>
+                
+                <!-- Honeypot -->
+                <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
+                
+                <button type="submit" 
+                        class="w-full bg-gradient-to-r from-green-600 to-teal-500 text-white py-3 px-6 rounded-lg font-semibold hover:from-green-700 hover:to-teal-600 transition-all transform hover:scale-105">
+                    Subscribe Free
+                </button>
+            </form>
+            
+            <p class="text-xs text-gray-500 mt-2">Join 5,000+ entrepreneurs. No spam, unsubscribe anytime.</p>
+        </div>
+        
+        <!-- Emergency Contact Info -->
+        <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mt-8">
+            <h3 class="font-semibold text-yellow-800 mb-2">Having trouble with the form?</h3>
+            <div class="text-yellow-700 text-sm">
+                <p><strong>Email:</strong> <a href="mailto:info@webglo.org" class="underline">info@webglo.org</a></p>
+                <p><strong>Phone:</strong> <a href="tel:8482074616" class="underline">(848) 207-4616</a></p>
+                <p class="mt-2">We're working to fix the technical issue and will respond to all inquiries within 24 hours.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Load Emergency Handler -->
+    <script src="js/emergency-form-handler.js"></script>
+    
+    <script>
+        // Additional debugging
+        console.log('🚨 Emergency contact page loaded');
+        
+        // Show emergency submissions for debugging
+        window.showEmergencySubmissions = function() {
+            const submissions = JSON.parse(localStorage.getItem('webglo_emergency_submissions') || '[]');
+            console.log('🚨 Emergency submissions stored locally:', submissions);
+            return submissions;
+        };
+        
+        console.log('🚨 To view stored submissions, run: showEmergencySubmissions()');
+    </script>
+</body>
+</html>
