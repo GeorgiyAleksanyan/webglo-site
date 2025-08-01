@@ -170,7 +170,7 @@ class FormHandler {
         </div>
         <div class="ml-3">
           <h3 class="text-sm font-medium text-red-800">Error sending message</h3>
-          <p class="mt-1 text-sm text-red-700">Please try again or contact us directly at hello@webglo.org</p>
+          <p class="mt-1 text-sm text-red-700">Please try again or contact us directly at info@webglo.org</p>
         </div>
       </div>
     `;
