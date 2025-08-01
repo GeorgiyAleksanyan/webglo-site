@@ -38,15 +38,28 @@ class FormHandler {
       
       validateFormData: (formData) => {
         const errors = [];
-        if (!formData.get('name') || !formData.get('name').trim()) {
-          errors.push('Name is required');
+        
+        // For newsletter forms, only email is required
+        if (formData.has('firstName') || formData.has('lastName')) {
+          // Contact form validation
+          if (!formData.get('firstName') || !formData.get('firstName').trim()) {
+            errors.push('First name is required');
+          }
+          if (!formData.get('lastName') || !formData.get('lastName').trim()) {
+            errors.push('Last name is required');
+          }
         }
+        
+        // Email is always required
         if (!formData.get('email') || !formData.get('email').trim()) {
           errors.push('Email is required');
         }
-        if (!formData.get('message') || !formData.get('message').trim()) {
+        
+        // Message is only required for contact forms
+        if (formData.has('message') && (!formData.get('message') || !formData.get('message').trim())) {
           errors.push('Message is required');
         }
+        
         return { isValid: errors.length === 0, errors };
       },
       
@@ -190,9 +203,13 @@ class FormHandler {
     const form = this.forms.get(formId);
     const formData = new FormData(form);
     
+    console.log(`🚀 Form submission started for: ${formId}`);
+    console.log('Form data:', Object.fromEntries(formData.entries()));
+    
     // Enhanced security validation using SecurityConfig
     const validation = this.securityConfig.validateFormData(formData);
     if (!validation.isValid) {
+      console.error('❌ Form validation failed:', validation.errors);
       this.securityConfig.logSecurityEvent('Form validation failed', { 
         errors: validation.errors,
         formId: formId 
@@ -201,9 +218,12 @@ class FormHandler {
       return;
     }
     
+    console.log('✅ Form validation passed');
+    
     // Rate limiting check using SecurityConfig
     const rateLimitCheck = this.securityConfig.checkRateLimit();
     if (!rateLimitCheck.allowed) {
+      console.warn('⚠️ Rate limit exceeded');
       this.securityConfig.logSecurityEvent('Rate limit exceeded', { 
         remainingTime: rateLimitCheck.remainingTime,
         formId: formId 
@@ -217,6 +237,7 @@ class FormHandler {
     // Basic honeypot spam check
     const honeypot = form.querySelector('input[name="website"]');
     if (honeypot && honeypot.value) {
+      console.warn('🍯 Honeypot triggered - likely spam');
       this.securityConfig.logSecurityEvent('Honeypot triggered', { formId: formId });
       // Likely spam - fail silently but log it
       this.setFormState(form, 'success');
@@ -226,6 +247,7 @@ class FormHandler {
     
     // Show loading state
     this.setFormState(form, 'loading');
+    console.log('📤 Sending to Google Apps Script...');
     
     try {
       // Prepare data for Google Apps Script with enhanced security
@@ -241,10 +263,15 @@ class FormHandler {
         allowedDomain: this.securityConfig.isDomainAllowed(window.location.href)
       };
 
+      console.log('📋 Data prepared for submission:', data);
+
       // Send to Google Apps Script
       const response = await this.sendToGoogleScript(data);
       
+      console.log('📬 Response received:', response);
+      
       if (response.success) {
+        console.log('✅ Form submitted successfully!');
         this.setFormState(form, 'success');
         form.reset(); // Clear form
         
@@ -260,7 +287,7 @@ class FormHandler {
       }
       
     } catch (error) {
-      console.error('Form submission error:', error);
+      console.error('❌ Form submission error:', error);
       this.setFormState(form, 'error');
       
       // Auto-hide error message after 8 seconds
@@ -274,22 +301,69 @@ class FormHandler {
   }
 
   async sendToGoogleScript(data) {
-    const response = await fetch(this.scriptUrl, {
-      method: 'POST',
-      mode: 'no-cors', // Required for Google Apps Script
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    });
+    try {
+      const response = await fetch(this.scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain',
+        },
+        body: JSON.stringify(data)
+      });
 
-    // Since we use no-cors, we can't read the response
-    // We'll assume success and handle errors via timeout
-    return new Promise((resolve) => {
-      // Simulate success after reasonable time
+      // Check if the request was successful
+      if (response.ok) {
+        try {
+          const result = await response.json();
+          return result;
+        } catch (e) {
+          // If we can't parse JSON, assume success (some CORS limitations)
+          console.log('Form submitted successfully (CORS response)');
+          return { success: true };
+        }
+      } else {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+    } catch (error) {
+      console.error('Network error:', error);
+      
+      // For CORS issues with Google Apps Script, we can't always read the response
+      // But we can check if it was a network error vs success
+      if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+        // This might be a CORS issue, not necessarily a failure
+        console.log('CORS limitation detected, checking alternative...');
+        return await this.fallbackSubmission(data);
+      }
+      
+      throw error;
+    }
+  }
+
+  async fallbackSubmission(data) {
+    // Alternative submission method using a form
+    return new Promise((resolve, reject) => {
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = this.scriptUrl;
+      form.target = '_blank';
+      form.style.display = 'none';
+      
+      // Add data as hidden inputs
+      Object.entries(data).forEach(([key, value]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = key;
+        input.value = typeof value === 'object' ? JSON.stringify(value) : value;
+        form.appendChild(input);
+      });
+      
+      document.body.appendChild(form);
+      
+      // Submit and clean up
+      form.submit();
       setTimeout(() => {
+        document.body.removeChild(form);
         resolve({ success: true });
-      }, 2000);
+      }, 1000);
     });
   }
 
