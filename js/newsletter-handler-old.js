@@ -18,10 +18,10 @@ class NewsletterHandler {
     
     if (isProduction) {
       // Production URL - Same as contact form for now
-      return 'https://script.google.com/macros/s/AKfycbxhn5f4EiT-c1FS80ssDg8sj5eyARC3J_RYxMpel4iCScDjxDpc4dJjGGehbd9jVZ1pHQ/exec';
+      return 'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec';
     } else {
       // Development URL
-      return 'https://script.google.com/macros/s/AKfycbxhn5f4EiT-c1FS80ssDg8sj5eyARC3J_RYxMpel4iCScDjxDpc4dJjGGehbd9jVZ1pHQ/exec';
+      return 'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec';
     }
   }
 
@@ -52,7 +52,7 @@ class NewsletterHandler {
   addFormStates(form) {
     // Create loading overlay
     const loadingOverlay = document.createElement('div');
-    loadingOverlay.className = 'newsletter-loading hidden absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center rounded-lg z-10';
+    loadingOverlay.className = 'newsletter-loading hidden absolute inset-0 bg-white bg-opacity-95 flex items-center justify-center rounded-xl z-10';
     loadingOverlay.innerHTML = `
       <div class="text-center">
         <div class="inline-block animate-spin rounded-full h-6 w-6 border-b-2 border-purple-600 mb-2"></div>
@@ -69,8 +69,8 @@ class NewsletterHandler {
           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
         </svg>
         <div>
-          <p class="font-medium text-sm">Success! Welcome to WebGlo Insights! 🎉</p>
-          <p class="text-xs text-green-700 mt-1">Check your email for a welcome message with exclusive resources.</p>
+          <h4 class="font-medium">Welcome to WebGlo Insights! 🎉</h4>
+          <p class="text-sm text-green-700 mt-1">Check your email for a welcome message with exclusive resources.</p>
         </div>
       </div>
     `;
@@ -84,7 +84,7 @@ class NewsletterHandler {
           <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
         </svg>
         <div>
-          <p class="font-medium text-sm">Subscription failed</p>
+          <h4 class="font-medium">Subscription failed</h4>
           <p class="text-sm text-red-700 mt-1">Please try again or email us at info@webglo.org</p>
         </div>
       </div>
@@ -104,35 +104,31 @@ class NewsletterHandler {
     
     const form = event.target;
     const formData = new FormData(form);
-    const email = formData.get('email');
     
-    console.log('📧 Newsletter subscription started for:', email);
+    console.log('📧 Newsletter subscription started');
+    console.log('Form data:', Object.fromEntries(formData.entries()));
+    
+    // Simple validation for newsletter (only email required)
+    const email = formData.get('email');
+    if (!email || !email.trim()) {
+      console.error('❌ Email is required');
+      this.setFormState(form, 'error');
+      return;
+    }
     
     // Basic email validation
-    if (!email || !email.trim()) {
-      console.error('❌ Email is required for newsletter subscription');
-      this.setFormState(form, 'error');
-      return;
-    }
-    
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      console.error('❌ Invalid email format for newsletter');
+      console.error('❌ Invalid email format');
       this.setFormState(form, 'error');
       return;
     }
     
-    // Check rate limiting
-    if (!this.checkRateLimit()) {
-      console.warn('⚠️ Newsletter subscription rate limit exceeded');
-      this.showRateLimitMessage(form);
-      return;
-    }
-    
-    // Check for duplicate subscriptions
-    if (this.getStoredEmails().includes(email.toLowerCase())) {
-      console.log('📧 Email already subscribed:', email);
-      // Show success anyway for privacy (don't reveal existing subscriptions)
+    // Check for existing subscription (simple client-side check)
+    const existingEmails = this.getStoredEmails();
+    if (existingEmails.includes(email.toLowerCase())) {
+      console.log('📧 Email already subscribed');
+      // Show success anyway for privacy reasons
       this.setFormState(form, 'success');
       form.reset();
       return;
@@ -141,33 +137,41 @@ class NewsletterHandler {
     // Honeypot spam check
     const honeypot = form.querySelector('input[name="website"]');
     if (honeypot && honeypot.value) {
-      console.warn('🍯 Newsletter honeypot triggered - likely spam');
-      // Fail silently for spam
+      console.warn('🍯 Honeypot triggered - likely spam');
+      // Silently fail but appear successful
       this.setFormState(form, 'success');
       form.reset();
       return;
     }
     
+    // Rate limiting (simpler for newsletter)
+    if (!this.checkRateLimit()) {
+      console.warn('⚠️ Rate limit exceeded for newsletter');
+      this.showRateLimitMessage(form);
+      return;
+    }
+    
     // Show loading state
     this.setFormState(form, 'loading');
-    console.log('📤 Sending newsletter subscription to Google Apps Script...');
     
     try {
-      // Prepare data for Google Apps Script
+      // Prepare data specifically for newsletter
       const data = {
         formType: 'newsletter',
         timestamp: new Date().toISOString(),
-        data: { email: email.trim() },
+        data: {
+          email: email.trim().toLowerCase()
+        },
         source: window.location.href,
         userAgent: navigator.userAgent
       };
 
-      console.log('📧 Newsletter data prepared for submission:', data);
+      console.log('📋 Newsletter data prepared:', data);
 
       // Send to Google Apps Script
       const response = await this.sendToGoogleScript(data);
       
-      console.log('📬 Newsletter response received:', response);
+      console.log('📬 Newsletter response:', response);
       
       if (response.success) {
         console.log('✅ Newsletter subscription successful!');
@@ -177,10 +181,10 @@ class NewsletterHandler {
         // Store email locally to prevent duplicate submissions
         this.storeEmail(email.toLowerCase());
         
-        // Auto-hide success message after 8 seconds
+        // Auto-hide success message after 15 seconds
         setTimeout(() => {
           this.setFormState(form, 'normal');
-        }, 8000);
+        }, 15000);
         
         // Track successful subscription
         this.trackSubscription('success');
@@ -192,10 +196,10 @@ class NewsletterHandler {
       console.error('❌ Newsletter subscription error:', error);
       this.setFormState(form, 'error');
       
-      // Auto-hide error message after 6 seconds
+      // Auto-hide error message after 10 seconds
       setTimeout(() => {
         this.setFormState(form, 'normal');
-      }, 6000);
+      }, 10000);
       
       // Track failed subscription
       this.trackSubscription('error', error.message);
@@ -203,19 +207,33 @@ class NewsletterHandler {
   }
 
   async sendToGoogleScript(data) {
-    const response = await fetch(this.scriptUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    });
+    console.log('📧 Sending newsletter data to Google Apps Script:', data);
     
-    if (!response.ok) {
-      throw new Error(`Network error: ${response.status}`);
+    try {
+      const response = await fetch(this.scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(data),
+        mode: 'cors'
+      });
+
+      console.log('📥 Newsletter response status:', response.status);
+      console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('📥 Newsletter response data:', result);
+      return result;
+      
+    } catch (error) {
+      console.error('📧 Newsletter request failed:', error);
+      throw error;
     }
-    
-    return response.json();
   }
 
   setFormState(form, state) {
@@ -252,8 +270,8 @@ class NewsletterHandler {
     const lastSubmission = localStorage.getItem('webglo_newsletter_submission');
     if (lastSubmission) {
       const timeDiff = now - parseInt(lastSubmission);
-      // 1 minute rate limit for newsletter
-      if (timeDiff < 60000) { 
+      // Reduced rate limit to 20 seconds for newsletter
+      if (timeDiff < 20000) { 
         return false;
       }
     }
@@ -262,68 +280,55 @@ class NewsletterHandler {
   }
 
   showRateLimitMessage(form) {
-    const container = form.parentNode;
-    let rateLimitMessage = container.querySelector('.newsletter-rate-limit');
-    
-    if (!rateLimitMessage) {
-      rateLimitMessage = document.createElement('div');
-      rateLimitMessage.className = 'newsletter-rate-limit p-3 bg-yellow-50 border border-yellow-200 rounded-xl mb-4';
-      container.insertBefore(rateLimitMessage, form);
-    }
-    
-    rateLimitMessage.innerHTML = `
-      <div class="flex items-center text-yellow-800">
+    const existingMsg = form.parentNode.querySelector('.rate-limit-message');
+    if (existingMsg) existingMsg.remove();
+
+    const message = document.createElement('div');
+    message.className = 'rate-limit-message p-3 bg-yellow-50 border border-yellow-200 rounded-xl mb-4 text-yellow-800';
+    message.innerHTML = `
+      <div class="flex items-center text-sm">
         <svg class="h-4 w-4 text-yellow-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
           <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
         </svg>
-        <p class="text-sm">Please wait a moment before subscribing again.</p>
+        Please wait a moment before subscribing again.
       </div>
     `;
     
-    rateLimitMessage.classList.remove('hidden');
+    form.parentNode.insertBefore(message, form);
     
-    // Auto-hide rate limit message after 3 seconds
     setTimeout(() => {
-      rateLimitMessage?.classList.add('hidden');
-    }, 3000);
+      message.remove();
+    }, 5000);
   }
 
   getStoredEmails() {
-    try {
-      const stored = localStorage.getItem('webglo_newsletter_emails');
-      return stored ? JSON.parse(stored) : [];
-    } catch {
-      return [];
-    }
+    const stored = localStorage.getItem('webglo_newsletter_emails');
+    return stored ? JSON.parse(stored) : [];
   }
 
   storeEmail(email) {
-    try {
-      const emails = this.getStoredEmails();
-      if (!emails.includes(email)) {
-        emails.push(email);
-        // Keep only last 100 emails to prevent localStorage bloat
-        if (emails.length > 100) {
-          emails.splice(0, emails.length - 100);
-        }
-        localStorage.setItem('webglo_newsletter_emails', JSON.stringify(emails));
+    const emails = this.getStoredEmails();
+    if (!emails.includes(email)) {
+      emails.push(email);
+      // Keep only last 50 emails to prevent localStorage bloat
+      if (emails.length > 50) {
+        emails.splice(0, emails.length - 50);
       }
-    } catch (error) {
-      console.warn('Could not store email locally:', error);
+      localStorage.setItem('webglo_newsletter_emails', JSON.stringify(emails));
     }
   }
 
   trackSubscription(status, error = null) {
-    // Track newsletter subscriptions for analytics
+    // Simple analytics tracking
     if (typeof gtag !== 'undefined') {
       gtag('event', 'newsletter_subscription', {
-        status: status,
-        error: error
+        event_category: 'newsletter',
+        event_label: status,
+        value: status === 'success' ? 1 : 0
       });
     }
     
-    // Log to console for debugging
-    console.log(`Newsletter subscription: ${status}`, error || '');
+    console.log(`📊 Newsletter subscription ${status}`, error ? { error } : {});
   }
 }
 

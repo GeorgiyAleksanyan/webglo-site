@@ -108,10 +108,10 @@ class ContactFormHandler {
   getScriptUrl() {
     if (this.securityConfig.isProduction) {
       // Production URL for contact forms
-      return 'https://script.google.com/macros/s/AKfycbxhn5f4EiT-c1FS80ssDg8sj5eyARC3J_RYxMpel4iCScDjxDpc4dJjGGehbd9jVZ1pHQ/exec';
+      return 'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec';
     } else {
       // Development URL
-      return 'https://script.google.com/macros/s/AKfycbxhn5f4EiT-c1FS80ssDg8sj5eyARC3J_RYxMpel4iCScDjxDpc4dJjGGehbd9jVZ1pHQ/exec';
+      return 'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec';
     }
   }
 
@@ -143,20 +143,20 @@ class ContactFormHandler {
   addFormStates(form) {
     // Create loading overlay
     const loadingOverlay = document.createElement('div');
-    loadingOverlay.className = 'contact-loading hidden absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center rounded-lg';
+    loadingOverlay.className = 'contact-loading hidden absolute inset-0 bg-white bg-opacity-90 flex items-center justify-center rounded-lg z-10';
     loadingOverlay.innerHTML = `
       <div class="text-center">
         <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-purple-600 mb-3"></div>
         <p class="text-gray-600 font-medium">Sending your message...</p>
-        <p class="text-gray-500 text-sm mt-1">Please wait a moment</p>
+        <p class="text-gray-500 text-sm mt-1">This may take a few seconds</p>
       </div>
     `;
     
     // Create success message
     const successMessage = document.createElement('div');
-    successMessage.className = 'contact-success hidden p-6 bg-green-50 border border-green-200 rounded-xl mb-6';
+    successMessage.className = 'contact-success hidden p-6 bg-green-50 border border-green-200 rounded-lg mb-6';
     successMessage.innerHTML = `
-      <div class="flex items-center">
+      <div class="flex items-start">
         <div class="flex-shrink-0">
           <svg class="h-6 w-6 text-green-400" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
@@ -165,8 +165,13 @@ class ContactFormHandler {
         <div class="ml-3">
           <h3 class="text-lg font-medium text-green-800">Message sent successfully! 🎉</h3>
           <div class="mt-2 text-sm text-green-700">
-            <p>Thank you for contacting WebGlo! We've received your message and will respond within 24 hours.</p>
-            <p class="mt-1">Check your email for a confirmation message with next steps.</p>
+            <p>Thank you for contacting WebGlo! We've received your message and will get back to you within 24 hours.</p>
+            <p class="mt-2 font-medium">Next steps:</p>
+            <ul class="mt-1 list-disc list-inside">
+              <li>Check your email for our confirmation message</li>
+              <li>We'll review your project details</li>
+              <li>Expect a personalized response soon</li>
+            </ul>
           </div>
         </div>
       </div>
@@ -174,9 +179,9 @@ class ContactFormHandler {
 
     // Create error message
     const errorMessage = document.createElement('div');
-    errorMessage.className = 'contact-error hidden p-6 bg-red-50 border border-red-200 rounded-xl mb-6';
+    errorMessage.className = 'contact-error hidden p-6 bg-red-50 border border-red-200 rounded-lg mb-6';
     errorMessage.innerHTML = `
-      <div class="flex items-center">
+      <div class="flex items-start">
         <div class="flex-shrink-0">
           <svg class="h-6 w-6 text-red-400" fill="currentColor" viewBox="0 0 20 20">
             <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
@@ -203,13 +208,17 @@ class ContactFormHandler {
   }
 
   addRealTimeValidation(form) {
-    const fields = form.querySelectorAll('input, textarea, select');
-    fields.forEach(field => {
-      field.addEventListener('blur', () => this.validateField(field));
-      field.addEventListener('input', () => {
-        if (field.classList.contains('border-red-500')) {
-          this.validateField(field);
-        }
+    // Add real-time validation for better UX
+    const inputs = form.querySelectorAll('input, textarea, select');
+    
+    inputs.forEach(input => {
+      input.addEventListener('blur', () => {
+        this.validateField(input);
+      });
+      
+      input.addEventListener('input', () => {
+        // Clear error state when user starts typing
+        this.clearFieldError(input);
       });
     });
   }
@@ -346,9 +355,8 @@ class ContactFormHandler {
     // Honeypot spam check
     const honeypot = form.querySelector('input[name="website"]');
     if (honeypot && honeypot.value) {
-      console.warn('🍯 Contact form honeypot triggered - likely spam');
-      this.securityConfig.logSecurityEvent('Honeypot triggered', { form: 'contact' });
-      // Fail silently for spam
+      console.warn('🍯 Contact form honeypot triggered');
+      // Silently fail but appear successful
       this.setFormState(form, 'success');
       form.reset();
       return;
@@ -356,10 +364,9 @@ class ContactFormHandler {
     
     // Show loading state
     this.setFormState(form, 'loading');
-    console.log('📤 Sending contact form to Google Apps Script...');
     
     try {
-      // Prepare data for Google Apps Script with enhanced security
+      // Prepare data for contact form submission
       const data = {
         formType: 'contact',
         timestamp: new Date().toISOString(),
@@ -370,37 +377,37 @@ class ContactFormHandler {
         allowedDomain: this.securityConfig.isDomainAllowed(window.location.href)
       };
 
-      console.log('📋 Contact data prepared for submission:', data);
+      console.log('📋 Contact data prepared:', data);
 
       // Send to Google Apps Script
       const response = await this.sendToGoogleScript(data);
       
-      console.log('📬 Contact form response received:', response);
+      console.log('📬 Contact response:', response);
       
       if (response.success) {
         console.log('✅ Contact form submitted successfully!');
         this.setFormState(form, 'success');
-        form.reset(); // Clear form
+        form.reset();
         
-        // Auto-hide success message after 10 seconds
+        // Auto-hide success message after 20 seconds
         setTimeout(() => {
           this.setFormState(form, 'normal');
-        }, 10000);
+        }, 20000);
         
         // Track successful submission
         this.trackSubmission('success');
       } else {
-        throw new Error(response.error || 'Unknown error occurred');
+        throw new Error(response.error || 'Contact submission failed');
       }
       
     } catch (error) {
       console.error('❌ Contact form submission error:', error);
       this.setFormState(form, 'error');
       
-      // Auto-hide error message after 8 seconds
+      // Auto-hide error message after 15 seconds
       setTimeout(() => {
         this.setFormState(form, 'normal');
-      }, 8000);
+      }, 15000);
       
       // Track failed submission
       this.trackSubmission('error', error.message);
@@ -408,19 +415,33 @@ class ContactFormHandler {
   }
 
   async sendToGoogleScript(data) {
-    const response = await fetch(this.scriptUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data)
-    });
+    console.log('📤 Sending contact data to Google Apps Script:', data);
     
-    if (!response.ok) {
-      throw new Error(`Network error: ${response.status}`);
+    try {
+      const response = await fetch(this.scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(data),
+        mode: 'cors'
+      });
+
+      console.log('📥 Google Apps Script response status:', response.status);
+      console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('📥 Google Apps Script response data:', result);
+      return result;
+      
+    } catch (error) {
+      console.error('📤 Google Apps Script request failed:', error);
+      throw error;
     }
-    
-    return response.json();
   }
 
   setFormState(form, state) {
@@ -453,50 +474,41 @@ class ContactFormHandler {
   }
 
   showRateLimitMessage(form, remainingTime) {
-    const container = form.parentNode;
-    let rateLimitMessage = container.querySelector('.contact-rate-limit');
-    
-    if (!rateLimitMessage) {
-      rateLimitMessage = document.createElement('div');
-      rateLimitMessage.className = 'contact-rate-limit p-4 bg-yellow-50 border border-yellow-200 rounded-xl mb-4';
-      container.insertBefore(rateLimitMessage, form);
-    }
-    
-    rateLimitMessage.innerHTML = `
-      <div class="flex items-center">
-        <div class="flex-shrink-0">
-          <svg class="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
-          </svg>
-        </div>
-        <div class="ml-3">
-          <h3 class="text-sm font-medium text-yellow-800">Please wait before submitting again</h3>
-          <p class="mt-1 text-sm text-yellow-700">
-            You can submit another message in ${remainingTime} seconds. This helps prevent spam.
-          </p>
+    const existingMsg = form.parentNode.querySelector('.rate-limit-message');
+    if (existingMsg) existingMsg.remove();
+
+    const message = document.createElement('div');
+    message.className = 'rate-limit-message p-4 bg-yellow-50 border border-yellow-200 rounded-lg mb-6 text-yellow-800';
+    message.innerHTML = `
+      <div class="flex items-start">
+        <svg class="h-5 w-5 text-yellow-500 mr-3 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/>
+        </svg>
+        <div>
+          <h4 class="font-medium">Please wait before submitting again</h4>
+          <p class="text-sm mt-1">To prevent spam, please wait ${remainingTime} seconds before submitting another message.</p>
         </div>
       </div>
     `;
     
-    rateLimitMessage.classList.remove('hidden');
+    form.parentNode.insertBefore(message, form);
     
-    // Auto-hide rate limit message
     setTimeout(() => {
-      rateLimitMessage?.classList.add('hidden');
+      message.remove();
     }, remainingTime * 1000);
   }
 
   trackSubmission(status, error = null) {
-    // Track contact form submissions for analytics
+    // Analytics tracking
     if (typeof gtag !== 'undefined') {
       gtag('event', 'contact_form_submission', {
-        status: status,
-        error: error
+        event_category: 'contact',
+        event_label: status,
+        value: status === 'success' ? 1 : 0
       });
     }
     
-    // Log to console for debugging
-    console.log(`Contact form submission: ${status}`, error || '');
+    console.log(`📊 Contact submission ${status}`, error ? { error } : {});
   }
 }
 

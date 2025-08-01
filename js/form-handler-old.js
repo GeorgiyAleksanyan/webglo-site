@@ -105,13 +105,13 @@ class FormHandler {
       // Production URL - Latest deployment with CORS fixes
       const parts = [
         'https://script.google.com/macros/s/',
-        'AKfycbxhn5f4EiT-c1FS80ssDg8sj5eyARC3J_RYxMpel4iCScDjxDpc4dJjGGehbd9jVZ1pHQ',
+        'AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ',
         '/exec'
       ];
       return parts.join('');
     } else {
       // Development/testing URL (same as production for now)
-      return 'https://script.google.com/macros/s/AKfycbxhn5f4EiT-c1FS80ssDg8sj5eyARC3J_RYxMpel4iCScDjxDpc4dJjGGehbd9jVZ1pHQ/exec';
+      return 'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec';
     }
   }
 
@@ -302,27 +302,68 @@ class FormHandler {
 
   async sendToGoogleScript(data) {
     try {
+      console.log('📤 Sending request to:', this.scriptUrl);
+      console.log('📋 Request data:', data);
+      
+      // Ensure data is properly serializable
+      const jsonData = JSON.stringify(data, null, 2);
+      console.log('📋 JSON string to send:', jsonData);
+      
       const response = await fetch(this.scriptUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
         },
-        body: JSON.stringify(data)
+        body: jsonData
       });
+
+      console.log('📬 Response status:', response.status);
+      console.log('📬 Response headers:', Array.from(response.headers.entries()));
+
+      // Check if the request was successful
+      if (response.ok) {
+        try {
+          const result = await response.json();
+          console.log('✅ Successfully parsed JSON response:', result);
+          return result;
+        } catch (e) {
+          // If we can't parse JSON, try to read as text to see what we got
+          try {
+            const text = await response.text();
+            console.log('📄 Response as text:', text);
+            
+            // Try to find JSON in the text (sometimes Google Apps Script wraps it)
+            const jsonMatch = text.match(/\{.*\}/);
+            if (jsonMatch) {
+              const result = JSON.parse(jsonMatch[0]);
+              console.log('✅ Extracted JSON from text response:', result);
+              return result;
+            }
+          } catch (textError) {
+            console.warn('Could not read response as text:', textError);
+          }
+          
+          // If we can't parse JSON, assume success (some CORS limitations)
+          console.log('Form submitted successfully (CORS response - cannot parse)');
+          return { success: true };
+        }
+      } else {
+        const errorText = await response.text();
+        console.error('❌ HTTP error response:', errorText);
+        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
+      }
+    } catch (error) {
+      console.error('❌ Network error:', error);
       
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      // For CORS issues with Google Apps Script, we can't always read the response
+      // But we can check if it was a network error vs success
+      if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+        // This might be a CORS issue, not necessarily a failure
+        console.log('CORS limitation detected, checking alternative...');
+        return await this.fallbackSubmission(data);
       }
       
-      const result = await response.json();
-      return result;
-      
-    } catch (error) {
-      console.error('Network error:', error);
-      
-      // Try fallback submission method
-      console.log('Attempting fallback submission...');
-      return await this.fallbackSubmission(data);
+      throw error;
     }
   }
 
@@ -384,13 +425,13 @@ class FormHandler {
   }
 
   showRateLimitMessage(form, remainingTime) {
-    const container = form.parentNode;
-    let rateLimitMessage = container.querySelector('.webglo-rate-limit');
+    // Find or create rate limit message
+    let rateLimitMessage = form.parentNode.querySelector('.webglo-form-ratelimit');
     
     if (!rateLimitMessage) {
       rateLimitMessage = document.createElement('div');
-      rateLimitMessage.className = 'webglo-rate-limit p-4 bg-yellow-50 border border-yellow-200 rounded-lg mb-4';
-      container.insertBefore(rateLimitMessage, form);
+      rateLimitMessage.className = 'webglo-form-ratelimit p-6 bg-yellow-50 border border-yellow-200 rounded-lg mb-6';
+      form.parentNode.insertBefore(rateLimitMessage, form);
     }
     
     rateLimitMessage.innerHTML = `
@@ -402,18 +443,16 @@ class FormHandler {
         </div>
         <div class="ml-3">
           <h3 class="text-sm font-medium text-yellow-800">Please wait before submitting again</h3>
-          <p class="mt-1 text-sm text-yellow-700">
-            You can submit another form in ${remainingTime} seconds. This helps prevent spam.
-          </p>
+          <p class="mt-1 text-sm text-yellow-700">You can submit another message in ${remainingTime} seconds.</p>
         </div>
       </div>
     `;
     
     rateLimitMessage.classList.remove('hidden');
     
-    // Auto-hide rate limit message
+    // Hide the message after the remaining time
     setTimeout(() => {
-      rateLimitMessage?.classList.add('hidden');
+      rateLimitMessage.classList.add('hidden');
     }, remainingTime * 1000);
   }
 
