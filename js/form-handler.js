@@ -302,29 +302,54 @@ class FormHandler {
 
   async sendToGoogleScript(data) {
     try {
+      console.log('📤 Sending request to:', this.scriptUrl);
+      console.log('📋 Request data:', data);
+      
       const response = await fetch(this.scriptUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'text/plain',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data)
       });
+
+      console.log('📬 Response status:', response.status);
+      console.log('📬 Response headers:', response.headers);
 
       // Check if the request was successful
       if (response.ok) {
         try {
           const result = await response.json();
+          console.log('✅ Successfully parsed JSON response:', result);
           return result;
         } catch (e) {
+          // If we can't parse JSON, try to read as text to see what we got
+          try {
+            const text = await response.text();
+            console.log('📄 Response as text:', text);
+            
+            // Try to find JSON in the text (sometimes Google Apps Script wraps it)
+            const jsonMatch = text.match(/\{.*\}/);
+            if (jsonMatch) {
+              const result = JSON.parse(jsonMatch[0]);
+              console.log('✅ Extracted JSON from text response:', result);
+              return result;
+            }
+          } catch (textError) {
+            console.warn('Could not read response as text:', textError);
+          }
+          
           // If we can't parse JSON, assume success (some CORS limitations)
-          console.log('Form submitted successfully (CORS response)');
+          console.log('Form submitted successfully (CORS response - cannot parse)');
           return { success: true };
         }
       } else {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        const errorText = await response.text();
+        console.error('❌ HTTP error response:', errorText);
+        throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
       }
     } catch (error) {
-      console.error('Network error:', error);
+      console.error('❌ Network error:', error);
       
       // For CORS issues with Google Apps Script, we can't always read the response
       // But we can check if it was a network error vs success
