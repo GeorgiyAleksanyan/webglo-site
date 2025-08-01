@@ -207,20 +207,33 @@ class NewsletterHandler {
   }
 
   async sendToGoogleScript(data) {
-    const response = await fetch(this.scriptUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify(data),
-      mode: 'cors'
-    });
+    console.log('📧 Sending newsletter data to Google Apps Script:', data);
+    
+    try {
+      const response = await fetch(this.scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(data),
+        mode: 'cors'
+      });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      console.log('📥 Newsletter response status:', response.status);
+      console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('📥 Newsletter response data:', result);
+      return result;
+      
+    } catch (error) {
+      console.error('📧 Newsletter request failed:', error);
+      throw error;
     }
-
-    return await response.json();
   }
 
   setFormState(form, state) {
@@ -257,7 +270,8 @@ class NewsletterHandler {
     const lastSubmission = localStorage.getItem('webglo_newsletter_submission');
     if (lastSubmission) {
       const timeDiff = now - parseInt(lastSubmission);
-      if (timeDiff < 60000) { // 1 minute between newsletter subscriptions
+      // Reduced rate limit to 20 seconds for newsletter
+      if (timeDiff < 20000) { 
         return false;
       }
     }

@@ -59,10 +59,10 @@ class ContactFormHandler {
           }
         }
         
-        // Message length validation
+        // Message length validation - reduced minimum length
         const message = formData.get('message');
-        if (message && message.trim().length < 10) {
-          errors.push('Message must be at least 10 characters long');
+        if (message && message.trim().length < 5) {
+          errors.push('Message must be at least 5 characters long');
         }
         
         return { isValid: errors.length === 0, errors };
@@ -73,8 +73,9 @@ class ContactFormHandler {
         const lastSubmission = localStorage.getItem('webglo_contact_submission');
         if (lastSubmission) {
           const timeDiff = now - parseInt(lastSubmission);
-          if (timeDiff < 60000) { // 1 minute between contact submissions
-            return { allowed: false, remainingTime: Math.ceil((60000 - timeDiff) / 1000) };
+          // Reduced rate limit to 30 seconds for better UX
+          if (timeDiff < 30000) { 
+            return { allowed: false, remainingTime: Math.ceil((30000 - timeDiff) / 1000) };
           }
         }
         localStorage.setItem('webglo_contact_submission', now.toString());
@@ -414,20 +415,33 @@ class ContactFormHandler {
   }
 
   async sendToGoogleScript(data) {
-    const response = await fetch(this.scriptUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-      },
-      body: JSON.stringify(data),
-      mode: 'cors'
-    });
+    console.log('📤 Sending contact data to Google Apps Script:', data);
+    
+    try {
+      const response = await fetch(this.scriptUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+        },
+        body: JSON.stringify(data),
+        mode: 'cors'
+      });
 
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      console.log('📥 Google Apps Script response status:', response.status);
+      console.log('📥 Response headers:', Object.fromEntries(response.headers.entries()));
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      console.log('📥 Google Apps Script response data:', result);
+      return result;
+      
+    } catch (error) {
+      console.error('📤 Google Apps Script request failed:', error);
+      throw error;
     }
-
-    return await response.json();
   }
 
   setFormState(form, state) {
