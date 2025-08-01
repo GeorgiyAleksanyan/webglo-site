@@ -73,6 +73,9 @@
       // Check if instance exists
       info.push(`window.formHandler: ${typeof window.formHandler !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
       
+      // Check SecurityConfig
+      info.push(`SecurityConfig: ${typeof SecurityConfig !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
+      
       // Check forms
       const forms = document.querySelectorAll('form[data-webglo-form]');
       info.push(`Forms found: ${forms.length}`);
@@ -81,7 +84,12 @@
       if (window.formHandler && window.formHandler.forms) {
         info.push(`Forms initialized: ${window.formHandler.forms.size}`);
         info.push(`Script URL: ${window.formHandler.scriptUrl}`);
+      } else {
+        info.push(`Forms initialized: N/A (no FormHandler instance)`);
       }
+      
+      // Check for any JavaScript errors
+      info.push(`Console errors: Check browser console for red error messages`);
       
       debugDiv.innerHTML = info.map(item => `<div>${item}</div>`).join('');
     }
@@ -96,9 +104,23 @@
     console.log('🔧 Debug page loaded');
     console.log('Available globals:', {
       FormHandler: typeof FormHandler,
+      SecurityConfig: typeof SecurityConfig,
       formHandler: typeof window.formHandler,
       webgloForms: typeof window.webgloForms
     });
+
+    // Try to manually create FormHandler if it doesn't exist
+    setTimeout(() => {
+      if (typeof FormHandler !== 'undefined' && typeof window.formHandler === 'undefined') {
+        console.log('🔧 Attempting manual FormHandler creation...');
+        try {
+          window.formHandler = new FormHandler();
+          console.log('✅ Manual FormHandler creation successful');
+        } catch (error) {
+          console.error('❌ Manual FormHandler creation failed:', error);
+        }
+      }
+    }, 2000);
   </script>
 </body>
 </html>

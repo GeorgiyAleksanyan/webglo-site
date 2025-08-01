@@ -465,11 +465,22 @@ class FormHandler {
   }
 }
 
-// Initialize form handler globally
-window.formHandler = new FormHandler();
+// Debug logging before initialization
+console.log('🔧 About to initialize FormHandler...');
 
-// Also create backup reference for compatibility
-window.webgloForms = window.formHandler;
+try {
+  // Initialize form handler globally
+  window.formHandler = new FormHandler();
+  console.log('✅ FormHandler instance created successfully');
+  console.log('FormHandler instance:', window.formHandler);
+  
+  // Also create backup reference for compatibility
+  window.webgloForms = window.formHandler;
+  console.log('✅ Backup reference created');
+  
+} catch (error) {
+  console.error('❌ Error creating FormHandler instance:', error);
+}
 
 // Fallback for older browsers
 if (!window.FormData) {
