@@ -437,13 +437,16 @@
                 <h3 class="text-xl font-bold mb-2">Never Miss an Update</h3>
                 <p class="text-white/90 text-sm">Get weekly insights, exclusive tips, and free resources delivered to your inbox.</p>
               </div>
-              <form class="space-y-4">
+              <form class="space-y-4" data-webglo-form="newsletter">
                 <input 
                   type="email" 
+                  name="email"
                   placeholder="Enter your email" 
                   class="w-full px-4 py-3 rounded-xl bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 border-2 border-gray-300 focus:border-white"
                   required
                 >
+                <!-- Honeypot field for spam protection -->
+                <input type="text" name="website" style="display: none;" tabindex="-1" autocomplete="off">
                 <button type="submit" class="w-full bg-white text-[#df00ff] font-semibold py-3 rounded-xl hover:bg-gray-100 transition-colors duration-300">
                   Subscribe Free
                 </button>
