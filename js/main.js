@@ -80,7 +80,8 @@ class WebGloMain {
         console.log('✅ FormHandler is available and initialized');
         console.log('Forms detected:', window.formHandler.forms.size);
       } else {
-        console.warn('⚠️ FormHandler not available');
+        console.warn('⚠️ FormHandler not available - forms may not work properly');
+        // Don't initialize fallback - let the real FormHandler handle it
       }
     }, 1000);
   }
