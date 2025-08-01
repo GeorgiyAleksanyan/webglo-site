@@ -86,6 +86,8 @@ select {
   font-size: 16px; /* Prevents zoom on iOS */
   border: 2px solid #e5e5e5;
   border-radius: 8px;
+  background-color: #ffffff;
+  color: #374151; /* Ensure dark text on light background */
   transition: border-color 0.2s ease;
   -webkit-appearance: none;
   appearance: none;
@@ -96,7 +98,16 @@ textarea:focus,
 select:focus {
   outline: none;
   border-color: #df00ff;
+  background-color: #ffffff;
+  color: #374151; /* Maintain dark text on focus */
   box-shadow: 0 0 0 3px rgba(223, 0, 255, 0.1);
+}
+
+/* Ensure placeholder text is visible */
+input::placeholder,
+textarea::placeholder {
+  color: #9ca3af;
+  opacity: 1;
 }
 
 /* Mobile-Optimized Cards */
