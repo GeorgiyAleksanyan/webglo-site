@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGlo Rate Limit Clear</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 min-h-screen flex items-center justify-center">
+    <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-6">
+        <h1 class="text-2xl font-bold text-center mb-6 text-gray-800">WebGlo Rate Limit Clear</h1>
+        
+        <div class="space-y-4">
+            <button 
+                id="clearLocalStorage"
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+            >
+                Clear Local Storage
+            </button>
+            
+            <button 
+                id="testScript"
+                class="w-full bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+            >
+                Test Google Script
+            </button>
+            
+            <button 
+                id="clearAll"
+                class="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-lg transition-colors"
+            >
+                Clear All & Test
+            </button>
+        </div>
+        
+        <div id="status" class="mt-6 p-4 rounded-lg hidden">
+            <p id="statusText" class="text-sm"></p>
+        </div>
+        
+        <div class="mt-6 text-sm text-gray-600">
+            <h3 class="font-medium mb-2">Current Status:</h3>
+            <ul class="space-y-1 text-xs">
+                <li>Form Rate Limit: <span id="formRateLimit" class="font-mono">-</span></li>
+                <li>Contact Rate Limit: <span id="contactRateLimit" class="font-mono">-</span></li>
+                <li>Newsletter Rate Limit: <span id="newsletterRateLimit" class="font-mono">-</span></li>
+                <li>Stored Emails: <span id="storedEmails" class="font-mono">-</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateStatus(message, type = 'info') {
+            const status = document.getElementById('status');
+            const statusText = document.getElementById('statusText');
+            
+            statusText.textContent = message;
+            status.className = `mt-6 p-4 rounded-lg ${
+                type === 'success' ? 'bg-green-50 text-green-800' :
+                type === 'error' ? 'bg-red-50 text-red-800' :
+                'bg-blue-50 text-blue-800'
+            }`;
+            status.classList.remove('hidden');
+        }
+        
+        function checkCurrentStatus() {
+            const formRateLimit = localStorage.getItem('webglo_form_submission');
+            const contactRateLimit = localStorage.getItem('webglo_contact_submission');
+            const newsletterRateLimit = localStorage.getItem('webglo_newsletter_submission');
+            const storedEmails = localStorage.getItem('webglo_newsletter_emails');
+            
+            document.getElementById('formRateLimit').textContent = formRateLimit ? 
+                new Date(parseInt(formRateLimit)).toLocaleTimeString() : 'None';
+            document.getElementById('contactRateLimit').textContent = contactRateLimit ? 
+                new Date(parseInt(contactRateLimit)).toLocaleTimeString() : 'None';
+            document.getElementById('newsletterRateLimit').textContent = newsletterRateLimit ? 
+                new Date(parseInt(newsletterRateLimit)).toLocaleTimeString() : 'None';
+            document.getElementById('storedEmails').textContent = storedEmails ? 
+                JSON.parse(storedEmails).length + ' emails' : 'None';
+        }
+        
+        document.getElementById('clearLocalStorage').addEventListener('click', () => {
+            localStorage.removeItem('webglo_form_submission');
+            localStorage.removeItem('webglo_contact_submission');
+            localStorage.removeItem('webglo_newsletter_submission');
+            localStorage.removeItem('webglo_newsletter_emails');
+            
+            updateStatus('Local storage cleared successfully!', 'success');
+            checkCurrentStatus();
+        });
+        
+        document.getElementById('testScript').addEventListener('click', async () => {
+            updateStatus('Testing Google Apps Script...');
+            
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbxhn5f4EiT-c1FS80ssDg8sj5eyARC3J_RYxMpel4iCScDjxDpc4dJjGGehbd9jVZ1pHQ/exec', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        formType: 'test',
+                        timestamp: new Date().toISOString(),
+                        data: { email: 'test@example.com' },
+                        source: window.location.href,
+                        userAgent: navigator.userAgent
+                    })
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    updateStatus(`Script test successful: ${result.message || 'OK'}`, 'success');
+                } else {
+                    updateStatus(`Script test failed: HTTP ${response.status}`, 'error');
+                }
+            } catch (error) {
+                updateStatus(`Script test error: ${error.message}`, 'error');
+            }
+        });
+        
+        document.getElementById('clearAll').addEventListener('click', async () => {
+            // Clear local storage
+            localStorage.removeItem('webglo_form_submission');
+            localStorage.removeItem('webglo_contact_submission');
+            localStorage.removeItem('webglo_newsletter_submission');
+            localStorage.removeItem('webglo_newsletter_emails');
+            
+            updateStatus('Cleared storage and testing script...');
+            
+            // Test script
+            try {
+                const response = await fetch('https://script.google.com/macros/s/AKfycbxhn5f4EiT-c1FS80ssDg8sj5eyARC3J_RYxMpel4iCScDjxDpc4dJjGGehbd9jVZ1pHQ/exec', {
+                    method: 'GET'
+                });
+                
+                if (response.ok) {
+                    const result = await response.json();
+                    updateStatus('All cleared and script is working!', 'success');
+                } else {
+                    updateStatus(`Storage cleared but script test failed: HTTP ${response.status}`, 'error');
+                }
+            } catch (error) {
+                updateStatus(`Storage cleared but script test error: ${error.message}`, 'error');
+            }
+            
+            checkCurrentStatus();
+        });
+        
+        // Initial status check
+        checkCurrentStatus();
+    </script>
+</body>
+</html>
