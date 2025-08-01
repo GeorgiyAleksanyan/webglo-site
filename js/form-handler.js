@@ -102,16 +102,16 @@ class FormHandler {
   getScriptUrl() {
     // Use security config for environment detection
     if (this.securityConfig.isProduction) {
-      // Production URL - Latest deployment with URL compatibility fix
+      // Production URL - Latest deployment with CORS fixes
       const parts = [
         'https://script.google.com/macros/s/',
-        'AKfycbyDiuGlHBz3Y_Ba76IEoeYrnB179_NBYR-FX1iW29-VWJtuVaAYdEokLpx7Y-qSw57WIQ',
+        'AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ',
         '/exec'
       ];
       return parts.join('');
     } else {
       // Development/testing URL (same as production for now)
-      return 'https://script.google.com/macros/s/AKfycbyDiuGlHBz3Y_Ba76IEoeYrnB179_NBYR-FX1iW29-VWJtuVaAYdEokLpx7Y-qSw57WIQ/exec';
+      return 'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec';
     }
   }
 

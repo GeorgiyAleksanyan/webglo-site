@@ -108,10 +108,10 @@ class ContactFormHandler {
   getScriptUrl() {
     if (this.securityConfig.isProduction) {
       // Production URL for contact forms
-      return 'https://script.google.com/macros/s/AKfycbyDiuGlHBz3Y_Ba76IEoeYrnB179_NBYR-FX1iW29-VWJtuVaAYdEokLpx7Y-qSw57WIQ/exec';
+      return 'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec';
     } else {
       // Development URL
-      return 'https://script.google.com/macros/s/AKfycbyDiuGlHBz3Y_Ba76IEoeYrnB179_NBYR-FX1iW29-VWJtuVaAYdEokLpx7Y-qSw57WIQ/exec';
+      return 'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec';
     }
   }
 

@@ -44,8 +44,8 @@ class EmergencyFormHandler {
       
       // Try multiple endpoints
       const endpoints = [
-        'https://script.google.com/macros/s/AKfycbyDiuGlHBz3Y_Ba76IEoeYrnB179_NBYR-FX1iW29-VWJtuVaAYdEokLpx7Y-qSw57WIQ/exec',
-        'https://script.google.com/macros/s/AKfycbyDiuGlHBz3Y_Ba76IEoeYrnB179_NBYR-FX1iW29-VWJtuVaAYdEokLpx7Y-qSw57WIQ/exec?callback=handleResponse'
+        'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec',
+        'https://script.google.com/macros/s/AKfycbwWN1BeKpgcerWlH4iNYQnI1oPvF7sTbXBa7srdSKVubEd1esKn4qlDqDimPiUUH6n2PQ/exec?callback=handleResponse'
       ];
       
       let success = false;
