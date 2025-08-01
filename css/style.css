@@ -12,7 +12,8 @@ textarea,
 select {
   background-color: #ffffff !important;
   color: #374151 !important;
-  border: 1px solid #d1d5db !important;
+  border: 2px solid #d1d5db !important;
+  border-radius: 8px !important;
 }
 
 input[type="text"]:focus,
@@ -24,6 +25,7 @@ select:focus {
   background-color: #ffffff !important;
   color: #374151 !important;
   border-color: #df00ff !important;
+  box-shadow: 0 0 0 3px rgba(223, 0, 255, 0.1) !important;
 }
 
 /* Placeholder styling for better visibility */

@@ -84,11 +84,11 @@ select {
   width: 100%;
   padding: 16px;
   font-size: 16px; /* Prevents zoom on iOS */
-  border: 2px solid #e5e5e5;
+  border: 2px solid #d1d5db;
   border-radius: 8px;
   background-color: #ffffff;
   color: #374151; /* Ensure dark text on light background */
-  transition: border-color 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
   -webkit-appearance: none;
   appearance: none;
 }
