@@ -305,16 +305,20 @@ class FormHandler {
       console.log('📤 Sending request to:', this.scriptUrl);
       console.log('📋 Request data:', data);
       
+      // Ensure data is properly serializable
+      const jsonData = JSON.stringify(data, null, 2);
+      console.log('📋 JSON string to send:', jsonData);
+      
       const response = await fetch(this.scriptUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
         },
-        body: JSON.stringify(data)
+        body: jsonData
       });
 
       console.log('📬 Response status:', response.status);
-      console.log('📬 Response headers:', response.headers);
+      console.log('📬 Response headers:', Array.from(response.headers.entries()));
 
       // Check if the request was successful
       if (response.ok) {
