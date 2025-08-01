@@ -58,42 +58,58 @@
     </div>
   </div>
 
-  <!-- Load the form handler -->
+  <!-- Load the separated form handlers -->
   <script src="js/security-config.js"></script>
-  <script src="js/form-handler.js"></script>
-  <script src="js/formhandler-test.js"></script>
+  <script src="js/contact-form-handler.js"></script>
+  <script src="js/newsletter-handler.js"></script>
+  <script src="js/form-manager.js"></script>
   
   <script>
-    // Debug script
+    // Debug script for separated form handlers
     function updateDebugInfo() {
       const debugDiv = document.getElementById('debug-info');
       const info = [];
       
-      // Check if FormHandler exists
-      info.push(`FormHandler class: ${typeof FormHandler !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
+      // Check if separated form handlers exist
+      info.push(`ContactFormHandler class: ${typeof ContactFormHandler !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
+      info.push(`NewsletterHandler class: ${typeof NewsletterHandler !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
+      info.push(`FormManager class: ${typeof FormManager !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
       
-      // Check if instance exists
-      info.push(`window.formHandler: ${typeof window.formHandler !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
+      // Check if instances exist
+      info.push(`webgloContactHandler: ${typeof window.webgloContactHandler !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
+      info.push(`webgloNewsletterHandler: ${typeof window.webgloNewsletterHandler !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
+      info.push(`webgloFormManager: ${typeof window.webgloFormManager !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
       
       // Check SecurityConfig
       info.push(`SecurityConfig: ${typeof SecurityConfig !== 'undefined' ? '✅ Available' : '❌ Missing'}`);
       
       // Check forms
-      const forms = document.querySelectorAll('form[data-webglo-form]');
-      info.push(`Forms found: ${forms.length}`);
+      const contactForms = document.querySelectorAll('form[data-webglo-form="contact"]');
+      const newsletterForms = document.querySelectorAll('form[data-webglo-form="newsletter"]');
+      const allForms = document.querySelectorAll('form[data-webglo-form]');
       
-      // Check if forms are initialized
-      if (window.formHandler && window.formHandler.forms) {
-        info.push(`Forms initialized: ${window.formHandler.forms.size}`);
-        info.push(`Script URL: ${window.formHandler.scriptUrl}`);
-      } else {
-        info.push(`Forms initialized: N/A (no FormHandler instance)`);
+      info.push(`Contact forms found: ${contactForms.length}`);
+      info.push(`Newsletter forms found: ${newsletterForms.length}`);
+      info.push(`Total forms found: ${allForms.length}`);
+      
+      // Check form manager status
+      if (window.webgloFormManager) {
+        const status = window.webgloFormManager.getStatus();
+        info.push(`Handlers loaded: ${status.handlersLoaded}`);
+      }
+      
+      // Check URLs
+      if (window.webgloContactHandler) {
+        info.push(`Contact Script URL: ${window.webgloContactHandler.scriptUrl}`);
+      }
+      if (window.webgloNewsletterHandler) {
+        info.push(`Newsletter Script URL: ${window.webgloNewsletterHandler.scriptUrl}`);
       }
       
       // Check for any JavaScript errors
-      info.push(`Console errors: Check browser console for red error messages`);
+      info.push(`Console: Check browser console for error messages`);
       
-      debugDiv.innerHTML = info.map(item => `<div>${item}</div>`).join('');
+      debugDiv.innerHTML = info.map(item => `<div class="p-1 border-b text-sm">${item}</div>`).join('');
     }
 
     // Update debug info periodically
@@ -103,26 +119,43 @@
     window.addEventListener('load', updateDebugInfo);
     
     // Add extra logging
-    console.log('🔧 Debug page loaded');
+    console.log('🔧 Debug page loaded - Separated Form Handlers');
     console.log('Available globals:', {
-      FormHandler: typeof FormHandler,
+      ContactFormHandler: typeof ContactFormHandler,
+      NewsletterHandler: typeof NewsletterHandler,
+      FormManager: typeof FormManager,
       SecurityConfig: typeof SecurityConfig,
-      formHandler: typeof window.formHandler,
-      webgloForms: typeof window.webgloForms
+      webgloContactHandler: typeof window.webgloContactHandler,
+      webgloNewsletterHandler: typeof window.webgloNewsletterHandler,
+      webgloFormManager: typeof window.webgloFormManager
     });
 
-    // Try to manually create FormHandler if it doesn't exist
-    setTimeout(() => {
-      if (typeof FormHandler !== 'undefined' && typeof window.formHandler === 'undefined') {
-        console.log('🔧 Attempting manual FormHandler creation...');
-        try {
-          window.formHandler = new FormHandler();
-          console.log('✅ Manual FormHandler creation successful');
-        } catch (error) {
-          console.error('❌ Manual FormHandler creation failed:', error);
-        }
+    // Add test functions for easy debugging
+    window.testContactForm = () => {
+      if (window.webgloContactHandler) {
+        console.log('📞 Testing contact form handler...');
+        console.log('Contact handler status:', window.webgloContactHandler);
+      } else {
+        console.error('❌ Contact handler not available');
       }
-    }, 2000);
+    };
+
+    window.testNewsletterForm = () => {
+      if (window.webgloNewsletterHandler) {
+        console.log('� Testing newsletter handler...');
+        console.log('Newsletter handler status:', window.webgloNewsletterHandler);
+      } else {
+        console.error('❌ Newsletter handler not available');
+      }
+    };
+
+    window.testFormManager = () => {
+      if (window.webgloFormManager) {
+        console.log('📋 Form manager status:', window.webgloFormManager.getStatus());
+      } else {
+        console.error('❌ Form manager not available');
+      }
+    };
   </script>
 </body>
 </html>
