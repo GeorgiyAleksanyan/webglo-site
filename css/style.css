@@ -1,0 +1,58 @@
+/* Custom styles for WebGlo (minimal, as Tailwind is used via CDN) */
+.fade-in { animation: fadeIn 1s ease-in; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.active-link { color: #df00ff !important; }
+
+/* Like animation */
+@keyframes like-float {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-30px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* Liked state */
+.like-btn.liked {
+  background: rgba(223, 0, 255, 0.1) !important;
+}
+
+.like-btn.liked svg {
+  fill: #df00ff !important;
+  color: #df00ff !important;
+}
+
+/* Premium CTA Button */
+.cta-button {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  background: linear-gradient(135deg, #df00ff, #0cead9);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(223, 0, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px rgba(223, 0, 255, 0.4);
+  color: white;
+  text-decoration: none;
+}
+
+/* Responsive Typography */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem !important;
+  }
+}

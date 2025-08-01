@@ -1,0 +1,57 @@
+# Development files (already removed)
+debug.html
+test.html
+performance-test.html
+*_old.html
+*_new.html
+*_rich.html
+server.py
+
+# Development documentation (already removed)
+DEPLOYMENT.md
+TESTING_GUIDE.md
+CHROME_*.md
+UI_FIXES_SUMMARY.md
+PROJECT_LOG.md
+IMAGE_ASSETS.md
+
+# Development scripts (already removed)
+js/*_old.js
+js/*_enhanced.js
+js/cache-buster.js
+js/dynamic-animations.js
+js/mobile-optimizer.js
+css/dynamic-animations.css
+css/subtle-animations.css
+
+# Archive directories
+archive/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies (if you add them later)
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+.env.production
+
+# Build outputs (if you add build process)
+dist/
+build/
