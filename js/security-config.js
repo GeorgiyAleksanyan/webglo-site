@@ -83,29 +83,41 @@ class SecurityConfig {
   validateFormData(formData) {
     const errors = [];
 
-    // Check required fields
-    if (!formData.get('name') || !formData.get('name').trim()) {
-      errors.push('Name is required');
-    } else if (!this.config.validation.name.test(formData.get('name'))) {
-      errors.push('Invalid name format');
+    // Handle different form types
+    const isNewsletterForm = !formData.has('firstName') && !formData.has('lastName') && !formData.has('message');
+    
+    if (!isNewsletterForm) {
+      // Contact form validation - check for firstName and lastName
+      if (!formData.get('firstName') || !formData.get('firstName').trim()) {
+        errors.push('First name is required');
+      } else if (!this.config.validation.name.test(formData.get('firstName'))) {
+        errors.push('Invalid first name format');
+      }
+
+      if (!formData.get('lastName') || !formData.get('lastName').trim()) {
+        errors.push('Last name is required');
+      } else if (!this.config.validation.name.test(formData.get('lastName'))) {
+        errors.push('Invalid last name format');
+      }
+
+      if (!formData.get('message') || !formData.get('message').trim()) {
+        errors.push('Message is required');
+      } else {
+        const message = formData.get('message').trim();
+        if (message.length < this.config.validation.message.minLength) {
+          errors.push(`Message must be at least ${this.config.validation.message.minLength} characters`);
+        }
+        if (message.length > this.config.validation.message.maxLength) {
+          errors.push(`Message must be less than ${this.config.validation.message.maxLength} characters`);
+        }
+      }
     }
 
+    // Email validation (required for both contact and newsletter)
     if (!formData.get('email') || !formData.get('email').trim()) {
       errors.push('Email is required');
     } else if (!this.config.validation.email.test(formData.get('email'))) {
       errors.push('Invalid email format');
-    }
-
-    if (!formData.get('message') || !formData.get('message').trim()) {
-      errors.push('Message is required');
-    } else {
-      const message = formData.get('message').trim();
-      if (message.length < this.config.validation.message.minLength) {
-        errors.push(`Message must be at least ${this.config.validation.message.minLength} characters`);
-      }
-      if (message.length > this.config.validation.message.maxLength) {
-        errors.push(`Message must be less than ${this.config.validation.message.maxLength} characters`);
-      }
     }
 
     // Check honeypot
