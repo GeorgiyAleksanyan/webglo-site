@@ -16,7 +16,74 @@
 - [ ] No hardcoded localhost URLs remain
 - [ ] All relative paths are correct
 
-## 🔧 Deployment Steps
+## � Security Verification (CRITICAL)
+
+### Pre-Deployment Security Tests:
+- [ ] SecurityConfig.js is included in contact.html
+- [ ] Form handler uses SecurityConfig for validation
+- [ ] Google Apps Script has security validation enabled
+- [ ] Rate limiting works (test 2 submissions within 30 seconds)
+- [ ] Honeypot field detection works (fill hidden "website" field)
+- [ ] Domain validation prevents unauthorized usage
+- [ ] Error messages don't expose sensitive information
+
+### Security Configuration Checklist:
+- [ ] Allowed domains list includes only webglo.org and www.webglo.org
+- [ ] Google Apps Script validates source domain
+- [ ] Client-side rate limiting: 30 seconds between submissions
+- [ ] Server-side rate limiting: 10 seconds global minimum
+- [ ] Security tokens are generated and validated
+- [ ] Form validation includes email format, message length
+- [ ] Spam detection honeypot is properly hidden
+
+### Post-Deployment Security Tests:
+1. **Test from authorized domain** (webglo.org):
+   - [ ] Form submission works normally
+   - [ ] All security checks pass
+   - [ ] Emails delivered correctly
+
+2. **Test security measures**:
+   - [ ] Submit twice quickly → rate limit message appears
+   - [ ] Fill honeypot field → appears successful but doesn't process
+   - [ ] Submit invalid email → validation error shown
+   - [ ] Empty required fields → validation errors shown
+
+3. **Monitor for issues**:
+   - [ ] Check Google Apps Script execution logs
+   - [ ] Review Google Sheets for any suspicious submissions
+   - [ ] Verify security event logging is working
+
+### Security Monitoring Setup:
+- [ ] Google Apps Script logs security events
+- [ ] Failed validation attempts are recorded
+- [ ] Rate limit violations are logged
+- [ ] Honeypot triggers are logged
+
+## ⚠️ IMPORTANT SECURITY NOTES
+
+**Your repository is PUBLIC** - this means:
+- All code, including security measures, is visible
+- Attackers can see form endpoints and email addresses
+- Security through obscurity won't work
+
+**Implemented Protections**:
+- Multi-layer validation (client + server)
+- Domain whitelisting prevents external usage
+- Rate limiting prevents abuse
+- Honeypot detection catches simple bots
+- Input validation prevents malicious data
+- Error handling doesn't expose system details
+
+**If Security Breach Detected**:
+1. Immediately disable Google Apps Script
+2. Update deployment ID to invalidate endpoints
+3. Review logs and submissions for suspicious activity
+4. Deploy security patches
+5. Monitor for continued issues
+
+For detailed security information, see `SECURITY.md`
+
+## �🔧 Deployment Steps
 
 ### 1. Quick Local Test
 ```bash

@@ -1,3 +1,29 @@
+# =============================================================================
+# SECURITY-SENSITIVE FILES - DO NOT COMMIT TO PUBLIC REPOSITORY
+# =============================================================================
+
+# Google Apps Script files (contains API endpoints, sheet IDs, and configuration)
+google-apps-script.js
+gas-*.js
+apps-script-*.js
+
+# API keys, secrets, and credentials
+api-keys.txt
+secrets.txt
+credentials.json
+service-account.json
+sheet-ids.txt
+database-config.js
+
+# Security test files that might contain sensitive data
+security-test-private.js
+penetration-test-*
+vulnerability-scan-*
+
+# =============================================================================
+# DEVELOPMENT FILES (ALREADY REMOVED FROM REPO)
+# =============================================================================
+
 # Development files (already removed)
 debug.html
 test.html
@@ -26,6 +52,10 @@ css/subtle-animations.css
 
 # Archive directories
 archive/
+
+# =============================================================================
+# STANDARD DEVELOPMENT IGNORES
+# =============================================================================
 
 # IDE files
 .vscode/
