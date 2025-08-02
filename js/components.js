@@ -141,6 +141,7 @@ class WebGloComponents {
               </div>
 
               <a href="about.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">About</a>
+              <a href="case-studies.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">Case Studies</a>
               <a href="blog.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">Blog</a>
               <a href="contact.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">Contact</a>
               
@@ -164,6 +165,7 @@ class WebGloComponents {
               <a href="services.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Services</a>
               <a href="pricing.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Pricing</a>
               <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">About</a>
+              <a href="case-studies.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Case Studies</a>
               <a href="blog.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Blog</a>
               <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Contact</a>
               <a href="contact.html" class="block mx-3 my-2 px-4 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-semibold text-center">Free Consultation</a>
@@ -249,6 +251,7 @@ class WebGloComponents {
               <h3 class="text-lg font-semibold mb-6">Company</h3>
               <ul class="space-y-3">
                 <li><a href="about.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">About Us</a></li>
+                <li><a href="case-studies.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Case Studies</a></li>
                 <li><a href="blog.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Blog</a></li>
                 <li><a href="contact.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Contact</a></li>
                 <li><a href="consulting.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Free Consultation</a></li>
