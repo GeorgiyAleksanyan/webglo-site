@@ -9,6 +9,7 @@ apps-script-*.js
 *google-script.js
 final-google-script.js
 fixed-google-script.js
+production-google-script*.js
 
 # API keys, secrets, and credentials
 api-keys.txt
@@ -35,6 +36,11 @@ performance-test.html
 *_new.html
 *_rich.html
 server.py
+*-test.html
+*-debug.html
+form-*.html
+emergency-*.html
+simple-*.html
 
 # Development documentation (already removed)
 DEPLOYMENT.md
@@ -48,6 +54,12 @@ IMAGE_ASSETS.md
 js/jsonp-form-handler.js
 js/webglo-form-handler.js
 simple-form-handler.js
+js/*-handler.js
+js/*-handler-*.js
+js/*-test.js
+js/security-*.js
+js/complete-test.js
+js/form*.js
 jsonp-form-test.html
 
 # Production test files (safe to keep in dev, exclude from production)

@@ -6,6 +6,7 @@ class WebGloBlog {
     this.currentCategory = 'all';
     this.searchTerm = '';
     this.metrics = this.loadMetrics();
+    this.userLikes = new Set(); // Track which posts this user has liked in current session
     this.init();
   }
 
@@ -28,22 +29,6 @@ class WebGloBlog {
   // Save metrics to localStorage
   saveMetrics() {
     localStorage.setItem('webglo_blog_metrics', JSON.stringify(this.metrics));
-  }
-
-  // Track individual post interactions
-  trackPostInteraction(postId, type) {
-    if (!this.metrics.postMetrics[postId]) {
-      this.metrics.postMetrics[postId] = {
-        views: Math.floor(Math.random() * 500) + 200, // Initial boosted views
-        likes: Math.floor(Math.random() * 50) + 10,   // Initial boosted likes
-        shares: Math.floor(Math.random() * 20) + 5    // Initial boosted shares
-      };
-    }
-    
-    this.metrics.postMetrics[postId][type]++;
-    this.metrics[`total${type.charAt(0).toUpperCase() + type.slice(1)}`]++;
-    this.saveMetrics();
-    this.updatePostDisplay(postId);
   }
 
   // Update post display with real metrics
@@ -103,14 +88,25 @@ class WebGloBlog {
     return title.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
   }
 
-  // Handle like button click
+  // Handle like button click - Simple toggle system
   handleLike(button, postId) {
-    const isLiked = button.classList.contains('liked');
     const heartIcon = button.querySelector('svg');
     const likeCount = button.querySelector('.like-count');
     
-    if (!isLiked) {
-      // Like the post
+    // Initialize post metrics if they don't exist
+    if (!this.metrics.postMetrics[postId]) {
+      this.metrics.postMetrics[postId] = {
+        views: Math.floor(Math.random() * 500) + 200,
+        likes: Math.floor(Math.random() * 50) + 10,
+        shares: Math.floor(Math.random() * 20) + 5
+      };
+    }
+    
+    const isCurrentlyLiked = this.userLikes.has(postId);
+    
+    if (!isCurrentlyLiked) {
+      // User is liking this post
+      this.userLikes.add(postId);
       button.classList.add('liked');
       heartIcon.style.fill = '#df00ff';
       heartIcon.style.color = '#df00ff';
@@ -120,22 +116,25 @@ class WebGloBlog {
         button.style.transform = 'scale(1)';
       }, 150);
       
-      this.trackPostInteraction(postId, 'likes');
+      // Increment like count
+      this.metrics.postMetrics[postId].likes++;
+      this.metrics.totalLikes++;
       this.showLikeAnimation(button);
       
     } else {
-      // Unlike the post
+      // User is removing their like
+      this.userLikes.delete(postId);
       button.classList.remove('liked');
       heartIcon.style.fill = 'none';
       heartIcon.style.color = '#6b7280';
       
-      if (this.metrics.postMetrics[postId]) {
-        this.metrics.postMetrics[postId].likes = Math.max(0, this.metrics.postMetrics[postId].likes - 1);
-        this.metrics.totalLikes = Math.max(0, this.metrics.totalLikes - 1);
-        this.saveMetrics();
-        this.updatePostDisplay(postId);
-      }
+      // Decrement like count (but don't go below the initial count)
+      this.metrics.postMetrics[postId].likes = Math.max(10, this.metrics.postMetrics[postId].likes - 1);
+      this.metrics.totalLikes = Math.max(0, this.metrics.totalLikes - 1);
     }
+    
+    this.saveMetrics();
+    this.updatePostDisplay(postId);
   }
 
   // Show like animation
@@ -168,8 +167,20 @@ class WebGloBlog {
       const postId = this.generatePostId(post);
       post.dataset.postId = postId;
       
-      // Track view
-      this.trackPostInteraction(postId, 'views');
+      // Initialize metrics if they don't exist
+      if (!this.metrics.postMetrics[postId]) {
+        this.metrics.postMetrics[postId] = {
+          views: Math.floor(Math.random() * 500) + 200, // Initial boosted views
+          likes: Math.floor(Math.random() * 50) + 10,   // Initial boosted likes
+          shares: Math.floor(Math.random() * 20) + 5    // Initial boosted shares
+        };
+      }
+      
+      // Only increment views on page load, not likes
+      this.metrics.postMetrics[postId].views++;
+      this.metrics.totalViews++;
+      this.saveMetrics();
+      this.updatePostDisplay(postId);
     });
   }
 
@@ -191,8 +202,10 @@ class WebGloBlog {
         button.classList.add('active', 'text-white', 'bg-gradient-to-r', 'from-[#df00ff]', 'to-[#0cead9]', 'shadow-lg');
         button.classList.remove('bg-gray-100', 'text-gray-700');
         
-        // Filter posts with animation
-        this.filterPosts(category);
+        // Filter posts with current search term
+        const searchInput = document.getElementById('blog-search');
+        const currentSearchTerm = searchInput ? searchInput.value : '';
+        this.performSearch(currentSearchTerm);
         
         // Track category selection
         this.trackEvent('Blog Category Filter', { category: category });
@@ -200,46 +213,28 @@ class WebGloBlog {
     });
   }
 
-  filterPosts(category) {
-    const blogPosts = document.querySelectorAll('.blog-post');
-    
-    blogPosts.forEach((post, index) => {
-      // Add fade out animation
-      post.style.opacity = '0';
-      post.style.transform = 'translateY(20px)';
-      
-      setTimeout(() => {
-        if (category === 'all' || post.dataset.category === category) {
-          post.style.display = 'block';
-          // Stagger the fade in animation
-          setTimeout(() => {
-            post.style.opacity = '1';
-            post.style.transform = 'translateY(0)';
-          }, index * 100);
-        } else {
-          post.style.display = 'none';
-        }
-      }, 300);
-    });
-  }
-
   initSearchFunctionality() {
     const searchInput = document.getElementById('blog-search');
-    if (!searchInput) return;
+    if (!searchInput) {
+      console.warn('Blog search input not found');
+      return;
+    }
 
     let searchTimeout;
     
+    // Input event with debounce
     searchInput.addEventListener('input', (e) => {
       clearTimeout(searchTimeout);
       searchTimeout = setTimeout(() => {
         this.performSearch(e.target.value);
-      }, 300); // Debounce search
+      }, 300);
     });
 
     // Search button functionality
     const searchButton = searchInput.nextElementSibling;
     if (searchButton) {
-      searchButton.addEventListener('click', () => {
+      searchButton.addEventListener('click', (e) => {
+        e.preventDefault();
         this.performSearch(searchInput.value);
       });
     }
@@ -247,29 +242,45 @@ class WebGloBlog {
     // Enter key search
     searchInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') {
+        e.preventDefault();
         this.performSearch(e.target.value);
       }
     });
   }
 
   performSearch(term) {
-    this.searchTerm = term.toLowerCase();
+    this.searchTerm = term.toLowerCase().trim();
     const blogPosts = document.querySelectorAll('.blog-post');
     let visibleCount = 0;
 
-    blogPosts.forEach(post => {
-      const title = post.querySelector('h3').textContent.toLowerCase();
-      const description = post.querySelector('p').textContent.toLowerCase();
-      const tags = Array.from(post.querySelectorAll('.inline-block')).map(tag => tag.textContent.toLowerCase());
+    // Reset any previous highlighting
+    this.resetHighlighting();
+
+    blogPosts.forEach((post) => {
+      // Get content elements safely
+      const titleEl = post.querySelector('h3');
+      const descriptionEl = post.querySelector('.text-gray-600');
+      const tagElements = post.querySelectorAll('.inline-block');
       
+      // Extract text content safely
+      const title = titleEl?.textContent?.toLowerCase() || '';
+      const description = descriptionEl?.textContent?.toLowerCase() || '';
+      const tags = Array.from(tagElements).map(tag => tag.textContent.toLowerCase());
+      
+      // Check if search term matches any content
       const matchesSearch = !this.searchTerm || 
         title.includes(this.searchTerm) || 
         description.includes(this.searchTerm) ||
         tags.some(tag => tag.includes(this.searchTerm));
       
-      const matchesCategory = this.currentCategory === 'all' || post.dataset.category === this.currentCategory;
+      // Check category filter
+      const matchesCategory = this.currentCategory === 'all' || 
+        post.dataset.category === this.currentCategory;
       
-      if (matchesSearch && matchesCategory) {
+      // Show/hide post based on matches
+      const shouldShow = matchesSearch && matchesCategory;
+      
+      if (shouldShow) {
         post.style.display = 'block';
         post.style.opacity = '1';
         post.style.transform = 'translateY(0)';
@@ -278,13 +289,22 @@ class WebGloBlog {
         post.style.display = 'none';
       }
     });
-
-    // Show no results message if needed
-    this.showNoResultsMessage(visibleCount === 0);
     
-    // Track search
-    if (term) {
-      this.trackEvent('Blog Search', { term: term, results: visibleCount });
+    // Add highlighting for search results
+    if (this.searchTerm && visibleCount > 0) {
+      this.highlightSearchResults();
+    }
+    
+    // Show no results message if needed
+    this.showNoResultsMessage(visibleCount === 0 && this.searchTerm);
+    
+    // Track search analytics
+    if (term.trim()) {
+      this.trackEvent('Blog Search', { 
+        term: term, 
+        results: visibleCount,
+        timestamp: new Date().toISOString()
+      });
     }
   }
 
@@ -317,9 +337,39 @@ class WebGloBlog {
 
   clearSearch() {
     const searchInput = document.getElementById('blog-search');
-    if (searchInput) searchInput.value = '';
+    if (searchInput) {
+      searchInput.value = '';
+      searchInput.focus();
+    }
     this.searchTerm = '';
     this.performSearch('');
+  }
+
+  // Add search result highlighting and better UX
+  highlightSearchResults() {
+    if (!this.searchTerm) return;
+    
+    const posts = document.querySelectorAll('.blog-post[style*="block"]');
+    posts.forEach(post => {
+      const title = post.querySelector('h3');
+      const description = post.querySelector('.text-gray-600');
+      
+      [title, description].forEach(element => {
+        if (element && element.textContent.toLowerCase().includes(this.searchTerm)) {
+          post.style.border = '2px solid #df00ff';
+          post.style.boxShadow = '0 0 15px rgba(223, 0, 255, 0.1)';
+        }
+      });
+    });
+  }
+
+  // Reset highlighting
+  resetHighlighting() {
+    const posts = document.querySelectorAll('.blog-post');
+    posts.forEach(post => {
+      post.style.border = '';
+      post.style.boxShadow = '';
+    });
   }
 
   initNewsletterForm() {
@@ -331,16 +381,9 @@ class WebGloBlog {
   // Newsletter subscription is now handled by form-handler.js with proper backend integration
 
   initPostInteractions() {
-    // Like buttons
-    document.querySelectorAll('.blog-post').forEach(post => {
-      const likeButton = post.querySelector('button');
-      if (likeButton) {
-        likeButton.addEventListener('click', () => {
-          this.toggleLike(post, likeButton);
-        });
-      }
-    });
-
+    // Like buttons are now handled by initLikeSystem() method
+    // Removed duplicate event listeners that were causing conflicts
+    
     // Reading progress tracking
     this.initReadingProgress();
     
@@ -348,32 +391,8 @@ class WebGloBlog {
     this.initSocialSharing();
   }
 
-  toggleLike(post, button) {
-    const icon = button.querySelector('svg');
-    const isLiked = button.classList.contains('liked');
-    
-    if (isLiked) {
-      button.classList.remove('liked');
-      icon.classList.remove('text-red-500');
-      icon.classList.add('text-gray-600');
-    } else {
-      button.classList.add('liked');
-      icon.classList.remove('text-gray-600');
-      icon.classList.add('text-red-500');
-      
-      // Animate heart
-      button.style.transform = 'scale(1.2)';
-      setTimeout(() => {
-        button.style.transform = 'scale(1)';
-      }, 200);
-    }
-    
-    // Track like
-    this.trackEvent('Post Like', { 
-      title: post.querySelector('h3').textContent,
-      action: isLiked ? 'unlike' : 'like'
-    });
-  }
+  // Removed toggleLike function - replaced by handleLike in initLikeSystem()
+  // This was causing conflicts with duplicate event listeners
 
   initReadingProgress() {
     // Track how long users spend reading
@@ -557,38 +576,3 @@ class WebGloBlog {
 document.addEventListener('DOMContentLoaded', () => {
   window.webgloBlog = new WebGloBlog();
 });
-
-// Add enhanced CSS animations
-const style = document.createElement('style');
-style.textContent = `
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  
-  @keyframes pulse-once {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-  }
-  
-  .animate-pulse-once {
-    animation: pulse-once 0.6s ease-in-out;
-  }
-  
-  .blog-post {
-    transition: all 0.3s ease;
-  }
-  
-  .blog-category-btn {
-    transition: all 0.3s ease;
-  }
-  
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-`;
-document.head.appendChild(style);
