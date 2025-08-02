@@ -14,6 +14,7 @@
 // Configuration - Update these with your actual values
 const CONFIG = {
   STRIPE_WEBHOOK_SECRET: 'whsec_your_webhook_secret_here',
+  STRIPE_SECRET_KEY: 'sk_test_your_stripe_secret_key_here', // Add your Stripe secret key
   ORDERS_SHEET_ID: 'your_google_sheet_id_here',
   DRIVE_FOLDER_ID: 'your_main_drive_folder_id_here',
   EMAIL_FROM: 'hello@webglo.org',
@@ -26,6 +27,14 @@ const CONFIG = {
 function doPost(e) {
   try {
     const path = e.parameter.path || 'webhook';
+    
+    // Handle JSON requests for checkout session creation
+    if (e.postData && e.postData.type === 'application/json') {
+      const data = JSON.parse(e.postData.contents);
+      if (data.action === 'create_checkout_session') {
+        return createCheckoutSession(data);
+      }
+    }
     
     switch (path) {
       case 'webhook':
@@ -43,6 +52,59 @@ function doPost(e) {
     Logger.log('Error in doPost: ' + error.toString());
     return ContentService
       .createTextOutput(JSON.stringify({ error: 'Internal server error' }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+/**
+ * Create Stripe Checkout Session
+ */
+function createCheckoutSession(data) {
+  try {
+    const url = 'https://api.stripe.com/v1/checkout/sessions';
+    
+    const payload = {
+      'payment_method_types[]': 'card',
+      'line_items[0][price_data][currency]': data.currency || 'usd',
+      'line_items[0][price_data][product_data][name]': 'Landing Page Express',
+      'line_items[0][price_data][product_data][description]': 'Professional landing page delivered in 48 hours',
+      'line_items[0][price_data][unit_amount]': data.amount || 100,
+      'line_items[0][quantity]': '1',
+      'mode': 'payment',
+      'success_url': data.success_url,
+      'cancel_url': data.cancel_url,
+      'customer_email': data.customer_email,
+      'metadata[order_number]': data.order_number,
+      'metadata[business_name]': data.order_data.business_name || '',
+      'metadata[industry]': data.order_data.industry || '',
+      'metadata[main_goal]': data.order_data.main_goal || '',
+      'metadata[contact_email]': data.order_data.contact_email || ''
+    };
+    
+    const options = {
+      'method': 'POST',
+      'headers': {
+        'Authorization': 'Bearer ' + CONFIG.STRIPE_SECRET_KEY,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      'payload': Object.keys(payload).map(key => key + '=' + encodeURIComponent(payload[key])).join('&')
+    };
+    
+    const response = UrlFetchApp.fetch(url, options);
+    const responseData = JSON.parse(response.getContentText());
+    
+    if (response.getResponseCode() === 200) {
+      return ContentService
+        .createTextOutput(JSON.stringify({ url: responseData.url, session_id: responseData.id }))
+        .setMimeType(ContentService.MimeType.JSON);
+    } else {
+      throw new Error('Stripe API error: ' + responseData.error.message);
+    }
+    
+  } catch (error) {
+    Logger.log('Error creating checkout session: ' + error.toString());
+    return ContentService
+      .createTextOutput(JSON.stringify({ error: 'Failed to create checkout session: ' + error.toString() }))
       .setMimeType(ContentService.MimeType.JSON);
   }
 }

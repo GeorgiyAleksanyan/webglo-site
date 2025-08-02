@@ -372,29 +372,35 @@
       }));
 
       try {
-        console.log('Attempting to redirect to Stripe Checkout'); // Debug log
+        console.log('Attempting to create Stripe Checkout session'); // Debug log
         console.log('Order data being sent:', orderData); // Debug log
         
-        // Redirect to Stripe Checkout (hosted payment page)
-        const { error } = await stripe.redirectToCheckout({
-          lineItems: [{
-            name: 'Landing Page Express',
-            description: 'Professional landing page delivered in 48 hours',
-            amount: 100, // $1.00 in cents (testing mode)
+        // Create checkout session via Google Apps Script
+        const response = await fetch('YOUR_GOOGLE_APPS_SCRIPT_DEPLOYMENT_URL_HERE', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            action: 'create_checkout_session',
+            amount: 100, // $1 in cents
             currency: 'usd',
-            quantity: 1,
-          }],
-          mode: 'payment',
-          successUrl: 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
-          cancelUrl: 'https://webglo.org/order-landing-page-express.html',
-          customerEmail: orderData.contact_email
+            success_url: 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
+            cancel_url: 'https://webglo.org/order-landing-page-express.html',
+            customer_email: orderData.contact_email,
+            order_data: orderData,
+            order_number: orderNumber
+          })
         });
-
-        if (error) {
-          console.error('Stripe error details:', error);
-          alert('Payment error: ' + error.message + '\n\nDetails: ' + JSON.stringify(error));
+        
+        const sessionData = await response.json();
+        console.log('Session response:', sessionData); // Debug log
+        
+        if (sessionData.url) {
+          // Redirect to Stripe Checkout
+          window.location.href = sessionData.url;
         } else {
-          console.log('Stripe checkout initiated successfully');
+          throw new Error('Failed to create checkout session: ' + (sessionData.error || 'Unknown error'));
         }
       } catch (error) {
         console.error('Payment initialization error details:', error);
