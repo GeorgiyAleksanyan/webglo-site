@@ -327,28 +327,42 @@
 
   <script src="js/components.js"></script>
   <script>
-    // Initialize components
-    const webgloComponents = new WebGloComponents();
-    webgloComponents.init();
+    // Initialize components with error handling
+    try {
+      const webgloComponents = new WebGloComponents();
+      webgloComponents.init();
+    } catch (error) {
+      console.error('Components failed to load:', error);
+      // Continue without components if they fail
+    }
 
     // Stripe configuration - Replace with your actual publishable key
     const stripe = Stripe('pk_live_51Rrm6DR3n2oSiVesQiS6KhuVS6NozJSUKj1MfF84bcXOejOQ0V4o9ZWGKplzzpOJm13ybwYU6QpHvSimg5SZhGP100VNzlKEMv');
 
     // Form validation and Stripe Checkout
     document.getElementById('proceed-to-payment').addEventListener('click', async function() {
+      console.log('Payment button clicked'); // Debug log
+      
       const form = document.getElementById('order-form');
       
       if (!form.checkValidity()) {
+        console.log('Form validation failed'); // Debug log
         form.reportValidity();
         return;
       }
+
+      console.log('Form is valid, proceeding with payment'); // Debug log
 
       // Collect form data
       const formData = new FormData(form);
       const orderData = Object.fromEntries(formData.entries());
       
+      console.log('Order data collected:', orderData); // Debug log
+      
       // Generate order number
       const orderNumber = 'LPE-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 9999) + 1).padStart(4, '0');
+      
+      console.log('Order number generated:', orderNumber); // Debug log
       
       // Store order data temporarily in localStorage
       localStorage.setItem('pendingOrder', JSON.stringify({
@@ -358,6 +372,8 @@
       }));
 
       try {
+        console.log('Attempting to redirect to Stripe Checkout'); // Debug log
+        
         // Redirect to Stripe Checkout (hosted payment page)
         const { error } = await stripe.redirectToCheckout({
           mode: 'payment',
@@ -367,7 +383,7 @@
               product_data: {
                 name: 'Landing Page Express',
                 description: 'Professional landing page delivered in 48 hours',
-                images: ['https://webglo.org/assets/social-preview.png'],
+                images: ['https://georgiyaleksanyan.github.io/webglo-site/assets/social-preview.png'],
               },
               unit_amount: 100, // $1.00 in cents (testing mode)
             },
