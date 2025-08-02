@@ -84,6 +84,7 @@
               <select id="service" name="service" 
                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-[#df00ff] focus:border-[#df00ff] transition-colors bg-white text-gray-900">
                 <option value="">Select a service</option>
+                <option value="landing-page-express">⚡ Landing Page Express (48-hour delivery)</option>
                 <option value="web-design">Web Design</option>
                 <option value="web-development">Web Development</option>
                 <option value="ecommerce">E-commerce</option>
@@ -308,5 +309,28 @@
   <script src="js/security-config.js"></script>
   <script src="js/form-handler-production.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    // Handle URL parameters for service pre-selection
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const serviceParam = urlParams.get('service');
+      
+      if (serviceParam) {
+        const serviceSelect = document.getElementById('service');
+        if (serviceSelect) {
+          serviceSelect.value = serviceParam;
+          
+          // If it's landing-page-express, add some visual emphasis
+          if (serviceParam === 'landing-page-express') {
+            serviceSelect.style.borderColor = '#ef4444';
+            serviceSelect.style.backgroundColor = '#fef2f2';
+            
+            // Scroll to the form
+            serviceSelect.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }
+      }
+    });
+  </script>
 </body>
 </html>

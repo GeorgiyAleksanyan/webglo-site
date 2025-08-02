@@ -130,6 +130,17 @@ class WebGloComponents {
                 
                 <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-[400px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 mt-2 z-50">
                   <div class="p-6">
+                    <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg mb-4 border border-red-200">
+                      <a href="landing-page-express.html" class="block group">
+                        <div class="flex items-center justify-between">
+                          <div>
+                            <h4 class="font-bold text-red-600 group-hover:text-red-700 transition-colors">⚡ Landing Page Express</h4>
+                            <p class="text-sm text-red-500">48-hour delivery • Only $297</p>
+                          </div>
+                          <div class="bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">NEW</div>
+                        </div>
+                      </a>
+                    </div>
                     <ul class="space-y-3">
                       <li><a href="pricing.html#packages" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Single-Purchase Packages</a></li>
                       <li><a href="pricing.html#subscriptions" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Monthly Plans</a></li>
@@ -163,6 +174,12 @@ class WebGloComponents {
             <div class="px-2 pt-2 pb-3 space-y-1">
               <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Home</a>
               <a href="services.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Services</a>
+              <div class="mx-3 my-2 p-2 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200">
+                <a href="landing-page-express.html" class="block">
+                  <div class="text-red-600 font-bold text-sm">⚡ Landing Page Express</div>
+                  <div class="text-red-500 text-xs">48-hour delivery • $297</div>
+                </a>
+              </div>
               <a href="pricing.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Pricing</a>
               <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">About</a>
               <a href="case-studies.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Case Studies</a>
