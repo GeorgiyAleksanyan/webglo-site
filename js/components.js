@@ -71,7 +71,7 @@ class WebGloComponents {
   renderNavigation() {
     console.log('Rendering navigation...');
     const nav = `
-      <nav id="main-navigation" class="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50 transition-all duration-300">
+      <nav id="main-navigation" class="bg-white shadow-lg border-b border-gray-100 fixed top-0 left-0 right-0 z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
             <!-- Logo -->
@@ -181,13 +181,16 @@ class WebGloComponents {
       console.log('Navigation rendered successfully');
       console.log('Navigation HTML:', navContainer.innerHTML.substring(0, 200) + '...');
       
-      // Force sticky positioning
+      // Force fixed positioning for always-visible navigation
       const navElement = navContainer.querySelector('nav');
       if (navElement) {
-        navElement.style.position = 'sticky';
+        navElement.style.position = 'fixed';
         navElement.style.top = '0';
+        navElement.style.left = '0';
+        navElement.style.right = '0';
+        navElement.style.width = '100%';
         navElement.style.zIndex = '1000';
-        console.log('Navigation sticky styles applied');
+        console.log('Navigation fixed styles applied');
       }
     } else {
       console.error('Navigation container not found - make sure element with id="webglo-navigation" exists');
