@@ -95,6 +95,19 @@ class WebGloComponents {
                 
                 <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-[600px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 mt-2 z-50">
                   <div class="p-6">
+                    <!-- Featured Landing Page Express -->
+                    <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg mb-6 border border-red-200">
+                      <a href="landing-page-express.html" class="block group">
+                        <div class="flex items-center justify-between">
+                          <div>
+                            <h4 class="font-bold text-red-600 group-hover:text-red-700 transition-colors">⚡ Landing Page Express</h4>
+                            <p class="text-sm text-red-500">48-hour delivery • Only $297</p>
+                          </div>
+                          <div class="bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">HOT</div>
+                        </div>
+                      </a>
+                    </div>
+                    
                     <div class="grid grid-cols-2 gap-6">
                       <div>
                         <h3 class="text-lg font-bold text-gray-900 mb-4">Website Solutions</h3>
@@ -130,17 +143,6 @@ class WebGloComponents {
                 
                 <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-[400px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 mt-2 z-50">
                   <div class="p-6">
-                    <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg mb-4 border border-red-200">
-                      <a href="landing-page-express.html" class="block group">
-                        <div class="flex items-center justify-between">
-                          <div>
-                            <h4 class="font-bold text-red-600 group-hover:text-red-700 transition-colors">⚡ Landing Page Express</h4>
-                            <p class="text-sm text-red-500">48-hour delivery • Only $297</p>
-                          </div>
-                          <div class="bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">NEW</div>
-                        </div>
-                      </a>
-                    </div>
                     <ul class="space-y-3">
                       <li><a href="pricing.html#packages" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Single-Purchase Packages</a></li>
                       <li><a href="pricing.html#subscriptions" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Monthly Plans</a></li>
