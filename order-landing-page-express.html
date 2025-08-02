@@ -336,8 +336,8 @@
       // Continue without components if they fail
     }
 
-    // Stripe configuration - Replace with your actual publishable key
-    const stripe = Stripe('pk_live_51Rrm6DR3n2oSiVesQiS6KhuVS6NozJSUKj1MfF84bcXOejOQ0V4o9ZWGKplzzpOJm13ybwYU6QpHvSimg5SZhGP100VNzlKEMv');
+    // Stripe configuration - Using TEST key for initial testing
+    const stripe = Stripe('pk_test_51Rrm6DR3n2oSiVesQiS6KhuVS6NozJSUKj1MfF84bcXOejOQ0V4o9ZWGKplzzpOJm13ybwYU6QpHvSimg5SZhGP100VNzlKEMv');
 
     // Form validation and Stripe Checkout
     document.getElementById('proceed-to-payment').addEventListener('click', async function() {
@@ -373,6 +373,7 @@
 
       try {
         console.log('Attempting to redirect to Stripe Checkout'); // Debug log
+        console.log('Order data being sent:', orderData); // Debug log
         
         // Redirect to Stripe Checkout (hosted payment page)
         const { error } = await stripe.redirectToCheckout({
@@ -402,12 +403,15 @@
         });
 
         if (error) {
-          console.error('Stripe error:', error);
-          alert('Payment error: ' + error.message);
+          console.error('Stripe error details:', error);
+          alert('Payment error: ' + error.message + '\n\nDetails: ' + JSON.stringify(error));
+        } else {
+          console.log('Stripe checkout initiated successfully');
         }
       } catch (error) {
-        console.error('Payment initialization error:', error);
-        alert('Error initializing payment. Please try again.');
+        console.error('Payment initialization error details:', error);
+        console.error('Error stack:', error.stack);
+        alert('Error initializing payment: ' + error.message + '\n\nPlease check console for details.');
       }
     });
 
