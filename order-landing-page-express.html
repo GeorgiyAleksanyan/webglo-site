@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes, minimum-scale=1, maximum-scale=5">
+  <title>Order Landing Page Express | $297 | WebGlo</title>
+  <meta name="description" content="Order your professional landing page now. $297 one-time payment, 48-hour delivery guaranteed.">
+  <link rel="canonical" href="https://webglo.org/order-landing-page-express.html" />
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Order Your Landing Page - 48 Hour Delivery">
+  <meta property="og:description" content="Complete your order for a professional, high-converting landing page delivered in just 48 hours.">
+  <meta property="og:image" content="assets/social-preview.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://js.stripe.com/v3/"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .step-active { background: linear-gradient(135deg, #ef4444, #f97316); color: white; }
+    .step-completed { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+    .step-pending { background: #f3f4f6; color: #6b7280; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <div id="webglo-navigation"></div>
+
+  <!-- Order Process Header -->
+  <section class="py-12 bg-white border-b">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-8">
+        <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Order Your Landing Page Express</h1>
+        <p class="text-lg text-gray-600">Professional landing page delivered in 48 hours for $297</p>
+      </div>
+      
+      <!-- Progress Steps -->
+      <div class="flex items-center justify-center space-x-4 mb-8">
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold step-active">1</div>
+          <span class="ml-2 text-sm font-medium text-gray-900">Project Details</span>
+        </div>
+        <div class="w-12 h-1 bg-gray-300"></div>
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold step-pending">2</div>
+          <span class="ml-2 text-sm font-medium text-gray-500">Payment</span>
+        </div>
+        <div class="w-12 h-1 bg-gray-300"></div>
+        <div class="flex items-center">
+          <div class="w-10 h-10 rounded-full flex items-center justify-center text-sm font-semibold step-pending">3</div>
+          <span class="ml-2 text-sm font-medium text-gray-500">Confirmation</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Order Form -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- Left: Order Form -->
+        <div class="lg:col-span-2">
+          <div class="bg-white rounded-2xl shadow-lg p-8">
+            <form id="order-form" class="space-y-8">
+              
+              <!-- Business Information -->
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Business Information</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="business_name" class="block text-sm font-semibold text-gray-700 mb-2">Business Name *</label>
+                    <input type="text" id="business_name" name="business_name" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                           placeholder="Elite Real Estate">
+                  </div>
+                  <div>
+                    <label for="industry" class="block text-sm font-semibold text-gray-700 mb-2">Industry *</label>
+                    <select id="industry" name="industry" required 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                      <option value="">Select your industry</option>
+                      <option value="real-estate">Real Estate</option>
+                      <option value="fitness">Fitness & Health</option>
+                      <option value="cleaning">Cleaning Services</option>
+                      <option value="consulting">Consulting</option>
+                      <option value="law">Legal Services</option>
+                      <option value="medical">Medical/Healthcare</option>
+                      <option value="beauty">Beauty/Salon</option>
+                      <option value="automotive">Automotive</option>
+                      <option value="restaurant">Restaurant/Food</option>
+                      <option value="ecommerce">E-commerce</option>
+                      <option value="education">Education/Training</option>
+                      <option value="finance">Finance/Insurance</option>
+                      <option value="technology">Technology/Software</option>
+                      <option value="construction">Construction/Contractors</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="mt-6">
+                  <label for="website_url" class="block text-sm font-semibold text-gray-700 mb-2">Current Website (if any)</label>
+                  <input type="url" id="website_url" name="website_url" 
+                         class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                         placeholder="https://yourwebsite.com">
+                </div>
+              </div>
+
+              <!-- Landing Page Goal -->
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Landing Page Goal</h2>
+                
+                <div>
+                  <label for="main_goal" class="block text-sm font-semibold text-gray-700 mb-2">What's the main purpose of your landing page? *</label>
+                  <select id="main_goal" name="main_goal" required 
+                          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 mb-4">
+                    <option value="">Select primary goal</option>
+                    <option value="lead-generation">Lead Generation (collect contact info)</option>
+                    <option value="appointment-booking">Appointment Booking</option>
+                    <option value="consultation-request">Free Consultation Requests</option>
+                    <option value="quote-estimate">Quote/Estimate Requests</option>
+                    <option value="product-demo">Product Demo Signups</option>
+                    <option value="newsletter-signup">Newsletter/Email Signups</option>
+                    <option value="download-offer">Download Offer (PDF, guide, etc.)</option>
+                    <option value="webinar-registration">Webinar/Event Registration</option>
+                    <option value="service-inquiry">Service Inquiries</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label for="target_audience" class="block text-sm font-semibold text-gray-700 mb-2">Who is your target audience? *</label>
+                  <textarea id="target_audience" name="target_audience" required rows="3"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                            placeholder="e.g., Homeowners looking to sell their house, Small business owners needing fitness coaching, etc."></textarea>
+                </div>
+                
+                <div>
+                  <label for="offer_headline" class="block text-sm font-semibold text-gray-700 mb-2">Your Main Offer/Headline *</label>
+                  <input type="text" id="offer_headline" name="offer_headline" required 
+                         class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                         placeholder="e.g., Get Your Home Value in 60 Seconds, Free Fitness Assessment, etc.">
+                </div>
+              </div>
+
+              <!-- Design Preferences -->
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Design Preferences</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="color_preference" class="block text-sm font-semibold text-gray-700 mb-2">Preferred Colors</label>
+                    <input type="text" id="color_preference" name="color_preference" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                           placeholder="e.g., Blue and white, Professional colors, etc.">
+                  </div>
+                  <div>
+                    <label for="style_preference" class="block text-sm font-semibold text-gray-700 mb-2">Style Preference</label>
+                    <select id="style_preference" name="style_preference" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                      <option value="">Any style</option>
+                      <option value="modern">Modern & Clean</option>
+                      <option value="professional">Professional & Corporate</option>
+                      <option value="bold">Bold & Energetic</option>
+                      <option value="elegant">Elegant & Sophisticated</option>
+                      <option value="playful">Playful & Creative</option>
+                    </select>
+                  </div>
+                </div>
+                
+                <div class="mt-6">
+                  <label for="inspiration_links" class="block text-sm font-semibold text-gray-700 mb-2">Inspiration (links to pages you like)</label>
+                  <textarea id="inspiration_links" name="inspiration_links" rows="3"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                            placeholder="Share any website or landing page links that you like the design of..."></textarea>
+                </div>
+              </div>
+
+              <!-- Contact Information -->
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Your Contact Information</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="contact_name" class="block text-sm font-semibold text-gray-700 mb-2">Your Name *</label>
+                    <input type="text" id="contact_name" name="contact_name" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                           placeholder="John Smith">
+                  </div>
+                  <div>
+                    <label for="contact_email" class="block text-sm font-semibold text-gray-700 mb-2">Email Address *</label>
+                    <input type="email" id="contact_email" name="contact_email" required 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                           placeholder="john@business.com">
+                  </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                  <div>
+                    <label for="contact_phone" class="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+                    <input type="tel" id="contact_phone" name="contact_phone" 
+                           class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                           placeholder="(555) 123-4567">
+                  </div>
+                  <div>
+                    <label for="best_contact_time" class="block text-sm font-semibold text-gray-700 mb-2">Best Time to Contact</label>
+                    <select id="best_contact_time" name="best_contact_time" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                      <option value="">Any time</option>
+                      <option value="morning">Morning (9 AM - 12 PM)</option>
+                      <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+                      <option value="evening">Evening (5 PM - 8 PM)</option>
+                      <option value="email-only">Email only please</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Additional Details -->
+              <div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Additional Details</h2>
+                
+                <div>
+                  <label for="special_requirements" class="block text-sm font-semibold text-gray-700 mb-2">Special Requirements or Notes</label>
+                  <textarea id="special_requirements" name="special_requirements" rows="4"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                            placeholder="Any specific features, integrations, or requirements you need? Mention deadline constraints, specific CTAs, etc."></textarea>
+                </div>
+                
+                <div class="mt-6">
+                  <label for="urgency" class="block text-sm font-semibold text-gray-700 mb-2">When do you need this completed? *</label>
+                  <select id="urgency" name="urgency" required 
+                          class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                    <option value="">Select timeline</option>
+                    <option value="asap">ASAP (Within 24-48 hours)</option>
+                    <option value="this-week">This week</option>
+                    <option value="next-week">Next week</option>
+                    <option value="flexible">I'm flexible</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Terms Agreement -->
+              <div class="border-t pt-8">
+                <div class="flex items-start">
+                  <input type="checkbox" id="terms_agreement" name="terms_agreement" required 
+                         class="mt-1 mr-3 h-4 w-4 text-red-500 focus:ring-red-500 border-gray-300 rounded">
+                  <label for="terms_agreement" class="text-sm text-gray-700">
+                    I agree to the <a href="#" class="text-red-500 hover:underline">Terms of Service</a> and understand that:
+                    <ul class="mt-2 ml-4 list-disc text-xs text-gray-600 space-y-1">
+                      <li>Landing page will be delivered within 48 hours of order confirmation</li>
+                      <li>One revision round is included, additional revisions are $97 each</li>
+                      <li>Final files will be provided via email with hosting instructions</li>
+                      <li>Payment is non-refundable once development begins (within 4 hours of order)</li>
+                    </ul>
+                  </label>
+                </div>
+              </div>
+
+              <button type="button" id="proceed-to-payment" 
+                      class="w-full bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold py-4 px-8 rounded-xl text-lg hover:from-red-600 hover:to-orange-600 transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl">
+                Proceed to Secure Payment ($297) →
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right: Order Summary -->
+        <div class="lg:col-span-1">
+          <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">Order Summary</h3>
+            
+            <div class="space-y-4 mb-6">
+              <div class="flex justify-between">
+                <span class="text-gray-600">Landing Page Express</span>
+                <span class="font-semibold">$297</span>
+              </div>
+              <div class="text-sm text-gray-500">
+                <ul class="space-y-1">
+                  <li>✓ Professional design & copywriting</li>
+                  <li>✓ Mobile-responsive development</li>
+                  <li>✓ Lead capture form integration</li>
+                  <li>✓ Basic analytics setup</li>
+                  <li>✓ 48-hour delivery guarantee</li>
+                  <li>✓ One revision round included</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="border-t pt-4 mb-6">
+              <div class="flex justify-between text-lg font-bold">
+                <span>Total</span>
+                <span>$297</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">One-time payment • No recurring fees</p>
+            </div>
+            
+            <div class="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
+              <div class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <div>
+                  <p class="text-sm font-semibold text-green-800">48-Hour Guarantee</p>
+                  <p class="text-xs text-green-600">Or your money back</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="text-center">
+              <div class="flex items-center justify-center space-x-4 text-sm text-gray-500">
+                <span>Secure Payment</span>
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="mt-2">
+                <img src="https://via.placeholder.com/200x30/000000/FFFFFF?text=Stripe+PayPal+Cards" alt="Payment methods" class="mx-auto opacity-60">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="webglo-footer"></div>
+
+  <script src="js/components.js"></script>
+  <script>
+    // Initialize components
+    const webgloComponents = new WebGloComponents();
+    webgloComponents.init();
+
+    // Stripe configuration - Replace with your actual publishable key
+    const stripe = Stripe('pk_live_YOUR_STRIPE_PUBLISHABLE_KEY_HERE');
+
+    // Form validation and Stripe Checkout
+    document.getElementById('proceed-to-payment').addEventListener('click', async function() {
+      const form = document.getElementById('order-form');
+      
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
+      // Collect form data
+      const formData = new FormData(form);
+      const orderData = Object.fromEntries(formData.entries());
+      
+      // Generate order number
+      const orderNumber = 'LPE-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 9999) + 1).padStart(4, '0');
+      
+      // Store order data temporarily in localStorage
+      localStorage.setItem('pendingOrder', JSON.stringify({
+        orderNumber: orderNumber,
+        orderData: orderData,
+        timestamp: new Date().toISOString()
+      }));
+
+      try {
+        // Redirect to Stripe Checkout (hosted payment page)
+        const { error } = await stripe.redirectToCheckout({
+          mode: 'payment',
+          lineItems: [{
+            price_data: {
+              currency: 'usd',
+              product_data: {
+                name: 'Landing Page Express',
+                description: 'Professional landing page delivered in 48 hours',
+                images: ['https://webglo.org/assets/social-preview.png'],
+              },
+              unit_amount: 29700, // $297.00 in cents
+            },
+            quantity: 1,
+          }],
+          success_url: window.location.origin + '/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
+          cancel_url: window.location.href,
+          customer_email: orderData.contact_email,
+          metadata: {
+            order_number: orderNumber,
+            business_name: orderData.business_name,
+            industry: orderData.industry,
+            contact_email: orderData.contact_email,
+            main_goal: orderData.main_goal
+          }
+        });
+
+        if (error) {
+          console.error('Stripe error:', error);
+          alert('Payment error: ' + error.message);
+        }
+      } catch (error) {
+        console.error('Payment initialization error:', error);
+        alert('Error initializing payment. Please try again.');
+      }
+    });
+
+    // Form auto-save to localStorage
+    const form = document.getElementById('order-form');
+    const inputs = form.querySelectorAll('input, select, textarea');
+    
+    inputs.forEach(input => {
+      // Load saved data
+      const savedValue = localStorage.getItem('order_form_' + input.name);
+      if (savedValue && input.type !== 'checkbox') {
+        input.value = savedValue;
+      } else if (savedValue && input.type === 'checkbox') {
+        input.checked = savedValue === 'true';
+      }
+      
+      // Save data on change
+      input.addEventListener('change', function() {
+        if (input.type === 'checkbox') {
+          localStorage.setItem('order_form_' + input.name, input.checked);
+        } else {
+          localStorage.setItem('order_form_' + input.name, input.value);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -18,6 +18,18 @@ credentials.json
 service-account.json
 sheet-ids.txt
 database-config.js
+.env
+.env.local
+.env.production
+
+# Google Apps Script configuration (contains sensitive IDs)
+webglo-backend-config.js
+google-apps-script-config.json
+
+# Customer data and assets
+customer-uploads/
+order-files/
+project-assets/
 
 # Security test files that might contain sensitive data
 security-test-private.js
@@ -99,16 +111,6 @@ Thumbs.db
 
 # Logs
 *.log
-npm-debug.log*
-
-# Dependencies (if you add them later)
-node_modules/
-package-lock.json
-
-# Environment variables
-.env
-.env.local
-.env.production
 
 # Build outputs (if you add build process)
 dist/

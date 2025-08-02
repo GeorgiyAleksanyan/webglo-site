@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=yes, minimum-scale=1, maximum-scale=5">
+  <title>Project Brief - Landing Page Express | WebGlo</title>
+  <meta name="description" content="Complete your project brief to help us create the perfect landing page for your business.">
+  <link rel="canonical" href="https://webglo.org/project-brief.html" />
+  <meta name="robots" content="noindex, nofollow">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .upload-area {
+      border: 2px dashed #d1d5db;
+      transition: all 0.3s ease;
+    }
+    .upload-area:hover {
+      border-color: #ef4444;
+      background-color: #fef2f2;
+    }
+    .file-preview {
+      max-width: 100px;
+      max-height: 100px;
+      object-fit: cover;
+    }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+
+  <div id="webglo-navigation"></div>
+
+  <!-- Header -->
+  <section class="py-12 bg-white border-b">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="text-center">
+        <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Complete Your Project Brief</h1>
+        <p class="text-lg text-gray-600 mb-6">Help us create the perfect landing page by providing detailed information about your business and goals.</p>
+        
+        <div class="bg-green-50 border border-green-200 rounded-lg p-4 max-w-md mx-auto">
+          <div class="flex items-center">
+            <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+            </svg>
+            <div>
+              <p class="text-sm font-semibold text-green-800">Order Confirmed</p>
+              <p class="text-xs text-green-600" id="order-display">Order #LPE-2025-001</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Project Brief Form -->
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      <div class="bg-white rounded-2xl shadow-lg p-8">
+        <form id="project-brief-form" class="space-y-10">
+          
+          <!-- Business Assets -->
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">📎 Business Assets</h2>
+            
+            <!-- Logo Upload -->
+            <div class="mb-8">
+              <label class="block text-sm font-semibold text-gray-700 mb-3">Business Logo</label>
+              <div class="upload-area rounded-xl p-8 text-center">
+                <input type="file" id="logo-upload" name="logo" accept="image/*" class="hidden">
+                <div id="logo-preview" class="hidden mb-4">
+                  <img id="logo-image" class="file-preview mx-auto rounded-lg">
+                </div>
+                <div id="logo-placeholder">
+                  <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path>
+                  </svg>
+                  <p class="text-gray-600 mb-2">Upload your business logo</p>
+                  <p class="text-xs text-gray-500">PNG, JPG, SVG up to 10MB</p>
+                </div>
+                <button type="button" onclick="document.getElementById('logo-upload').click()" 
+                        class="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-all duration-300">
+                  Choose File
+                </button>
+              </div>
+            </div>
+
+            <!-- Images Upload -->
+            <div class="mb-8">
+              <label class="block text-sm font-semibold text-gray-700 mb-3">Business Images/Photos</label>
+              <div class="upload-area rounded-xl p-8 text-center">
+                <input type="file" id="images-upload" name="images" accept="image/*" multiple class="hidden">
+                <div id="images-preview" class="hidden mb-4 grid grid-cols-3 gap-4">
+                  <!-- Images will be displayed here -->
+                </div>
+                <div id="images-placeholder">
+                  <svg class="w-12 h-12 text-gray-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                  <p class="text-gray-600 mb-2">Upload relevant business images</p>
+                  <p class="text-xs text-gray-500">Photos of your work, team, products, etc.</p>
+                </div>
+                <button type="button" onclick="document.getElementById('images-upload').click()" 
+                        class="mt-4 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-2 px-4 rounded-lg transition-all duration-300">
+                  Choose Files
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Content & Copy -->
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">✍️ Content & Messaging</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="headline_copy" class="block text-sm font-semibold text-gray-700 mb-2">Main Headline *</label>
+                <input type="text" id="headline_copy" name="headline_copy" required 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                       placeholder="Get Your Dream Home Value in 60 Seconds">
+              </div>
+              <div>
+                <label for="subheadline_copy" class="block text-sm font-semibold text-gray-700 mb-2">Subheadline</label>
+                <input type="text" id="subheadline_copy" name="subheadline_copy" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                       placeholder="Free, accurate, instant home valuation">
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <label for="value_proposition" class="block text-sm font-semibold text-gray-700 mb-2">Value Proposition *</label>
+              <textarea id="value_proposition" name="value_proposition" required rows="3"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                        placeholder="What makes your service unique? Why should customers choose you over competitors?"></textarea>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="cta_text" class="block text-sm font-semibold text-gray-700 mb-2">Call-to-Action Button Text *</label>
+                <input type="text" id="cta_text" name="cta_text" required 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                       placeholder="Get My Free Home Value">
+              </div>
+              <div>
+                <label for="phone_number" class="block text-sm font-semibold text-gray-700 mb-2">Business Phone Number</label>
+                <input type="tel" id="phone_number" name="phone_number" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                       placeholder="(555) 123-4567">
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <label for="benefits_list" class="block text-sm font-semibold text-gray-700 mb-2">Key Benefits (3-5 points) *</label>
+              <textarea id="benefits_list" name="benefits_list" required rows="4"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                        placeholder="List the main benefits customers get:
+• Free, no-obligation consultation
+• Expert advice from licensed professionals  
+• Quick 24-hour response time
+• Serving the local area for 10+ years"></textarea>
+            </div>
+          </div>
+
+          <!-- Form Configuration -->
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">📋 Lead Capture Form</h2>
+            
+            <div class="mb-6">
+              <label class="block text-sm font-semibold text-gray-700 mb-3">What information do you want to collect? *</label>
+              <div class="space-y-3">
+                <label class="flex items-center">
+                  <input type="checkbox" name="form_fields[]" value="name" checked class="mr-3 h-4 w-4 text-red-500">
+                  <span>Full Name</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" name="form_fields[]" value="email" checked class="mr-3 h-4 w-4 text-red-500">
+                  <span>Email Address</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" name="form_fields[]" value="phone" class="mr-3 h-4 w-4 text-red-500">
+                  <span>Phone Number</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" name="form_fields[]" value="address" class="mr-3 h-4 w-4 text-red-500">
+                  <span>Address/Location</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" name="form_fields[]" value="message" class="mr-3 h-4 w-4 text-red-500">
+                  <span>Message/Comments</span>
+                </label>
+                <label class="flex items-center">
+                  <input type="checkbox" name="form_fields[]" value="custom" class="mr-3 h-4 w-4 text-red-500">
+                  <span>Custom field (specify below)</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <label for="custom_field" class="block text-sm font-semibold text-gray-700 mb-2">Custom Field (if selected above)</label>
+              <input type="text" id="custom_field" name="custom_field" 
+                     class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                     placeholder="e.g., Property Type, Budget Range, Service Date">
+            </div>
+
+            <div class="mb-6">
+              <label for="form_destination" class="block text-sm font-semibold text-gray-700 mb-2">Where should leads be sent? *</label>
+              <select id="form_destination" name="form_destination" required 
+                      class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                <option value="">Select destination</option>
+                <option value="email">Email notifications</option>
+                <option value="google-sheets">Google Sheets</option>
+                <option value="crm">CRM Integration (specify below)</option>
+                <option value="webhook">Custom webhook</option>
+              </select>
+            </div>
+
+            <div class="mb-6">
+              <label for="integration_details" class="block text-sm font-semibold text-gray-700 mb-2">Integration Details</label>
+              <textarea id="integration_details" name="integration_details" rows="3"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                        placeholder="If you selected CRM or webhook, please provide details like CRM name, webhook URL, etc."></textarea>
+            </div>
+          </div>
+
+          <!-- Technical Preferences -->
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">⚙️ Technical Preferences</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+              <div>
+                <label for="domain_preference" class="block text-sm font-semibold text-gray-700 mb-2">Preferred Domain/URL</label>
+                <input type="text" id="domain_preference" name="domain_preference" 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                       placeholder="yoursite.com/landing or landing.yoursite.com">
+              </div>
+              <div>
+                <label for="analytics_preference" class="block text-sm font-semibold text-gray-700 mb-2">Analytics Setup</label>
+                <select id="analytics_preference" name="analytics_preference" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                  <option value="basic">Basic analytics included</option>
+                  <option value="google-analytics">Connect to my Google Analytics</option>
+                  <option value="facebook-pixel">Facebook Pixel integration</option>
+                  <option value="both">Both Google Analytics & Facebook Pixel</option>
+                  <option value="none">No analytics needed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="mb-6">
+              <label for="analytics_ids" class="block text-sm font-semibold text-gray-700 mb-2">Analytics IDs (if applicable)</label>
+              <textarea id="analytics_ids" name="analytics_ids" rows="2"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                        placeholder="Google Analytics ID: GA-XXXXXXXX
+Facebook Pixel ID: 123456789"></textarea>
+            </div>
+          </div>
+
+          <!-- Additional Notes -->
+          <div>
+            <h2 class="text-2xl font-bold text-gray-900 mb-6">💬 Additional Notes</h2>
+            
+            <div class="mb-6">
+              <label for="inspiration_examples" class="block text-sm font-semibold text-gray-700 mb-2">Inspiration Examples</label>
+              <textarea id="inspiration_examples" name="inspiration_examples" rows="3"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                        placeholder="Share links to landing pages you like or describe the style you're looking for..."></textarea>
+            </div>
+
+            <div class="mb-6">
+              <label for="special_requests" class="block text-sm font-semibold text-gray-700 mb-2">Special Requests or Requirements</label>
+              <textarea id="special_requests" name="special_requests" rows="4"
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500"
+                        placeholder="Any specific features, design elements, or requirements you need? Mention deadline constraints, accessibility needs, etc."></textarea>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="contact_preference" class="block text-sm font-semibold text-gray-700 mb-2">Preferred Contact Method</label>
+                <select id="contact_preference" name="contact_preference" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                  <option value="email">Email</option>
+                  <option value="phone">Phone</option>
+                  <option value="text">Text/SMS</option>
+                  <option value="any">Any method is fine</option>
+                </select>
+              </div>
+              <div>
+                <label for="best_time" class="block text-sm font-semibold text-gray-700 mb-2">Best Time to Contact</label>
+                <select id="best_time" name="best_time" 
+                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500">
+                  <option value="any">Any time</option>
+                  <option value="morning">Morning (9 AM - 12 PM)</option>
+                  <option value="afternoon">Afternoon (12 PM - 5 PM)</option>
+                  <option value="evening">Evening (5 PM - 8 PM)</option>
+                  <option value="weekend">Weekends only</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center pt-8 border-t">
+            <button type="submit" 
+                    class="bg-gradient-to-r from-red-500 to-orange-500 text-white font-bold py-4 px-12 rounded-xl text-lg hover:from-red-600 hover:to-orange-600 transform hover:-translate-y-1 transition-all duration-300 shadow-lg hover:shadow-xl">
+              Submit Project Brief 🚀
+            </button>
+            <p class="text-gray-500 text-sm mt-4">
+              We'll review your brief and start working on your landing page within 2 hours!
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div id="webglo-footer"></div>
+
+  <script src="js/components.js"></script>
+  <script>
+    // Initialize components
+    const webgloComponents = new WebGloComponents();
+    webgloComponents.init();
+
+    // Get order number from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const orderNumber = urlParams.get('order');
+    if (orderNumber) {
+      document.getElementById('order-display').textContent = 'Order #' + orderNumber;
+    }
+
+    // File upload handling
+    document.getElementById('logo-upload').addEventListener('change', function(e) {
+      handleFileUpload(e, 'logo');
+    });
+
+    document.getElementById('images-upload').addEventListener('change', function(e) {
+      handleFileUpload(e, 'images');
+    });
+
+    function handleFileUpload(event, type) {
+      const files = event.target.files;
+      if (files.length === 0) return;
+
+      if (type === 'logo') {
+        const file = files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('logo-image').src = e.target.result;
+          document.getElementById('logo-preview').classList.remove('hidden');
+          document.getElementById('logo-placeholder').classList.add('hidden');
+        };
+        reader.readAsDataURL(file);
+      } else if (type === 'images') {
+        const preview = document.getElementById('images-preview');
+        preview.innerHTML = '';
+        
+        for (let i = 0; i < Math.min(files.length, 6); i++) {
+          const file = files[i];
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.className = 'file-preview rounded-lg';
+            preview.appendChild(img);
+          };
+          reader.readAsDataURL(file);
+        }
+        
+        if (files.length > 0) {
+          preview.classList.remove('hidden');
+          document.getElementById('images-placeholder').classList.add('hidden');
+        }
+      }
+    }
+
+    // Form submission - Updated for Google Apps Script
+    document.getElementById('project-brief-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Show loading state
+      const submitButton = this.querySelector('button[type="submit"]');
+      const originalText = submitButton.textContent;
+      submitButton.disabled = true;
+      submitButton.textContent = 'Submitting Brief...';
+      
+      // Collect form data
+      const formData = new FormData();
+      const form = e.target;
+      
+      // Add all form fields
+      const inputs = form.querySelectorAll('input, select, textarea');
+      const briefData = {};
+      
+      inputs.forEach(input => {
+        if (input.type === 'checkbox') {
+          if (!briefData[input.name]) briefData[input.name] = [];
+          if (input.checked) briefData[input.name].push(input.value);
+        } else if (input.type === 'file') {
+          // File handling will be done separately via Google Drive API
+        } else {
+          briefData[input.name] = input.value;
+        }
+      });
+
+      // Add order information
+      briefData.order_number = orderNumber || 'No order number';
+      briefData.submitted_at = new Date().toISOString();
+      
+      // Submit to Google Apps Script
+      fetch('YOUR_GOOGLE_APPS_SCRIPT_URL?path=submit-brief', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(briefData)
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Clear form data from localStorage
+          Object.keys(localStorage).forEach(key => {
+            if (key.startsWith('brief_form_')) {
+              localStorage.removeItem(key);
+            }
+          });
+          
+          // Redirect to confirmation
+          window.location.href = '/brief-confirmation.html?order=' + orderNumber;
+        } else {
+          throw new Error(data.error || 'Submission failed');
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('❌ Error submitting brief: ' + error.message + '\n\nPlease try again or contact support at hello@webglo.org');
+        
+        // Reset button
+        submitButton.disabled = false;
+        submitButton.textContent = originalText;
+      });
+    });
+
+    // Auto-save form data
+    const form = document.getElementById('project-brief-form');
+    const inputs = form.querySelectorAll('input, select, textarea');
+    
+    inputs.forEach(input => {
+      // Load saved data
+      const savedValue = localStorage.getItem('brief_form_' + input.name);
+      if (savedValue && input.type !== 'checkbox' && input.type !== 'file') {
+        input.value = savedValue;
+      } else if (savedValue && input.type === 'checkbox') {
+        input.checked = savedValue === 'true';
+      }
+      
+      // Save data on change
+      input.addEventListener('change', function() {
+        if (input.type === 'checkbox') {
+          localStorage.setItem('brief_form_' + input.name, input.checked);
+        } else if (input.type !== 'file') {
+          localStorage.setItem('brief_form_' + input.name, input.value);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
