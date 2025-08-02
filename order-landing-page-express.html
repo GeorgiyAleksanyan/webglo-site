@@ -383,15 +383,15 @@
               product_data: {
                 name: 'Landing Page Express',
                 description: 'Professional landing page delivered in 48 hours',
-                images: ['https://georgiyaleksanyan.github.io/webglo-site/assets/social-preview.png'],
+                images: ['https://webglo.org/assets/social-preview.png'],
               },
               unit_amount: 100, // $1.00 in cents (testing mode)
             },
             quantity: 1,
           }],
-          success_url: 'https://georgiyaleksanyan.github.io/webglo-site/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
-          cancel_url: 'https://georgiyaleksanyan.github.io/webglo-site/order-landing-page-express.html',
-          customer_email: orderData.contact_email,
+          successUrl: 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
+          cancelUrl: 'https://webglo.org/order-landing-page-express.html',
+          customerEmail: orderData.contact_email,
           metadata: {
             order_number: orderNumber,
             business_name: orderData.business_name,
