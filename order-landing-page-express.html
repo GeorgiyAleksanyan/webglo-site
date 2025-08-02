@@ -392,14 +392,7 @@
           }],
           successUrl: 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
           cancelUrl: 'https://webglo.org/order-landing-page-express.html',
-          customerEmail: orderData.contact_email,
-          metadata: {
-            order_number: orderNumber,
-            business_name: orderData.business_name,
-            industry: orderData.industry,
-            contact_email: orderData.contact_email,
-            main_goal: orderData.main_goal
-          }
+          customerEmail: orderData.contact_email
         });
 
         if (error) {
