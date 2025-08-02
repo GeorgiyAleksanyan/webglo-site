@@ -3,6 +3,7 @@
 # =============================================================================
 
 # Google Apps Script files (contains API endpoints, sheet IDs, and configuration)
+webglo-backend.gs
 google-apps-script.js
 gas-*.js
 apps-script-*.js
