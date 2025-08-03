@@ -375,33 +375,38 @@
         console.log('Attempting to create Stripe Checkout session'); // Debug log
         console.log('Order data being sent:', orderData); // Debug log
         
-        // Create checkout session via Google Apps Script
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyyyitH9oWoo-JT2vw5wz66wpVG8Z3NuRbGuo6DVOvzC1PtCoMqIB7eLB-WSea0_RTT/exec', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            action: 'create_checkout_session',
-            amount: 100, // $1 in cents
-            currency: 'usd',
-            success_url: 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
-            cancel_url: 'https://webglo.org/order-landing-page-express.html',
-            customer_email: orderData.contact_email,
-            order_data: orderData,
-            order_number: orderNumber
-          })
-        });
+        // Create a form to submit to Google Apps Script (avoids CORS issues)
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = 'https://script.google.com/macros/s/AKfycbyyyitH9oWoo-JT2vw5wz66wpVG8Z3NuRbGuo6DVOvzC1PtCoMqIB7eLB-WSea0_RTT/exec';
+        form.target = '_blank';
         
-        const sessionData = await response.json();
-        console.log('Session response:', sessionData); // Debug log
+        // Add all the data as hidden inputs
+        const data = {
+          action: 'create_checkout_session',
+          amount: 100, // $1 in cents
+          currency: 'usd',
+          success_url: 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
+          cancel_url: 'https://webglo.org/order-landing-page-express.html',
+          customer_email: orderData.contact_email,
+          order_number: orderNumber,
+          business_name: orderData.business_name || '',
+          industry: orderData.industry || '',
+          main_goal: orderData.main_goal || '',
+          contact_email: orderData.contact_email || ''
+        };
         
-        if (sessionData.url) {
-          // Redirect to Stripe Checkout
-          window.location.href = sessionData.url;
-        } else {
-          throw new Error('Failed to create checkout session: ' + (sessionData.error || 'Unknown error'));
+        for (const [key, value] of Object.entries(data)) {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = key;
+          input.value = value;
+          form.appendChild(input);
         }
+        
+        document.body.appendChild(form);
+        form.submit();
+        
       } catch (error) {
         console.error('Payment initialization error details:', error);
         console.error('Error stack:', error.stack);
