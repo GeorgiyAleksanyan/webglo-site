@@ -3,17 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Payment Test</title>
+  <title>Payment Test - New Backend</title>
 </head>
 <body>
-  <h1>Payment Form Test</h1>
+  <h1>Payment Form Test - Express Backend</h1>
   
-  <form id="testForm" method="POST" action="https://script.google.com/macros/s/AKfycbyyyitH9oWoo-JT2vw5wz66wpVG8Z3NuRbGuo6DVOvzC1PtCoMqIB7eLB-WSea0_RTT/exec">
-    <input type="hidden" name="action" value="create_checkout_session">
+  <!-- Form method for compatibility -->
+  <form id="testForm" method="POST" action="http://localhost:3000/create-checkout-form">
     <input type="hidden" name="amount" value="100">
     <input type="hidden" name="currency" value="usd">
-    <input type="hidden" name="success_url" value="https://webglo.org/success.html">
-    <input type="hidden" name="cancel_url" value="https://webglo.org/cancel.html">
     <input type="hidden" name="customer_email" value="test@example.com">
     <input type="hidden" name="order_number" value="TEST-001">
     <input type="hidden" name="business_name" value="Test Business">
@@ -21,21 +19,60 @@
     <input type="hidden" name="main_goal" value="Test Goal">
     <input type="hidden" name="contact_email" value="test@example.com">
     
-    <button type="submit">Test Payment Form Submission</button>
+    <button type="submit">Test Payment Form Submission (Express Backend)</button>
   </form>
 
+  <hr>
+
+  <!-- JavaScript method -->
+  <button onclick="testJavaScriptCheckout()">Test JavaScript Checkout (JSON API)</button>
+
   <script>
+    // Test form submission
     document.getElementById('testForm').addEventListener('submit', function(e) {
       console.log('Form submission started...');
       console.log('Form action:', this.action);
       console.log('Form method:', this.method);
       
-      // Log all form data
       const formData = new FormData(this);
       for (let [key, value] of formData.entries()) {
         console.log(key + ':', value);
       }
     });
+
+    // Test JavaScript API call
+    async function testJavaScriptCheckout() {
+      try {
+        console.log('Testing JavaScript checkout...');
+        
+        const response = await fetch('http://localhost:3000/create-checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            customer_email: 'test@example.com',
+            amount: 100,
+            order_number: 'JS-TEST-001',
+            business_name: 'Test Business JS',
+            industry: 'Technology',
+            main_goal: 'Test JavaScript integration'
+          })
+        });
+
+        const data = await response.json();
+        console.log('Checkout session created:', data);
+        
+        if (data.url) {
+          console.log('Redirecting to:', data.url);
+          window.location.href = data.url;
+        }
+        
+      } catch (error) {
+        console.error('JavaScript checkout error:', error);
+        alert('Checkout failed: ' + error.message);
+      }
+    }
   </script>
 </body>
 </html>

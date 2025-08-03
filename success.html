@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - WebGlo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .success-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 40px;
+            text-align: center;
+            background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 16px;
+            color: white;
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.3);
+        }
+        .success-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .order-details {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: left;
+        }
+        .next-steps {
+            background: white;
+            color: #1f2937;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        .timeline-item {
+            flex: 1;
+            text-align: center;
+            padding: 0 10px;
+        }
+        .timeline-number {
+            background: #ef4444;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        @media (max-width: 768px) {
+            .timeline {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">🎉</div>
+        <h1>Payment Successful!</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 30px;">
+            Thank you for choosing WebGlo Landing Page Express!
+        </p>
+        
+        <div class="order-details" id="orderDetails">
+            <h3>📋 Order Details</h3>
+            <p><strong>Order ID:</strong> <span id="sessionId">Loading...</span></p>
+            <p><strong>Service:</strong> Landing Page Express</p>
+            <p><strong>Amount:</strong> $297.00</p>
+            <p><strong>Expected Delivery:</strong> Within 48 hours</p>
+        </div>
+        
+        <div class="next-steps">
+            <h2>🚀 What Happens Next?</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <h4>Project Brief</h4>
+                    <p>Within 2 hours: You'll receive a detailed questionnaire</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <h4>Design & Development</h4>
+                    <p>24-40 hours: Our team creates your landing page</p>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <h4>Delivery & Review</h4>
+                    <p>48 hours: Completed page with one revision round</p>
+                </div>
+            </div>
+            
+            <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h3>📧 Check Your Email</h3>
+                <p>We've sent a confirmation email with:</p>
+                <ul style="text-align: left; display: inline-block;">
+                    <li>Order confirmation details</li>
+                    <li>Project brief link</li>
+                    <li>Your dedicated Google Drive folder</li>
+                    <li>Direct contact information</li>
+                </ul>
+            </div>
+            
+            <div style="margin-top: 30px;">
+                <h3>📞 Need Immediate Help?</h3>
+                <p><strong>Email:</strong> hello@webglo.org</p>
+                <p><strong>Response Time:</strong> Within 2 hours</p>
+                <p><strong>Reference Your Order ID Above</strong></p>
+            </div>
+            
+            <a href="/" style="background: linear-gradient(135deg, #ef4444, #f97316); color: white; padding: 15px 30px; text-decoration: none; border-radius: 8px; display: inline-block; margin-top: 20px; font-weight: bold;">
+                Return to WebGlo →
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Extract session ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const sessionId = urlParams.get('session_id');
+        
+        if (sessionId) {
+            document.getElementById('sessionId').textContent = sessionId;
+        } else {
+            document.getElementById('sessionId').textContent = 'Confirmation sent to your email';
+        }
+        
+        // Optional: Send session ID to your backend for processing
+        if (sessionId) {
+            console.log('Payment completed for session:', sessionId);
+            // You can make an API call here to process the order
+        }
+    </script>
+</body>
+</html>
