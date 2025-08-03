@@ -386,7 +386,7 @@
           action: 'create_checkout_session',
           amount: 100, // $1 in cents
           currency: 'usd',
-          success_url: 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
+          success_url: 'https://webglo.org/order-confirmation.html?session_id={{CHECKOUT_SESSION_ID}}&order=' + orderNumber,
           cancel_url: 'https://webglo.org/order-landing-page-express.html',
           customer_email: orderData.contact_email,
           order_number: orderNumber,
