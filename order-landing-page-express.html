@@ -379,7 +379,7 @@
         const form = document.createElement('form');
         form.method = 'POST';
         form.action = 'https://script.google.com/macros/s/AKfycbyyyitH9oWoo-JT2vw5wz66wpVG8Z3NuRbGuo6DVOvzC1PtCoMqIB7eLB-WSea0_RTT/exec';
-        form.target = '_blank';
+        // Remove target="_blank" to avoid iframe issues
         
         // Add all the data as hidden inputs
         const data = {
