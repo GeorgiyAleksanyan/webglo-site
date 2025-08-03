@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Test</title>
+</head>
+<body>
+  <h1>Payment Form Test</h1>
+  
+  <form id="testForm" method="POST" action="https://script.google.com/macros/s/AKfycbyyyitH9oWoo-JT2vw5wz66wpVG8Z3NuRbGuo6DVOvzC1PtCoMqIB7eLB-WSea0_RTT/exec">
+    <input type="hidden" name="action" value="create_checkout_session">
+    <input type="hidden" name="amount" value="100">
+    <input type="hidden" name="currency" value="usd">
+    <input type="hidden" name="success_url" value="https://webglo.org/success.html">
+    <input type="hidden" name="cancel_url" value="https://webglo.org/cancel.html">
+    <input type="hidden" name="customer_email" value="test@example.com">
+    <input type="hidden" name="order_number" value="TEST-001">
+    <input type="hidden" name="business_name" value="Test Business">
+    <input type="hidden" name="industry" value="Technology">
+    <input type="hidden" name="main_goal" value="Test Goal">
+    <input type="hidden" name="contact_email" value="test@example.com">
+    
+    <button type="submit">Test Payment Form Submission</button>
+  </form>
+
+  <script>
+    document.getElementById('testForm').addEventListener('submit', function(e) {
+      console.log('Form submission started...');
+      console.log('Form action:', this.action);
+      console.log('Form method:', this.method);
+      
+      // Log all form data
+      const formData = new FormData(this);
+      for (let [key, value] of formData.entries()) {
+        console.log(key + ':', value);
+      }
+    });
+  </script>
+</body>
+</html>
