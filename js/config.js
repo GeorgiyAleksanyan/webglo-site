@@ -6,7 +6,7 @@
 // Production configuration (default)
 window.ENV = {
   STRIPE_PUBLISHABLE_KEY: 'pk_test_REPLACE_WITH_YOUR_STRIPE_PUBLISHABLE_KEY', // Replace with your actual key
-  BACKEND_URL: 'https://your-backend.fly.dev', // Replace with your deployed backend URL
+  BACKEND_URL: 'https://your-worker.your-subdomain.workers.dev', // Replace with your Cloudflare Worker URL
   ENVIRONMENT: 'production'
 };
 

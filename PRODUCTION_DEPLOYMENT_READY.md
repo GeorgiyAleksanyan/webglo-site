@@ -11,16 +11,17 @@
 
 ---
 
-## 🎯 Recommended Platform: Railway.app
+## 🎯 Recommended Platform: Cloudflare Workers (FREE!)
 
-**Why Railway?**
-- Pay-per-use model ($5/month minimum, includes $5 usage)
-- Perfect for Stripe webhooks (reliable, fast)
-- Simple GitHub deployment
+**Why Cloudflare Workers?**
+- 100% FREE (100,000 requests/day)
+- No cold starts (perfect for Stripe webhooks)
+- Global edge deployment (super fast)
+- Simple deployment from GitHub
 - Auto HTTPS & custom domains
-- Excellent Node.js support
+- Built for APIs like Stripe integration
 
-**Alternative:** Render.com (has free tier, $7/month for reliability)
+**Alternative:** Railway.app ($5-10/month) or Render.com
 
 ---
 
@@ -34,24 +35,26 @@ git commit -m "Production deployment ready"
 git push origin main
 ```
 
-### 2. **Deploy Backend to Railway**
+### 2. **Deploy Backend to Cloudflare Workers**
 
-1. **Sign up**: [railway.app](https://railway.app)
-2. **Connect GitHub**: Link your repository
-3. **Deploy**: Select `webglo_site/backend` folder
-4. **Environment Variables**: Add these in Railway dashboard:
+1. **Sign up**: [dash.cloudflare.com](https://dash.cloudflare.com) (FREE)
+2. **Install Wrangler CLI**: `npm install -g wrangler`
+3. **Navigate to worker folder**: `cd cloudflare-worker`
+4. **Deploy**: `wrangler deploy`
+5. **Set Environment Variables**:
+   ```bash
+   wrangler secret put STRIPE_SECRET_KEY
+   wrangler secret put STRIPE_WEBHOOK_SECRET
    ```
-   STRIPE_SECRET_KEY=sk_live_YOUR_ACTUAL_LIVE_KEY
-   STRIPE_WEBHOOK_SECRET=whsec_YOUR_WEBHOOK_SECRET
-   NODE_ENV=production
-   ```
+
+**Detailed Guide**: See `cloudflare-worker/DEPLOYMENT_GUIDE.md`
 
 ### 3. **Configure Stripe Webhook**
 
 1. **Stripe Dashboard** → Webhooks
-2. **Add Endpoint**: `https://your-app.railway.app/webhook`
+2. **Add Endpoint**: `https://your-worker.your-subdomain.workers.dev/webhook`
 3. **Events**: Select `checkout.session.completed`
-4. **Copy webhook secret** → Add to Railway environment
+4. **Copy webhook secret** → Add to Cloudflare environment
 
 ### 4. **Update Frontend Configuration**
 
@@ -59,7 +62,7 @@ Edit `js/config.js` with your production values:
 ```javascript
 window.ENV = {
   STRIPE_PUBLISHABLE_KEY: 'pk_live_YOUR_ACTUAL_LIVE_KEY',
-  BACKEND_URL: 'https://your-app.railway.app',
+  BACKEND_URL: 'https://your-worker.your-subdomain.workers.dev',
   ENVIRONMENT: 'production'
 };
 ```
@@ -68,7 +71,7 @@ window.ENV = {
 
 Your main site stays on GitHub Pages (free):
 - Frontend: `https://webglo.org` (GitHub Pages)
-- Backend: `https://your-app.railway.app` (Railway)
+- Backend: `https://your-worker.your-subdomain.workers.dev` (Cloudflare Workers)
 
 ---
 
@@ -87,9 +90,9 @@ Your main site stays on GitHub Pages (free):
 | Service | Cost | Purpose |
 |---------|------|---------|
 | GitHub Pages | FREE | Frontend hosting |
-| Railway.app | $5-10/month | Backend + webhooks |
+| Cloudflare Workers | FREE | Backend + webhooks (100K req/day) |
 | Stripe | 2.9% + 30¢ per transaction | Payment processing |
-| **Total Fixed** | **$5-10/month** | Infrastructure |
+| **Total Fixed** | **$0/month** | Infrastructure |
 
 ---
 
@@ -110,7 +113,7 @@ Your main site stays on GitHub Pages (free):
 ## 🚨 Go-Live Steps
 
 1. **Switch to Live Keys**:
-   - Update Railway environment with `sk_live_` keys
+   - Update Cloudflare environment with `sk_live_` keys
    - Update frontend with `pk_live_` keys
    - Configure live webhook endpoint
 
@@ -119,7 +122,7 @@ Your main site stays on GitHub Pages (free):
    - SSL should work automatically
 
 3. **Monitor**:
-   - Check Railway logs
+   - Check Cloudflare Workers logs
    - Monitor Stripe dashboard
    - Test complete payment flow
 
@@ -127,7 +130,7 @@ Your main site stays on GitHub Pages (free):
 
 ## 📞 Support
 
-- **Railway**: Discord community + docs
+- **Cloudflare Workers**: Dashboard logs + Discord community
 - **Stripe**: Excellent documentation + support
 - **GitHub Pages**: GitHub docs + community
 
@@ -140,6 +143,6 @@ Your main site stays on GitHub Pages (free):
 ✅ Success page displays properly
 ✅ No exposed API keys
 ✅ HTTPS everywhere
-✅ Total cost under $10/month
+✅ Total cost under $0/month (FREE!)
 
 **Ready to deploy!** 🚀

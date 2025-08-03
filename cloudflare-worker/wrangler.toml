@@ -1,0 +1,21 @@
+# Cloudflare Workers configuration
+name = "webglo-payment-backend"
+main = "worker.js"
+compatibility_date = "2024-08-01"
+
+# Environment variables (set these via Cloudflare dashboard or wrangler CLI)
+[vars]
+# These will be set via the dashboard for security
+
+# KV namespace bindings (if you need key-value storage later)
+# [[kv_namespaces]]
+# binding = "ORDERS"
+# id = "your-kv-namespace-id"
+
+# Add your custom domain later (optional)
+# routes = [
+#   { pattern = "api.webglo.org/*", zone_name = "webglo.org" }
+# ]
+
+[compatibility_flags]
+nodejs_compat = true

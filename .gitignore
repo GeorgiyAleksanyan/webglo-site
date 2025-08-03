@@ -31,6 +31,10 @@ uploads/
 database-config.js
 config-private.js
 
+# Cloudflare Workers
+cloudflare-worker/node_modules/
+cloudflare-worker/.wrangler/
+
 # =============================================================================
 # DEVELOPMENT AND TEST FILES
 # =============================================================================

@@ -1,0 +1,4 @@
+# Cloudflare Workers - Environment Variables Only
+node_modules/
+.wrangler/
+*.log
