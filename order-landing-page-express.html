@@ -325,6 +325,7 @@
 
   <div id="webglo-footer"></div>
 
+  <script src="js/config.js"></script>
   <script src="js/components.js"></script>
   <script>
     // Initialize components with error handling
@@ -336,8 +337,10 @@
       // Continue without components if they fail
     }
 
-    // Stripe configuration - Using TEST key for initial testing
-    const stripe = Stripe('pk_test_51Rrm6PJaxQeyxmGhY0sOPyJHP2MBJN1A42mbQRd4kD1KsZrVBL4kEw51zBbCR4JWIt5JuOtQ7tpDQrCU3efUmetC00Q9tkHq8h');
+    // Stripe configuration - Get from environment or config
+    // For production, set STRIPE_PUBLISHABLE_KEY in your deployment environment
+    const stripePublishableKey = window.ENV?.STRIPE_PUBLISHABLE_KEY || 'pk_test_REPLACE_WITH_YOUR_STRIPE_PUBLISHABLE_KEY';
+    const stripe = Stripe(stripePublishableKey);
 
     // Form validation and Stripe Checkout
     document.getElementById('proceed-to-payment').addEventListener('click', async function() {
@@ -375,10 +378,11 @@
         console.log('Attempting to create Stripe Checkout session'); // Debug log
         console.log('Order data being sent:', orderData); // Debug log
         
-        // Create a form to submit to Express backend (local testing)
+        // Create a form to submit to Express backend
         const form = document.createElement('form');
         form.method = 'POST';
-        form.action = 'http://localhost:3000/create-checkout-form';
+        // Use environment variable for backend URL, fallback to production
+        form.action = window.ENV?.BACKEND_URL || 'https://your-backend.fly.dev/create-checkout-form';
         // Remove target="_blank" to avoid iframe issues
         
         // Add all the data as hidden inputs

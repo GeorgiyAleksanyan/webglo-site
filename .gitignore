@@ -2,97 +2,72 @@
 # SECURITY-SENSITIVE FILES - DO NOT COMMIT TO PUBLIC REPOSITORY
 # =============================================================================
 
-# Google Apps Script files (contains API endpoints, sheet IDs, and configuration)
-webglo-backend.gs
-google-apps-script.js
-gas-*.js
-apps-script-*.js
-*google-script.js
-final-google-script.js
-fixed-google-script.js
-production-google-script*.js
+# Environment files with API keys and secrets
+.env
+.env.*
+!.env.example
 
 # API keys, secrets, and credentials
 api-keys.txt
 secrets.txt
 credentials.json
 service-account.json
-sheet-ids.txt
-database-config.js
-.env
+config.json
 .env.local
 .env.production
+.env.development
 
-# Google Apps Script configuration (contains sensitive IDs)
-webglo-backend-config.js
-google-apps-script-config.json
+# Stripe keys (extra protection)
+*stripe*key*
+*secret*key*
 
 # Customer data and assets
 customer-uploads/
 order-files/
 project-assets/
+uploads/
 
-# Security test files that might contain sensitive data
-security-test-private.js
-penetration-test-*
-vulnerability-scan-*
+# Database and configuration files
+database-config.js
+config-private.js
 
 # =============================================================================
-# DEVELOPMENT FILES (ALREADY REMOVED FROM REPO)
+# DEVELOPMENT AND TEST FILES
 # =============================================================================
 
-# Development files (already removed)
-debug.html
-test.html
-performance-test.html
-*_old.html
-*_new.html
-*_rich.html
-server.py
+# Development servers and testing
+server-dev.js
+*-dev.js
 *-test.html
 *-debug.html
-form-*.html
-emergency-*.html
-simple-*.html
+test-*.html
+debug-*.html
 
-# Development documentation (already removed)
-DEPLOYMENT.md
-TESTING_GUIDE.md
-CHROME_*.md
-UI_FIXES_SUMMARY.md
-PROJECT_LOG.md
-IMAGE_ASSETS.md
+# Development documentation (cleaned up)
+*-IMPLEMENTATION.md
+*-TRACKING.md
+*-FIX*.md
+*-SETUP.md
+*-SUMMARY.md
+*-CHECKLIST.md
+*-GUIDE.md (except DEPLOYMENT_GUIDE.md)
 
-# Form handler development files
-js/jsonp-form-handler.js
-js/webglo-form-handler.js
-simple-form-handler.js
-js/*-handler.js
-js/*-handler-*.js
-js/*-test.js
-js/security-*.js
-js/complete-test.js
-js/form*.js
-jsonp-form-test.html
+# Development scripts
+deploy-to-github.ps1
+test-*.js
+debug-*.js
 
-# Production test files (safe to keep in dev, exclude from production)
-production-form-test.html
-
-# Production deployment documentation (keep in repo for reference)
-# DEPLOYMENT_GUIDE.md - keeping this for deployment reference
-# PRODUCTION_DEPLOYMENT.md - keeping this for deployment reference
-
-# Development scripts (already removed)
-js/*_old.js
-js/*_enhanced.js
-js/cache-buster.js
-js/dynamic-animations.js
-js/mobile-optimizer.js
-css/dynamic-animations.css
-css/subtle-animations.css
-
-# Archive directories
+# Old and backup files
+*-old.*
+*-new.*
+*-backup.*
+backup/
 archive/
+
+# Google Apps Script legacy files
+*.gs
+google-apps-script.*
+webglo-backend.*
 
 # =============================================================================
 # STANDARD DEVELOPMENT IGNORES
