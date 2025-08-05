@@ -23,6 +23,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mobile-first.css">
+  <link rel="stylesheet" href="css/tooltip.css">
   
   <!-- TrustBox script -->
   <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
@@ -89,8 +90,34 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
             </svg>
           </a>
-          <div class="text-white/80 text-sm">
-            ✓ 48-Hour Delivery ✓ $297 One-Time ✓ No Monthly Fees
+          <div class="text-white/80 text-sm flex items-center justify-center gap-4 flex-wrap">
+            <span class="tooltip-container">
+              ✓ 48-Hour Delivery
+              <button class="tooltip-trigger tooltip-delivery" 
+                      type="button" 
+                      aria-label="More information about 48-hour delivery">
+                ?
+              </button>
+              <div class="tooltip-content" role="tooltip">
+                Professional landing page delivered within 48 hours of order confirmation and receipt of all materials, or full refund applies.
+                <br><br>
+                <a href="refunds-policy.html" class="text-blue-300 hover:text-blue-200 text-xs underline">View Refunds Policy</a>
+              </div>
+            </span>
+            <span class="tooltip-container">
+              ✓ $297 One-Time
+              <button class="tooltip-trigger" 
+                      type="button" 
+                      aria-label="More information about pricing">
+                ?
+              </button>
+              <div class="tooltip-content" role="tooltip">
+                One-time payment of $297 with no recurring charges. Hosting and maintenance are separate services if requested.
+                <br><br>
+                <a href="terms-of-service.html" class="text-blue-300 hover:text-blue-200 text-xs underline">View Terms</a>
+              </div>
+            </span>
+            <span>✓ No Monthly Fees</span>
           </div>
         </div>
       </div>
@@ -305,5 +332,6 @@
 
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/tooltip-system.js"></script>
 </body>
 </html>
