@@ -9,7 +9,7 @@ import Stripe from 'stripe';
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*', // In production, replace with your domain
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization, Stripe-Signature',
   'Access-Control-Max-Age': '86400',
 };
 
@@ -32,7 +32,8 @@ export default {
           status: 'healthy',
           service: 'WebGlo Payment Backend',
           platform: 'Cloudflare Workers',
-          timestamp: new Date().toISOString()
+          timestamp: new Date().toISOString(),
+          environment: env.ENVIRONMENT || 'production'
         }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         });
@@ -42,7 +43,10 @@ export default {
       if (url.pathname === '/create-checkout-session' && request.method === 'POST') {
         const body = await request.json();
         
-        console.log('Creating checkout session:', body);
+        console.log('Creating checkout session for Landing Page Express:', body);
+
+        // Generate unique order number
+        const orderNumber = 'WG' + Date.now() + Math.random().toString(36).substr(2, 4).toUpperCase();
 
         const session = await stripe.checkout.sessions.create({
           payment_method_types: ['card'],
@@ -50,74 +54,34 @@ export default {
             price_data: {
               currency: 'usd',
               product_data: {
-                name: `WebGlo ${body.business_name || 'Business'} Project`,
-                description: `Industry: ${body.industry || 'General'} | Goal: ${body.main_goal || 'Business growth'}`,
+                name: 'Landing Page Express',
+                description: 'Professional landing page delivered in 48 hours',
               },
-              unit_amount: body.amount || 100, // Amount in cents
+              unit_amount: 29700, // $297.00 in cents
             },
             quantity: 1,
           }],
           mode: 'payment',
+          success_url: body.success_url || 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}',
+          cancel_url: body.cancel_url || 'https://webglo.org/cancel.html',
           customer_email: body.customer_email,
           metadata: {
+            order_number: orderNumber,
             business_name: body.business_name || '',
             industry: body.industry || '',
             main_goal: body.main_goal || '',
-            order_number: body.order_number || `WG-${Date.now()}`,
+            contact_email: body.contact_email || body.customer_email,
+            service_type: 'landing_page_express'
           },
-          success_url: 'https://webglo.org/success.html?session_id={CHECKOUT_SESSION_ID}',
-          cancel_url: 'https://webglo.org/cancel.html',
         });
 
-        console.log('Checkout session created:', session.id);
-
-        return new Response(JSON.stringify({ 
+        return new Response(JSON.stringify({
+          sessionId: session.id,
           url: session.url,
-          session_id: session.id 
+          orderNumber: orderNumber
         }), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         });
-      }
-
-      // Create Stripe Checkout Session (Form submission)
-      if (url.pathname === '/create-checkout-form' && request.method === 'POST') {
-        const formData = await request.formData();
-        
-        const sessionData = {
-          customer_email: formData.get('customer_email'),
-          business_name: formData.get('business_name'),
-          industry: formData.get('industry'),
-          main_goal: formData.get('main_goal'),
-          amount: parseInt(formData.get('amount')) || 100,
-          order_number: formData.get('order_number') || `WG-${Date.now()}`,
-        };
-
-        console.log('Creating checkout session from form:', sessionData);
-
-        const session = await stripe.checkout.sessions.create({
-          payment_method_types: ['card'],
-          line_items: [{
-            price_data: {
-              currency: 'usd',
-              product_data: {
-                name: `WebGlo ${sessionData.business_name || 'Business'} Project`,
-                description: `Industry: ${sessionData.industry || 'General'} | Goal: ${sessionData.main_goal || 'Business growth'}`,
-              },
-              unit_amount: sessionData.amount,
-            },
-            quantity: 1,
-          }],
-          mode: 'payment',
-          customer_email: sessionData.customer_email,
-          metadata: sessionData,
-          success_url: 'https://webglo.org/success.html?session_id={CHECKOUT_SESSION_ID}',
-          cancel_url: 'https://webglo.org/cancel.html',
-        });
-
-        console.log('Checkout session created:', session.id);
-
-        // Redirect to Stripe Checkout
-        return Response.redirect(session.url, 303);
       }
 
       // Stripe Webhook handler
@@ -146,31 +110,52 @@ export default {
             metadata: session.metadata
           });
 
-          // Here you could:
-          // 1. Send confirmation email
-          // 2. Create order in your database
-          // 3. Trigger fulfillment process
-          
-          console.log('Order processing completed for:', session.metadata?.order_number);
+          // Send order data to Google Apps Script for processing
+          try {
+            const gasUrl = env.GOOGLE_APPS_SCRIPT_URL;
+            if (gasUrl) {
+              const gasResponse = await fetch(gasUrl, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  action: 'process_order',
+                  session_data: {
+                    session_id: session.id,
+                    customer_email: session.customer_email,
+                    customer_name: session.customer_details?.name || '',
+                    amount_total: session.amount_total,
+                    metadata: session.metadata
+                  }
+                })
+              });
+
+              const gasResult = await gasResponse.text();
+              console.log('Google Apps Script response:', gasResult);
+            }
+          } catch (gasError) {
+            console.error('Error sending to Google Apps Script:', gasError);
+            // Don't fail the webhook if GAS fails - log and continue
+          }
         }
 
-        return new Response('Webhook handled', { 
-          status: 200,
-          headers: corsHeaders 
+        return new Response(JSON.stringify({ received: true }), {
+          headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         });
       }
 
-      // 404 for unmatched routes
-      return new Response('Not Found', { 
+      // 404 for unknown routes
+      return new Response('Not found', { 
         status: 404,
-        headers: corsHeaders 
+        headers: corsHeaders
       });
 
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Worker error:', error);
       return new Response(JSON.stringify({ 
-        error: error.message,
-        service: 'WebGlo Payment Backend'
+        error: 'Internal server error',
+        message: error.message 
       }), {
         status: 500,
         headers: { ...corsHeaders, 'Content-Type': 'application/json' }
