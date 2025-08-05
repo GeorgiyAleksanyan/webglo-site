@@ -293,27 +293,7 @@ class WebGloComponents {
             </div>
           </div>
 
-          <!-- Trustpilot Reviews Section -->
-          <div class="border-t border-gray-700 pt-8 mb-8">
-            <div class="text-center">
-              <h3 class="text-lg font-semibold text-white mb-4">Trusted by Businesses Worldwide</h3>
-              <div class="flex justify-center">
-                <div class="w-full max-w-lg">
-                  <!-- TrustBox widget - Review Collector -->
-                  <div class="trustpilot-widget" 
-                       data-locale="en-US" 
-                       data-template-id="56278e9abfbbba0bdcd568bc" 
-                       data-businessunit-id="671b4d8e2bacef7e3d5e8d47" 
-                       data-style-height="52px" 
-                       data-style-width="100%">
-                    <a href="https://www.trustpilot.com/review/webglo.org" 
-                       target="_blank" 
-                       rel="noopener">Trustpilot</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+
 
           <div class="border-t border-gray-700 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
@@ -335,24 +315,6 @@ class WebGloComponents {
       footerContainer.innerHTML = footer;
       console.log('Footer rendered successfully with updated business info');
       
-      // Initialize Trustpilot widgets after footer is loaded
-      const initTrustpilot = () => {
-        const trustpilotWidget = footerContainer.querySelector('.trustpilot-widget');
-        if (trustpilotWidget && window.Trustpilot && window.Trustpilot.loadFromElement) {
-          try {
-            window.Trustpilot.loadFromElement(trustpilotWidget);
-            console.log('Trustpilot widget initialized successfully');
-          } catch (error) {
-            console.log('Trustpilot initialization error:', error);
-          }
-        } else if (trustpilotWidget) {
-          console.log('Trustpilot object not ready, retrying...');
-          setTimeout(initTrustpilot, 500);
-        }
-      };
-      
-      // Start initialization after DOM is ready
-      setTimeout(initTrustpilot, 300);
     } else {
       console.error('Footer container not found - make sure element with id="webglo-footer" exists');
     }
