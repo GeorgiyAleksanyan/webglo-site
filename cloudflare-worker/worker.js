@@ -63,8 +63,24 @@ async function createCheckoutSession(stripeSecretKey, sessionData) {
 }
 
 async function constructWebhookEvent(body, signature, webhookSecret) {
-  // Simple webhook signature verification for Cloudflare Workers
+  // Stripe webhook signature verification for Cloudflare Workers
   const encoder = new TextEncoder();
+  
+  const parts = signature.split(',');
+  const timestamp = parts.find(part => part.startsWith('t=')).substring(2);
+  const expectedSignature = parts.find(part => part.startsWith('v1=')).substring(3);
+
+  if (!timestamp || !expectedSignature) {
+    throw new Error('Invalid signature format');
+  }
+
+  const payload = timestamp + '.' + body;
+  const payloadBytes = encoder.encode(payload);
+  
+  // Convert hex signature to bytes
+  const signatureBytes = new Uint8Array(expectedSignature.match(/.{2}/g).map(byte => parseInt(byte, 16)));
+  
+  // Import the webhook secret as HMAC key
   const key = await crypto.subtle.importKey(
     'raw',
     encoder.encode(webhookSecret),
@@ -72,15 +88,6 @@ async function constructWebhookEvent(body, signature, webhookSecret) {
     false,
     ['verify']
   );
-
-  const parts = signature.split(',');
-  const timestamp = parts.find(part => part.startsWith('t=')).substring(2);
-  const expectedSignature = parts.find(part => part.startsWith('v1=')).substring(3);
-
-  const payload = timestamp + '.' + body;
-  const payloadBytes = encoder.encode(payload);
-  
-  const signatureBytes = Uint8Array.from(atob(expectedSignature), c => c.charCodeAt(0));
   
   const isValid = await crypto.subtle.verify(
     'HMAC',

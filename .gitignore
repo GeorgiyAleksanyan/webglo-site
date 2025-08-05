@@ -7,6 +7,12 @@
 .env.*
 !.env.example
 
+# Local configuration files with actual API keys
+js/config.local.js
+config.local.js
+*-local.js
+*-private.js
+
 # API keys, secrets, and credentials
 api-keys.txt
 secrets.txt
@@ -26,6 +32,10 @@ deployment-config.*
 # Stripe keys (extra protection)
 *stripe*key*
 *secret*key*
+
+# Google Apps Script URLs (private)
+*script.google.com*
+*google-apps-script*url*
 
 # Customer data and assets
 customer-uploads/
