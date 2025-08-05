@@ -17,6 +17,12 @@ config.json
 .env.production
 .env.development
 
+# Backend configuration and setup files
+*-backend.*
+*-config-private.*
+*-setup-private.*
+deployment-config.*
+
 # Stripe keys (extra protection)
 *stripe*key*
 *secret*key*
@@ -71,7 +77,12 @@ archive/
 # Google Apps Script legacy files
 *.gs
 google-apps-script.*
+google-apps-script-updated.js
 webglo-backend.*
+
+# Cloudflare Worker development files
+cloudflare-worker/worker-clean.js
+*-clean.js
 
 # =============================================================================
 # STANDARD DEVELOPMENT IGNORES

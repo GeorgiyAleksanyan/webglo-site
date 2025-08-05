@@ -14,7 +14,6 @@ const urlsToCache = [
   '/css/mobile-first.css',
   '/js/main.js',
   '/js/components.js',
-  '/js/mobile-optimizer.js',
   '/js/blog.js',
   '/assets/logo.png',
   'https://cdn.tailwindcss.com',
