@@ -293,6 +293,28 @@ class WebGloComponents {
             </div>
           </div>
 
+          <!-- Trustpilot Reviews Section -->
+          <div class="border-t border-gray-700 pt-8 mb-8">
+            <div class="text-center">
+              <h3 class="text-lg font-semibold text-white mb-4">Trusted by Businesses Worldwide</h3>
+              <div class="flex justify-center">
+                <div class="w-full max-w-lg">
+                  <!-- TrustBox widget - Review Collector -->
+                  <div class="trustpilot-widget" 
+                       data-locale="en-US" 
+                       data-template-id="56278e9abfbbba0bdcd568bc" 
+                       data-businessunit-id="671b4d8e2bacef7e3d5e8d47" 
+                       data-style-height="52px" 
+                       data-style-width="100%">
+                    <a href="https://www.trustpilot.com/review/webglo.com" 
+                       target="_blank" 
+                       rel="noopener">Review us on Trustpilot</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="border-t border-gray-700 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
               <p class="text-gray-400 text-sm">© 2025 WebGlo. All rights reserved.</p>
