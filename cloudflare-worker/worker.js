@@ -1,9 +1,7 @@
 /**
  * WebGlo Stripe Payment Backend - Cloudflare Workers
- * FREE deployment on Cloudflare Workers
+ * FREE deployment on Cloudflare Workers (No npm dependencies)
  */
-
-import Stripe from 'stripe';
 
 // CORS headers for your frontend
 const corsHeaders = {
@@ -12,6 +10,76 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'Content-Type, Authorization, Stripe-Signature',
   'Access-Control-Max-Age': '86400',
 };
+
+// Stripe API helper functions
+async function createCheckoutSession(stripeSecretKey, sessionData) {
+  const response = await fetch('https://api.stripe.com/v1/checkout/sessions', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${stripeSecretKey}`,
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: new URLSearchParams({
+      'payment_method_types[]': 'card',
+      'line_items[0][price_data][currency]': 'usd',
+      'line_items[0][price_data][product_data][name]': 'Landing Page Express',
+      'line_items[0][price_data][product_data][description]': 'Professional landing page delivered in 48 hours',
+      'line_items[0][price_data][unit_amount]': '100', // $1.00 in cents (TEST MODE)
+      'line_items[0][quantity]': '1',
+      'mode': 'payment',
+      'success_url': sessionData.success_url,
+      'cancel_url': sessionData.cancel_url,
+      'customer_email': sessionData.customer_email,
+      'metadata[order_number]': sessionData.order_number,
+      'metadata[business_name]': sessionData.business_name || '',
+      'metadata[industry]': sessionData.industry || '',
+      'metadata[main_goal]': sessionData.main_goal || '',
+      'metadata[contact_email]': sessionData.contact_email || sessionData.customer_email,
+      'metadata[service_type]': 'landing_page_express'
+    })
+  });
+
+  if (!response.ok) {
+    const error = await response.text();
+    throw new Error(`Stripe API error: ${error}`);
+  }
+
+  return await response.json();
+}
+
+async function constructWebhookEvent(body, signature, webhookSecret) {
+  // Simple webhook signature verification for Cloudflare Workers
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    'raw',
+    encoder.encode(webhookSecret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['verify']
+  );
+
+  const parts = signature.split(',');
+  const timestamp = parts.find(part => part.startsWith('t=')).substring(2);
+  const expectedSignature = parts.find(part => part.startsWith('v1=')).substring(3);
+
+  const payload = timestamp + '.' + body;
+  const payloadBytes = encoder.encode(payload);
+  
+  const signatureBytes = Uint8Array.from(atob(expectedSignature), c => c.charCodeAt(0));
+  
+  const isValid = await crypto.subtle.verify(
+    'HMAC',
+    key,
+    signatureBytes,
+    payloadBytes
+  );
+
+  if (!isValid) {
+    throw new Error('Invalid signature');
+  }
+
+  return JSON.parse(body);
+}
 
 export default {
   async fetch(request, env, ctx) {
@@ -22,19 +90,19 @@ export default {
       return new Response(null, { headers: corsHeaders });
     }
 
-    // Initialize Stripe with your secret key from environment variables
-    const stripe = new Stripe(env.STRIPE_SECRET_KEY);
-
     try {
-      // Health check endpoint
-      if (url.pathname === '/' && request.method === 'GET') {
-        return new Response(JSON.stringify({
+      // Health check endpoint (handle both GET and HEAD requests)
+      if (url.pathname === '/' && (request.method === 'GET' || request.method === 'HEAD')) {
+        const responseData = {
           status: 'healthy',
           service: 'WebGlo Payment Backend',
           platform: 'Cloudflare Workers',
           timestamp: new Date().toISOString(),
           environment: env.ENVIRONMENT || 'production'
-        }), {
+        };
+        
+        // For HEAD requests, return empty body but same headers
+        return new Response(request.method === 'HEAD' ? null : JSON.stringify(responseData), {
           headers: { ...corsHeaders, 'Content-Type': 'application/json' }
         });
       }
@@ -48,32 +116,18 @@ export default {
         // Generate unique order number
         const orderNumber = 'WG' + Date.now() + Math.random().toString(36).substr(2, 4).toUpperCase();
 
-        const session = await stripe.checkout.sessions.create({
-          payment_method_types: ['card'],
-          line_items: [{
-            price_data: {
-              currency: 'usd',
-              product_data: {
-                name: 'Landing Page Express',
-                description: 'Professional landing page delivered in 48 hours',
-              },
-              unit_amount: 29700, // $297.00 in cents
-            },
-            quantity: 1,
-          }],
-          mode: 'payment',
+        const sessionData = {
           success_url: body.success_url || 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}',
           cancel_url: body.cancel_url || 'https://webglo.org/cancel.html',
           customer_email: body.customer_email,
-          metadata: {
-            order_number: orderNumber,
-            business_name: body.business_name || '',
-            industry: body.industry || '',
-            main_goal: body.main_goal || '',
-            contact_email: body.contact_email || body.customer_email,
-            service_type: 'landing_page_express'
-          },
-        });
+          order_number: orderNumber,
+          business_name: body.business_name || '',
+          industry: body.industry || '',
+          main_goal: body.main_goal || '',
+          contact_email: body.contact_email || body.customer_email
+        };
+
+        const session = await createCheckoutSession(env.STRIPE_SECRET_KEY, sessionData);
 
         return new Response(JSON.stringify({
           sessionId: session.id,
@@ -91,7 +145,7 @@ export default {
 
         let event;
         try {
-          event = stripe.webhooks.constructEvent(body, sig, env.STRIPE_WEBHOOK_SECRET);
+          event = await constructWebhookEvent(body, sig, env.STRIPE_WEBHOOK_SECRET);
         } catch (err) {
           console.error('Webhook signature verification failed:', err.message);
           return new Response(`Webhook Error: ${err.message}`, { status: 400 });

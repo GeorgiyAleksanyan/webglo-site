@@ -17,5 +17,4 @@ compatibility_date = "2024-08-01"
 #   { pattern = "api.webglo.org/*", zone_name = "webglo.org" }
 # ]
 
-[compatibility_flags]
-nodejs_compat = true
+compatibility_flags = ["nodejs_compat"]

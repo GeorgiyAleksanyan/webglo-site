@@ -378,38 +378,43 @@
         console.log('Attempting to create Stripe Checkout session'); // Debug log
         console.log('Order data being sent:', orderData); // Debug log
         
-        // Create a form to submit to Express backend
-        const form = document.createElement('form');
-        form.method = 'POST';
-        // Use environment variable for backend URL, fallback to production
-        form.action = window.ENV?.BACKEND_URL || 'https://your-backend.fly.dev/create-checkout-form';
-        // Remove target="_blank" to avoid iframe issues
-        
-        // Add all the data as hidden inputs
-        const data = {
-          action: 'create_checkout_session',
-          amount: 100, // $1 in cents
-          currency: 'usd',
-          success_url: 'https://webglo.org/order-confirmation.html?session_id={{CHECKOUT_SESSION_ID}}&order=' + orderNumber,
-          cancel_url: 'https://webglo.org/order-landing-page-express.html',
+        // Prepare data for Cloudflare Worker
+        const checkoutData = {
           customer_email: orderData.contact_email,
-          order_number: orderNumber,
           business_name: orderData.business_name || '',
           industry: orderData.industry || '',
           main_goal: orderData.main_goal || '',
-          contact_email: orderData.contact_email || ''
+          contact_email: orderData.contact_email || '',
+          success_url: 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
+          cancel_url: 'https://webglo.org/order-landing-page-express.html'
         };
         
-        for (const [key, value] of Object.entries(data)) {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = value;
-          form.appendChild(input);
+        console.log('Sending checkout data to worker:', checkoutData);
+        
+        // Call Cloudflare Worker API
+        const backendUrl = window.ENV?.BACKEND_URL || 'https://webglo-payment-api.service-webglo.workers.dev';
+        const response = await fetch(`${backendUrl}/create-checkout-session`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(checkoutData)
+        });
+        
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`HTTP ${response.status}: ${errorText}`);
         }
         
-        document.body.appendChild(form);
-        form.submit();
+        const result = await response.json();
+        console.log('Checkout session created:', result);
+        
+        // Redirect to Stripe Checkout
+        if (result.url) {
+          window.location.href = result.url;
+        } else {
+          throw new Error('No checkout URL returned from server');
+        }
         
       } catch (error) {
         console.error('Payment initialization error details:', error);
