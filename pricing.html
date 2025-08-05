@@ -21,13 +21,14 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/mobile-first.css">
+  <link rel="stylesheet" href="css/tooltip.css">
 
 </head>
 <body class="font-inter bg-white text-gray-900">
   <div id="webglo-navigation"></div>
 
   <!-- Hero Section -->
-  <section class="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 py-20 lg:py-28">
+  <section class="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 py-20 lg:py-28 hero-section">
     <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center">
       <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
         Simple
@@ -40,7 +41,19 @@
       </p>
       <div class="inline-flex items-center px-4 py-2 bg-white/80 backdrop-blur-sm rounded-full border border-gray-200/50 shadow-lg">
         <div class="w-2 h-2 bg-gradient-to-r from-[#0cead9] to-[#df00ff] rounded-full mr-3 animate-pulse"></div>
-        <span class="text-sm font-medium text-gray-700">30-day money-back guarantee • No contracts</span>
+        <span class="text-sm font-medium text-gray-700 tooltip-container">
+          30-day money-back guarantee • No contracts
+          <button class="tooltip-trigger tooltip-guarantee" 
+                  type="button" 
+                  aria-label="More information about guarantee">
+            ?
+          </button>
+          <div class="tooltip-content" role="tooltip">
+            Full refund available within 30 days for eligible services. Landing Page Express refunds subject to specific delivery terms.
+            <br><br>
+            <a href="refunds-policy.html" class="text-blue-300 hover:text-blue-200 text-xs underline">View Refunds Policy</a>
+          </div>
+        </span>
       </div>
     </div>
   </section>
@@ -97,7 +110,19 @@
                   <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                     <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
                   </svg>
-                  <span>48-hour delivery guarantee</span>
+                  <span class="tooltip-container">
+                    48-hour delivery guarantee
+                    <button class="tooltip-trigger tooltip-delivery" 
+                            type="button" 
+                            aria-label="More information about 48-hour guarantee">
+                      ?
+                    </button>
+                    <div class="tooltip-content" role="tooltip">
+                      Professional landing page delivered within 48 hours of order confirmation and receipt of all materials, or full refund applies.
+                      <br><br>
+                      <a href="refunds-policy.html" class="text-blue-300 hover:text-blue-200 text-xs underline">View Refunds Policy</a>
+                    </div>
+                  </span>
                 </div>
               </div>
             </div>
@@ -114,7 +139,20 @@
                 </a>
                 
                 <div class="text-sm text-gray-500">
-                  ✓ Money-back guarantee ✓ Only 10 spots/month
+                  <span class="tooltip-container">
+                    ✓ Money-back guarantee
+                    <button class="tooltip-trigger tooltip-refund" 
+                            type="button" 
+                            aria-label="More information about money-back guarantee">
+                      ?
+                    </button>
+                    <div class="tooltip-content" role="tooltip">
+                      Full refund available if delivery deadline is missed or within 4-hour cancellation window. See our refunds policy for complete terms.
+                      <br><br>
+                      <a href="refunds-policy.html" class="text-blue-300 hover:text-blue-200 text-xs underline">View Refunds Policy</a>
+                    </div>
+                  </span>
+                  ✓ Only 10 spots/month
                 </div>
               </div>
             </div>
@@ -507,6 +545,7 @@
 
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/tooltip-system.js"></script>
   <script>
     // Pricing tab functionality
     document.addEventListener('DOMContentLoaded', function() {

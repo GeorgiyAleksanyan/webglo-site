@@ -308,8 +308,20 @@ class WebGloComponents {
                        data-style-width="100%">
                     <a href="https://www.trustpilot.com/review/webglo.com" 
                        target="_blank" 
-                       rel="noopener">Review us on Trustpilot</a>
+                       rel="noopener">Trustpilot</a>
                   </div>
+                  <!-- Load TrustBox script if not already loaded -->
+                  <script>
+                    if (!window.Trustpilot) {
+                      (function(d, s, id) {
+                        var js, tjs = d.getElementsByTagName(s)[0];
+                        if (d.getElementById(id)) return;
+                        js = d.createElement(s); js.id = id; js.async = true;
+                        js.src = "//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js";
+                        tjs.parentNode.insertBefore(js, tjs);
+                      }(document, 'script', 'trustpilot-jssdk'));
+                    }
+                  </script>
                 </div>
               </div>
             </div>
