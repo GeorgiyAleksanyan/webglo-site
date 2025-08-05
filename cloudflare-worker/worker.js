@@ -30,7 +30,6 @@ async function createCheckoutSession(stripeSecretKey, sessionData) {
       'success_url': sessionData.success_url,
       'cancel_url': sessionData.cancel_url,
       'customer_email': sessionData.customer_email,
-      'automatic_payment_methods[enabled]': 'false', // Disable Link and other auto methods
       'billing_address_collection': 'required',
       'customer_creation': 'always',
       'invoice_creation[enabled]': 'true',
