@@ -30,6 +30,7 @@ async function createCheckoutSession(stripeSecretKey, sessionData) {
       'success_url': sessionData.success_url,
       'cancel_url': sessionData.cancel_url,
       'customer_email': sessionData.customer_email,
+      'automatic_payment_methods[enabled]': 'false', // Disable Link and other auto methods
       'metadata[order_number]': sessionData.order_number,
       'metadata[business_name]': sessionData.business_name || '',
       'metadata[industry]': sessionData.industry || '',
@@ -124,7 +125,19 @@ export default {
           business_name: body.business_name || '',
           industry: body.industry || '',
           main_goal: body.main_goal || '',
-          contact_email: body.contact_email || body.customer_email
+          contact_email: body.contact_email || body.customer_email,
+          // Additional form fields
+          current_website: body.current_website || '',
+          target_audience: body.target_audience || '',
+          main_offer: body.main_offer || '',
+          preferred_colors: body.preferred_colors || '',
+          style_preference: body.style_preference || '',
+          inspiration_links: body.inspiration_links || '',
+          contact_name: body.contact_name || '',
+          phone_number: body.phone_number || '',
+          best_time_contact: body.best_time_contact || '',
+          special_requirements: body.special_requirements || '',
+          completion_deadline: body.completion_deadline || ''
         };
 
         const session = await createCheckoutSession(env.STRIPE_SECRET_KEY, sessionData);

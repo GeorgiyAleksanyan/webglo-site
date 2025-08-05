@@ -10,6 +10,8 @@
   <meta property="og:title" content="Order Your Landing Page - 48 Hour Delivery">
   <meta property="og:description" content="Complete your order for a professional, high-converting landing page delivered in just 48 hours.">
   <meta property="og:image" content="assets/social-preview.png">
+  <link rel="icon" type="image/x-icon" href="/assets/logo.png">
+  <link rel="apple-touch-icon" href="/assets/logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <script src="https://js.stripe.com/v3/"></script>
@@ -60,7 +62,7 @@
         <!-- Left: Order Form -->
         <div class="lg:col-span-2">
           <div class="bg-white rounded-2xl shadow-lg p-8">
-            <form id="order-form" class="space-y-8">
+            <form id="order-form" class="space-y-8" autocomplete="off">
               
               <!-- Business Information -->
               <div>
@@ -266,7 +268,7 @@
 
         <!-- Right: Order Summary -->
         <div class="lg:col-span-1">
-          <div class="bg-white rounded-2xl shadow-lg p-6 sticky top-8">
+          <div class="bg-white rounded-2xl shadow-lg p-6">
             <h3 class="text-xl font-bold text-gray-900 mb-6">Order Summary</h3>
             
             <div class="space-y-4 mb-6">
@@ -314,7 +316,16 @@
                 </svg>
               </div>
               <div class="mt-2">
-                <img src="https://via.placeholder.com/200x30/000000/FFFFFF?text=Stripe+PayPal+Cards" alt="Payment methods" class="mx-auto opacity-60">
+                <div class="flex items-center justify-center space-x-2 text-xs text-gray-400">
+                  <span>💳</span>
+                  <span>Visa</span>
+                  <span>•</span>
+                  <span>Mastercard</span>
+                  <span>•</span>
+                  <span>Amex</span>
+                  <span>•</span>
+                  <span>Stripe</span>
+                </div>
               </div>
             </div>
           </div>
@@ -341,6 +352,15 @@
     // For production, set STRIPE_PUBLISHABLE_KEY in your deployment environment
     const stripePublishableKey = window.ENV?.STRIPE_PUBLISHABLE_KEY || 'pk_test_REPLACE_WITH_YOUR_STRIPE_PUBLISHABLE_KEY';
     const stripe = Stripe(stripePublishableKey);
+
+    // Function to clear form data from localStorage
+    function clearFormData() {
+      const form = document.getElementById('order-form');
+      const inputs = form.querySelectorAll('input, select, textarea');
+      inputs.forEach(input => {
+        localStorage.removeItem('order_form_' + input.name);
+      });
+    }
 
     // Form validation and Stripe Checkout
     document.getElementById('proceed-to-payment').addEventListener('click', async function() {
@@ -411,6 +431,8 @@
         
         // Redirect to Stripe Checkout
         if (result.url) {
+          // Clear form data from localStorage before redirecting
+          clearFormData();
           window.location.href = result.url;
         } else {
           throw new Error('No checkout URL returned from server');
