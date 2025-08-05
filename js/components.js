@@ -336,22 +336,23 @@ class WebGloComponents {
       console.log('Footer rendered successfully with updated business info');
       
       // Initialize Trustpilot widgets after footer is loaded
-      setTimeout(() => {
-        if (window.Trustpilot && window.Trustpilot.loadFromElement) {
-          window.Trustpilot.loadFromElement(footerContainer);
-        } else {
-          // Load Trustpilot script if not already loaded
-          const script = document.createElement('script');
-          script.src = '//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js';
-          script.async = true;
-          script.onload = () => {
-            if (window.Trustpilot && window.Trustpilot.loadFromElement) {
-              window.Trustpilot.loadFromElement(footerContainer);
-            }
-          };
-          document.head.appendChild(script);
+      const initTrustpilot = () => {
+        const trustpilotWidget = footerContainer.querySelector('.trustpilot-widget');
+        if (trustpilotWidget && window.Trustpilot && window.Trustpilot.loadFromElement) {
+          try {
+            window.Trustpilot.loadFromElement(trustpilotWidget);
+            console.log('Trustpilot widget initialized successfully');
+          } catch (error) {
+            console.log('Trustpilot initialization error:', error);
+          }
+        } else if (trustpilotWidget) {
+          console.log('Trustpilot object not ready, retrying...');
+          setTimeout(initTrustpilot, 500);
         }
-      }, 100);
+      };
+      
+      // Start initialization after DOM is ready
+      setTimeout(initTrustpilot, 300);
     } else {
       console.error('Footer container not found - make sure element with id="webglo-footer" exists');
     }
