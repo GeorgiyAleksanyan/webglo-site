@@ -14,6 +14,7 @@ Your WebGlo Landing Page Express system is now **production-ready** and **secure
 ✅ **Google Drive** - Customer project folders with subfolders  
 ✅ **Security** - All sensitive data removed from repository  
 ✅ **Social Proof** - Trustpilot review widgets for credibility  
+✅ **Legal Transparency** - Tooltip system for claims + refunds policy  
 
 ### 🔒 Security Measures Implemented
 
