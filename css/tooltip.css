@@ -113,21 +113,16 @@
 }
 
 /* Navigation Spacing Utilities */
-.nav-spacing {
-  padding-top: 80px; /* 64px nav height + 16px margin */
+body {
+  padding-top: 64px; /* Space for fixed navigation */
 }
 
-.nav-spacing-large {
-  padding-top: 96px; /* For pages that need more spacing */
+/* Override for specific sections that need different spacing */
+.hero-section {
+  margin-top: -64px !important;
+  padding-top: 80px !important; /* 64px nav + 16px margin */
 }
 
-/* Main content areas should have proper spacing from fixed nav */
-main, .main-content, section:first-child {
-  margin-top: 64px; /* Height of fixed navigation */
-}
-
-/* Override for hero sections that should start from top */
-.hero-section, .full-height-section {
-  margin-top: 0 !important;
-  padding-top: 80px; /* Space for nav + some margin */
+.main-content {
+  padding-top: 20px; /* Additional spacing for main content */
 }
