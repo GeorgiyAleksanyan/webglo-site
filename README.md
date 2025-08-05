@@ -2,10 +2,17 @@
 
 A modern, responsive website for WebGlo digital agency, optimized for GitHub Pages hosting.
 
+## � SECURITY NOTICE - READ FIRST
+
+**⚠️ IMPORTANT**: This repository has been sanitized for security. Before using:
+1. Read [`SECURITY_SETUP.md`](./SECURITY_SETUP.md) for required configuration
+2. Create local config files with your actual API keys
+3. Never commit sensitive information to the repository
+
 ## 🚀 Live Site
 
-**Production**: `https://your-username.github.io/webglo_site/`
-**Custom Domain**: `https://webglo.org` (after DNS setup)
+**Production**: `https://webglo.org`  
+**Payment System**: Fully integrated with Stripe + Google Workspace
 
 ## ✨ Features
 
