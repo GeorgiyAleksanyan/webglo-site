@@ -31,7 +31,7 @@
     <div class="max-w-4xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-8">
         <h1 class="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Order Your Landing Page Express</h1>
-        <p class="text-lg text-gray-600">Professional landing page delivered in 48 hours for $1 (Testing Mode)</p>
+        <p class="text-lg text-gray-600">Professional landing page delivered in 48 hours for $297</p>
       </div>
       
       <!-- Progress Steps -->
@@ -344,7 +344,6 @@
       const webgloComponents = new WebGloComponents();
       webgloComponents.init();
     } catch (error) {
-      console.error('Components failed to load:', error);
       // Continue without components if they fail
     }
 
@@ -364,39 +363,22 @@
 
     // Form validation and Stripe Checkout
     document.getElementById('proceed-to-payment').addEventListener('click', async function() {
-      console.log('Payment button clicked'); // Debug log
-      
       const form = document.getElementById('order-form');
       
       if (!form.checkValidity()) {
-        console.log('Form validation failed'); // Debug log
         form.reportValidity();
         return;
       }
-
-      console.log('Form is valid, proceeding with payment'); // Debug log
 
       // Collect form data
       const formData = new FormData(form);
       const orderData = Object.fromEntries(formData.entries());
       
-      console.log('Order data collected:', orderData); // Debug log
-      
       // Generate order number
       const orderNumber = 'LPE-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 9999) + 1).padStart(4, '0');
       
-      console.log('Order number generated:', orderNumber); // Debug log
-      
-      // Store order data temporarily in localStorage
-      localStorage.setItem('pendingOrder', JSON.stringify({
-        orderNumber: orderNumber,
-        orderData: orderData,
-        timestamp: new Date().toISOString()
-      }));
-
+      // DO NOT save to localStorage - only proceed to payment
       try {
-        console.log('Attempting to create Stripe Checkout session'); // Debug log
-        console.log('Order data being sent:', orderData); // Debug log
         
         // Prepare data for Cloudflare Worker
         const checkoutData = {
@@ -408,8 +390,6 @@
           success_url: 'https://webglo.org/order-confirmation.html?session_id={CHECKOUT_SESSION_ID}&order=' + orderNumber,
           cancel_url: 'https://webglo.org/order-landing-page-express.html'
         };
-        
-        console.log('Sending checkout data to worker:', checkoutData);
         
         // Call Cloudflare Worker API
         const backendUrl = window.ENV?.BACKEND_URL || 'https://webglo-payment-api.service-webglo.workers.dev';
@@ -427,7 +407,6 @@
         }
         
         const result = await response.json();
-        console.log('Checkout session created:', result);
         
         // Redirect to Stripe Checkout
         if (result.url) {
@@ -439,34 +418,12 @@
         }
         
       } catch (error) {
-        console.error('Payment initialization error details:', error);
-        console.error('Error stack:', error.stack);
-        alert('Error initializing payment: ' + error.message + '\n\nPlease check console for details.');
+        alert('Error initializing payment: ' + error.message);
       }
     });
 
-    // Form auto-save to localStorage
-    const form = document.getElementById('order-form');
-    const inputs = form.querySelectorAll('input, select, textarea');
-    
-    inputs.forEach(input => {
-      // Load saved data
-      const savedValue = localStorage.getItem('order_form_' + input.name);
-      if (savedValue && input.type !== 'checkbox') {
-        input.value = savedValue;
-      } else if (savedValue && input.type === 'checkbox') {
-        input.checked = savedValue === 'true';
-      }
-      
-      // Save data on change
-      input.addEventListener('change', function() {
-        if (input.type === 'checkbox') {
-          localStorage.setItem('order_form_' + input.name, input.checked);
-        } else {
-          localStorage.setItem('order_form_' + input.name, input.value);
-        }
-      });
-    });
+    // Remove form auto-save functionality to prevent saving without payment
+    // Forms should only be saved after successful payment completion
   </script>
 </body>
 </html>

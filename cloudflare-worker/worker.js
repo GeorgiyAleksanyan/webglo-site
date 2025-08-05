@@ -24,18 +24,33 @@ async function createCheckoutSession(stripeSecretKey, sessionData) {
       'line_items[0][price_data][currency]': 'usd',
       'line_items[0][price_data][product_data][name]': 'Landing Page Express',
       'line_items[0][price_data][product_data][description]': 'Professional landing page delivered in 48 hours',
-      'line_items[0][price_data][unit_amount]': '100', // $1.00 in cents (TEST MODE)
+      'line_items[0][price_data][unit_amount]': '29700', // $297.00 in cents
       'line_items[0][quantity]': '1',
       'mode': 'payment',
       'success_url': sessionData.success_url,
       'cancel_url': sessionData.cancel_url,
       'customer_email': sessionData.customer_email,
       'automatic_payment_methods[enabled]': 'false', // Disable Link and other auto methods
+      'billing_address_collection': 'required',
+      'customer_creation': 'always',
+      'invoice_creation[enabled]': 'true',
+      // Include ALL form fields in metadata
       'metadata[order_number]': sessionData.order_number,
       'metadata[business_name]': sessionData.business_name || '',
       'metadata[industry]': sessionData.industry || '',
       'metadata[main_goal]': sessionData.main_goal || '',
       'metadata[contact_email]': sessionData.contact_email || sessionData.customer_email,
+      'metadata[current_website]': sessionData.current_website || '',
+      'metadata[target_audience]': sessionData.target_audience || '',
+      'metadata[main_offer]': sessionData.main_offer || '',
+      'metadata[preferred_colors]': sessionData.preferred_colors || '',
+      'metadata[style_preference]': sessionData.style_preference || '',
+      'metadata[inspiration_links]': sessionData.inspiration_links || '',
+      'metadata[contact_name]': sessionData.contact_name || '',
+      'metadata[phone_number]': sessionData.phone_number || '',
+      'metadata[best_time_contact]': sessionData.best_time_contact || '',
+      'metadata[special_requirements]': sessionData.special_requirements || '',
+      'metadata[completion_deadline]': sessionData.completion_deadline || '',
       'metadata[service_type]': 'landing_page_express'
     })
   });

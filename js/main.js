@@ -74,14 +74,12 @@ class WebGloMain {
   // Handle form submissions
   initFormHandling() {
     // FormHandler handles its own initialization
-    // Just log if it's available for debugging
+    // Just verify availability for proper form functionality
     setTimeout(() => {
       if (typeof window.formHandler !== 'undefined') {
-        console.log('✅ FormHandler is available and initialized');
-        console.log('Forms detected:', window.formHandler.forms.size);
+        // FormHandler is available and initialized
       } else {
-        console.warn('⚠️ FormHandler not available - forms may not work properly');
-        // Don't initialize fallback - let the real FormHandler handle it
+        // FormHandler not available - may need fallback for some forms
       }
     }, 1000);
   }

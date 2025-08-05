@@ -316,8 +316,7 @@
     // Handle URL parameters (payment success from Stripe)
     const urlParams = new URLSearchParams(window.location.search);
     if (urlParams.get('payment_intent')) {
-      // Payment was successful, you can track this
-      console.log('Payment successful:', urlParams.get('payment_intent'));
+      // Payment was successful - could add analytics tracking here if needed
     }
   </script>
 </body>
