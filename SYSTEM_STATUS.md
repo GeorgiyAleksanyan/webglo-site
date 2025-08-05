@@ -13,6 +13,7 @@ Your WebGlo Landing Page Express system is now **production-ready** and **secure
 ✅ **Google Sheets** - Automatic order data collection  
 ✅ **Google Drive** - Customer project folders with subfolders  
 ✅ **Security** - All sensitive data removed from repository  
+✅ **Social Proof** - Trustpilot review widgets for credibility  
 
 ### 🔒 Security Measures Implemented
 
@@ -31,8 +32,9 @@ Your WebGlo Landing Page Express system is now **production-ready** and **secure
 ### 🎯 Complete Payment Flow
 
 1. **Customer visits order page** → Fills out comprehensive form
-2. **Form validation** → All required fields collected
-3. **Stripe checkout** → Secure payment processing
+2. **Social proof displayed** → Trustpilot reviews build credibility
+3. **Form validation** → All required fields collected
+4. **Stripe checkout** → Secure payment processing
 4. **Webhook triggers** → Order processing begins
 5. **Google Apps Script** → Creates customer folder, saves data, sends emails
 6. **Customer receives** → Confirmation email with project folder link
