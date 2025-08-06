@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-08-06T00:11:29.348Z",
+  "total": 4,
+  "categories": [
+    {
+      "id": "digital-strategy",
+      "name": "Digital Strategy",
+      "description": "Strategic insights for digital transformation and growth",
+      "count": 1
+    },
+    {
+      "id": "web-development",
+      "name": "Web Development",
+      "description": "Technical guides and best practices for modern web development",
+      "count": 1
+    },
+    {
+      "id": "seo",
+      "name": "SEO & Analytics",
+      "description": "Search optimization and performance tracking strategies",
+      "count": 1
+    },
+    {
+      "id": "digital-marketing",
+      "name": "Digital Marketing",
+      "description": "Marketing strategies and conversion optimization techniques",
+      "count": 1
+    }
+  ]
+}

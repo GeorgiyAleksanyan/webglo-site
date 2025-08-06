@@ -37,6 +37,17 @@ deployment-config.*
 *script.google.com*
 *google-apps-script*url*
 
+# Production configuration files with real URLs/keys
+js/config.local.js
+js/form-handler-production.js
+backend/*-production.*
+admin/*-production.*
+
+# Any file with actual API URLs or keys
+*-actual.*
+*-real.*
+*-live.*
+
 # Customer data and assets
 customer-uploads/
 order-files/

@@ -1,0 +1,126 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-08-06T00:11:29.350Z",
+  "totalPosts": 4,
+  "categories": [
+    {
+      "id": "digital-strategy",
+      "name": "Digital Strategy",
+      "description": "Strategic insights for digital transformation and growth",
+      "count": 1
+    },
+    {
+      "id": "web-development",
+      "name": "Web Development",
+      "description": "Technical guides and best practices for modern web development",
+      "count": 1
+    },
+    {
+      "id": "seo",
+      "name": "SEO & Analytics",
+      "description": "Search optimization and performance tracking strategies",
+      "count": 1
+    },
+    {
+      "id": "digital-marketing",
+      "name": "Digital Marketing",
+      "description": "Marketing strategies and conversion optimization techniques",
+      "count": 1
+    }
+  ],
+  "tags": [
+    "conversion",
+    "javascript",
+    "marketing",
+    "online-presence",
+    "organic-traffic",
+    "rankings",
+    "react",
+    "seo",
+    "social-media",
+    "vuejs",
+    "web-design"
+  ],
+  "posts": [
+    {
+      "id": "why-your-online-presence-matters-in-2025",
+      "title": "Why Your Online Presence Matters in 2025: Data, Strategy & WebGlo's Proven Solutions",
+      "slug": "why-your-online-presence-matters-in-2025",
+      "excerpt": "Discover why a strong online presence is essential in 2025, the data behind digital growth, and how WebGlo can help you dominate your market with web design, SEO, and digital marketing.",
+      "author": "Aura (AI) & WebGlo Team",
+      "category": "digital-strategy",
+      "tags": [
+        "online-presence",
+        "web-design",
+        "seo"
+      ],
+      "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+      "imageAlt": "Futuristic digital presence concept showing global connectivity and online growth",
+      "readTime": 9,
+      "publishDate": "2025-08-01T09:00:00Z",
+      "status": "published",
+      "featured": true,
+      "url": "blog/why-your-online-presence-matters-in-2025.html"
+    },
+    {
+      "id": "react-vs-vue-2024",
+      "title": "React vs Vue.js: Ultimate 2024 Comparison Guide",
+      "slug": "react-vs-vue-2024",
+      "excerpt": "An in-depth comparison of React and Vue.js frameworks, helping you choose the right technology for your next project.",
+      "author": "WebGlo Development Team",
+      "category": "web-development",
+      "tags": [
+        "react",
+        "vuejs",
+        "javascript"
+      ],
+      "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "imageAlt": "React vs Vue.js - Code editor with JavaScript frameworks",
+      "readTime": 8,
+      "publishDate": "2025-07-28T14:30:00Z",
+      "status": "published",
+      "featured": false,
+      "url": "post.html?id=react-vs-vue-2024"
+    },
+    {
+      "id": "seo-ranking-factors-2024",
+      "title": "15 SEO Strategies That Actually Work in 2024",
+      "slug": "seo-ranking-factors-2024",
+      "excerpt": "Proven SEO techniques that will boost your search rankings and drive organic traffic to your website.",
+      "author": "WebGlo SEO Team",
+      "category": "seo",
+      "tags": [
+        "seo",
+        "rankings",
+        "organic-traffic"
+      ],
+      "image": "https://images.unsplash.com/photo-1562577309-4932fdd64cd1?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "imageAlt": "SEO Strategies - Search engine optimization analytics and graphs",
+      "readTime": 15,
+      "publishDate": "2025-07-25T11:15:00Z",
+      "status": "published",
+      "featured": false,
+      "url": "post.html?id=seo-ranking-factors-2024"
+    },
+    {
+      "id": "social-media-marketing-strategy",
+      "title": "Social Media Marketing: Convert Followers into Customers",
+      "slug": "social-media-marketing-strategy",
+      "excerpt": "Learn proven strategies to turn your social media presence into a powerful customer acquisition channel.",
+      "author": "WebGlo Marketing Team",
+      "category": "digital-marketing",
+      "tags": [
+        "social-media",
+        "conversion",
+        "marketing"
+      ],
+      "image": "https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "imageAlt": "Social Media Marketing - Digital marketing tools and social media icons",
+      "readTime": 10,
+      "publishDate": "2025-07-22T16:45:00Z",
+      "status": "published",
+      "featured": false,
+      "url": "post.html?id=social-media-marketing-strategy"
+    }
+  ]
+}

@@ -695,6 +695,23 @@
   <script src="js/components.js"></script>
   <script src="js/form-handler-production.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/blog.js"></script>
+  
+  <!-- Enhanced Blog System - Hybrid Architecture (Recommended) -->
+  <script src="js/blog-hybrid.js"></script>
+  
+  <!-- Fallback to original blog system if enhanced version fails -->
+  <script>
+    // Progressive enhancement - fallback if hybrid system fails
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        if (!window.webgloBlogHybrid || document.getElementById('blog-posts-grid').children.length === 0) {
+          console.log('Hybrid blog system not available, loading fallback...');
+          const fallbackScript = document.createElement('script');
+          fallbackScript.src = 'js/blog.js';
+          document.head.appendChild(fallbackScript);
+        }
+      }, 2000); // Give hybrid system 2 seconds to load
+    });
+  </script>
 </body>
 </html>
