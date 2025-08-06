@@ -69,6 +69,12 @@ class WebGloComponents {
   }
 
   renderNavigation() {
+    // Check if navigation already exists (like in blog.html with #main-header)
+    if (document.getElementById('main-header') || document.querySelector('nav.nav-container')) {
+      console.log('Static navigation already exists, skipping dynamic render...');
+      return;
+    }
+    
     console.log('Rendering navigation...');
     const nav = `
       <nav id="main-navigation" class="bg-white shadow-lg border-b border-gray-100 fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -217,6 +223,12 @@ class WebGloComponents {
   }
 
   renderFooter() {
+    // Check if footer already exists (like in blog.html)
+    if (document.querySelector('footer')) {
+      console.log('Static footer already exists, skipping dynamic render...');
+      return;
+    }
+    
     const footer = `
       <footer class="bg-gray-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">

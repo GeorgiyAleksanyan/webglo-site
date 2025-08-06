@@ -4,7 +4,7 @@
 class WebGloBlogHybrid {
   constructor() {
     // Primary data source: Static JSON files
-    this.staticDataUrl = '/blog-data/posts.json';
+    this.staticDataUrl = './blog-data/posts.json';
     this.metricsApiUrl = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec'; // Optional for metrics only
     
     this.posts = [];
@@ -346,7 +346,8 @@ class WebGloBlogHybrid {
   // ===== UTILITY METHODS =====
 
   getPostUrl(post) {
-    return post.url || `blog/${post.slug}.html`;
+    // Use the single post.html template with URL parameters for consistent styling
+    return `post.html?id=${post.id}`;
   }
 
   getCategoryDisplayName(category) {

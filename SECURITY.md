@@ -43,6 +43,20 @@ This document outlines the security measures implemented to protect the WebGlo w
 - Rate limiting per script execution
 - Input sanitization and validation
 
+### 5. Blog System Security
+**Risk**: Comment spam, XSS attacks, and data manipulation in the new blog system.
+
+**Mitigations Implemented**:
+- HTML entity encoding for all user-generated content
+- Input length limits (1000 characters for comments)
+- Comment moderation system (auto-approve or manual review)
+- Rate limiting on comment submissions
+- Post ID validation to prevent data corruption
+- No script tag execution in user content
+- Separate Google Sheets database for blog data isolation
+- Email validation for newsletter subscriptions
+- Honeypot protection for all blog forms
+
 ## Security Architecture
 
 ### Client-Side Security (JavaScript)

@@ -18,7 +18,8 @@ A modern, responsive website for WebGlo digital agency, optimized for GitHub Pag
 
 - **Responsive Design**: Mobile-first approach with Tailwind CSS
 - **Modern UI/UX**: Gradient designs, animations, and interactive elements
-- **Blog System**: Professional blog with article pages and Disqus comments
+- **Hybrid Blog System**: Static content with dynamic features (comments, analytics, engagement tracking)
+- **Google Apps Script Integration**: Comments, newsletter subscriptions, and analytics
 - **Contact Forms**: Integrated with Formspree for static hosting
 - **PWA Ready**: Service worker and manifest for app-like experience
 - **SEO Optimized**: Meta tags, structured data, and semantic HTML
@@ -34,9 +35,11 @@ A modern, responsive website for WebGlo digital agency, optimized for GitHub Pag
 - **Contact** (`contact.html`) - Contact form and business information
 - **Consulting** (`consulting.html`) - Free consultation booking
 
-### Blog System
+### Hybrid Blog System
 - **Blog Listing** (`blog.html`) - Articles with categories and search
-- **Blog Post** (`post.html`) - Individual article template with comments
+- **Blog Post** (`post.html`) - Dynamic template with comments, analytics, and engagement
+- **Blog Data** (`blog-data.json`) - Content management system
+- **Dynamic Features**: Google Apps Script backend for comments and analytics
 
 ## 🛠️ Setup & Deployment
 

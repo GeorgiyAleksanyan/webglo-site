@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | WebGlo - Web Development & Digital Marketing Insights</title>
     <meta name="description" content="Discover expert insights on web development, digital marketing, SEO strategies, and business growth. Free resources, tutorials, and industry trends from WebGlo professionals.">
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/mobile-first.css">
     <link rel="stylesheet" href="css/blog-widgets.css">
@@ -14,49 +15,45 @@
     <meta property="og:image" content="assets/social-preview.png">
     <meta property="og:url" content="https://webglo.org/blog.html">
     <meta name="twitter:card" content="summary_large_image">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
 </head>
-<body>
-    <!-- Persistent Header -->
-    <header id="main-header">
-        <nav class="nav-container">
-            <div class="logo">
-                <a href="index.html">WebGlo</a>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="case-studies.html">Case Studies</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+<body class="font-inter bg-white text-gray-900">
+    <!-- Dynamic Navigation -->
+    <div id="webglo-navigation"></div>
 
     <!-- Blog Header -->
-    <section class="blog-header">
-        <div class="container">
-            <h1>WebGlo Insights</h1>
-            <p>Expert insights, proven strategies, and actionable tips to grow your business online</p>
+    <section class="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 py-24 lg:py-32 mt-20">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                    <span class="bg-gradient-to-r from-[#0cead9] to-[#df00ff] bg-clip-text text-transparent">WebGlo</span> Insights
+                </h1>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Expert insights, proven strategies, and actionable tips to grow your business online</p>
+            </div>
             
             <!-- Search and Filters -->
-            <div class="blog-controls">
-                <div class="search-container">
-                    <input type="text" id="blog-search" placeholder="Search articles...">
-                    <button id="search-btn">Search</button>
-                </div>
-                
-                <div class="filter-container">
-                    <select id="category-filter">
-                        <option value="">All Categories</option>
-                    </select>
+            <div class="max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="search-container">
+                            <div class="relative">
+                                <input type="text" id="blog-search" placeholder="Search articles..." 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+                                <button id="search-btn" class="absolute right-2 top-2 px-4 py-1.5 bg-gradient-to-r from-[#0cead9] to-[#df00ff] text-white rounded-lg hover:shadow-lg transition-all duration-300">
+                                    Search
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="filter-container">
+                            <select id="category-filter" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+                                <option value="">All Categories</option>
+                            </select>
+                        </div>
+                    </div>
                     
-                    <div class="tag-filters" id="tag-filters">
+                    <div class="tag-filters mt-6" id="tag-filters">
                         <!-- Dynamic tag filters will be inserted here -->
                     </div>
                 </div>
@@ -65,76 +62,86 @@
     </section>
 
     <!-- Blog Content -->
-    <main class="blog-content">
-        <div class="container">
-            <div class="blog-layout">
-                <!-- Featured Post -->
-                <section class="featured-post" id="featured-post">
-                    <!-- Featured post will be loaded here -->
-                </section>
+    <main class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- Main Content Area -->
+                <div class="lg:col-span-2">
+                    <!-- Featured Post -->
+                    <section class="mb-16" id="featured-post">
+                        <!-- Featured post will be loaded here -->
+                    </section>
 
-                <!-- Blog Posts Grid -->
-                <section class="blog-posts">
-                    <div class="posts-header">
-                        <h2>Latest Articles</h2>
-                        <div class="sort-options">
-                            <select id="sort-filter">
-                                <option value="date-desc">Newest First</option>
-                                <option value="date-asc">Oldest First</option>
-                                <option value="title-asc">Title A-Z</option>
-                                <option value="title-desc">Title Z-A</option>
-                            </select>
+                    <!-- Blog Posts Grid -->
+                    <section class="blog-posts">
+                        <div class="flex justify-between items-center mb-8">
+                            <h2 class="text-3xl font-bold text-gray-900">Latest Articles</h2>
+                            <div class="sort-options">
+                                <select id="sort-filter" class="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+                                    <option value="date-desc">Newest First</option>
+                                    <option value="date-asc">Oldest First</option>
+                                    <option value="title-asc">Title A-Z</option>
+                                    <option value="title-desc">Title Z-A</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div id="posts-container" class="posts-grid">
-                        <!-- Blog posts will be loaded here -->
-                    </div>
-                    
-                    <div id="load-more-container" class="load-more-container">
-                        <button id="load-more-btn" class="load-more-btn">Load More Articles</button>
-                    </div>
-                    
-                    <div id="no-posts-message" class="no-posts-message" style="display: none;">
-                        <h3>No posts found</h3>
-                        <p>Try adjusting your search terms or filters.</p>
-                    </div>
-                </section>
+                        
+                        <div id="blog-posts-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                            <!-- Blog posts will be loaded here -->
+                        </div>
+                        
+                        <div id="load-more-container" class="text-center">
+                            <button id="load-more-btn" class="px-8 py-3 bg-gradient-to-r from-[#0cead9] to-[#df00ff] text-white rounded-lg hover:shadow-lg transition-all duration-300 font-semibold">
+                                Load More Articles
+                            </button>
+                        </div>
+                        
+                        <div id="no-posts-message" class="text-center py-12" style="display: none;">
+                            <h3 class="text-2xl font-semibold text-gray-600 mb-4">No posts found</h3>
+                            <p class="text-gray-500">Try adjusting your search terms or filters.</p>
+                        </div>
+                    </section>
+                </div>
 
                 <!-- Sidebar -->
-                <aside class="blog-sidebar">
-                    <!-- Categories Widget -->
-                    <div class="sidebar-widget">
-                        <h3>Categories</h3>
-                        <div id="categories-widget">
-                            <!-- Categories will be loaded here -->
+                <aside class="lg:col-span-1">
+                    <div class="sticky top-24 space-y-8">
+                        <!-- Categories Widget -->
+                        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                            <h3 class="text-xl font-bold text-gray-900 mb-6">Categories</h3>
+                            <div id="categories-widget">
+                                <!-- Categories will be loaded here -->
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Popular Tags Widget -->
-                    <div class="sidebar-widget">
-                        <h3>Popular Tags</h3>
-                        <div id="tags-widget" class="tags-cloud">
-                            <!-- Tags will be loaded here -->
+                        <!-- Popular Tags Widget -->
+                        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                            <h3 class="text-xl font-bold text-gray-900 mb-6">Popular Tags</h3>
+                            <div id="tags-widget" class="flex flex-wrap gap-2">
+                                <!-- Tags will be loaded here -->
+                            </div>
                         </div>
-                    </div>
 
-                    <!-- Newsletter Signup Widget -->
-                    <div class="sidebar-widget newsletter-widget">
-                        <h3>Never Miss an Update</h3>
-                        <p>Get weekly insights, exclusive tips, and free resources delivered to your inbox.</p>
-                        <form class="newsletter-form" data-webglo-form="newsletter">
-                            <input type="email" name="email" placeholder="Your email address" required>
-                            <button type="submit">Subscribe Free</button>
-                        </form>
-                        <p class="newsletter-disclaimer">Join 5,000+ entrepreneurs. No spam, unsubscribe anytime.</p>
-                    </div>
+                        <!-- Newsletter Signup Widget -->
+                        <div class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl shadow-lg p-6 border border-gray-100">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4">Never Miss an Update</h3>
+                            <p class="text-gray-600 mb-6">Get weekly insights, exclusive tips, and free resources delivered to your inbox.</p>
+                            <form class="newsletter-form space-y-4" data-webglo-form="newsletter">
+                                <input type="email" name="email" placeholder="Your email address" required 
+                                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+                                <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-[#0cead9] to-[#df00ff] text-white rounded-lg hover:shadow-lg transition-all duration-300 font-semibold">
+                                    Subscribe Free
+                                </button>
+                            </form>
+                            <p class="text-sm text-gray-500 mt-4">Join 5,000+ entrepreneurs. No spam, unsubscribe anytime.</p>
+                        </div>
 
-                    <!-- Popular Posts Widget -->
-                    <div class="sidebar-widget">
-                        <h3>Popular This Week</h3>
-                        <div id="popular-posts-widget">
-                            <!-- Popular posts will be loaded here -->
+                        <!-- Popular Posts Widget -->
+                        <div class="bg-white rounded-2xl shadow-lg p-6 border border-gray-100">
+                            <h3 class="text-xl font-bold text-gray-900 mb-6">Popular This Week</h3>
+                            <div id="popular-posts-widget">
+                                <!-- Popular posts will be loaded here -->
+                            </div>
                         </div>
                     </div>
                 </aside>
@@ -142,53 +149,39 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>WebGlo</h3>
-                    <p>Professional web development and digital marketing solutions that drive real business growth.</p>
-                </div>
-                <div class="footer-section">
-                    <h4>Services</h4>
-                    <ul>
-                        <li><a href="services.html#web-development">Web Development</a></li>
-                        <li><a href="services.html#digital-marketing">Digital Marketing</a></li>
-                        <li><a href="consulting.html">Consulting</a></li>
-                        <li><a href="services.html#maintenance">Maintenance</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Resources</h4>
-                    <ul>
-                        <li><a href="blog.html">Blog</a></li>
-                        <li><a href="case-studies.html">Case Studies</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
-                        <li><a href="terms-of-service.html">Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2024 WebGlo. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Dynamic Footer -->
+    <div id="webglo-footer"></div>
 
-    <!-- Scripts -->
+    <!-- Scripts - Including components for consistent navigation/footer -->
     <script src="js/config.js"></script>
     <script src="js/components.js"></script>
-    <script src="js/navigation-persistence.js"></script>
     <script src="js/form-handler-production.js"></script>
-    <script src="js/blog-widgets.js"></script>
     <script src="js/blog-hybrid.js"></script>
-    <script src="js/main.js"></script>
+    
+    <!-- Blog-specific initialization -->
+    <script>
+    // Blog page initialization with consistent components
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('Blog page loaded - initializing components and blog systems...');
+        
+        // Initialize dynamic navigation and footer first
+        if (typeof WebGloComponents !== 'undefined') {
+            window.webgloComponents = new WebGloComponents();
+            console.log('WebGlo components initialized');
+        }
+        
+        // Initialize form handler for newsletter
+        if (typeof SimpleFormHandler !== 'undefined') {
+            const formHandler = new SimpleFormHandler('https://script.google.com/macros/s/AKfycbxtonT0H__IZAsENyE97Wb1IOu1Gfq-XI899L5Gecg3zk-JczZmjQOOrEwcIiX2YH0/exec');
+            console.log('Newsletter form handler initialized');
+        }
+        
+        // Initialize blog system
+        if (typeof WebGloBlogHybrid !== 'undefined') {
+            window.webgloBlogHybrid = new WebGloBlogHybrid();
+            console.log('Blog hybrid system initialized');
+        }
+    });
+    </script>
 </body>
 </html>

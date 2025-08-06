@@ -28,7 +28,7 @@
   <div id="webglo-navigation"></div>
 
   <!-- Article Header -->
-  <section class="py-20 bg-gradient-to-br from-purple-50 via-white to-blue-50">
+  <section class="pt-32 pb-20 bg-gradient-to-br from-purple-50 via-white to-blue-50">
     <div class="max-w-4xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-12">
         <div class="mb-6">
@@ -114,104 +114,45 @@
 
         <div class="article-content">
           <!-- Content will be loaded dynamically by JavaScript -->
-          <p class="text-xl text-gray-600 mb-8 leading-relaxed">
-            The web development landscape is evolving rapidly, with new technologies and methodologies emerging that promise to reshape how we build and interact with digital experiences. As we move through 2024, several key trends are becoming impossible to ignore.
-          </p>
+        </div>
 
-          <!-- Lead Magnet CTA -->
-          <div class="my-12 p-8 bg-gradient-to-r from-purple-50 to-blue-50 rounded-3xl border border-purple-100">
-            <div class="text-center">
-              <div class="w-16 h-16 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-                </svg>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-900 mb-3">Free Download: Web Development Trends 2024 Checklist</h3>
-              <p class="text-gray-600 mb-6">Get our comprehensive 25-point checklist to implement these trends in your projects. Usually $47, free for readers!</p>
-              <a href="contact.html" class="inline-flex items-center px-8 py-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-                Download Free Checklist
-                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </a>
-              <p class="text-xs text-gray-500 mt-3">No spam. Unsubscribe anytime. 5,000+ developers trust us.</p>
+        <!-- Article Feedback Widget -->
+        <div class="webglo-article-feedback-widget mt-12 mb-8">
+          <div class="feedback-container bg-white rounded-2xl border border-gray-200 p-8 text-center">
+            <h3 class="text-xl font-semibold text-gray-900 mb-6">Was this article helpful for your business?</h3>
+            <div class="feedback-buttons flex gap-4 justify-center mb-6">
+              <button class="feedback-btn helpful flex items-center gap-2 px-6 py-3 bg-green-50 text-green-700 border border-green-200 rounded-lg hover:bg-green-100 transition-colors" onclick="submitArticleFeedback('helpful')">
+                <span class="feedback-icon">👍</span>
+                <span>Yes, very actionable</span>
+              </button>
+              <button class="feedback-btn not-helpful flex items-center gap-2 px-6 py-3 bg-gray-50 text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors" onclick="submitArticleFeedback('not-helpful')">
+                <span class="feedback-icon">👎</span>
+                <span>Not quite what I needed</span>
+              </button>
+            </div>
+            <div id="feedback-result" class="feedback-result hidden">
+              <p class="text-green-600 font-medium">Thank you for your feedback! 🙏</p>
             </div>
           </div>
+        </div>
 
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">1. AI-Powered Development Tools</h2>
-          <p class="text-gray-700 mb-6">
-            Artificial Intelligence is revolutionizing the development process. From code generation to automated testing, AI tools are becoming essential for modern developers. These tools not only speed up development but also help catch errors and suggest optimizations that human developers might miss.
-          </p>
-
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">2. Edge Computing and Performance</h2>
-          <p class="text-gray-700 mb-6">
-            Edge computing is bringing processing power closer to users, resulting in faster load times and better user experiences. This trend is particularly important for global applications and mobile users who demand instant responses.
-          </p>
-
-          <blockquote class="border-l-4 border-[#df00ff] pl-6 my-8 text-xl italic text-gray-700">
-            "The future of web development isn't just about new frameworks—it's about creating experiences that feel instantaneous and intuitive."
-          </blockquote>
-
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">3. Progressive Web Applications</h2>
-          <p class="text-gray-700 mb-6">
-            PWAs continue to bridge the gap between web and native applications. With improved offline capabilities and native-like performance, PWAs are becoming the preferred choice for businesses looking to provide consistent experiences across all devices.
-          </p>
-
-          <!-- Service Pitch CTA -->
-          <div class="my-12 p-8 bg-gradient-to-r from-gray-900 to-black rounded-3xl text-white">
-            <div class="text-center">
-              <h3 class="text-2xl font-bold mb-3">Need Help Implementing These Trends?</h3>
-              <p class="text-gray-300 mb-6 leading-relaxed">
-                Don't let your competitors get ahead. WebGlo specializes in cutting-edge web development that incorporates all these latest trends and technologies.
-              </p>
-              <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="contact.html" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-lg hover:shadow-lg transition-all duration-300">
-                  Get Free Consultation
-                </a>
-                <a href="pricing.html" class="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition-all duration-300">
-                  View Our Packages
-                </a>
-              </div>
-            </div>
+        <!-- Newsletter Signup Widget -->
+        <div class="webglo-newsletter-widget mt-8 mb-12">
+          <div class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-2xl shadow-lg p-6 border border-gray-100">
+            <h3 class="text-xl font-bold text-gray-900 mb-4">Never Miss an Update</h3>
+            <p class="text-gray-600 mb-6">Get weekly insights, exclusive tips, and free resources delivered to your inbox.</p>
+            <form class="newsletter-form space-y-4" id="post-newsletter-form" onsubmit="submitPostNewsletter(event)" data-webglo-form="newsletter">
+                <input type="email" name="email" id="post-newsletter-email" placeholder="Your email address" required 
+                       class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none">
+                <button type="submit" class="w-full px-6 py-3 bg-gradient-to-r from-[#0cead9] to-[#df00ff] text-white rounded-lg hover:shadow-lg transition-all duration-300 font-semibold">
+                    Subscribe Free
+                </button>
+                <div id="post-newsletter-result" class="newsletter-result hidden">
+                    <!-- Result message will be inserted here -->
+                </div>
+            </form>
+            <p class="text-sm text-gray-500 mt-4">Join 5,000+ entrepreneurs. No spam, unsubscribe anytime.</p>
           </div>
-
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">4. WebAssembly (WASM) Growth</h2>
-          <p class="text-gray-700 mb-6">
-            WebAssembly is enabling high-performance applications in the browser. From games to data visualization tools, WASM is opening up new possibilities for web applications that were previously only possible with native software.
-          </p>
-
-          <h2 class="text-3xl font-bold text-gray-900 mb-6">5. Sustainability in Web Development</h2>
-          <p class="text-gray-700 mb-6">
-            Green coding practices are becoming increasingly important. Developers are focusing on optimizing code for energy efficiency, reducing server loads, and minimizing the environmental impact of digital products.
-          </p>
-
-          <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-8 rounded-2xl my-12">
-            <h3 class="text-2xl font-bold text-gray-900 mb-4">Key Takeaways</h3>
-            <ul class="space-y-3 text-gray-700">
-              <li class="flex items-start">
-                <svg class="w-5 h-5 text-[#df00ff] mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                AI tools are becoming essential for competitive development teams
-              </li>
-              <li class="flex items-start">
-                <svg class="w-5 h-5 text-[#df00ff] mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                Performance optimization through edge computing is crucial
-              </li>
-              <li class="flex items-start">
-                <svg class="w-5 h-5 text-[#df00ff] mr-3 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                </svg>
-                Sustainability should be considered in all development decisions
-              </li>
-            </ul>
-          </div>
-
-          <p class="text-gray-700 mb-6">
-            As these trends continue to evolve, staying informed and adaptable will be key to success in web development. The teams and businesses that embrace these changes early will have a significant advantage in creating superior digital experiences.
-          </p>
         </div>
       </article>
     </div>
@@ -220,43 +161,20 @@
   <!-- Comments Section -->
   <section class="py-16 bg-gray-50">
     <div class="max-w-4xl mx-auto px-6 lg:px-8">
+      
+      <!-- Engagement Metrics -->
+      <div id="engagement-metrics" class="mb-8">
+        <!-- Metrics will be loaded here by JavaScript -->
+      </div>
+      
       <div class="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
-        <h3 class="text-2xl font-bold text-gray-900 mb-8">Join the Discussion</h3>
-        
-        <!-- Disqus Comments -->
-        <div id="disqus_thread"></div>
-        <script>
-          /**
-           * IMPORTANT: Replace 'YOUR_DISQUS_SHORTNAME' with your actual Disqus site shortname
-           * Get your shortname at: https://disqus.com/admin/
-           */
-          var disqus_config = function () {
-            this.page.url = window.location.href;  // Replace with your page's canonical URL variable
-            this.page.identifier = 'webglo-blog-post-future-web-development'; // Replace with your page's unique identifier variable
-          };
-          
-          (function() { // DON'T EDIT BELOW THIS LINE
-            var d = document, s = d.createElement('script');
-            s.src = 'https://YOUR_DISQUS_SHORTNAME.disqus.com/embed.js';
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-          })();
-        </script>
-        <noscript>
-          Please enable JavaScript to view the 
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
-        
-        <!-- Fallback: Sample Comments for Demo (remove when Disqus is configured) -->
-        <div class="space-y-8 mt-8 border-t border-gray-200 pt-8">
-          <p class="text-sm text-gray-500 text-center">
-            💡 <strong>Setup Note:</strong> Replace 'YOUR_DISQUS_SHORTNAME' above with your actual Disqus shortname to enable live comments.
-          </p>
-          
-          <div class="border-b border-gray-100 pb-8">
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-bold">
-                JD
+        <!-- Comments Container -->
+        <div id="comments-container">
+          <!-- Comments will be loaded here by JavaScript -->
+        </div>
+      </div>
+    </div>
+  </section>
               </div>
               <div class="flex-1">
                 <div class="flex items-center mb-2">
@@ -447,6 +365,12 @@
     
     // Initialize functionality
     document.addEventListener('DOMContentLoaded', () => {
+      // Initialize dynamic navigation and footer first
+      if (typeof WebGloComponents !== 'undefined') {
+        window.webgloComponents = new WebGloComponents();
+        console.log('WebGlo components initialized for post page');
+      }
+      
       // Update reading progress on scroll
       window.addEventListener('scroll', updateReadingProgress);
       updateReadingProgress();
@@ -463,7 +387,118 @@
         }
       });
     });
+
+    // Post-specific feedback functionality
+    function submitArticleFeedback(feedbackType) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
+      const postTitle = document.title.replace(' | WebGlo Blog', '');
+      
+      // Prepare the feedback data
+      const feedbackData = {
+        postId: postId,
+        postTitle: postTitle,
+        feedbackType: feedbackType,
+        timestamp: new Date().toISOString(),
+        userAgent: navigator.userAgent,
+        url: window.location.href
+      };
+
+      // Send to Google Apps Script (same endpoint as other forms)
+      fetch('https://script.google.com/macros/s/AKfycbywGmOkIKG9fqnlfJdeMBgOm7YrHfmkIXcDHhKjnw-2HN8cWXh7tQ/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'article-feedback',
+          ...feedbackData
+        })
+      }).then(() => {
+        // Show success message
+        document.getElementById('feedback-result').classList.remove('hidden');
+        document.querySelector('.feedback-buttons').style.display = 'none';
+      }).catch(error => {
+        console.error('Error submitting feedback:', error);
+        // Still show success message since it's no-cors
+        document.getElementById('feedback-result').classList.remove('hidden');
+        document.querySelector('.feedback-buttons').style.display = 'none';
+      });
+    }
+
+    // Post-specific newsletter subscription
+    function submitPostNewsletter(event) {
+      event.preventDefault();
+      
+      const email = document.getElementById('post-newsletter-email').value;
+      
+      if (!email) {
+        showNewsletterResult('Please enter a valid email address.', 'error');
+        return;
+      }
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
+      const postTitle = document.title.replace(' | WebGlo Blog', '');
+      
+      // Prepare the subscription data
+      const subscriptionData = {
+        email: email,
+        source: 'blog-post',
+        postId: postId,
+        postTitle: postTitle,
+        timestamp: new Date().toISOString(),
+        url: window.location.href
+      };
+
+      // Show loading state
+      const button = event.target.querySelector('button[type="submit"]');
+      const originalText = button.textContent;
+      button.textContent = 'Subscribing...';
+      button.disabled = true;
+
+      // Send to Google Apps Script (same endpoint as other forms)
+      fetch('https://script.google.com/macros/s/AKfycbywGmOkIKG9fqnlfJdeMBgOm7YrHfmkIXcDHhKjnw-2HN8cWXh7tQ/exec', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'newsletter-subscription',
+          ...subscriptionData
+        })
+      }).then(() => {
+        // Success
+        showNewsletterResult('🎉 Welcome! Check your email to confirm your subscription.', 'success');
+        document.getElementById('post-newsletter-email').value = '';
+      }).catch(() => {
+        // Error
+        showNewsletterResult('Something went wrong. Please try again.', 'error');
+      }).finally(() => {
+        // Reset button
+        button.textContent = originalText;
+        button.disabled = false;
+      });
+    }
+
+    // Helper function to show newsletter results
+    function showNewsletterResult(message, type) {
+      const resultDiv = document.getElementById('post-newsletter-result');
+      resultDiv.className = `newsletter-result p-3 rounded-lg text-sm ${type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+      resultDiv.textContent = message;
+      resultDiv.classList.remove('hidden');
+      
+      // Hide after 5 seconds
+      setTimeout(() => {
+        resultDiv.classList.add('hidden');
+      }, 5000);
+    }
   </script>
+  
+  <!-- Blog System JavaScript -->
+  <script src="js/blog-system.js"></script>
   
   <!-- Blog Widgets JavaScript -->
   <script src="js/blog-widgets.js"></script>

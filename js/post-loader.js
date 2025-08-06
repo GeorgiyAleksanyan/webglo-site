@@ -38,8 +38,6 @@ class BlogPostLoader {
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('id');
     
-    console.log('Loading post with ID:', postId);
-    
     if (!postId) {
       this.showError('No post ID specified in URL.');
       return;
@@ -51,8 +49,6 @@ class BlogPostLoader {
     }
 
     const post = this.blogData.posts.find(p => p.id === postId);
-    
-    console.log('Found post:', post ? post.title : 'Not found');
     
     if (!post) {
       this.showError(`Post with ID "${postId}" not found.`);
@@ -122,20 +118,22 @@ class BlogPostLoader {
       return;
     }
 
-    console.log('Loading content for post:', post.title);
-    console.log('Raw content length:', post.content ? post.content.length : 'No content');
-
-    // Convert markdown-style content to HTML
-    const htmlContent = this.markdownToHtml(post.content || '');
-    console.log('Converted HTML length:', htmlContent.length);
+    // Since the content contains mixed HTML and markdown, handle it more carefully
+    let htmlContent = post.content || '';
+    
+    // Only apply basic markdown conversions if the content is mostly markdown
+    if (!htmlContent.includes('<div') && !htmlContent.includes('<section')) {
+      // Pure markdown content - apply conversions
+      htmlContent = this.markdownToHtml(htmlContent);
+    } else {
+      // Mixed HTML/markdown content - just apply basic formatting
+      htmlContent = this.processBasicMarkdown(htmlContent);
+    }
     
     contentEl.innerHTML = htmlContent;
 
     // Add syntax highlighting and other enhancements
     this.enhanceContent(contentEl);
-    
-    // Ensure feedback and newsletter widgets are present after the article
-    this.ensureArticleWidgets(post);
   }
 
   ensureArticleWidgets(post) {
@@ -261,6 +259,28 @@ class BlogPostLoader {
       </div>
     `;
     return widget;
+  }
+
+  processBasicMarkdown(content) {
+    let html = content;
+    
+    // Only process basic markdown elements that don't interfere with existing HTML
+    
+    // Convert headers (only if they're on their own lines and not inside HTML tags)
+    html = html.replace(/^### (.*$)/gim, '<h3 class="text-2xl font-bold text-gray-900 mb-4 mt-8">$1</h3>');
+    html = html.replace(/^## (.*$)/gim, '<h2 class="text-3xl font-bold text-gray-900 mb-6 mt-12">$1</h2>');
+    html = html.replace(/^# (.*$)/gim, '<h1 class="text-4xl font-bold text-gray-900 mb-8">$1</h1>');
+    
+    // Convert bold text (only outside of HTML tags)
+    html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold">$1</strong>');
+    
+    // Convert image markdown syntax
+    html = html.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" class="w-full rounded-lg mb-6">');
+    
+    // Convert basic links (but be careful not to break existing HTML)
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" class="text-blue-600 hover:text-blue-800 underline">$1</a>');
+    
+    return html;
   }
 
   markdownToHtml(markdown) {

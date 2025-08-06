@@ -100,6 +100,7 @@ archive/
 google-apps-script.*
 google-apps-script-updated.js
 webglo-backend.*
+blog-enhanced.js
 
 # Cloudflare Worker development files
 cloudflare-worker/worker-clean.js
