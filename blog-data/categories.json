@@ -1,14 +1,8 @@
 {
   "version": "1.0",
-  "lastUpdated": "2025-08-06T00:11:29.348Z",
-  "total": 4,
+  "lastUpdated": "2025-08-06T00:34:08.053Z",
+  "total": 5,
   "categories": [
-    {
-      "id": "digital-strategy",
-      "name": "Digital Strategy",
-      "description": "Strategic insights for digital transformation and growth",
-      "count": 1
-    },
     {
       "id": "web-development",
       "name": "Web Development",
@@ -25,6 +19,18 @@
       "id": "digital-marketing",
       "name": "Digital Marketing",
       "description": "Marketing strategies and conversion optimization techniques",
+      "count": 2
+    },
+    {
+      "id": "tutorials",
+      "name": "Tutorials",
+      "description": "Step-by-step guides and practical tutorials",
+      "count": 1
+    },
+    {
+      "id": "digital-strategy",
+      "name": "Digital Strategy",
+      "description": "Strategic insights for digital transformation and growth",
       "count": 1
     }
   ]

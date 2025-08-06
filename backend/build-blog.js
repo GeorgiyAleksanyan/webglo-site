@@ -74,16 +74,16 @@ class BlogBuilder {
 
   async loadPosts() {
     try {
-      // Load from main posts.json if it exists
-      const postsFile = path.join(this.sourceDir, 'posts.json');
+      // Load from main blog-data.json file
+      const postsFile = path.join(__dirname, '../blog-data.json');
       const data = await fs.readFile(postsFile, 'utf8');
       const postsData = JSON.parse(data);
       
       this.posts = postsData.posts || [];
-      console.log(`📖 Loaded ${this.posts.length} posts from posts.json`);
+      console.log(`📖 Loaded ${this.posts.length} posts from blog-data.json`);
       
     } catch (error) {
-      console.log('ℹ️ No existing posts.json found, starting fresh');
+      console.log('ℹ️ No existing blog-data.json found, starting fresh');
       this.posts = [];
     }
   }
