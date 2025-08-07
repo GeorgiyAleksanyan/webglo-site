@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | WebGlo - Web Development & Digital Marketing Insights</title>
+    <meta name="description" content="Discover expert insights on web development, digital marketing, SEO strategies, and business growth. Free resources, tutorials, and industry trends from WebGlo professionals.">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/mobile-first.css">
+    <link rel="stylesheet" href="css/blog-widgets.css">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <meta property="og:title" content="Expert Web Development & Digital Marketing Blog | WebGlo">
+    <meta property="og:description" content="Discover expert insights on web development, digital marketing, SEO strategies, and business growth. Free resources and tutorials.">
+    <meta property="og:image" content="assets/social-preview.png">
+    <meta property="og:url" content="https://webglo.org/blog.html">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+    <!-- Persistent Header -->
+    <header id="main-header">
+        <nav class="nav-container">
+            <div class="logo">
+                <a href="index.html">WebGlo</a>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="case-studies.html">Case Studies</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Blog Header -->
+    <section class="blog-header">
+        <div class="container">
+            <h1>WebGlo Insights</h1>
+            <p>Expert insights, proven strategies, and actionable tips to grow your business online</p>
+            
+            <!-- Search and Filters -->
+            <div class="blog-controls">
+                <div class="search-container">
+                    <input type="text" id="blog-search" placeholder="Search articles...">
+                    <button id="search-btn">Search</button>
+                </div>
+                
+                <div class="filter-container">
+                    <select id="category-filter">
+                        <option value="">All Categories</option>
+                    </select>
+                    
+                    <div class="tag-filters" id="tag-filters">
+                        <!-- Dynamic tag filters will be inserted here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <main class="blog-content">
+        <div class="container">
+            <div class="blog-layout">
+                <!-- Featured Post -->
+                <section class="featured-post" id="featured-post">
+                    <!-- Featured post will be loaded here -->
+                </section>
+
+                <!-- Blog Posts Grid -->
+                <section class="blog-posts">
+                    <div class="posts-header">
+                        <h2>Latest Articles</h2>
+                        <div class="sort-options">
+                            <select id="sort-filter">
+                                <option value="date-desc">Newest First</option>
+                                <option value="date-asc">Oldest First</option>
+                                <option value="title-asc">Title A-Z</option>
+                                <option value="title-desc">Title Z-A</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div id="posts-container" class="posts-grid">
+                        <!-- Blog posts will be loaded here -->
+                    </div>
+                    
+                    <div id="load-more-container" class="load-more-container">
+                        <button id="load-more-btn" class="load-more-btn">Load More Articles</button>
+                    </div>
+                    
+                    <div id="no-posts-message" class="no-posts-message" style="display: none;">
+                        <h3>No posts found</h3>
+                        <p>Try adjusting your search terms or filters.</p>
+                    </div>
+                </section>
+
+                <!-- Sidebar -->
+                <aside class="blog-sidebar">
+                    <!-- Categories Widget -->
+                    <div class="sidebar-widget">
+                        <h3>Categories</h3>
+                        <div id="categories-widget">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Popular Tags Widget -->
+                    <div class="sidebar-widget">
+                        <h3>Popular Tags</h3>
+                        <div id="tags-widget" class="tags-cloud">
+                            <!-- Tags will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Signup Widget -->
+                    <div class="sidebar-widget newsletter-widget">
+                        <h3>Never Miss an Update</h3>
+                        <p>Get weekly insights, exclusive tips, and free resources delivered to your inbox.</p>
+                        <form class="newsletter-form" data-webglo-form="newsletter">
+                            <input type="email" name="email" placeholder="Your email address" required>
+                            <button type="submit">Subscribe Free</button>
+                        </form>
+                        <p class="newsletter-disclaimer">Join 5,000+ entrepreneurs. No spam, unsubscribe anytime.</p>
+                    </div>
+
+                    <!-- Popular Posts Widget -->
+                    <div class="sidebar-widget">
+                        <h3>Popular This Week</h3>
+                        <div id="popular-posts-widget">
+                            <!-- Popular posts will be loaded here -->
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>WebGlo</h3>
+                    <p>Professional web development and digital marketing solutions that drive real business growth.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html#web-development">Web Development</a></li>
+                        <li><a href="services.html#digital-marketing">Digital Marketing</a></li>
+                        <li><a href="consulting.html">Consulting</a></li>
+                        <li><a href="services.html#maintenance">Maintenance</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="case-studies.html">Case Studies</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 WebGlo. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/config.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/navigation-persistence.js"></script>
+    <script src="js/form-handler-production.js"></script>
+    <script src="js/blog-widgets.js"></script>
+    <script src="js/blog-hybrid.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

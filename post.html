@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -412,7 +413,7 @@
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          type: 'article-feedback',
+          action: 'article-feedback',
           ...feedbackData
         })
       }).then(() => {
@@ -466,7 +467,7 @@
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          type: 'newsletter-subscription',
+          action: 'newsletter-subscription',
           ...subscriptionData
         })
       }).then(() => {
