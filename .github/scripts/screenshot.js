@@ -11,7 +11,8 @@ const filename = process.argv[3] || 'screenshot.jpg';
     process.exit(1);
   }
   const browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+    executablePath: process.env.PUPPETEER_EXECUTABLE_PATH
   });
   const page = await browser.newPage();
   await page.setViewport({ width: 1280, height: 800 });
