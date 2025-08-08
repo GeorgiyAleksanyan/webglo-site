@@ -1,0 +1,40 @@
+name: Website Screenshot
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Website URL to screenshot'
+        required: true
+        type: string
+      filename:
+        description: 'Output filename (e.g. webglo-org.jpg)'
+        required: true
+        type: string
+
+jobs:
+  screenshot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Puppeteer
+        run: npm install puppeteer
+
+      - name: Take screenshot
+        run: |
+          node .github/scripts/screenshot.js "${{ github.event.inputs.url }}" "${{ github.event.inputs.filename }}"
+
+      - name: Commit screenshot
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add screenshots/${{ github.event.inputs.filename }}
+          git commit -m "Add screenshot for ${{ github.event.inputs.url }}"
+          git push

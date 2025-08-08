@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WebGlo Free Website Audit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+      body { font-family: Inter, Arial, sans-serif; background: #f8f8ff; color: #222; margin: 0; padding: 20px; }
+      .container { max-width: 480px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px #df00ff22; padding: 32px; }
+      h1 { color: #df00ff; font-size: 2rem; margin-bottom: 1rem; text-align: center; }
+      label { font-weight: 500; margin-top: 1rem; display: block; }
+      input { box-sizing: border-box; width: 100%; padding: 10px; margin-top: 4px; border-radius: 6px; border: 1px solid #ccc; font-size: 1rem; }
+      button { background: linear-gradient(90deg,#df00ff,#0cead9); color: #fff; border: none; border-radius: 6px; padding: 12px 24px; font-size: 1rem; margin-top: 1.5rem; cursor: pointer; width: 100%; font-weight: bold; transition: opacity 0.3s; }
+      button:disabled { background: #ccc; cursor: not-allowed; }
+      .note { font-size: 0.9rem; color: #666; margin-top: 0.5rem; }
+      #result { margin-top: 1.5rem; padding: 12px; border-radius: 6px; text-align: center; word-wrap: break-word;}
+      .success { background-color: #e0f8e9; color: #2d6b4f; }
+      .error { background-color: #fde2e2; color: #8c2b2b; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>WebGlo Free Website Audit</h1>
+      <form id="auditForm">
+        <label for="url">Website URL</label>
+        <input type="url" id="url" name="url" required placeholder="https://yourwebsite.com">
+
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required placeholder="you@email.com">
+        <div class="note">We'll send the comprehensive report to this email.</div>
+
+        <label for="gemini">Google Gemini API Key (Optional)</label>
+        <input type="password" id="gemini" name="gemini" placeholder="Paste your free Gemini API key for AI analysis">
+        <div class="note">Your key is never stored. Get a free key at <a href="https://aistudio.google.com/app/apikey" target="_blank">aistudio.google.com</a>.</div>
+
+        <button type="submit" id="submitBtn">Generate & Email My Pro Report</button>
+      </form>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      const auditForm = document.getElementById('auditForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const resultDiv = document.getElementById('result');
+
+      auditForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (submitBtn.disabled) return;
+
+        // Basic validation
+        const url = document.getElementById('url').value.trim();
+        const email = document.getElementById('email').value.trim();
+        if (!url || !email) {
+          showError('Please enter both a valid website URL and your email address.');
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Building Your Pro Report...';
+        resultDiv.className = 'note';
+        resultDiv.textContent = 'Gathering data. This may take up to 2 minutes...';
+
+        const formData = {
+          url,
+          email,
+          geminiApiKey: document.getElementById('gemini').value.trim()
+        };
+
+        google.script.run
+          .withSuccessHandler(onComplete)
+          .withFailureHandler(onFailure)
+          .performWebsiteAudit(formData);
+      });
+
+      function onComplete(response) {
+        if (response && response.success) {
+          resultDiv.className = 'success';
+          resultDiv.innerHTML = `✅ Process Started! Your comprehensive website audit is being generated and will be sent to <strong>${document.getElementById('email').value}</strong> shortly.<br>Please check your inbox (and spam folder).`;
+        } else {
+          showError(response && response.message ? response.message : 'Unknown error.');
+        }
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Generate & Email My Pro Report';
+      }
+
+      function onFailure(error) {
+        showError(error && error.message ? error.message : 'Unknown error.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Generate & Email My Pro Report';
+      }
+
+      function showError(msg) {
+        resultDiv.className = 'error';
+        resultDiv.innerHTML = `❌ An error occurred: ${msg}. Please check your input and try again.`;
+      }
+    </script>
+  </body>
+</html>
