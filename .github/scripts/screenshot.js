@@ -19,6 +19,9 @@ const filename = process.argv[3] || 'screenshot.jpg';
   await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
   const buffer = await page.screenshot({ type: 'jpeg', quality: 80 });
   const outDir = path.join(process.cwd(), 'webglo-audit-tool', 'screenshots');
+  if (!fs.existsSync(outDir)) {
+    fs.mkdirSync(outDir, { recursive: true });
+  }
   fs.writeFileSync(path.join(outDir, filename), buffer);
   await browser.close();
 })();
