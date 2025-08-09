@@ -11,7 +11,7 @@ const filename = process.argv[3] || 'screenshot.jpg';
     process.exit(1);
   }
   const browser = await puppeteer.launch({
-    headless: false, // Try non-headless mode (may not work in CI)
+    headless: 'new', // Use headless mode (recommended for CI)
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',
