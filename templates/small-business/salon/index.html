@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 
+      SEO Meta Tags 
+      Instructions: Fill in the content attributes with your salon's specific information.
+    -->
+    <title>Serenity Salon - Your Oasis of Beauty and Relaxation</title>
+    <meta name="description" content="Discover a world of beauty and relaxation at Serenity Salon. We offer premium hair, nail, and skin care services to help you look and feel your best. Book your appointment today!">
+    <meta name="keywords" content="beauty salon, hair salon, nail salon, spa, haircut, manicure, pedicure, facial, beauty treatments">
+    <meta name="author" content="Serenity Salon">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <style>
+        /* Use Inter for body text and Playfair Display for headings for an elegant feel */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDF8F5; /* A soft, warm off-white */
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+        }
+        /* MODIFIED: Enhanced text shadow for better readability */
+        .text-shadow-custom {
+            text-shadow: 0px 2px 6px rgba(0,0,0,0.5);
+        }
+        /* NEW: Gradient overlay for hero image */
+        .hero-gradient-overlay {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 70%, rgba(0,0,0,0.1) 100%);
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+
+    <!-- 
+      Header & Sticky Navigation Bar
+      The navigation bar will stick to the top of the page on scroll.
+    -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <!-- 
+              Logo 
+              Instructions: You can replace this SVG with your own logo.
+            -->
+            <a href="#home" class="flex items-center space-x-2">
+                <svg class="h-8 w-8 text-rose-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 12c0 2.42-.944 4.626-2.502 6.257m-1.437-1.437a7.5 7.5 0 01-10.606-10.606m11.043 11.043l-1.437-1.437" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6.75 6.75 0 006.75-6.75H12V18.75z" />
+                </svg>
+                <span class="font-bold text-2xl text-rose-900 font-serif">Serenity</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-rose-900 transition-colors duration-300">Home</a>
+                <a href="#services" class="text-gray-600 hover:text-rose-900 transition-colors duration-300">Services</a>
+                <a href="#about" class="text-gray-600 hover:text-rose-900 transition-colors duration-300">About</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-rose-900 transition-colors duration-300">Testimonials</a>
+                <a href="#contact" class="text-gray-600 hover:text-rose-900 transition-colors duration-300">Contact</a>
+            </div>
+
+            <!-- CTA Button (Desktop) -->
+            <a href="#contact" class="hidden md:block bg-rose-900 text-white font-medium py-2 px-6 rounded-full hover:bg-rose-800 transition-all duration-300 transform hover:scale-105">
+                Book Now
+            </a>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu (hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95">
+            <a href="#home" class="block py-3 px-6 text-center text-gray-700 hover:bg-rose-50">Home</a>
+            <a href="#services" class="block py-3 px-6 text-center text-gray-700 hover:bg-rose-50">Services</a>
+            <a href="#about" class="block py-3 px-6 text-center text-gray-700 hover:bg-rose-50">About</a>
+            <a href="#testimonials" class="block py-3 px-6 text-center text-gray-700 hover:bg-rose-50">Testimonials</a>
+            <a href="#contact" class="block py-3 px-6 text-center text-gray-700 hover:bg-rose-50">Contact</a>
+            <div class="p-4">
+                <a href="#contact" class="block w-full bg-rose-900 text-white font-medium py-3 px-6 rounded-full text-center hover:bg-rose-800 transition-all duration-300">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 
+          Home / Hero Section
+          Instructions: Replace the background image with a high-quality photo of your salon's interior or a signature look. Update the headline and sub-headline to reflect your brand's message.
+        -->
+        <section id="home" class="relative h-[85vh] min-h-[500px] flex items-center justify-center text-white">
+            <!-- MODIFIED: Replaced solid opacity with gradient overlay -->
+            <div class="absolute inset-0 hero-gradient-overlay"></div>
+            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=2070&auto=format&fit=crop" 
+                 alt="Bright and airy modern salon interior with comfortable chairs" 
+                 class="absolute inset-0 w-full h-full object-cover -z-10"
+                 onerror="this.onerror=null;this.src='https://placehold.co/1920x1080/663333/FFFFFF?text=Salon+Image';">
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-shadow-custom">Experience the Art of Beauty</h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-shadow-custom">Step into your personal oasis of style and serenity. Let our expert stylists pamper you.</p>
+                <a href="#contact" class="bg-rose-900 text-white font-bold py-4 px-10 rounded-full hover:bg-rose-800 transition-all duration-300 transform hover:scale-105 text-lg">
+                    Book an Appointment
+                </a>
+            </div>
+        </section>
+
+        <!-- 
+          Services Section
+          Instructions: List your main services here. Replace the images, titles, and descriptions. You can duplicate the 'service-card' div to add more services.
+        -->
+        <section id="services" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-rose-900 mb-4">Our Services</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">We offer a wide range of services to cater to your every beauty need. Quality and care in every detail.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Service Card 1 -->
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Woman receiving a professional haircut" 
+                             class="w-full h-64 object-cover"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/663333/FFFFFF?text=Hair+Styling';">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold mb-3 text-rose-900">Expert Hair Styling</h3>
+                            <p class="text-gray-600 mb-4">From classic cuts to the latest trends, our stylists will create a look that's perfectly you.</p>
+                            <!-- Optional: Add a price or link to a detailed service page -->
+                        </div>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1599206676335-193c82b13c9e?q=80&w=1007&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?q=80&w=1974&auto=format&fit=crop" 
+                             alt="Close-up of a professional manicure with elegant white nail polish" 
+                             class="w-full h-64 object-cover"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/663333/FFFFFF?text=Nail+Care';">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold mb-3 text-rose-900">Luxury Nail Care</h3>
+                            <p class="text-gray-600 mb-4">Indulge in our manicures and pedicures, featuring high-quality polishes and relaxing treatments.</p>
+                        </div>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=2070&auto=format&fit=crop" 
+                             alt="Woman enjoying a relaxing facial treatment" 
+                             class="w-full h-64 object-cover"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/663333/FFFFFF?text=Skin+Care';">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold mb-3 text-rose-900">Rejuvenating Skin Care</h3>
+                            <p class="text-gray-600 mb-4">Our custom facials and skin treatments are designed to leave your skin glowing and refreshed.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          About Section
+          Instructions: Tell your story here. Introduce your salon, your mission, and your team. Replace the image with a photo of your team or the salon owner.
+        -->
+        <section id="about" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1556760544-74068565f05c?q=80&w=1974&auto=format&fit=crop" 
+                             alt="The passionate team of stylists at Serenity Salon" 
+                             class="rounded-lg shadow-2xl w-full"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x500/663333/FFFFFF?text=Our+Team';">
+                    </div>
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h2 class="text-4xl md:text-5xl font-bold text-rose-900 mb-6">Our Story, Your Style</h2>
+                        <p class="text-gray-600 text-lg mb-4">
+                            Founded in [Year], Serenity Salon was born from a passion for making people feel beautiful and confident. We believe that true beauty comes from within, and our mission is to help you express it.
+                        </p>
+                        <p class="text-gray-600 text-lg">
+                            Our team of dedicated professionals uses only the highest quality products and the latest techniques to provide an unparalleled experience. We're not just a salon; we're a community built on creativity, care, and a love for style.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          Testimonials Section
+          Instructions: Add real quotes from your happy clients. Replace the text and names. Duplicate the 'testimonial-card' div to add more.
+        -->
+        <section id="testimonials" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-rose-900 mb-4">What Our Clients Say</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">We are proud of the relationships we've built. Here's what our clients have to say about their experience.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial Card 1 -->
+                    <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                        <p class="text-gray-600 italic mb-6">"This is the best salon experience I've ever had. The staff is incredibly talented and so friendly. I walked out feeling like a new person!"</p>
+                        <p class="font-bold text-rose-900">- Jessica L.</p>
+                    </div>
+                    <!-- Testimonial Card 2 -->
+                    <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                        <p class="text-gray-600 italic mb-6">"The attention to detail is amazing. My nails have never looked better. The atmosphere is so relaxing and chic. Highly recommend!"</p>
+                        <p class="font-bold text-rose-900">- Sarah M.</p>
+                    </div>
+                    <!-- Testimonial Card 3 -->
+                    <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                        <p class="text-gray-600 italic mb-6">"I came in for a complete hair transformation and they delivered beyond my expectations. The stylist listened to what I wanted and gave me the perfect cut and color."</p>
+                        <p class="font-bold text-rose-900">- Emily R.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 
+          Contact & Booking Section
+          Instructions: This is your main call-to-action area. Update your address, phone number, email, and opening hours. The form can be connected to a backend service like Formspree or Netlify Forms.
+        -->
+        <section id="contact" class="py-20 md:py-28 bg-rose-50/50">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-rose-900 mb-4">Book Your Visit</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Ready to be pampered? Get in touch with us to schedule your appointment. We can't wait to see you!</p>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <!-- Contact Form -->
+                    <div class="lg:w-2/3 bg-white p-8 rounded-lg shadow-xl">
+                        <h3 class="text-2xl font-bold text-rose-900 mb-6">Send us a Message</h3>
+                        <form action="#" method="POST">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-800" required>
+                                <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-800" required>
+                            </div>
+                            <div class="mb-6">
+                                <input type="text" placeholder="Subject (e.g., 'Haircut Inquiry')" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-800">
+                            </div>
+                            <div class="mb-6">
+                                <textarea placeholder="Your Message" rows="5" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-rose-800" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-rose-900 text-white font-bold py-4 px-10 rounded-full hover:bg-rose-800 transition-all duration-300 transform hover:scale-105">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <!-- Contact Info -->
+                    <div class="lg:w-1/3">
+                        <div class="bg-white p-8 rounded-lg shadow-xl h-full">
+                           <h3 class="text-2xl font-bold text-rose-900 mb-6">Contact Information</h3>
+                           <div class="space-y-4 text-gray-700">
+                               <p><strong>Address:</strong><br>123 Beauty Lane, Style City, 12345</p>
+                               <p><strong>Phone:</strong><br><a href="tel:123-456-7890" class="hover:text-rose-900">123-456-7890</a></p>
+                               <p><strong>Email:</strong><br><a href="mailto:contact@serenitysalon.com" class="hover:text-rose-900">contact@serenitysalon.com</a></p>
+                               <div class="pt-4">
+                                   <h4 class="font-bold text-lg mb-2 text-rose-900">Opening Hours</h4>
+                                   <p>Mon - Fri: 9:00 AM - 7:00 PM</p>
+                                   <p>Saturday: 10:00 AM - 6:00 PM</p>
+                                   <p>Sunday: Closed</p>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 
+      Footer
+      Instructions: Update the copyright year and name. Add your actual social media links.
+    -->
+    <footer class="bg-rose-900 text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-8 md:space-y-0">
+                <div>
+                    <a href="#home" class="font-bold text-2xl font-serif">Serenity Salon</a>
+                    <p class="max-w-sm mt-2 text-rose-200">Your personal oasis for beauty and relaxation.</p>
+                </div>
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="font-bold mb-2">Quick Links</h4>
+                    <a href="#services" class="text-rose-200 hover:text-white">Services</a>
+                    <a href="#about" class="text-rose-200 hover:text-white">About</a>
+                    <a href="#contact" class="text-rose-200 hover:text-white">Book Now</a>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Follow Us</h4>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <!-- Replace # with your social media links -->
+                        <a href="#" class="text-rose-200 hover:text-white" aria-label="Facebook">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"></path></svg>
+                        </a>
+                        <a href="#" class="text-rose-200 hover:text-white" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.148-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-rose-800 text-center text-rose-200">
+                <p>&copy; <span id="current-year"></span> Serenity Salon. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Optional: Add a subtle shadow to the header on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>

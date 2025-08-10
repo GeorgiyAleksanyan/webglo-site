@@ -1,136 +1,112 @@
-// WebGlo Components - Universal Navigation and Footer System
+// WebGloComponents - unified nav + footer + mobile behavior
 class WebGloComponents {
   constructor() {
     this.initialized = false;
     this.retryCount = 0;
     this.maxRetries = 5;
-    
-    // Initialize immediately since we're called at the right time
+
+    // initialize immediately and keep listeners to re-render if SPA nav removes elements
     this.init();
-    
-    // Set up page navigation listeners to maintain components
     this.setupNavigationListeners();
   }
 
   init() {
     try {
-      // Check if already initialized to prevent duplicate rendering
-      if (this.initialized) {
-        console.log('WebGlo Components already initialized');
-        return;
-      }
+      if (this.initialized) return;
 
       this.renderNavigation();
       this.renderFooter();
-      this.initMobileMenu();
-      this.initScrollEffects();
+      this.attachBehaviors(); // all event listeners and behaviors
       this.initialized = true;
-      console.log('WebGlo Components initialized successfully');
-    } catch (error) {
-      console.error('Error initializing WebGlo Components:', error);
-      
-      // Retry initialization if failed
+      console.log('WebGloComponents initialized');
+    } catch (err) {
+      console.error('Error initializing WebGloComponents:', err);
       if (this.retryCount < this.maxRetries) {
         this.retryCount++;
-        console.log(`Retrying initialization (${this.retryCount}/${this.maxRetries})...`);
-        setTimeout(() => this.init(), 1000);
+        setTimeout(() => this.init(), 800);
       }
     }
   }
 
   setupNavigationListeners() {
-    // Listen for page visibility changes (when user navigates back/forward)
     document.addEventListener('visibilitychange', () => {
-      if (!document.hidden) {
-        this.ensureComponentsExist();
-      }
+      if (!document.hidden) this.ensureComponentsExist();
     });
-
-    // Listen for focus events (when user returns to tab)
-    window.addEventListener('focus', () => {
-      this.ensureComponentsExist();
-    });
-
-    // Periodically check if components still exist
-    setInterval(() => {
-      this.ensureComponentsExist();
-    }, 2000);
+    window.addEventListener('focus', () => this.ensureComponentsExist());
+    // periodic check (for SPA or DOM replacements)
+    this._checkInterval = setInterval(() => this.ensureComponentsExist(), 2500);
+    // also listen for popstate (back/forward)
+    window.addEventListener('popstate', () => this.ensureComponentsExist());
   }
 
   ensureComponentsExist() {
-    const navExists = document.querySelector('#webglo-navigation nav');
-    const footerExists = document.querySelector('#webglo-footer footer');
-    
+    const navExists = !!document.querySelector('#webglo-navigation nav');
+    const footerExists = !!document.querySelector('#webglo-footer footer');
     if (!navExists || !footerExists) {
-      console.log('Components missing, re-rendering...');
+      console.log('WebGloComponents missing — re-rendering');
       this.initialized = false;
       this.init();
     }
   }
 
   renderNavigation() {
-    // Check if navigation already exists (like in blog.html with #main-header)
+    // If page supplies its own header (#main-header or nav.nav-container), skip rendering
     if (document.getElementById('main-header') || document.querySelector('nav.nav-container')) {
-      console.log('Static navigation already exists, skipping dynamic render...');
+      console.log('Static navigation exists — skipping dynamic render');
       return;
     }
-    
-    console.log('Rendering navigation...');
-    const nav = `
-      <nav id="main-navigation" class="bg-white shadow-lg border-b border-gray-100 fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+
+    const navHTML = `
+      <nav id="main-navigation" class="bg-white shadow-lg border-b border-gray-100 fixed top-0 left-0 right-0 z-50">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
           <div class="flex items-center justify-between h-16">
-            <!-- Logo -->
-            <a href="index.html" class="flex items-center space-x-3">
+            <!-- Logo (keeps Home behavior) -->
+            <a id="webglo-logo" href="index.html" class="flex items-center space-x-3">
               <img src="assets/logo.png" alt="WebGlo logo" class="h-10 w-10">
               <span class="text-2xl font-bold bg-gradient-to-r from-[#0cead9] to-[#df00ff] bg-clip-text text-transparent">WebGlo</span>
             </a>
-            
-            <!-- Desktop Navigation -->
+
+            <!-- Desktop nav -->
             <div class="hidden lg:flex items-center space-x-8">
-              <a href="index.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">Home</a>
-              
-              <!-- Services Dropdown -->
+              <!-- Services dropdown -->
               <div class="relative group">
-                <button class="nav-link flex items-center space-x-1 text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">
+                <button class="desktop-dropdown-toggle nav-link flex items-center space-x-2 text-gray-700 hover:text-[#df00ff] font-medium">
                   <span>Services</span>
-                  <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </button>
-                
-                <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-[600px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 mt-2 z-50">
+                <div class="desktop-dropdown absolute top-full left-1/2 transform -translate-x-1/2 w-[600px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible hover:opacity-100 hover:visible translate-y-2 group-hover:translate-y-0 hover:translate-y-0 z-50">
                   <div class="p-6">
-                    <!-- Featured Landing Page Express -->
                     <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg mb-6 border border-red-200">
                       <a href="landing-page-express.html" class="block group">
                         <div class="flex items-center justify-between">
                           <div>
-                            <h4 class="font-bold text-red-600 group-hover:text-red-700 transition-colors">⚡ Landing Page Express</h4>
+                            <h4 class="font-bold text-red-600 group-hover:text-red-700">⚡ Landing Page Express</h4>
                             <p class="text-sm text-red-500">48-hour delivery • Only $297</p>
                           </div>
                           <div class="bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">HOT</div>
                         </div>
                       </a>
                     </div>
-                    
+
                     <div class="grid grid-cols-2 gap-6">
                       <div>
                         <h3 class="text-lg font-bold text-gray-900 mb-4">Website Solutions</h3>
-                        <ul class="space-y-3">
-                          <li><a href="services.html#design" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Custom Design</a></li>
-                          <li><a href="services.html#development" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Development</a></li>
-                          <li><a href="services.html#ecommerce" class="text-gray-600 hover:text-[#df00ff] transition-colors block">E-commerce</a></li>
-                          <li><a href="services.html#maintenance" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Maintenance</a></li>
+                        <ul class="space-y-2">
+                          <li><a href="services.html#design" class="block text-gray-600 hover:text-[#df00ff]">Custom Design</a></li>
+                          <li><a href="services.html#development" class="block text-gray-600 hover:text-[#df00ff]">Development</a></li>
+                          <li><a href="services.html#ecommerce" class="block text-gray-600 hover:text-[#df00ff]">E-commerce</a></li>
+                          <li><a href="services.html#maintenance" class="block text-gray-600 hover:text-[#df00ff]">Maintenance</a></li>
                         </ul>
                       </div>
                       <div>
                         <h3 class="text-lg font-bold text-gray-900 mb-4">Digital Marketing</h3>
-                        <ul class="space-y-3">
-                          <li><a href="services.html#seo" class="text-gray-600 hover:text-[#0cead9] transition-colors block">SEO Optimization</a></li>
-                          <li><a href="services.html#content" class="text-gray-600 hover:text-[#0cead9] transition-colors block">Content Strategy</a></li>
-                          <li><a href="services.html#branding" class="text-gray-600 hover:text-[#0cead9] transition-colors block">Branding</a></li>
-                          <li><a href="services.html#automation" class="text-gray-600 hover:text-[#0cead9] transition-colors block">AI & Automation</a></li>
+                        <ul class="space-y-2">
+                          <li><a href="services.html#seo" class="block text-gray-600 hover:text-[#0cead9]">SEO Optimization</a></li>
+                          <li><a href="services.html#content" class="block text-gray-600 hover:text-[#0cead9]">Content Strategy</a></li>
+                          <li><a href="services.html#branding" class="block text-gray-600 hover:text-[#0cead9]">Branding</a></li>
+                          <li><a href="services.html#automation" class="block text-gray-600 hover:text-[#0cead9]">AI & Automation</a></li>
                         </ul>
                       </div>
                     </div>
@@ -138,98 +114,139 @@ class WebGloComponents {
                 </div>
               </div>
 
-              <!-- Pricing Dropdown -->
+              <!-- Pricing dropdown -->
               <div class="relative group">
-                <button class="nav-link flex items-center space-x-1 text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">
+                <button class="desktop-dropdown-toggle nav-link flex items-center space-x-2 text-gray-700 hover:text-[#df00ff] font-medium">
                   <span>Pricing</span>
-                  <svg class="w-4 h-4 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                   </svg>
                 </button>
-                
-                <div class="absolute top-full left-1/2 transform -translate-x-1/2 w-[400px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 mt-2 z-50">
+                <div class="desktop-dropdown absolute top-full left-1/2 transform -translate-x-1/2 w-[400px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible hover:opacity-100 hover:visible translate-y-2 group-hover:translate-y-0 hover:translate-y-0 z-50">
                   <div class="p-6">
-                    <ul class="space-y-3">
-                      <li><a href="pricing.html#packages" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Single-Purchase Packages</a></li>
-                      <li><a href="pricing.html#subscriptions" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Monthly Plans</a></li>
-                      <li><a href="pricing.html#itemized" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Itemized Services</a></li>
-                      <li><a href="consulting.html" class="text-gray-600 hover:text-[#df00ff] transition-colors block">Free Consultation</a></li>
+                    <ul class="space-y-2">
+                      <li><a href="pricing.html#packages" class="block text-gray-600 hover:text-[#df00ff]">Single-Purchase Packages</a></li>
+                      <li><a href="pricing.html#subscriptions" class="block text-gray-600 hover:text-[#df00ff]">Monthly Plans</a></li>
+                      <li><a href="pricing.html#itemized" class="block text-gray-600 hover:text-[#df00ff]">Itemized Services</a></li>
+                      <li><a href="consulting.html" class="block text-gray-600 hover:text-[#df00ff]">Free Consultation</a></li>
                     </ul>
                   </div>
                 </div>
               </div>
 
-              <a href="about.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">About</a>
-              <a href="case-studies.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">Case Studies</a>
-              <a href="blog.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">Blog</a>
-              <a href="contact.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium transition-colors duration-200">Contact</a>
-              
-              <a href="contact.html" class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white px-6 py-2 rounded-lg font-semibold hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-300">
-                Free Consultation
-              </a>
+              <a href="about.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">About</a>
+              <a href="case-studies.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Case Studies</a>
+              <a href="blog.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Blog</a>
+              <!-- Contact tab removed; Get Started button leads to contact page -->
+
+              <!-- Desktop CTA -->
+              <a href="contact.html" class="hidden lg:inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-xl font-semibold shadow-xl no-hover-color">Get Started</a>
             </div>
 
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-button" class="lg:hidden text-gray-700 hover:text-[#df00ff] focus:outline-none">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-              </svg>
-            </button>
-          </div>
+            <!-- Mobile controls (small screens) -->
+            <div class="flex lg:hidden items-center gap-2">
+              <!-- small immediate CTA (kept visible before opening menu) -->
+              <a id="mobile-cta-top" href="contact.html" class="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-xl font-semibold no-hover-color">Get Started</a>
 
-          <!-- Mobile Menu -->
-          <div id="mobile-menu" class="lg:hidden hidden bg-white border-t border-gray-100">
-            <div class="px-2 pt-2 pb-3 space-y-1">
-              <a href="index.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Home</a>
-              <a href="services.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Services</a>
-              <div class="mx-3 my-2 p-2 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200">
-                <a href="landing-page-express.html" class="block">
-                  <div class="text-red-600 font-bold text-sm">⚡ Landing Page Express</div>
-                  <div class="text-red-500 text-xs">48-hour delivery • $297</div>
-                </a>
-              </div>
-              <a href="pricing.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Pricing</a>
-              <a href="about.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">About</a>
-              <a href="case-studies.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Case Studies</a>
-              <a href="blog.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Blog</a>
-              <a href="contact.html" class="block px-3 py-2 text-gray-700 hover:text-[#df00ff] font-medium">Contact</a>
-              <a href="contact.html" class="block mx-3 my-2 px-4 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-semibold text-center">Free Consultation</a>
+              <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" class="text-gray-700 hover:text-[#df00ff] focus:outline-none">
+                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+              </button>
             </div>
           </div>
         </div>
       </nav>
+
+      <!-- Mobile menu overlay (position will be set to sit below nav) -->
+      <div id="mobile-menu" class="lg:hidden hidden fixed left-0 right-0 bottom-0 bg-white z-[9999] overflow-auto">
+        <div class="mobile-menu-inner flex flex-col min-h-full" style="min-height: calc(100vh - 4rem);">
+          <div class="px-6 py-6 space-y-3">
+            <!-- Collapsible Services -->
+            <details class="group">
+              <summary class="flex items-center justify-between cursor-pointer py-3 text-lg font-medium">
+                <span>Services</span>
+                <span class="transition-transform group-open:rotate-180">▾</span>
+              </summary>
+              <ul class="pl-4 pb-2 space-y-2">
+                <li><a href="services.html#design" class="block text-gray-700 hover:text-[#df00ff]">Custom Design</a></li>
+                <li><a href="services.html#development" class="block text-gray-700 hover:text-[#df00ff]">Development</a></li>
+                <li><a href="services.html#ecommerce" class="block text-gray-700 hover:text-[#df00ff]">E-commerce</a></li>
+                <li><a href="services.html#maintenance" class="block text-gray-700 hover:text-[#df00ff]">Maintenance</a></li>
+                <li class="mt-2">
+                  <div class="p-3 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200">
+                    <a href="landing-page-express.html" class="block">
+                      <div class="text-red-600 font-bold">⚡ Landing Page Express</div>
+                      <div class="text-red-500 text-xs">48-hour delivery • $297</div>
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </details>
+
+            <!-- Collapsible Pricing -->
+            <details class="group">
+              <summary class="flex items-center justify-between cursor-pointer py-3 text-lg font-medium">
+                <span>Pricing</span>
+                <span class="transition-transform group-open:rotate-180">▾</span>
+              </summary>
+              <ul class="pl-4 pb-2 space-y-2">
+                <li><a href="pricing.html#packages" class="block text-gray-700 hover:text-[#df00ff]">Single-Purchase Packages</a></li>
+                <li><a href="pricing.html#subscriptions" class="block text-gray-700 hover:text-[#df00ff]">Monthly Plans</a></li>
+                <li><a href="pricing.html#itemized" class="block text-gray-700 hover:text-[#df00ff]">Itemized Services</a></li>
+                <li><a href="consulting.html" class="block text-gray-700 hover:text-[#df00ff]">Free Consultation</a></li>
+              </ul>
+            </details>
+
+            <a href="about.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">About</a>
+            <a href="case-studies.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Case Studies</a>
+            <a href="blog.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Blog</a>
+            <!-- Contact tab removed; Get Started button leads to contact page -->
+          </div>
+
+          <!-- Bottom action bar inside mobile menu -->
+          <div class="mt-auto border-t p-4 bg-white">
+            <div class="flex gap-3 justify-between">
+              <a href="consulting.html" id="mobile-book-btn" class="inline-flex items-center justify-center px-4 py-2 border border-gray-800 rounded-lg font-semibold">Book free call</a>
+              <a href="contact.html" id="mobile-getstarted-btn" class="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-semibold no-hover-color">Get Started</a>
+            </div>
+          </div>
+        </div>
+      </div>
     `;
 
     const navContainer = document.getElementById('webglo-navigation');
-    if (navContainer) {
-      navContainer.innerHTML = nav;
-      console.log('Navigation rendered successfully');
-      console.log('Navigation HTML:', navContainer.innerHTML.substring(0, 200) + '...');
-      
-      // Force fixed positioning for always-visible navigation
-      const navElement = navContainer.querySelector('nav');
-      if (navElement) {
-        navElement.style.position = 'fixed';
-        navElement.style.top = '0';
-        navElement.style.left = '0';
-        navElement.style.right = '0';
-        navElement.style.width = '100%';
-        navElement.style.zIndex = '1000';
-        console.log('Navigation fixed styles applied');
-      }
-    } else {
-      console.error('Navigation container not found - make sure element with id="webglo-navigation" exists');
+    if (!navContainer) {
+      console.error('webglo-navigation container not found; please add <div id="webglo-navigation"></div>');
+      return;
+    }
+    navContainer.innerHTML = navHTML;
+
+    // after DOM inserted, adjust mobile menu top to match nav height (so it expands below nav)
+    this._updateMobileMenuTop();
+    window.addEventListener('resize', () => this._updateMobileMenuTop());
+  }
+
+  _updateMobileMenuTop() {
+    const nav = document.getElementById('main-navigation');
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (nav && mobileMenu) {
+      const navHeight = nav.offsetHeight || 64;
+      // set top so mobile menu sits below the fixed nav
+      mobileMenu.style.top = navHeight + 'px';
+      // adjust min-height of inner so bottom bar sits at screen bottom
+      const inner = mobileMenu.querySelector('.mobile-menu-inner');
+      if (inner) inner.style.minHeight = `calc(100vh - ${navHeight}px)`;
     }
   }
 
   renderFooter() {
-    // Check if footer already exists (like in blog.html)
-    if (document.querySelector('footer')) {
-      console.log('Static footer already exists, skipping dynamic render...');
+    // if a footer already exists on the page, don't overwrite it
+    if (document.querySelector('#webglo-footer footer') || document.querySelector('footer.footer-static')) {
+      console.log('Static footer exists; skipping dynamic footer render');
       return;
     }
-    
-    const footer = `
+
+    const footerHTML = `
       <footer class="bg-gray-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -305,8 +322,6 @@ class WebGloComponents {
             </div>
           </div>
 
-
-
           <div class="border-t border-gray-700 pt-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
               <p class="text-gray-400 text-sm">© 2025 WebGlo. All rights reserved.</p>
@@ -323,81 +338,242 @@ class WebGloComponents {
     `;
 
     const footerContainer = document.getElementById('webglo-footer');
-    if (footerContainer) {
-      footerContainer.innerHTML = footer;
-      console.log('Footer rendered successfully with updated business info');
-      
-    } else {
-      console.error('Footer container not found - make sure element with id="webglo-footer" exists');
+    if (!footerContainer) {
+      console.error('webglo-footer container not found; please add <div id="webglo-footer"></div>');
+      return;
     }
+    footerContainer.innerHTML = footerHTML;
   }
 
-  initMobileMenu() {
-    const mobileMenuButton = document.getElementById('mobile-menu-button');
+  attachBehaviors() {
+    // mobile menu toggle + outside click + aria updates + body overflow
+    this.initMobileBehaviors();
+
+    // make desktop dropdowns clickable (toggle on click for accessibility)
+    this.initDesktopDropdownClick();
+
+    // collapsible details: ensure summary toggle icons update (handled by native <details>)
+    this.initCollapsibleBehavior();
+
+    // active link highlighting (desktop + mobile)
+    this.highlightActiveLinks();
+
+    // Add CSS to prevent hover/active color change for Get Started buttons
+    this._injectNoHoverColorCSS();
+
+    // close mobile menu on navigation (when user clicks a link inside)
+    this._autoCloseOnNavClick();
+  }
+
+  initMobileBehaviors() {
+    const toggle = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
+    const hamburger = document.getElementById('hamburger-icon');
+    const closeIcon = document.getElementById('close-icon');
+    const mobileTopCTA = document.getElementById('mobile-cta-top');
 
-    if (mobileMenuButton && mobileMenu) {
-      mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-      });
+    if (!toggle || !mobileMenu) return;
 
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', (e) => {
-        if (!mobileMenuButton.contains(e.target) && !mobileMenu.contains(e.target)) {
-          mobileMenu.classList.add('hidden');
+    const openMenu = () => {
+      mobileMenu.classList.remove('hidden');
+      toggle.setAttribute('aria-expanded', 'true');
+      if (hamburger) hamburger.classList.add('hidden');
+      if (closeIcon) closeIcon.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+      // hide top small CTA (we want bottom actions visible inside menu)
+      if (mobileTopCTA) mobileTopCTA.classList.add('hidden');
+      this._updateMobileMenuTop();
+    };
+
+    const closeMenu = () => {
+      mobileMenu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+      if (hamburger) hamburger.classList.remove('hidden');
+      if (closeIcon) closeIcon.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+      if (mobileTopCTA) mobileTopCTA.classList.remove('hidden');
+    };
+
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      if (isOpen) closeMenu(); else openMenu();
+    });
+
+    // close when clicking outside the menu (but ignore clicks inside menu)
+    document.addEventListener('click', (e) => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      if (!isOpen) return;
+      const clickInside = e.target.closest && (e.target.closest('#mobile-menu') || e.target.closest('#mobile-menu-toggle'));
+      if (!clickInside) closeMenu();
+    });
+
+    // close with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+        if (hamburger) hamburger.classList.remove('hidden');
+        if (closeIcon) closeIcon.classList.add('hidden');
+        if (mobileTopCTA) mobileTopCTA.classList.remove('hidden');
+      }
+    });
+
+    // ensure mobile menu top offset is correct on open
+    window.addEventListener('resize', () => this._updateMobileMenuTop());
+  }
+
+  initDesktopDropdownClick() {
+    // allow clicking desktop dropdown toggle to toggle visibility (accessibility)
+    const toggles = document.querySelectorAll('.desktop-dropdown-toggle');
+    toggles.forEach(btn => {
+      const parent = btn.closest('.relative');
+      if (!parent) return;
+      const dropdown = parent.querySelector('.desktop-dropdown');
+      if (!dropdown) return;
+
+      let openedByClick = false;
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // toggle classes to show/hide (mirror :hover behavior)
+        const isVisible = dropdown.classList.contains('!visible') || dropdown.style.opacity === '1';
+        if (isVisible) {
+          dropdown.style.opacity = '';
+          dropdown.style.visibility = '';
+          dropdown.classList.remove('open-by-click');
+          openedByClick = false;
+        } else {
+          dropdown.style.opacity = '1';
+          dropdown.style.visibility = 'visible';
+          dropdown.classList.add('open-by-click');
+          openedByClick = true;
         }
       });
-    }
+
+      // close when clicking outside
+      document.addEventListener('click', (ev) => {
+        const inside = ev.target.closest && ev.target.closest('.relative') === parent;
+        if (!inside && openedByClick) {
+          dropdown.style.opacity = '';
+          dropdown.style.visibility = '';
+          dropdown.classList.remove('open-by-click');
+          openedByClick = false;
+        }
+      });
+    });
   }
 
-  initScrollEffects() {
-    // Highlight active navigation link based on current page
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
-      const href = link.getAttribute('href');
-      if (href === currentPage || (currentPage === '' && href === 'index.html')) {
-        link.classList.add('text-[#df00ff]', 'font-semibold');
+  initCollapsibleBehavior() {
+    // No heavy JS needed — <details> works on mobile. But ensure only UI icon flips when open.
+    // We also close other <details> if you want only-one-open behavior (optional).
+    const details = document.querySelectorAll('#mobile-menu details');
+    details.forEach(d => {
+      // optional: when one opens, close siblings
+      d.addEventListener('toggle', () => {
+        if (d.open) {
+          details.forEach(sib => {
+            if (sib !== d) sib.open = false;
+          });
+        }
+      });
+    });
+  }
+
+  highlightActiveLinks() {
+    const currentPath = window.location.pathname.split('/').pop() || 'index.html';
+
+    const mark = (anchor) => {
+      try {
+        const href = anchor.getAttribute('href');
+        if (!href) return false;
+        // normalize relative hrefs
+        const url = new URL(href, window.location.origin);
+        const hrefPage = url.pathname.split('/').pop() || 'index.html';
+        // Don't highlight Get Started button
+        if ((anchor.id === 'mobile-getstarted-btn' || anchor.classList.contains('no-hover-color'))) {
+          return false;
+        }
+        if (hrefPage === currentPath || (currentPath === '' && hrefPage === 'index.html')) {
+          anchor.classList.add('text-[#df00ff]', 'font-semibold');
+          return true;
+        }
+      } catch (e) {
+        // ignore malformed hrefs
+      }
+      return false;
+    };
+
+    const navRoot = document.getElementById('webglo-navigation');
+    if (!navRoot) return;
+
+    const links = navRoot.querySelectorAll('a[href]');
+    links.forEach(a => {
+      // clear previous highlights
+      a.classList.remove('text-[#df00ff]', 'font-semibold');
+    });
+    links.forEach(a => mark(a));
+  }
+
+  _injectNoHoverColorCSS() {
+    if (document.getElementById('no-hover-color-style')) return;
+    const style = document.createElement('style');
+    style.id = 'no-hover-color-style';
+    style.textContent = `
+      .no-hover-color:hover,
+      .no-hover-color:focus,
+      .no-hover-color:active {
+        color: white !important;
+        background: linear-gradient(to right, #df00ff, #0cead9) !important;
+        box-shadow: 0 4px 24px 0 rgba(223,0,255,0.12), 0 1.5px 6px 0 rgba(12,234,217,0.08);
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  _autoCloseOnNavClick() {
+    // close mobile menu when clicking any link inside it
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (!mobileMenu) return;
+    mobileMenu.addEventListener('click', (e) => {
+      const a = e.target.closest && e.target.closest('a[href]');
+      if (a) {
+        // small delay to allow navigation to start
+        setTimeout(() => {
+          mobileMenu.classList.add('hidden');
+          document.body.classList.remove('overflow-hidden');
+          const hamburger = document.getElementById('hamburger-icon');
+          const closeIcon = document.getElementById('close-icon');
+          if (hamburger) hamburger.classList.remove('hidden');
+          if (closeIcon) closeIcon.classList.add('hidden');
+          const mobileTopCTA = document.getElementById('mobile-cta-top');
+          if (mobileTopCTA) mobileTopCTA.classList.remove('hidden');
+        }, 120);
       }
     });
   }
 }
 
-// Initialize components - ensure single initialization
+// single initialization guard
 if (typeof window.webGloComponentsInitialized === 'undefined') {
   window.webGloComponentsInitialized = true;
-  
-  // Multiple initialization strategies for better browser compatibility
-  function initializeComponents() {
-    console.log('Attempting to initialize WebGlo Components...');
+
+  function initComponentsSafe() {
+    console.log('Initializing WebGloComponents (safe)');
     new WebGloComponents();
   }
-  
-  // Strategy 1: If DOM is already loaded
+
   if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    console.log('DOM already loaded, initializing immediately');
-    initializeComponents();
-  } 
-  // Strategy 2: Wait for DOMContentLoaded
-  else if (document.readyState === 'loading') {
-    console.log('DOM loading, waiting for DOMContentLoaded event');
-    document.addEventListener('DOMContentLoaded', initializeComponents);
-    
-    // Strategy 3: Fallback timer (in case DOMContentLoaded doesn't fire)
+    initComponentsSafe();
+  } else {
+    document.addEventListener('DOMContentLoaded', initComponentsSafe);
+    // fallback in case DOMContentLoaded doesn't fire fast
     setTimeout(() => {
-      if (!document.querySelector('#webglo-navigation nav')) {
-        console.log('Fallback initialization triggered');
-        initializeComponents();
-      }
+      if (!document.querySelector('#webglo-navigation nav')) initComponentsSafe();
     }, 1000);
   }
-  
-  // Strategy 4: Window load fallback
+
   window.addEventListener('load', () => {
-    if (!document.querySelector('#webglo-navigation nav')) {
-      console.log('Window load fallback triggered');
-      initializeComponents();
-    }
+    if (!document.querySelector('#webglo-navigation nav')) initComponentsSafe();
   });
 }

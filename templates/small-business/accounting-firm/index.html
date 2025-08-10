@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precision Financials - Expert Accounting & Tax Services</title>
+    <meta name="description" content="Precision Financials offers expert tax preparation, bookkeeping, and financial consulting for individuals and businesses. Let our certified professionals secure your financial future.">
+    <meta name="keywords" content="accountant, tax services, bookkeeping, financial consulting, CPA, business accounting">
+    <meta name="author" content="Precision Financials">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #F8F9FA;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Roboto Slab', serif;
+        }
+        .bg-primary { background-color: #0d3b66; }
+        .text-primary { color: #0d3b66; }
+        .bg-secondary { background-color: #faf0ca; }
+        .text-secondary { color: #faf0ca; }
+        .border-primary { border-color: #0d3b66; }
+        
+        /* FAQ Styles */
+        .faq-item summary {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .faq-item summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+        .faq-item[open] .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* Chatbot Styles */
+        #chat-widget {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
+        }
+        #chat-bubble {
+            width: 4rem;
+            height: 4rem;
+            background-color: #0d3b66;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        #chat-bubble:hover {
+            transform: scale(1.1);
+        }
+        
+        /* NEW: Chat prompt bubble styles */
+        #chat-prompt {
+            position: absolute;
+            bottom: 5rem;
+            right: 1rem;
+            background-color: white;
+            color: #333;
+            padding: 0.75rem 1.25rem;
+            border-radius: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            width: max-content;
+            max-width: 250px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        #chat-prompt::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 22px;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white;
+        }
+        #chat-prompt.visible {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        #chat-window {
+            position: absolute;
+            bottom: 5.5rem;
+            right: 0;
+            width: 370px;
+            height: 500px;
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0.95) translateY(10px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        #chat-window.open {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+        #chat-header {
+            background-color: #0d3b66;
+            color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        #chat-close-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        #chat-close-button:hover {
+            opacity: 1;
+        }
+        #chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .message {
+            padding: 0.5rem 1rem;
+            border-radius: 1rem;
+            max-width: 80%;
+            line-height: 1.5;
+        }
+        .user-message {
+            background-color: #0d3b66;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 0.25rem;
+        }
+        .ai-message {
+            background-color: #e9ecef;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 0.25rem;
+        }
+        #chat-footer {
+            padding: 0.5rem 0.75rem;
+            text-align: center;
+            font-size: 0.75rem;
+            color: #6c757d;
+            background-color: #f8f9fa;
+        }
+        #chat-input-container {
+            border-top: 1px solid #dee2e6;
+            padding: 0.75rem;
+            display: flex;
+            gap: 0.5rem;
+            background-color: #fff;
+        }
+        #chat-input {
+            flex-grow: 1;
+            border: 1px solid #ced4da;
+            border-radius: 9999px;
+            padding: 0.5rem 1rem;
+            outline: none;
+        }
+        #chat-input:focus {
+            border-color: #0d3b66;
+            box-shadow: 0 0 0 2px rgba(13, 59, 102, 0.2);
+        }
+        #chat-send {
+            background-color: #0d3b66;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        #confirm-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0,0,0,0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1100;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #confirm-modal-overlay.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        #confirm-modal {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="text-gray-700">
+
+    <div id="website-context" class="hidden">
+        <!-- This hidden div holds all the text content for the AI's context -->
+        <div data-context-section="Header">
+            Precision Financials. Expert Accounting & Tax Services.
+        </div>
+        <div data-context-section="About Us">
+            <h2>About Precision Financials</h2>
+            <p>Founded on the principles of integrity, accuracy, and partnership, Precision Financials has been the trusted financial backbone for businesses and individuals for over 15 years. Our team of certified public accountants (CPAs) and financial advisors are dedicated to demystifying the complexities of finance. We don't just crunch numbers; we provide actionable insights that empower you to make informed decisions, foster growth, and achieve long-term financial security.</p>
+        </div>
+        <div data-context-section="Services">
+            <h2>Our Services</h2>
+            <div>
+                <h3>Business Tax Preparation</h3>
+                <p>Navigating the corporate tax landscape can be daunting. We specialize in tax planning and preparation for S-corps, C-corps, and partnerships, ensuring compliance while maximizing your deductions.</p>
+            </div>
+            <div>
+                <h3>Personal Tax Services</h3>
+                <p>From simple returns to complex investment scenarios, our experts provide meticulous personal tax preparation services, helping you keep more of your hard-earned money.</p>
+            </div>
+            <div>
+                <h3>Full-Service Bookkeeping</h3>
+                <p>Stay focused on your business operations while we handle your day-to-day financial records. Our bookkeeping services include payroll, financial statements, and accounts payable/receivable.</p>
+            </div>
+            <div>
+                <h3>Financial Consulting</h3>
+                <p>Planning for the future? We offer strategic financial consulting services, including business valuation, cash flow management, and growth strategy to help you reach your goals.</p>
+            </div>
+        </div>
+        <div data-context-section="Pricing">
+            <h2>Pricing Information</h2>
+            <p>Personal Tax Preparation starts at $220. Business Tax Preparation starts at $850 for S-Corps and C-Corps. Monthly Bookkeeping has three tiers: Essentials for $300/month, Growth for $550/month, and Full-Service for $800/month. Financial Consulting services are billed at an hourly rate of $200/hour. All prices are estimates and a final quote will be provided after a free consultation.</p>
+        </div>
+        <div data-context-section="FAQs">
+            <h2>Frequently Asked Questions</h2>
+            <p>Q: What documents do I need for tax preparation? A: For personal taxes, you'll typically need W-2s, 1099s, mortgage interest statements, and records of any other income or deductions. For businesses, we'll need your previous year's return, income statements, and balance sheets. We provide a full checklist upon engagement.</p>
+            <p>Q: How can you help my small business save money? A: We help by identifying all eligible tax deductions, providing strategic advice on cash flow management, and ensuring your bookkeeping is accurate, which prevents costly errors. Our goal is to be a partner in your financial success.</p>
+            <p>Q: Do you work with clients remotely? A: Yes, absolutely. We use secure digital platforms to work with clients across the country, ensuring a seamless and confidential process no matter where you are located.</p>
+        </div>
+        <div data-context-section="Contact Information">
+            <h2>Contact Us</h2>
+            <p>Our office is located at 123 Finance Avenue, Suite 400, Capital City, 54321. You can reach us by phone at 555-012-3456 or via the contact form on our website. Our office hours are Monday to Friday, 9:00 AM to 5:00 PM.</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center space-x-2">
+                <svg class="h-8 w-8 text-primary" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                <span class="text-2xl font-bold text-primary">Precision Financials</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-primary">Home</a>
+                <a href="#services" class="text-gray-600 hover:text-primary">Services</a>
+                <a href="#pricing" class="text-gray-600 hover:text-primary">Pricing</a>
+                <a href="#faq" class="text-gray-600 hover:text-primary">FAQs</a>
+                <a href="#about" class="text-gray-600 hover:text-primary">About Us</a>
+                <a href="#contact" class="text-gray-600 hover:text-primary">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:block bg-primary text-white font-semibold py-2 px-6 rounded-md hover:bg-opacity-90 transition">
+                Get a Free Consultation
+            </a>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden">
+            <a href="#home" class="block py-2 px-6 text-center hover:bg-gray-100">Home</a>
+            <a href="#services" class="block py-2 px-6 text-center hover:bg-gray-100">Services</a>
+            <a href="#pricing" class="block py-2 px-6 text-center hover:bg-gray-100">Pricing</a>
+            <a href="#faq" class="block py-2 px-6 text-center hover:bg-gray-100">FAQs</a>
+            <a href="#about" class="block py-2 px-6 text-center hover:bg-gray-100">About Us</a>
+            <a href="#contact" class="block py-2 px-6 text-center hover:bg-gray-100">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="bg-primary text-white">
+            <div class="container mx-auto px-6 py-24 md:py-32 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 text-center md:text-left mb-12 md:mb-0">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-4">Clarity, Confidence, and Control</h1>
+                    <p class="text-lg md:text-xl text-secondary mb-8">Expert financial guidance to navigate your personal and business goals.</p>
+                    <a href="#services" class="bg-white text-primary font-bold py-3 px-8 rounded-md hover:bg-secondary hover:text-primary transition text-lg">Explore Our Services</a>
+                </div>
+                <div class="md:w-1/2">
+                    <img src="https://images.unsplash.com/photo-1554224155-1696413565d3?q=80&w=2070&auto=format&fit=crop" alt="Professional discussing financial documents" class="rounded-lg shadow-2xl">
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Comprehensive Financial Services</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Tailored solutions for every financial need, ensuring your success and peace of mind.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center border-t-4 border-primary">
+                        <h3 class="text-xl font-bold text-primary mb-3">Business Tax Preparation</h3>
+                        <p>Maximize deductions and ensure compliance with our expert corporate tax services.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center border-t-4 border-primary">
+                        <h3 class="text-xl font-bold text-primary mb-3">Personal Tax Services</h3>
+                        <p>Meticulous tax preparation to help you keep more of your hard-earned money.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center border-t-4 border-primary">
+                        <h3 class="text-xl font-bold text-primary mb-3">Full-Service Bookkeeping</h3>
+                        <p>Accurate financial records, payroll, and statements so you can focus on your business.</p>
+                    </div>
+                    <div class="bg-white p-8 rounded-lg shadow-lg text-center border-t-4 border-primary">
+                        <h3 class="text-xl font-bold text-primary mb-3">Financial Consulting</h3>
+                        <p>Strategic advice for cash flow management, growth, and long-term planning.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Transparent Pricing</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">No hidden fees. Just straightforward pricing for exceptional service. Contact us for a custom quote.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="border border-gray-200 rounded-lg p-8 text-center flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Personal Tax</h3>
+                        <p class="text-4xl font-bold mb-2">$220<span class="text-lg font-normal text-gray-500">/starting at</span></p>
+                        <p class="text-gray-600 h-full">Ideal for individuals and families looking for accurate, stress-free tax filing.</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-8 text-center flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Business Tax</h3>
+                        <p class="text-4xl font-bold mb-2">$850<span class="text-lg font-normal text-gray-500">/starting at</span></p>
+                        <p class="text-gray-600 h-full">Comprehensive tax planning and preparation for S-Corps, C-Corps, and partnerships.</p>
+                    </div>
+                    <div class="border border-primary rounded-lg p-8 text-center flex flex-col bg-secondary/30 relative">
+                         <p class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-primary text-white text-sm font-semibold px-3 py-1 rounded-full">Most Popular</p>
+                        <h3 class="text-2xl font-bold text-primary mb-4">Bookkeeping</h3>
+                        <p class="text-4xl font-bold mb-2">$550<span class="text-lg font-normal text-gray-500">/month</span></p>
+                        <p class="text-gray-600 h-full">Our Growth Plan for small businesses includes monthly statements, payroll, and support.</p>
+                    </div>
+                    <div class="border border-gray-200 rounded-lg p-8 text-center flex flex-col">
+                        <h3 class="text-2xl font-bold text-primary mb-4">Consulting</h3>
+                        <p class="text-4xl font-bold mb-2">$200<span class="text-lg font-normal text-gray-500">/hour</span></p>
+                        <p class="text-gray-600 h-full">Strategic one-on-one advice to help you navigate complex financial decisions.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="py-20 md:py-28">
+            <div class="container mx-auto px-6 max-w-4xl">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Frequently Asked Questions</h2>
+                </div>
+                <div class="space-y-4">
+                    <details class="faq-item bg-white p-6 rounded-lg shadow-md">
+                        <summary class="font-semibold text-lg text-primary">
+                            What documents do I need for tax preparation?
+                            <span class="faq-icon text-2xl font-light">+</span>
+                        </summary>
+                        <p class="mt-4 text-gray-600">For personal taxes, you'll typically need W-2s, 1099s, mortgage interest statements, and records of any other income or deductions. For businesses, we'll need your previous year's return, income statements, and balance sheets. We provide a full checklist upon engagement.</p>
+                    </details>
+                    <details class="faq-item bg-white p-6 rounded-lg shadow-md">
+                        <summary class="font-semibold text-lg text-primary">
+                            How can you help my small business save money?
+                            <span class="faq-icon text-2xl font-light">+</span>
+                        </summary>
+                        <p class="mt-4 text-gray-600">We help by identifying all eligible tax deductions, providing strategic advice on cash flow management, and ensuring your bookkeeping is accurate, which prevents costly errors. Our goal is to be a partner in your financial success.</p>
+                    </details>
+                    <details class="faq-item bg-white p-6 rounded-lg shadow-md">
+                        <summary class="font-semibold text-lg text-primary">
+                            Do you work with clients remotely?
+                            <span class="faq-icon text-2xl font-light">+</span>
+                        </summary>
+                        <p class="mt-4 text-gray-600">Yes, absolutely. We use secure digital platforms to work with clients across the country, ensuring a seamless and confidential process no matter where you are located.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- About Us Section -->
+        <section id="about" class="py-20 md:py-28 bg-secondary">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-bold text-primary mb-6">Your Trusted Financial Partner</h2>
+                <p class="text-lg text-gray-800 max-w-4xl mx-auto">For over 15 years, Precision Financials has been the trusted financial backbone for businesses and individuals. Our team of certified public accountants (CPAs) is dedicated to demystifying the complexities of finance, providing actionable insights that empower you to make informed decisions, foster growth, and achieve long-term financial security.</p>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-primary mb-4">Get in Touch</h2>
+                    <p class="text-lg text-gray-600 max-w-3xl mx-auto">Ready to take control of your finances? Contact us today for a free, no-obligation consultation.</p>
+                </div>
+                <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-xl">
+                    <form action="#" method="POST">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                            <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required>
+                        </div>
+                        <div class="mb-6">
+                            <textarea placeholder="How can we help you?" rows="5" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary" required></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-primary text-white font-bold py-3 px-8 rounded-md hover:bg-opacity-90 transition text-lg">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- NEW: Proper Footer -->
+    <footer class="bg-primary text-white">
+        <div class="container mx-auto px-6 py-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+                <div class="lg:col-span-2 text-center md:text-left">
+                    <a href="#home" class="flex items-center justify-center md:justify-start space-x-2 mb-4">
+                        <svg class="h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                        <span class="text-2xl font-bold">Precision Financials</span>
+                    </a>
+                    <p class="text-gray-400 max-w-sm">Your trusted partner in financial clarity and success.</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <h4 class="font-bold text-lg mb-4">Quick Links</h4>
+                    <div class="space-y-2">
+                        <a href="#services" class="block text-gray-400 hover:text-white">Services</a>
+                        <a href="#pricing" class="block text-gray-400 hover:text-white">Pricing</a>
+                        <a href="#faq" class="block text-gray-400 hover:text-white">FAQs</a>
+                        <a href="#contact" class="block text-gray-400 hover:text-white">Contact</a>
+                    </div>
+                </div>
+                <div class="text-center md:text-left">
+                    <h4 class="font-bold text-lg mb-4">Follow Us</h4>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white" aria-label="LinkedIn"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-white" aria-label="Twitter"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616v.064c0 2.297 1.634 4.208 3.803 4.649-.625.17-1.284.26-1.96.26-.304 0-.6-.028-.888-.083.623 1.882 2.441 3.256 4.604 3.295-1.725 1.348-3.89 2.15-6.251 2.15-.404 0-.802-.023-1.195-.069 2.232 1.428 4.885 2.264 7.73 2.264 9.281 0 14.368-7.69 14.048-14.411.984-.707 1.836-1.592 2.52-2.624z"/></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t border-gray-700 text-center text-gray-400 text-sm">
+                <p>&copy; <span id="current-year"></span> Precision Financials. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- AI Chatbot Widget -->
+    <div id="chat-widget">
+        <!-- NEW: Chat prompt bubble -->
+        <div id="chat-prompt">
+            <p class="font-semibold">Hi there! 👋</p>
+            <p class="text-sm">I'm FinBot. Ask me any questions you have about our services.</p>
+        </div>
+        <div id="chat-window">
+            <div id="chat-header">
+                <span>FinBot Assistant</span>
+                <button id="chat-close-button">&times;</button>
+            </div>
+            <div id="chat-messages">
+                <div class="message ai-message">Hello! I'm FinBot. How can I help you with questions about our services today?</div>
+            </div>
+            <div id="chat-footer">
+                FinBot is an AI assistant and can make mistakes. Please verify important information.
+            </div>
+            <div id="chat-input-container">
+                <input type="text" id="chat-input" placeholder="Ask about our services...">
+                <button id="chat-send">
+                    <svg class="w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" /></svg>
+                </button>
+            </div>
+        </div>
+        <div id="chat-bubble">
+            <svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12.76c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.076-4.076a1.526 1.526 0 011.037-.443 48.282 48.282 0 005.68-.494c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z" /></svg>
+        </div>
+    </div>
+    
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal-overlay">
+        <div id="confirm-modal">
+            <h3 class="text-xl font-bold text-primary mb-4">End Chat Session?</h3>
+            <p class="text-gray-600 mb-6">The conversation history will be lost. Are you sure you want to close the chat?</p>
+            <div class="flex justify-center gap-4">
+                <button id="confirm-cancel-button" class="bg-gray-200 text-gray-800 font-semibold py-2 px-6 rounded-md hover:bg-gray-300 transition">Cancel</button>
+                <button id="confirm-close-button" class="bg-primary text-white font-semibold py-2 px-6 rounded-md hover:bg-opacity-90 transition">Close Chat</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Standard Page JavaScript ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // --- AI Chatbot Logic ---
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw461fz8IiOCV8qsQEbUm1kVEt2oO10C7ryX0Uqp1roBElucdAEcKI3OP4KCuGYAm8/exec"; // IMPORTANT: PASTE YOUR URL HERE
+
+        const chatWindow = document.getElementById('chat-window');
+        const chatBubble = document.getElementById('chat-bubble');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatSendButton = document.getElementById('chat-send');
+        const chatCloseButton = document.getElementById('chat-close-button');
+        const confirmModal = document.getElementById('confirm-modal-overlay');
+        const confirmCloseButton = document.getElementById('confirm-close-button');
+        const confirmCancelButton = document.getElementById('confirm-cancel-button');
+        // NEW: Get the chat prompt bubble
+        const chatPrompt = document.getElementById('chat-prompt');
+        
+        let conversationHistory = [];
+        let websiteContext = '';
+        let hasChatPoppedUp = false;
+
+        function buildContext() {
+            const contextSections = document.querySelectorAll('#website-context [data-context-section]');
+            let fullText = '';
+            contextSections.forEach(section => {
+                fullText += section.innerText.trim() + '\n\n';
+            });
+            return fullText;
+        }
+
+        // Toggle chat window visibility
+        chatBubble.addEventListener('click', () => {
+            chatWindow.classList.toggle('open');
+            // NEW: Hide the prompt bubble if the main window is opened
+            if (chatWindow.classList.contains('open')) {
+                chatPrompt.classList.remove('visible');
+            }
+        });
+
+        function addMessage(text, sender) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message', `${sender}-message`);
+            messageElement.textContent = text;
+            chatMessages.appendChild(messageElement);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        function resetChat() {
+            conversationHistory = [];
+            chatMessages.innerHTML = '';
+            addMessage("Hello! I'm FinBot. How can I help you with questions about our services today?", 'ai');
+        }
+
+        chatCloseButton.addEventListener('click', () => {
+            confirmModal.classList.add('visible');
+        });
+
+        confirmCancelButton.addEventListener('click', () => {
+            confirmModal.classList.remove('visible');
+        });
+
+        confirmCloseButton.addEventListener('click', () => {
+            chatWindow.classList.remove('open');
+            confirmModal.classList.remove('visible');
+            setTimeout(resetChat, 300);
+        });
+
+        async function sendMessage() {
+            const userQuestion = chatInput.value.trim();
+            if (!userQuestion) return;
+
+            addMessage(userQuestion, 'user');
+            chatInput.value = '';
+            chatSendButton.disabled = true;
+
+            conversationHistory.push({ role: 'user', parts: [{ text: userQuestion }] });
+
+            const typingIndicator = document.createElement('div');
+            typingIndicator.classList.add('message', 'ai-message');
+            typingIndicator.innerHTML = '<span class="animate-pulse">...</span>';
+            chatMessages.appendChild(typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            try {
+                if (GOOGLE_SCRIPT_URL.includes("YOUR_DEPLOYMENT_ID")) {
+                    throw new Error("Please update the GOOGLE_SCRIPT_URL in the script tag.");
+                }
+
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        question: userQuestion,
+                        history: conversationHistory,
+                        context: websiteContext
+                    }),
+                    headers: { "Content-Type": "text/plain;charset=utf-8" },
+                });
+
+                if (!response.ok) throw new Error(`Network response was not ok: ${response.statusText}`);
+                
+                const result = await response.json();
+                chatMessages.removeChild(typingIndicator);
+
+                if (result.error) throw new Error(result.message);
+
+                const aiResponse = result.candidates[0].content.parts[0].text;
+                addMessage(aiResponse, 'ai');
+
+                conversationHistory.push({ role: 'model', parts: [{ text: aiResponse }] });
+
+            } catch (error) {
+                console.error("Chatbot Error:", error);
+                chatMessages.removeChild(typingIndicator);
+                addMessage(`Sorry, I'm having trouble connecting. Please try again later. Error: ${error.message}`, 'ai');
+            } finally {
+                chatSendButton.disabled = false;
+            }
+        }
+
+        chatSendButton.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // NEW: Updated scroll listener for chat prompt bubble
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400 && !hasChatPoppedUp) {
+                hasChatPoppedUp = true;
+                chatPrompt.classList.add('visible');
+                // Hide the prompt after a few seconds
+                setTimeout(() => {
+                    chatPrompt.classList.remove('visible');
+                }, 6000);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            websiteContext = buildContext();
+        });
+    </script>
+</body>
+</html>

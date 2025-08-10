@@ -41,8 +41,10 @@
       const auditForm = document.getElementById('auditForm');
       const submitBtn = document.getElementById('submitBtn');
       const resultDiv = document.getElementById('result');
+      let auditRequestId = null;
+      let pollInterval = null;
 
-      auditForm.addEventListener('submit', function(e) {
+      auditForm.addEventListener('submit', async function(e) {
         e.preventDefault();
         if (submitBtn.disabled) return;
 
@@ -65,27 +67,55 @@
           geminiApiKey: document.getElementById('gemini').value.trim()
         };
 
-        google.script.run
-          .withSuccessHandler(onComplete)
-          .withFailureHandler(onFailure)
-          .performWebsiteAudit(formData);
-      });
-
-      function onComplete(response) {
-        if (response && response.success) {
-          resultDiv.className = 'success';
-          resultDiv.innerHTML = `✅ Process Started! Your comprehensive website audit is being generated and will be sent to <strong>${document.getElementById('email').value}</strong> shortly.<br>Please check your inbox (and spam folder).`;
-        } else {
-          showError(response && response.message ? response.message : 'Unknown error.');
+        try {
+          // Replace with your Apps Script web app URL
+          const scriptUrl = 'YOUR_APPS_SCRIPT_WEB_APP_URL_HERE';
+          const response = await fetch(scriptUrl, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData)
+          });
+          const data = await response.json();
+          if (data && data.success) {
+            resultDiv.className = 'success';
+            resultDiv.innerHTML = `✅ Process Started! Your comprehensive website audit is being generated and will be sent to <strong>${email}</strong> shortly.<br>Please check your inbox (and spam folder).`;
+            auditRequestId = data.requestId || null;
+            startPolling(auditRequestId, email);
+          } else {
+            showError(data && data.message ? data.message : 'Unknown error.');
+          }
+        } catch (err) {
+          showError('Network error. Please try again later.');
         }
         submitBtn.disabled = false;
         submitBtn.textContent = 'Generate & Email My Pro Report';
-      }
+      });
 
-      function onFailure(error) {
-        showError(error && error.message ? error.message : 'Unknown error.');
-        submitBtn.disabled = false;
-        submitBtn.textContent = 'Generate & Email My Pro Report';
+      function startPolling(requestId, email) {
+        if (!requestId) return;
+        pollInterval = setInterval(async () => {
+          try {
+            // Replace with your Apps Script status endpoint
+            const statusUrl = `YOUR_APPS_SCRIPT_STATUS_ENDPOINT_HERE?requestId=${encodeURIComponent(requestId)}`;
+            const response = await fetch(statusUrl);
+            const data = await response.json();
+            if (data && data.status) {
+              if (data.status === 'running') {
+                resultDiv.className = 'note';
+                resultDiv.textContent = data.progress || 'Audit in progress...';
+              } else if (data.status === 'done') {
+                resultDiv.className = 'success';
+                resultDiv.innerHTML = `✅ Audit complete! Your report has been sent to <strong>${email}</strong>.`;
+                clearInterval(pollInterval);
+              } else if (data.status === 'error') {
+                showError('An error occurred during your audit. Please try again later.');
+                clearInterval(pollInterval);
+              }
+            }
+          } catch (err) {
+            // Ignore polling errors
+          }
+        }, 3000);
       }
 
       function showError(msg) {

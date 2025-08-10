@@ -1,0 +1,333 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Meta Tags -->
+    <title>Dog Walker Pro - Your Neighborhood's Trusted Dog Walking Service</title>
+    <meta name="description" content="Dog Walker Pro: Reliable, friendly, and professional dog walking services. Book a walk for your furry friend today!">
+    <meta name="keywords" content="dog walker, pet care, dog walking, dog sitter, pet services, dog walking business">
+    <meta name="author" content="Dog Walker Pro">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Pacifico:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Glow effect styles (formerly in dog-walker-glow.css) */
+        .glow-header {
+            animation: glowText 2s infinite alternate;
+        }
+        @keyframes glowText {
+            0% { text-shadow: 0 2px 16px #df00ffcc; }
+            100% { text-shadow: 0 2px 32px #0cead9cc; }
+        }
+        .glow-btn {
+            animation: glowBtn 1.5s infinite alternate;
+        }
+        @keyframes glowBtn {
+            0% { box-shadow: 0 4px 16px #df00ff44; }
+            100% { box-shadow: 0 8px 32px #0cead988; }
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7FAFF;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Pacifico', cursive;
+        }
+        .text-shadow-custom {
+            text-shadow: 0px 2px 8px #0cead9cc;
+        }
+    </style>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7FAFF;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Pacifico', cursive;
+        }
+        .text-shadow-custom {
+            text-shadow: 0px 2px 8px #0cead9cc;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- Header & Sticky Navigation Bar -->
+    <header id="header" class="bg-white/80 backdrop-blur-lg shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#home" class="flex items-center space-x-2">
+                <svg class="h-8 w-8 text-[#df00ff]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <circle cx="12" cy="12" r="10" stroke="#df00ff" stroke-width="2" fill="#0cead9" />
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 14s1.5 2 4 2 4-2 4-2" />
+                  <circle cx="9" cy="10" r="1" fill="#fff" />
+                  <circle cx="15" cy="10" r="1" fill="#fff" />
+                </svg>
+                <span class="font-bold text-2xl text-[#df00ff] font-serif">Dog Walker Pro</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-600 hover:text-[#df00ff] transition-colors duration-300">Home</a>
+                <a href="#services" class="text-gray-600 hover:text-[#df00ff] transition-colors duration-300">Services</a>
+                <a href="#about" class="text-gray-600 hover:text-[#df00ff] transition-colors duration-300">About</a>
+                <a href="#testimonials" class="text-gray-600 hover:text-[#df00ff] transition-colors duration-300">Testimonials</a>
+                <a href="#contact" class="text-gray-600 hover:text-[#df00ff] transition-colors duration-300">Contact</a>
+            </div>
+            <a href="#contact" class="hidden md:block bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-medium py-2 px-6 rounded-full hover:opacity-90 transition-all duration-300 transform hover:scale-105">
+                Book Now
+            </a>
+            <button id="mobile-menu-button" class="md:hidden">
+                <svg class="w-6 h-6 text-gray-800" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95">
+            <a href="#home" class="block py-3 px-6 text-center text-gray-700 hover:bg-[#df00ff]/10">Home</a>
+            <a href="#services" class="block py-3 px-6 text-center text-gray-700 hover:bg-[#df00ff]/10">Services</a>
+            <a href="#about" class="block py-3 px-6 text-center text-gray-700 hover:bg-[#df00ff]/10">About</a>
+            <a href="#testimonials" class="block py-3 px-6 text-center text-gray-700 hover:bg-[#df00ff]/10">Testimonials</a>
+            <a href="#contact" class="block py-3 px-6 text-center text-gray-700 hover:bg-[#df00ff]/10">Contact</a>
+            <div class="p-4">
+                <a href="#contact" class="block w-full bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-medium py-3 px-6 rounded-full text-center hover:opacity-90 transition-all duration-300">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="relative h-[80vh] min-h-[500px] flex items-center justify-center text-white">
+            <div class="absolute inset-0 bg-black opacity-40"></div>
+            <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1200&q=80" 
+                 alt="Dog walking in park" 
+                 class="absolute inset-0 w-full h-full object-cover"
+                 onerror="this.onerror=null;this.src='https://placehold.co/1200x800/df00ff/FFFFFF?text=Dog+Walker';">
+            <div class="relative z-10 text-center px-4">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-shadow-custom glow-header">Walks That Make Tails Wag</h1>
+                <p class="text-lg md:text-xl max-w-2xl mx-auto mb-8 text-shadow-custom">Professional, friendly, and reliable dog walking services. Your pet's happiness is our passion!</p>
+                <a href="#contact" class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-bold py-4 px-10 rounded-full hover:opacity-90 transition-all duration-300 transform hover:scale-105 text-lg glow-btn">
+                    Book a Walk
+                </a>
+            </div>
+        </section>
+        <!-- Services Section -->
+        <section id="services" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-[#df00ff] mb-4">Our Services</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">From daily walks to vacation care, we offer flexible, loving services for every dog and owner.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                    <!-- Service Card 1 -->
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Dog walker with happy dog" 
+                             class="w-full h-64 object-cover"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/df00ff/FFFFFF?text=Dog+Walks';">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold mb-3 text-[#df00ff]">Daily Dog Walks</h3>
+                            <p class="text-gray-600 mb-4">Regular exercise and companionship for your dog. Choose your schedule—morning, afternoon, or evening.</p>
+                        </div>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Dog with leash" 
+                             class="w-full h-64 object-cover"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/df00ff/FFFFFF?text=Pet+Sitting';">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold mb-3 text-[#df00ff]">Pet Sitting & Vacation Care</h3>
+                            <p class="text-gray-600 mb-4">Going away? We offer in-home pet sitting, feeding, and playtime so your dog feels safe and loved.</p>
+                        </div>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="service-card bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-2 transition-transform duration-300">
+                        <img src="https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Dog walking group" 
+                             class="w-full h-64 object-cover"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/df00ff/FFFFFF?text=Group+Walks';">
+                        <div class="p-8">
+                            <h3 class="text-2xl font-semibold mb-3 text-[#df00ff]">Group Walks & Socialization</h3>
+                            <p class="text-gray-600 mb-4">Safe, supervised group walks for social dogs. Great for building confidence and making friends!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- About Section -->
+        <section id="about" class="py-20 md:py-28 bg-white">
+            <div class="container mx-auto px-6">
+                <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16">
+                    <div class="md:w-1/2">
+                        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=1200&q=80" 
+                             alt="Dog Walker Pro team" 
+                             class="rounded-lg shadow-2xl w-full"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x500/df00ff/FFFFFF?text=Our+Team';">
+                    </div>
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <h2 class="text-4xl md:text-5xl font-bold text-[#df00ff] mb-6">Our Story</h2>
+                        <p class="text-gray-600 text-lg mb-4">
+                            Founded in 2020, Dog Walker Pro was created by passionate dog lovers who believe every pet deserves care, exercise, and joy. Our mission is to make every walk a highlight of your dog's day.
+                        </p>
+                        <p class="text-gray-600 text-lg">
+                            Our team is background-checked, insured, and trained in pet safety. We treat every dog as our own and strive to build lasting relationships with pets and owners alike.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="py-20 md:py-28">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-[#df00ff] mb-4">Happy Clients</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">See what our clients say about our dog walking and pet care services.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial Card 1 -->
+                    <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                        <p class="text-gray-600 italic mb-6">"Dog Walker Pro is amazing! My dog is always excited for his walks and I get photo updates every time. Highly recommend!"</p>
+                        <p class="font-bold text-[#df00ff]">- Alex P.</p>
+                    </div>
+                    <!-- Testimonial Card 2 -->
+                    <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                        <p class="text-gray-600 italic mb-6">"Reliable, friendly, and professional. I trust them with my dog and my home. The booking process is super easy!"</p>
+                        <p class="font-bold text-[#df00ff]">- Jamie L.</p>
+                    </div>
+                    <!-- Testimonial Card 3 -->
+                    <div class="testimonial-card bg-white p-8 rounded-lg shadow-lg">
+                        <p class="text-gray-600 italic mb-6">"Group walks have helped my shy dog come out of her shell. The team is wonderful and truly cares about the dogs."</p>
+                        <p class="font-bold text-[#df00ff]">- Morgan S.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact & Booking Section -->
+        <section id="contact" class="py-20 md:py-28 bg-[#df00ff]/10">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl md:text-5xl font-bold text-[#df00ff] mb-4">Book a Walk</h2>
+                    <p class="text-lg text-gray-600 max-w-2xl mx-auto">Ready to give your dog the best walk ever? Contact us to schedule or ask questions!</p>
+                </div>
+                <div class="flex flex-col lg:flex-row gap-12">
+                    <!-- Contact Form -->
+                    <div class="lg:w-2/3 bg-white p-8 rounded-lg shadow-xl">
+                        <h3 class="text-2xl font-bold text-[#df00ff] mb-6">Send us a Message</h3>
+                        <form action="#" method="POST">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <input type="text" placeholder="Your Name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#df00ff]" required>
+                                <input type="email" placeholder="Your Email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#df00ff]" required>
+                            </div>
+                            <div class="mb-6">
+                                <input type="text" placeholder="Subject (e.g., 'Dog Walk Inquiry')" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#df00ff]">
+                            </div>
+                            <div class="mb-6">
+                                <textarea placeholder="Your Message" rows="5" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#df00ff]" required></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-bold py-4 px-10 rounded-full hover:opacity-90 transition-all duration-300 transform hover:scale-105 glow-btn">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    <!-- Contact Info -->
+                    <div class="lg:w-1/3">
+                        <div class="bg-white p-8 rounded-lg shadow-xl h-full">
+                           <h3 class="text-2xl font-bold text-[#df00ff] mb-6">Contact Information</h3>
+                           <div class="space-y-4 text-gray-700">
+                               <p><strong>Service Area:</strong><br>Your City & Neighborhoods</p>
+                               <p><strong>Phone:</strong><br><a href="tel:555-123-4567" class="hover:text-[#df00ff]">555-123-4567</a></p>
+                               <p><strong>Email:</strong><br><a href="mailto:info@dogwalkerpro.com" class="hover:text-[#df00ff]">info@dogwalkerpro.com</a></p>
+                               <div class="pt-4">
+                                   <h4 class="font-bold text-lg mb-2 text-[#df00ff]">Hours</h4>
+                                   <p>Mon - Fri: 7:00 AM - 7:00 PM</p>
+                                   <p>Saturday: 8:00 AM - 5:00 PM</p>
+                                   <p>Sunday: Closed</p>
+                               </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center text-center md:text-left space-y-8 md:space-y-0">
+                <div>
+                    <a href="#home" class="font-bold text-2xl font-serif">Dog Walker Pro</a>
+                    <p class="max-w-sm mt-2 text-white/80">Your trusted neighborhood dog walking service.</p>
+                </div>
+                <div class="flex flex-col items-center md:items-start">
+                    <h4 class="font-bold mb-2">Quick Links</h4>
+                    <a href="#services" class="text-white/80 hover:text-white">Services</a>
+                    <a href="#about" class="text-white/80 hover:text-white">About</a>
+                    <a href="#contact" class="text-white/80 hover:text-white">Book Now</a>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-2">Follow Us</h4>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="text-white/80 hover:text-white" aria-label="Facebook">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"></path></svg>
+                        </a>
+                        <a href="#" class="text-white/80 hover:text-white" aria-label="Instagram">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.012 3.584-.07 4.85c-.148 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.07-1.645-.07-4.85s.012-3.584.07-4.85c.148-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.644-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-white/30 text-center text-white/80">
+                <p>&copy; <span id="current-year"></span> Dog Walker Pro. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Glow effect JS (formerly in dog-walker-glow.js)
+        window.addEventListener('DOMContentLoaded', function() {
+          const header = document.querySelector('.glow-header');
+          const btns = document.querySelectorAll('.glow-btn');
+          if (header) {
+            header.style.transition = 'text-shadow 0.3s';
+            setInterval(() => {
+              header.style.textShadow = `0 2px 24px ${Math.random() > 0.5 ? '#df00ffcc' : '#0cead9cc'}`;
+            }, 1200);
+          }
+          btns.forEach(btn => {
+            if (btn) {
+              btn.style.transition = 'box-shadow 0.3s';
+              setInterval(() => {
+                btn.style.boxShadow = `0 4px 24px ${Math.random() > 0.5 ? '#df00ff88' : '#0cead988'}`;
+              }, 1000);
+            }
+          });
+        });
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        // Add shadow to header on scroll
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 10) {
+                header.classList.add('shadow-md');
+            } else {
+                header.classList.remove('shadow-md');
+            }
+        });
+    </script>
+</body>
+</html>
