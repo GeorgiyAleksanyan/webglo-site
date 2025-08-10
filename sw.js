@@ -58,13 +58,14 @@ self.addEventListener('activate', event => {
 
 // Fetch event - serve from cache when offline, but always try network first for HTML
 self.addEventListener('fetch', event => {
-  // Handle different strategies based on request type
+  if (event.request.method !== 'GET') return;
+
+  // Network-first for navigation/HTML requests
   if (event.request.mode === 'navigate' || event.request.destination === 'document') {
-    // For navigation requests, try network first
     event.respondWith(
       fetch(event.request)
         .then(response => {
-          // If network fetch succeeds, clone and cache the response
+          // Cache the fresh HTML for offline use
           if (response && response.status === 200) {
             const responseToCache = response.clone();
             caches.open(CACHE_NAME).then(cache => {
@@ -74,61 +75,41 @@ self.addEventListener('fetch', event => {
           return response;
         })
         .catch(() => {
-          // If network fails, serve from cache
-          return caches.match(event.request);
+          // If offline, serve cached HTML fallback
+          return caches.match(event.request).then(cached => {
+            return cached || caches.match('/index.html');
+          });
         })
     );
   } else {
-    // For other requests (CSS, JS, images), cache first
+    // Cache-first for static assets (CSS, JS, images, fonts)
     event.respondWith(
       caches.match(event.request)
         .then(response => {
-          // Return cached version or fetch from network
           if (response) {
             return response;
           }
-          
-          return fetch(event.request).then(response => {
-            // Check if we received a valid response
-            if (!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
+          // If not in cache, fetch from network and cache it
+          return fetch(event.request).then(networkResponse => {
+            if (!networkResponse || networkResponse.status !== 200 || networkResponse.type !== 'basic') {
+              return networkResponse;
             }
-
-            // Clone the response
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-
-            return response;
+            const responseToCache = networkResponse.clone();
+            caches.open(CACHE_NAME).then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+            return networkResponse;
           });
         })
         .catch(() => {
-          // Return offline page if available
+          // If offline and not cached, serve index.html for documents
           if (event.request.destination === 'document') {
-            return caches.match('/offline.html');
+            return caches.match('/index.html');
           }
+          return Promise.resolve();
         })
     );
   }
-});
-
-// Activate event - clean up old caches
-self.addEventListener('activate', event => {
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cacheName => {
-          if (cacheName !== CACHE_NAME) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
-  );
 });
 
 // Background sync for form submissions
@@ -194,15 +175,15 @@ self.addEventListener('notificationclick', event => {
 async function getStoredFormData() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open('webglo-db', 1);
-    
+
     request.onerror = () => reject(request.error);
-    
+
     request.onsuccess = () => {
       const db = request.result;
       const transaction = db.transaction(['forms'], 'readonly');
       const store = transaction.objectStore('forms');
       const getRequest = store.get('contact-form');
-      
+
       getRequest.onsuccess = () => resolve(getRequest.result);
       getRequest.onerror = () => reject(getRequest.error);
     };
@@ -212,15 +193,15 @@ async function getStoredFormData() {
 async function clearStoredFormData() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open('webglo-db', 1);
-    
+
     request.onerror = () => reject(request.error);
-    
+
     request.onsuccess = () => {
       const db = request.result;
       const transaction = db.transaction(['forms'], 'readwrite');
       const store = transaction.objectStore('forms');
       const deleteRequest = store.delete('contact-form');
-      
+
       deleteRequest.onsuccess = () => resolve();
       deleteRequest.onerror = () => reject(deleteRequest.error);
     };
