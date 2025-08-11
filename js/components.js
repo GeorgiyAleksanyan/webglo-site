@@ -90,23 +90,32 @@ class WebGloComponents {
                       </a>
                     </div>
 
-                    <div class="grid grid-cols-2 gap-6">
+                    <div class="grid grid-cols-3 gap-6">
                       <div>
                         <h3 class="text-lg font-bold text-gray-900 mb-4">Website Solutions</h3>
                         <ul class="space-y-2">
                           <li><a href="services.html#design" class="block text-gray-600 hover:text-[#df00ff]">Custom Design</a></li>
                           <li><a href="services.html#development" class="block text-gray-600 hover:text-[#df00ff]">Development</a></li>
                           <li><a href="services.html#ecommerce" class="block text-gray-600 hover:text-[#df00ff]">E-commerce</a></li>
+                          <li><a href="services.html#domain-hosting" class="block text-gray-600 hover:text-[#df00ff]">Domain & Hosting</a></li>
                           <li><a href="services.html#maintenance" class="block text-gray-600 hover:text-[#df00ff]">Maintenance</a></li>
                         </ul>
                       </div>
                       <div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-4">Digital Marketing</h3>
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">IT Solutions</h3>
                         <ul class="space-y-2">
-                          <li><a href="services.html#seo" class="block text-gray-600 hover:text-[#0cead9]">SEO Optimization</a></li>
-                          <li><a href="services.html#content" class="block text-gray-600 hover:text-[#0cead9]">Content Strategy</a></li>
-                          <li><a href="services.html#branding" class="block text-gray-600 hover:text-[#0cead9]">Branding</a></li>
+                          <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Custom Software</a></li>
+                          <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">IT Infrastructure</a></li>
+                          <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Digital Transformation</a></li>
                           <li><a href="services.html#automation" class="block text-gray-600 hover:text-[#0cead9]">AI & Automation</a></li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-4">Marketing & Branding</h3>
+                        <ul class="space-y-2">
+                          <li><a href="services.html#seo" class="block text-gray-600 hover:text-[#df00ff]">SEO Optimization</a></li>
+                          <li><a href="services.html#content" class="block text-gray-600 hover:text-[#df00ff]">Content Strategy</a></li>
+                          <li><a href="services.html#branding" class="block text-gray-600 hover:text-[#df00ff]">Branding</a></li>
                         </ul>
                       </div>
                     </div>
@@ -171,6 +180,8 @@ class WebGloComponents {
                 <li><a href="services.html#design" class="block text-gray-700 hover:text-[#df00ff]">Custom Design</a></li>
                 <li><a href="services.html#development" class="block text-gray-700 hover:text-[#df00ff]">Development</a></li>
                 <li><a href="services.html#ecommerce" class="block text-gray-700 hover:text-[#df00ff]">E-commerce</a></li>
+                <li><a href="services.html#domain-hosting" class="block text-gray-700 hover:text-[#df00ff]">Domain & Hosting</a></li>
+                <li><a href="services.html#it-solutions" class="block text-gray-700 hover:text-[#df00ff]">IT Solutions</a></li>
                 <li><a href="services.html#maintenance" class="block text-gray-700 hover:text-[#df00ff]">Maintenance</a></li>
                 <li class="mt-2">
                   <div class="p-3 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200">
