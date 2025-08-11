@@ -123,26 +123,12 @@ class WebGloComponents {
                 </div>
               </div>
 
-              <!-- Pricing dropdown -->
-              <div class="relative group">
-                <button class="desktop-dropdown-toggle nav-link flex items-center space-x-2 text-gray-700 hover:text-[#df00ff] font-medium">
-                  <span>Pricing</span>
-                  <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                  </svg>
-                </button>
-                <div class="desktop-dropdown absolute top-full left-1/2 transform -translate-x-1/2 w-[400px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible hover:opacity-100 hover:visible translate-y-2 group-hover:translate-y-0 hover:translate-y-0 z-50">
-                  <div class="p-6">
-                    <ul class="space-y-2">
-                      <li><a href="pricing.html#packages" class="block text-gray-600 hover:text-[#df00ff]">Single-Purchase Packages</a></li>
-                      <li><a href="pricing.html#subscriptions" class="block text-gray-600 hover:text-[#df00ff]">Monthly Plans</a></li>
-                      <li><a href="pricing.html#itemized" class="block text-gray-600 hover:text-[#df00ff]">Itemized Services</a></li>
-                      <li><a href="consulting.html" class="block text-gray-600 hover:text-[#df00ff]">Free Consultation</a></li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
+              <!-- Regular Pricing link -->
+              <a href="pricing.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Pricing</a>
 
+              <!-- Free Consultation link -->
+              <a href="consulting.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Free Consultation</a>
+              
               <a href="about.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">About</a>
               <a href="case-studies.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Case Studies</a>
               <a href="blog.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Blog</a>
@@ -194,19 +180,11 @@ class WebGloComponents {
               </ul>
             </details>
 
-            <!-- Collapsible Pricing -->
-            <details class="group">
-              <summary class="flex items-center justify-between cursor-pointer py-3 text-lg font-medium">
-                <span>Pricing</span>
-                <span class="transition-transform group-open:rotate-180">▾</span>
-              </summary>
-              <ul class="pl-4 pb-2 space-y-2">
-                <li><a href="pricing.html#packages" class="block text-gray-700 hover:text-[#df00ff]">Single-Purchase Packages</a></li>
-                <li><a href="pricing.html#subscriptions" class="block text-gray-700 hover:text-[#df00ff]">Monthly Plans</a></li>
-                <li><a href="pricing.html#itemized" class="block text-gray-700 hover:text-[#df00ff]">Itemized Services</a></li>
-                <li><a href="consulting.html" class="block text-gray-700 hover:text-[#df00ff]">Free Consultation</a></li>
-              </ul>
-            </details>
+            <!-- Regular Pricing link -->
+            <a href="pricing.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Pricing</a>
+            
+            <!-- Free Consultation link -->
+            <a href="consulting.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Free Consultation</a>
 
             <a href="about.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">About</a>
             <a href="case-studies.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Case Studies</a>

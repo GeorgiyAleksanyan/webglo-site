@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fixed JavaScript</title>
+</head>
+<body>
+  <script>
+    // Pricing tab functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Pricing tab elements
+      const oneTimeTab = document.getElementById('one-time-tab');
+      const monthlyTab = document.getElementById('monthly-tab');
+      const oneTimePackages = document.getElementById('one-time-packages');
+      const monthlyPlans = document.getElementById('monthly-plans');
+      
+      // Comparison elements
+      const comparePackagesBtn = document.getElementById('compare-packages-btn');
+      const comparePlansBtn = document.getElementById('compare-plans-btn');
+      const packagesComparisonTable = document.getElementById('packages-comparison-table');
+      const plansComparisonTable = document.getElementById('plans-comparison-table');
+      const hideComparisonBtns = document.querySelectorAll('.hide-comparison-btn');
+      
+      // Feature buttons
+      const showFeaturesButtons = document.querySelectorAll('.show-features-btn');
+
+      // Tab switching functionality
+      oneTimeTab.addEventListener('click', function() {
+        oneTimeTab.classList.add('text-white', 'bg-gradient-to-r', 'from-[#df00ff]', 'to-[#0cead9]');
+        oneTimeTab.classList.remove('text-gray-600');
+        monthlyTab.classList.remove('text-white', 'bg-gradient-to-r', 'from-[#df00ff]', 'to-[#0cead9]');
+        monthlyTab.classList.add('text-gray-600');
+        
+        oneTimePackages.classList.remove('hidden');
+        monthlyPlans.classList.add('hidden');
+        
+        // Hide comparison tables when switching tabs
+        packagesComparisonTable.classList.add('hidden');
+        plansComparisonTable.classList.add('hidden');
+        
+        // Restore compare button visibility
+        const oneTimeCompareBtn = document.querySelector('#one-time-packages .text-center.mt-10');
+        if (oneTimeCompareBtn) {
+          oneTimeCompareBtn.style.display = '';
+        }
+      });
+
+      monthlyTab.addEventListener('click', function() {
+        monthlyTab.classList.add('text-white', 'bg-gradient-to-r', 'from-[#df00ff]', 'to-[#0cead9]');
+        monthlyTab.classList.remove('text-gray-600');
+        oneTimeTab.classList.remove('text-white', 'bg-gradient-to-r', 'from-[#df00ff]', 'to-[#0cead9]');
+        oneTimeTab.classList.add('text-gray-600');
+        
+        monthlyPlans.classList.remove('hidden');
+        oneTimePackages.classList.add('hidden');
+        
+        // Hide comparison tables when switching tabs
+        packagesComparisonTable.classList.add('hidden');
+        plansComparisonTable.classList.add('hidden');
+        
+        // Restore compare button visibility
+        const monthlyCompareBtn = document.querySelector('#monthly-plans .text-center.mt-10');
+        if (monthlyCompareBtn) {
+          monthlyCompareBtn.style.display = '';
+        }
+      });
+
+      // Compare All Features Button for One-Time Packages
+      comparePackagesBtn.addEventListener('click', function() {
+        // Show packages comparison table
+        packagesComparisonTable.classList.remove('hidden');
+        
+        // Position comparison table after pricing cards
+        const oneTimePackagesSection = document.getElementById('one-time-packages');
+        
+        // Ensure comparison appears after pricing cards by moving it in the DOM
+        oneTimePackagesSection.parentNode.insertBefore(packagesComparisonTable, oneTimePackagesSection.nextSibling);
+        
+        // Scroll to feature comparison with a slight delay to allow for DOM updates
+        setTimeout(() => {
+          packagesComparisonTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+        
+        // Hide the "Compare All Features" button
+        const oneTimeCompareBtn = document.querySelector('#one-time-packages .text-center.mt-10');
+        if (oneTimeCompareBtn) {
+          oneTimeCompareBtn.style.display = 'none';
+        }
+      });
+      
+      // Compare All Plans button functionality for Monthly Plans
+      comparePlansBtn.addEventListener('click', function() {
+        // Show plans comparison table
+        plansComparisonTable.classList.remove('hidden');
+        
+        // Position comparison table after pricing cards
+        const monthlyPlansSection = document.getElementById('monthly-plans');
+        
+        // Ensure comparison appears after pricing cards by moving it in the DOM
+        monthlyPlansSection.parentNode.insertBefore(plansComparisonTable, monthlyPlansSection.nextSibling);
+        
+        // Scroll to feature comparison with a slight delay to allow for DOM updates
+        setTimeout(() => {
+          plansComparisonTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+        
+        // Hide the compare button that appears at the bottom of monthly plans
+        const monthlyCompareBtn = document.querySelector('#monthly-plans .text-center.mt-10');
+        if (monthlyCompareBtn) {
+          monthlyCompareBtn.style.display = 'none';
+        }
+      });
+      
+      // Hide Comparison buttons functionality
+      hideComparisonBtns.forEach(button => {
+        button.addEventListener('click', function() {
+          // Find parent section and hide it
+          const parentSection = this.closest('section');
+          if (parentSection) {
+            parentSection.classList.add('hidden');
+          }
+          
+          // Restore compare button visibility in the appropriate section
+          if (parentSection.id === 'packages-comparison-table') {
+            const oneTimeCompareBtn = document.querySelector('#one-time-packages .text-center.mt-10');
+            if (oneTimeCompareBtn) {
+              oneTimeCompareBtn.style.display = '';
+            }
+          } else if (parentSection.id === 'plans-comparison-table') {
+            const monthlyCompareBtn = document.querySelector('#monthly-plans .text-center.mt-10');
+            if (monthlyCompareBtn) {
+              monthlyCompareBtn.style.display = '';
+            }
+          }
+        });
+      });
+      
+      // Feature category toggle functionality
+      const toggleButtons = document.querySelectorAll('.feature-category-toggle');
+      toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-target');
+          const targetContent = document.getElementById(targetId);
+          const toggleIcon = this.querySelector('.feature-toggle-icon');
+          
+          // Toggle the content visibility
+          targetContent.classList.toggle('hidden');
+          
+          // Rotate the icon
+          if (targetContent.classList.contains('hidden')) {
+            toggleIcon.classList.remove('rotate-180');
+          } else {
+            toggleIcon.classList.add('rotate-180');
+          }
+        });
+      });
+      
+      // FAQ toggle functionality
+      const faqToggleButtons = document.querySelectorAll('.faq-toggle');
+      faqToggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-target');
+          const targetContent = document.getElementById(targetId);
+          const toggleIcon = this.querySelector('.faq-toggle-icon');
+          
+          // Toggle the content visibility
+          targetContent.classList.toggle('hidden');
+          
+          // Rotate the icon
+          if (targetContent.classList.contains('hidden')) {
+            toggleIcon.classList.remove('rotate-180');
+          } else {
+            toggleIcon.classList.add('rotate-180');
+          }
+        });
+      });
+      
+      // Show Features button functionality
+      showFeaturesButtons.forEach(button => {
+        // Create expandable features container after button
+        const packageType = button.getAttribute('data-package');
+        const featuresContainer = document.createElement('div');
+        featuresContainer.className = 'features-details hidden bg-gray-50 p-4 rounded-lg mb-4 overflow-hidden';
+        featuresContainer.id = `features-${packageType}`;
+        
+        // Add feature details based on package type
+        switch(packageType) {
+          case 'starter':
+            featuresContainer.innerHTML = `
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Starter Package Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Basic Responsive Design</p>
+                  <p class="text-gray-600">Mobile-friendly templates optimized for phones and tablets with simple design elements.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Content Integration</p>
+                  <p class="text-gray-600">We'll add your existing content and optimize up to 5 pages for better readability.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">SEO Foundation</p>
+                  <p class="text-gray-600">Basic meta tags, page titles, and site structure optimized for search engines.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Basic Contact Form</p>
+                  <p class="text-gray-600">Simple form that collects visitor information and sends it to your email.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Technical Support</p>
+                  <p class="text-gray-600">30 days of email support after website launch for technical questions.</p>
+                </div>
+              </div>
+            `;
+            break;
+            
+          case 'professional':
+            featuresContainer.innerHTML = `
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Professional Package Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Custom Responsive Design</p>
+                  <p class="text-gray-600">Fully custom design tailored to your brand with advanced animations and interactions.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Content Strategy</p>
+                  <p class="text-gray-600">Professional copywriting for key pages to enhance your message and drive conversions.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Advanced SEO Setup</p>
+                  <p class="text-gray-600">Comprehensive keyword research, schema markup, and technical SEO implementation.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Blog & Content System</p>
+                  <p class="text-gray-600">Customized CMS setup with templates for easily publishing new content and articles.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">AI Chatbot</p>
+                  <p class="text-gray-600">Basic AI assistant integration trained on your FAQs to answer visitor questions.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Visual Branding Package</p>
+                  <p class="text-gray-600">Includes logo refinement, color palette creation, and typography selection.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Extended Support</p>
+                  <p class="text-gray-600">60 days of email and phone support with 3 rounds of revisions.</p>
+                </div>
+              </div>
+            `;
+            break;
+            
+          case 'enterprise':
+            featuresContainer.innerHTML = `
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Enterprise Package Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Premium Custom Design</p>
+                  <p class="text-gray-600">High-end design with motion graphics, micro-interactions, and unique visual identity elements.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Comprehensive Content Strategy</p>
+                  <p class="text-gray-600">Full content development for all pages with professional copywriting and storytelling.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">E-commerce Capabilities</p>
+                  <p class="text-gray-600">Complete online store with product catalog, payment processing, inventory management, and order fulfillment integration.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Premium SEO Package</p>
+                  <p class="text-gray-600">Full competitive analysis, link building strategy, monthly SEO reporting, and ongoing optimization.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Advanced AI Integration</p>
+                  <p class="text-gray-600">Custom-trained AI chatbot with personalized responses, lead qualification, and CRM integration.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Custom Software Integration</p>
+                  <p class="text-gray-600">Connection with existing business systems including CRM, ERP, inventory, accounting, or custom APIs.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Complete Brand Identity</p>
+                  <p class="text-gray-600">Full brand kit including logo design, style guide, marketing materials, and brand messaging framework.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">VIP Support & Training</p>
+                  <p class="text-gray-600">Dedicated account manager, unlimited revisions, and comprehensive team training for your new systems.</p>
+                </div>
+              </div>
+            `;
+            break;
+            
+          case 'essential':
+            featuresContainer.innerHTML = `
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Essential Plan Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Content Management</p>
+                  <p class="text-gray-600">5 hours of professional content updates per month - text changes, image updates, and new product listings.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Security Monitoring</p>
+                  <p class="text-gray-600">Continuous malware scanning, firewall protection, and automatic security patches to keep your site safe.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Performance Optimization</p>
+                  <p class="text-gray-600">Monthly speed checks with basic optimizations for images, caching, and code efficiency.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Analytics Reporting</p>
+                  <p class="text-gray-600">Monthly reports covering traffic metrics, visitor behavior, and basic conversion tracking.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Backup System</p>
+                  <p class="text-gray-600">Weekly automated backups with 30-day retention to protect your website content and data.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Response Times</p>
+                  <p class="text-gray-600">48-hour response time for standard requests and technical support.</p>
+                </div>
+              </div>
+            `;
+            break;
+            
+          case 'growth':
+            featuresContainer.innerHTML = `
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Growth Plan Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Enhanced Content Management</p>
+                  <p class="text-gray-600">10 hours of professional content updates monthly with copywriting assistance and multimedia content integration.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Advanced Security</p>
+                  <p class="text-gray-600">Enterprise-grade security with real-time threat detection, DDoS protection, and PCI compliance maintenance.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">SEO Growth Strategy</p>
+                  <p class="text-gray-600">Monthly keyword optimization, competitive analysis, on-page SEO enhancements, and ranking position monitoring.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Priority Support</p>
+                  <p class="text-gray-600">24-hour response guarantee with priority handling for all requests and dedicated support specialist.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Social Media Integration</p>
+                  <p class="text-gray-600">Connect your website with social media platforms for automatic content sharing and enhanced visibility.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Performance Optimization</p>
+                  <p class="text-gray-600">Advanced speed optimizations with CDN integration, code optimization, and server-side caching.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Enhanced Analytics</p>
+                  <p class="text-gray-600">Comprehensive analytics with conversion tracking, user journey mapping, and actionable insights.</p>
+                </div>
+              </div>
+            `;
+            break;
+        }
+        
+        // Insert the features container after the button
+        button.parentNode.insertBefore(featuresContainer, button.nextSibling);
+        
+        // Toggle features visibility when button is clicked
+        button.addEventListener('click', function() {
+          const targetFeatures = this.nextSibling;
+          const toggleIcon = this.querySelector('.feature-toggle-icon');
+          
+          targetFeatures.classList.toggle('hidden');
+          
+          if (targetFeatures.classList.contains('hidden')) {
+            toggleIcon.classList.remove('rotate-180');
+          } else {
+            toggleIcon.classList.add('rotate-180');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

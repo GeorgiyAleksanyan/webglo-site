@@ -63,17 +63,32 @@
           </div>
         </span>
       </div>
+
+      <!-- add some white space between the tooltip and the button -->
+      <div class="my-4"></div>
+
+      <!-- Start for Free CTA -->
+      <div class="mb-1">
+        <a href="contact.html" class="inline-flex items-center justify-center px-8 py-3 bg-gradient-to-r from-[#1e40af] to-[#3b82f6] text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300 text-lg">
+          Start for Free
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
     </div>
   </section>
 
+  <!-- reduce white space between pricing toggle and the free CTA -->
+  
   <!-- Pricing Toggle -->
-  <section class="py-10 bg-white">
+  <section class="py-1 bg-white">
     <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-      <div class="bg-gray-100 p-1 rounded-xl inline-flex">
-        <button id="one-time-tab" class="px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-lg transition-all duration-300">
+      <div role="tablist" aria-label="Pricing plans" class="bg-gray-100 p-1 rounded-xl inline-flex">
+        <button id="one-time-tab" role="tab" aria-selected="true" aria-controls="one-time-packages" class="px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-lg transition-all duration-300">
           One-Time Projects
         </button>
-        <button id="monthly-tab" class="px-6 py-3 text-sm font-semibold text-gray-600 hover:text-gray-900 rounded-lg transition-all duration-300">
+        <button id="monthly-tab" role="tab" aria-selected="false" aria-controls="monthly-plans" class="px-6 py-3 text-sm font-semibold text-gray-600 hover:text-gray-900 rounded-lg transition-all duration-300">
           Monthly Plans
         </button>
       </div>
@@ -81,11 +96,42 @@
   </section>
 
   <!-- One-Time Packages -->
-  <section id="one-time-packages" class="py-20 bg-white">
+  <section id="one-time-packages" role="tabpanel" aria-labelledby="one-time-tab" class="py-10 bg-white">
     <div class="max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16">
         <h2 class="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">One-Time Packages</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Perfect for businesses that need a professional website built once with full ownership.</p>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">Perfect for businesses that need a professional website built once with full ownership.</p>
+
+        <!-- All Packages Include Section -->
+        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 max-w-4xl mx-auto">
+          <p class="text-lg font-semibold text-gray-900 mb-4">All packages include:</p>
+          <div class="flex flex-wrap justify-center items-center gap-8 text-gray-700">
+            <div class="flex items-center space-x-2">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
+              </svg>
+              <span class="font-medium">Custom domain</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+              </svg>
+              <span class="font-medium">Reliable web hosting</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+              </svg>
+              <span class="font-medium">Professional design</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
+              </svg>
+              <span class="font-medium">Ongoing support</span>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -147,14 +193,39 @@
           </ul>
 
           <div class="mb-6">
-            <button class="show-features-btn block w-full text-center px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg mb-4 hover:bg-gray-50 transition-all duration-200" data-package="starter">
+            <button class="show-features-btn js-toggle-button block w-full text-center px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg mb-4 hover:bg-gray-50 transition-all duration-200" data-package="starter" aria-expanded="false" aria-controls="features-starter">
               <div class="flex items-center justify-center">
                 <span>Show Features</span>
-                <svg class="feature-toggle-icon w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="feature-toggle-icon js-toggle-icon w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </div>
             </button>
+            <div id="features-starter" class="features-details hidden bg-gray-50 p-4 rounded-lg mt-4 overflow-hidden">
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Starter Package Details</h4>
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Basic Responsive Design</p>
+                  <p class="text-gray-600">Mobile-friendly templates optimized for phones and tablets with simple design elements.</p>
+                </div>
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Content Integration</p>
+                  <p class="text-gray-600">We'll add your existing content and optimize up to 5 pages for better readability.</p>
+                </div>
+                <div class="mb-3">
+                  <p class="font-medium mb-1">SEO Foundation</p>
+                  <p class="text-gray-600">Basic meta tags, page titles, and site structure optimized for search engines.</p>
+                </div>
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Basic Contact Form</p>
+                  <p class="text-gray-600">Simple form that collects visitor information and sends it to your email.</p>
+                </div>
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Technical Support</p>
+                  <p class="text-gray-600">30 days of email support after website launch for technical questions.</p>
+                </div>
+              </div>
+            </div>
           </div>
           
           <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-green-400 to-emerald-500 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
@@ -232,10 +303,10 @@
           </ul>
 
           <div class="mb-6">
-            <button class="show-features-btn block w-full text-center px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg mb-4 hover:bg-gray-50 transition-all duration-200" data-package="professional">
+            <button class="show-features-btn js-toggle-button block w-full text-center px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg mb-4 hover:bg-gray-50 transition-all duration-200" data-package="professional" aria-expanded="false" aria-controls="features-professional">
               <div class="flex items-center justify-center">
                 <span>Show Features</span>
-                <svg class="feature-toggle-icon w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="feature-toggle-icon js-toggle-icon w-5 h-5 ml-2 transition-transform duration-3
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </div>
@@ -326,158 +397,16 @@
           </a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- Feature Comparison Table (Desktop) -->
-  <section id="feature-comparison-desktop" class="py-16 bg-gray-50 hidden">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-12">
-        <div class="text-center md:text-left mb-6 md:mb-0">
-          <h2 class="text-3xl font-bold mb-2">Compare Features</h2>
-          <p class="text-gray-600">See exactly what's included in each plan</p>
-        </div>
-        <button id="hide-comparison-btn" class="mx-auto md:mx-0 inline-flex items-center justify-center px-4 py-2 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition-all duration-300">
-          <span>Hide Comparison</span>
-          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      
-      <div class="overflow-x-auto">
-        <table class="w-full border-collapse">
-          <thead>
-            <tr class="bg-gray-100">
-              <th class="text-left p-4 border-b-2 border-gray-200">Feature</th>
-              <th class="text-center p-4 border-b-2 border-gray-200">Starter</th>
-              <th class="text-center p-4 border-b-2 border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50">Professional</th>
-              <th class="text-center p-4 border-b-2 border-gray-200">Enterprise</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Website Design -->
-            <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
-              <td colspan="4" class="p-4 font-semibold text-gray-700">Website Design & Development</td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Pages Included</td>
-              <td class="text-center p-4 border-b border-gray-200">Up to 5 pages</td>
-              <td class="text-center p-4 border-b border-gray-200">Up to 10 pages</td>
-              <td class="text-center p-4 border-b border-gray-200">Unlimited</td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Custom Design</td>
-              <td class="text-center p-4 border-b border-gray-200">Basic</td>
-              <td class="text-center p-4 border-b border-gray-200">Advanced</td>
-              <td class="text-center p-4 border-b border-gray-200">Premium</td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Mobile Responsive</td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Revision Rounds</td>
-              <td class="text-center p-4 border-b border-gray-200">2</td>
-              <td class="text-center p-4 border-b border-gray-200">3</td>
-              <td class="text-center p-4 border-b border-gray-200">Unlimited</td>
-            </tr>
-            
-            <!-- SEO & Marketing -->
-            <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
-              <td colspan="4" class="p-4 font-semibold text-gray-700">SEO & Marketing</td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">SEO Optimization</td>
-              <td class="text-center p-4 border-b border-gray-200">Basic</td>
-              <td class="text-center p-4 border-b border-gray-200">Advanced</td>
-              <td class="text-center p-4 border-b border-gray-200">Premium</td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Google Analytics Setup</td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Blog Integration</td>
-              <td class="text-center p-4 border-b border-gray-200">—</td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-            </tr>
-            
-            <!-- Business Features -->
-            <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
-              <td colspan="4" class="p-4 font-semibold text-gray-700">Business Features</td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Contact Forms</td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">E-commerce Integration</td>
-              <td class="text-center p-4 border-b border-gray-200">—</td>
-              <td class="text-center p-4 border-b border-gray-200">—</td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Branding Package</td>
-              <td class="text-center p-4 border-b border-gray-200">—</td>
-              <td class="text-center p-4 border-b border-gray-200">Basic</td>
-              <td class="text-center p-4 border-b border-gray-200">Complete</td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">AI/Live Chatbot</td>
-              <td class="text-center p-4 border-b border-gray-200">—</td>
-              <td class="text-center p-4 border-b border-gray-200">Basic</td>
-              <td class="text-center p-4 border-b border-gray-200">Advanced</td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Advanced Forms</td>
-              <td class="text-center p-4 border-b border-gray-200">—</td>
-              <td class="text-center p-4 border-b border-gray-200">2 Forms</td>
-              <td class="text-center p-4 border-b border-gray-200">Unlimited</td>
-            </tr>
-            
-            <!-- Support -->
-            <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
-              <td colspan="4" class="p-4 font-semibold text-gray-700">Support</td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Email Support</td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Priority Support</td>
-              <td class="text-center p-4 border-b border-gray-200">—</td>
-              <td class="text-center p-4 border-b border-gray-200">—</td>
-              <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-            </tr>
-            <tr>
-              <td class="p-4 border-b border-gray-200">Training Session</td>
-              <td class="text-center p-4 border-b border-gray-200">1 hour</td>
-              <td class="text-center p-4 border-b border-gray-200">2 hours</td>
-              <td class="text-center p-4 border-b border-gray-200">4 hours</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
       
       <!-- VAT Disclosure -->
       <div class="text-center mt-8 text-sm text-gray-500">
         <p>All prices exclude VAT where applicable. For UK businesses, VAT will be added at the standard rate.</p>
       </div>
       
-      <!-- Compare All Features Button -->
+      <!-- Compare All Packages Button -->
       <div class="text-center mt-10">
         <button id="compare-packages-btn" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
-          <span>Compare All Features</span>
+          <span>Compare All Packages</span>
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
@@ -485,11 +414,6 @@
       </div>
     </div>
   </section>
-  
-  <!-- Feature comparison removed - features will be displayed under each pricing card instead -->
-      
-
-      
 
   <!-- Monthly Plans -->
   <section id="monthly-plans" class="py-20 bg-gray-50 hidden">
@@ -647,6 +571,256 @@
       </div>
     </div>
   </section>
+
+  <!-- Comparison Tables Container -->
+  <div id="comparison-tables-container">
+    <!-- Packages Comparison Table (Initially Hidden) -->
+    <section id="packages-comparison-table" class="comparison-table hidden py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-2">Compare Packages</h2>
+          <p class="text-gray-600">See exactly what's included in each one-time package</p>
+        </div>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="text-left p-4 border-b-2 border-gray-200">Feature</th>
+                <th class="text-center p-4 border-b-2 border-gray-200">Starter</th>
+                <th class="text-center p-4 border-b-2 border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50">Professional</th>
+                <th class="text-center p-4 border-b-2 border-gray-200">Enterprise</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Website Design -->
+              <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
+                <td colspan="4" class="p-4 font-semibold text-gray-700">Website Design & Development</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Pages Included</td>
+                <td class="text-center p-4 border-b border-gray-200">Up to 5 pages</td>
+                <td class="text-center p-4 border-b border-gray-200">Up to 10 pages</td>
+                <td class="text-center p-4 border-b border-gray-200">Unlimited</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Custom Design</td>
+                <td class="text-center p-4 border-b border-gray-200">Basic</td>
+                <td class="text-center p-4 border-b border-gray-200">Advanced</td>
+                <td class="text-center p-4 border-b border-gray-200">Premium</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Mobile Responsive</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Revision Rounds</td>
+                <td class="text-center p-4 border-b border-gray-200">2</td>
+                <td class="text-center p-4 border-b border-gray-200">3</td>
+                <td class="text-center p-4 border-b border-gray-200">Unlimited</td>
+              </tr>
+              
+              <!-- SEO & Marketing -->
+              <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
+                <td colspan="4" class="p-4 font-semibold text-gray-700">SEO & Marketing</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">SEO Optimization</td>
+                <td class="text-center p-4 border-b border-gray-200">Basic</td>
+                <td class="text-center p-4 border-b border-gray-200">Advanced</td>
+                <td class="text-center p-4 border-b border-gray-200">Premium</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Google Analytics Setup</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Blog Integration</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              
+              <!-- Business Features -->
+              <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
+                <td colspan="4" class="p-4 font-semibold text-gray-700">Business Features</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Contact Forms</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">E-commerce Integration</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Branding Package</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200">Basic</td>
+                <td class="text-center p-4 border-b border-gray-200">Complete</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">AI/Live Chatbot</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200">Basic</td>
+                <td class="text-center p-4 border-b border-gray-200">Advanced</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Advanced Forms</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200">2 Forms</td>
+                <td class="text-center p-4 border-b border-gray-200">Unlimited</td>
+              </tr>
+              
+              <!-- Support -->
+              <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
+                <td colspan="4" class="p-4 font-semibold text-gray-700">Support</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Email Support</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Priority Support</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Training Session</td>
+                <td class="text-center p-4 border-b border-gray-200">1 hour</td>
+                <td class="text-center p-4 border-b border-gray-200">2 hours</td>
+                <td class="text-center p-4 border-b border-gray-200">4 hours</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Hide Comparison Button -->
+        <div class="text-center mt-8">
+          <button class="hide-comparison-btn inline-flex items-center justify-center px-4 py-2 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition-all duration-300">
+            <span>Hide Comparison</span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plans Comparison Table (Initially Hidden) -->
+    <section id="plans-comparison-table" class="comparison-table hidden py-16 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold mb-2">Compare Plans</h2>
+          <p class="text-gray-600">See exactly what's included in each monthly plan</p>
+        </div>
+        
+        <div class="overflow-x-auto">
+          <table class="w-full border-collapse">
+            <thead>
+              <tr class="bg-gray-100">
+                <th class="text-left p-4 border-b-2 border-gray-200">Feature</th>
+                <th class="text-center p-4 border-b-2 border-gray-200">Essential</th>
+                <th class="text-center p-4 border-b-2 border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50">Growth</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Content Management -->
+              <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
+                <td colspan="3" class="p-4 font-semibold text-gray-700">Content Management</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Content Updates</td>
+                <td class="text-center p-4 border-b border-gray-200">5 hours/month</td>
+                <td class="text-center p-4 border-b border-gray-200">10 hours/month</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Content Creation</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              
+              <!-- Security & Maintenance -->
+              <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
+                <td colspan="3" class="p-4 font-semibold text-gray-700">Security & Maintenance</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Security Monitoring</td>
+                <td class="text-center p-4 border-b border-gray-200">Basic</td>
+                <td class="text-center p-4 border-b border-gray-200">Advanced</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Backup System</td>
+                <td class="text-center p-4 border-b border-gray-200">Weekly</td>
+                <td class="text-center p-4 border-b border-gray-200">Daily</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Performance Optimization</td>
+                <td class="text-center p-4 border-b border-gray-200">Monthly</td>
+                <td class="text-center p-4 border-b border-gray-200">Advanced + CDN</td>
+              </tr>
+              
+              <!-- SEO & Analytics -->
+              <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
+                <td colspan="3" class="p-4 font-semibold text-gray-700">SEO & Analytics</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">SEO Optimization</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Analytics Reporting</td>
+                <td class="text-center p-4 border-b border-gray-200">Monthly</td>
+                <td class="text-center p-4 border-b border-gray-200">Enhanced + Insights</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Social Media Integration</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+              
+              <!-- Support -->
+              <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
+                <td colspan="3" class="p-4 font-semibold text-gray-700">Support</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Response Time</td>
+                <td class="text-center p-4 border-b border-gray-200">48 hours</td>
+                <td class="text-center p-4 border-b border-gray-200">24 hours</td>
+              </tr>
+              <tr>
+                <td class="p-4 border-b border-gray-200">Priority Support</td>
+                <td class="text-center p-4 border-b border-gray-200">—</td>
+                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!-- Hide Comparison Button -->
+        <div class="text-center mt-8">
+          <button class="hide-comparison-btn inline-flex items-center justify-center px-4 py-2 bg-gray-200 text-gray-800 font-medium rounded-lg hover:bg-gray-300 transition-all duration-300">
+            <span>Hide Comparison</span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+  </div>
 
   <!-- Expandable Feature Categories -->
   <section class="py-16 bg-white">
@@ -1357,6 +1531,22 @@
   <script src="js/components.js"></script>
   <script src="js/main.js"></script>
   <script src="js/tooltip-system.js"></script>
+  <style>
+    /* Hide "Show Features" buttons on desktop, only show on mobile */
+    @media (min-width: 768px) {
+      .show-features-btn {
+        display: none;
+      }
+    }
+    
+    /* Hide the Compare All Features/Plans buttons on mobile */
+    @media (max-width: 767px) {
+      #compare-packages-btn,
+      #compare-plans-btn {
+        display: none;
+      }
+    }
+  </style>
   <script>
     // Pricing tab functionality
     document.addEventListener('DOMContentLoaded', function() {
@@ -1366,48 +1556,74 @@
       const monthlyPlans = document.getElementById('monthly-plans');
       const comparePackagesBtn = document.getElementById('compare-packages-btn');
       const comparePlansBtn = document.getElementById('compare-plans-btn');
-      const featureComparisonDesktop = document.getElementById('feature-comparison-desktop');
-      const hideComparisonBtn = document.getElementById('hide-comparison-btn');
-      const showFeaturesButtons = document.querySelectorAll('.show-features-btn');
 
+      // Tab switching functionality
       oneTimeTab.addEventListener('click', function() {
+        // Update tab styling
         oneTimeTab.classList.add('text-white', 'bg-gradient-to-r', 'from-[#df00ff]', 'to-[#0cead9]');
         oneTimeTab.classList.remove('text-gray-600');
         monthlyTab.classList.remove('text-white', 'bg-gradient-to-r', 'from-[#df00ff]', 'to-[#0cead9]');
         monthlyTab.classList.add('text-gray-600');
         
+        // Show/hide sections
         oneTimePackages.classList.remove('hidden');
         monthlyPlans.classList.add('hidden');
         
-        // Hide comparison table when switching tabs
-        featureComparisonDesktop.classList.add('hidden');
-        
-        // Update the compare button text
-        comparePackagesBtn.querySelector('span').textContent = 'Compare All Packages';
+        // Hide any visible comparison tables
+        document.querySelectorAll('.comparison-table').forEach(table => table.classList.add('hidden'));
       });
 
       monthlyTab.addEventListener('click', function() {
+        // Update tab styling
         monthlyTab.classList.add('text-white', 'bg-gradient-to-r', 'from-[#df00ff]', 'to-[#0cead9]');
         monthlyTab.classList.remove('text-gray-600');
         oneTimeTab.classList.remove('text-white', 'bg-gradient-to-r', 'from-[#df00ff]', 'to-[#0cead9]');
         oneTimeTab.classList.add('text-gray-600');
         
+        // Show/hide sections
         monthlyPlans.classList.remove('hidden');
         oneTimePackages.classList.add('hidden');
         
-        // Hide comparison table when switching tabs
-        featureComparisonDesktop.classList.add('hidden');
-        
-        // Update the compare button text
-        comparePackagesBtn.querySelector('span').textContent = 'Compare All Plans';
+        // Hide any visible comparison tables
+        document.querySelectorAll('.comparison-table').forEach(table => table.classList.add('hidden'));
       });
       
-      // Compare All Features Button
-      comparePackagesBtn.addEventListener('click', function() {
-        // Always show feature comparison table
-        featureComparisonDesktop.classList.remove('hidden');
-        // Scroll to feature comparison
-        featureComparisonDesktop.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Compare All Packages Button functionality
+      if (comparePackagesBtn) {
+        comparePackagesBtn.addEventListener('click', function() {
+          const packagesTable = document.getElementById('packages-comparison-table');
+          if (packagesTable) {
+            packagesTable.classList.remove('hidden');
+            // Scroll to the table
+            setTimeout(() => {
+              packagesTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+          }
+        });
+      }
+      
+      // Compare All Plans Button functionality
+      if (comparePlansBtn) {
+        comparePlansBtn.addEventListener('click', function() {
+          const plansTable = document.getElementById('plans-comparison-table');
+          if (plansTable) {
+            plansTable.classList.remove('hidden');
+            // Scroll to the table
+            setTimeout(() => {
+              plansTable.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+          }
+        });
+      }
+
+      // Hide comparison button functionality
+      document.addEventListener('click', function(event) {
+        if (event.target.closest('.hide-comparison-btn')) {
+          const parentTable = event.target.closest('.comparison-table');
+          if (parentTable) {
+            parentTable.classList.add('hidden');
+          }
+        }
       });
       
       // Feature category toggle functionality
@@ -1452,22 +1668,7 @@
         });
       });
       
-      // Hide Comparison button functionality
-      if (hideComparisonBtn) {
-        hideComparisonBtn.addEventListener('click', function() {
-          featureComparisonDesktop.classList.add('hidden');
-        });
-      }
-      
-      // Compare All Plans button functionality 
-      if (comparePlansBtn) {
-        comparePlansBtn.addEventListener('click', function() {
-          // Show feature comparison table
-          featureComparisonDesktop.classList.remove('hidden');
-          // Scroll to feature comparison
-          featureComparisonDesktop.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-      }
+      // ...existing code...
       
       // Show Features button functionality
       showFeaturesButtons.forEach(button => {
@@ -1481,30 +1682,32 @@
         switch(packageType) {
           case 'starter':
             featuresContainer.innerHTML = `
-              <div class="text-sm space-y-3">
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Pages</span>
-                  <span>Up to 5 pages</span>
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Starter Package Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Basic Responsive Design</p>
+                  <p class="text-gray-600">Mobile-friendly templates optimized for phones and tablets with simple design elements.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Design</span>
-                  <span>Basic responsive</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Content Integration</p>
+                  <p class="text-gray-600">We'll add your existing content and optimize up to 5 pages for better readability.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">SEO</span>
-                  <span>Basic optimization</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">SEO Foundation</p>
+                  <p class="text-gray-600">Basic meta tags, page titles, and site structure optimized for search engines.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Revisions</span>
-                  <span>2 rounds</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Basic Contact Form</p>
+                  <p class="text-gray-600">Simple form that collects visitor information and sends it to your email.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Contact Forms</span>
-                  <span>Basic form</span>
-                </div>
-                <div class="flex justify-between">
-                  <span class="font-medium">Maintenance</span>
-                  <span>Not included</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Technical Support</p>
+                  <p class="text-gray-600">30 days of email support after website launch for technical questions.</p>
                 </div>
               </div>
             `;
@@ -1512,34 +1715,42 @@
             
           case 'professional':
             featuresContainer.innerHTML = `
-              <div class="text-sm space-y-3">
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Pages</span>
-                  <span>Up to 10 pages</span>
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Professional Package Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Custom Responsive Design</p>
+                  <p class="text-gray-600">Fully custom design tailored to your brand with advanced animations and interactions.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Design</span>
-                  <span>Custom responsive</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Content Strategy</p>
+                  <p class="text-gray-600">Professional copywriting for key pages to enhance your message and drive conversions.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">SEO</span>
-                  <span>Advanced optimization</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Advanced SEO Setup</p>
+                  <p class="text-gray-600">Comprehensive keyword research, schema markup, and technical SEO implementation.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Revisions</span>
-                  <span>3 rounds</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Blog & Content System</p>
+                  <p class="text-gray-600">Customized CMS setup with templates for easily publishing new content and articles.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">AI Chatbot</span>
-                  <span>Basic integration</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">AI Chatbot</p>
+                  <p class="text-gray-600">Basic AI assistant integration trained on your FAQs to answer visitor questions.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Blog System</span>
-                  <span>Included</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Visual Branding Package</p>
+                  <p class="text-gray-600">Includes logo refinement, color palette creation, and typography selection.</p>
                 </div>
-                <div class="flex justify-between">
-                  <span class="font-medium">Branding</span>
-                  <span>Basic package</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Extended Support</p>
+                  <p class="text-gray-600">60 days of email and phone support with 3 rounds of revisions.</p>
                 </div>
               </div>
             `;
@@ -1547,34 +1758,47 @@
             
           case 'enterprise':
             featuresContainer.innerHTML = `
-              <div class="text-sm space-y-3">
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Pages</span>
-                  <span>Unlimited</span>
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Enterprise Package Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Premium Custom Design</p>
+                  <p class="text-gray-600">High-end design with motion graphics, micro-interactions, and unique visual identity elements.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Design</span>
-                  <span>Premium custom</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Comprehensive Content Strategy</p>
+                  <p class="text-gray-600">Full content development for all pages with professional copywriting and storytelling.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">SEO</span>
-                  <span>Premium optimization</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">E-commerce Capabilities</p>
+                  <p class="text-gray-600">Complete online store with product catalog, payment processing, inventory management, and order fulfillment integration.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Revisions</span>
-                  <span>Unlimited</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Premium SEO Package</p>
+                  <p class="text-gray-600">Full competitive analysis, link building strategy, monthly SEO reporting, and ongoing optimization.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">AI Chatbot</span>
-                  <span>Advanced integration</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Advanced AI Integration</p>
+                  <p class="text-gray-600">Custom-trained AI chatbot with personalized responses, lead qualification, and CRM integration.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">E-commerce</span>
-                  <span>Full integration</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Custom Software Integration</p>
+                  <p class="text-gray-600">Connection with existing business systems including CRM, ERP, inventory, accounting, or custom APIs.</p>
                 </div>
-                <div class="flex justify-between">
-                  <span class="font-medium">Branding</span>
-                  <span>Complete package</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Complete Brand Identity</p>
+                  <p class="text-gray-600">Full brand kit including logo design, style guide, marketing materials, and brand messaging framework.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">VIP Support & Training</p>
+                  <p class="text-gray-600">Dedicated account manager, unlimited revisions, and comprehensive team training for your new systems.</p>
                 </div>
               </div>
             `;
@@ -1582,22 +1806,37 @@
             
           case 'essential':
             featuresContainer.innerHTML = `
-              <div class="text-sm space-y-3">
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Content Updates</span>
-                  <span>5 hours/month</span>
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Essential Plan Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Content Management</p>
+                  <p class="text-gray-600">5 hours of professional content updates per month - text changes, image updates, and new product listings.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Security Updates</span>
-                  <span>Included</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Security Monitoring</p>
+                  <p class="text-gray-600">Continuous malware scanning, firewall protection, and automatic security patches to keep your site safe.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Performance</span>
-                  <span>Basic optimization</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Performance Optimization</p>
+                  <p class="text-gray-600">Monthly speed checks with basic optimizations for images, caching, and code efficiency.</p>
                 </div>
-                <div class="flex justify-between">
-                  <span class="font-medium">Monthly Reports</span>
-                  <span>Included</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Analytics Reporting</p>
+                  <p class="text-gray-600">Monthly reports covering traffic metrics, visitor behavior, and basic conversion tracking.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Backup System</p>
+                  <p class="text-gray-600">Weekly automated backups with 30-day retention to protect your website content and data.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Response Times</p>
+                  <p class="text-gray-600">48-hour response time for standard requests and technical support.</p>
                 </div>
               </div>
             `;
@@ -1605,26 +1844,42 @@
             
           case 'growth':
             featuresContainer.innerHTML = `
-              <div class="text-sm space-y-3">
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Content Updates</span>
-                  <span>10 hours/month</span>
+              <div class="text-sm space-y-3 pb-2">
+                <h4 class="font-semibold text-base border-b pb-2 mb-3">Growth Plan Details</h4>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Enhanced Content Management</p>
+                  <p class="text-gray-600">10 hours of professional content updates monthly with copywriting assistance and multimedia content integration.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Security</span>
-                  <span>Advanced protection</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Advanced Security</p>
+                  <p class="text-gray-600">Enterprise-grade security with real-time threat detection, DDoS protection, and PCI compliance maintenance.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">SEO</span>
-                  <span>Optimization & monitoring</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">SEO Growth Strategy</p>
+                  <p class="text-gray-600">Monthly keyword optimization, competitive analysis, on-page SEO enhancements, and ranking position monitoring.</p>
                 </div>
-                <div class="flex justify-between border-b pb-2">
-                  <span class="font-medium">Support</span>
-                  <span>Priority</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Priority Support</p>
+                  <p class="text-gray-600">24-hour response guarantee with priority handling for all requests and dedicated support specialist.</p>
                 </div>
-                <div class="flex justify-between">
-                  <span class="font-medium">Social Media</span>
-                  <span>Integration</span>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Social Media Integration</p>
+                  <p class="text-gray-600">Connect your website with social media platforms for automatic content sharing and enhanced visibility.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Performance Optimization</p>
+                  <p class="text-gray-600">Advanced speed optimizations with CDN integration, code optimization, and server-side caching.</p>
+                </div>
+                
+                <div class="mb-3">
+                  <p class="font-medium mb-1">Enhanced Analytics</p>
+                  <p class="text-gray-600">Comprehensive analytics with conversion tracking, user journey mapping, and actionable insights.</p>
                 </div>
               </div>
             `;
