@@ -1,72 +1,69 @@
-/* === Webglo Final Minimalistic Tooltip CSS === */
+/* === Webglo Final Tooltip CSS (Smaller Buttons) === */
 
 /* 1. Base Container */
 .tooltip-container {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem; /* 4px */
+  gap: 0.5rem; /* Adjust spacing between elements */
 }
 
-/* 2. Tooltip Trigger Button (The '?' or SVG)
-   This is the core of the new style. No background, no circles.
-*/
-.tooltip-trigger {
+/* 2. Tooltip Trigger Button */
+.tooltip-container .tooltip-trigger {
   /* Reset button styles */
-  background: transparent;
   border: none;
-  padding: 0;
   margin: 0;
-  
+
   /* Appearance & Interaction */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  cursor: help;
-  color: inherit; /* IMPORTANT: Inherits color from parent text (e.g., text-gray-700 or text-white/80) */
-  transition: color 0.2s ease-in-out;
-}
+  cursor: default;
 
-/* 3. Active & Hover State
-   Applies the theme gradient to the text or SVG icon.
-*/
-.tooltip-container.is-active .tooltip-trigger,
-.tooltip-trigger:hover {
-  /* Fallback for browsers that don't support background-clip */
-  color: #a855f7; /* A fallback purple from your gradient */
-  
-  /* Gradient text effect */
+  /* Sizing & Shape */
+  width: 1.5rem; /* Smaller circle size */
+  height: 1.5rem; /* Smaller circle size */
+  padding: 0.2rem; /* Minimal padding for a tight circle */
+  border-radius: 50%; /* Keep it circular */
+
+  /* Default Gradient Background */
   background-image: linear-gradient(to right, #df00ff, #0cead9);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: white; /* Makes the '?' or SVG icon white */
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  line-height: 1; /* Prevents extra height from line-height */
 }
 
-/* Ensure SVGs inside the trigger also get the gradient color */
-.tooltip-trigger svg {
-  fill: currentColor; 
+/* Ensure SVGs inside the trigger are properly sized */
+.tooltip-container .tooltip-trigger svg {
+  width: 1rem; /* Smaller SVG size */
+  height: 1rem; /* Smaller SVG size */
+  fill: currentColor;
 }
 
-
-/* --- The rest of the system remains the same --- */
-
+/* 3. Active & Hover State */
+.tooltip-container.is-active .tooltip-trigger,
+.tooltip-container .tooltip-trigger:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 0.5rem rgba(223, 0, 255, 0.5); /* Adds a soft purple glow */
+}
 
 /* 4. Tooltip Content Box (The Popup) */
 .tooltip-content {
   position: absolute;
   top: 50%;
   left: 100%;
-  margin-left: 8px;
-  transform: translateY(-50%) translateX(-4px);
+  margin-left: 0.5rem;
+  transform: translateY(-50%) translateX(-0.25rem);
   z-index: 1000;
   background: #1f2937;
   color: #f9fafb;
-  border-radius: 8px;
-  padding: 12px 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.25);
   width: max-content;
-  min-width: 220px;
-  max-width: 300px;
+  min-width: 14rem;
+  max-width: 18.75rem;
   white-space: normal;
   font-size: 0.875rem;
   line-height: 1.6;
@@ -81,7 +78,7 @@
   top: 50%;
   right: 100%;
   transform: translateY(-50%);
-  border: 6px solid transparent;
+  border: 0.375rem solid transparent;
   border-right-color: #1f2937;
 }
 
@@ -92,8 +89,20 @@
   transform: translateY(-50%) translateX(0);
 }
 
-/* 6. Mobile Experience (Unchanged) */
+/* 6. Mobile Experience */
 @media (max-width: 768px) {
+  .tooltip-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    max-width: 90%; /* Ensure it fits within the viewport */
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+
   .tooltip-container.is-active::before {
     content: '';
     position: fixed;
@@ -102,28 +111,6 @@
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-    z-index: 999;
-  }
-  
-  .tooltip-content {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: auto;
-    transform: translateY(100%);
-    max-width: 100%;
-    margin-left: 0;
-    border-radius: 12px 12px 0 0;
-    padding: 24px 20px 20px;
-    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  .tooltip-container.is-active .tooltip-content {
-    transform: translateY(0);
-  }
-
-  .tooltip-content::after {
-    display: none;
+    z-index: 9998;
   }
 }

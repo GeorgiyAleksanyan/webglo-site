@@ -13,11 +13,11 @@ body {
 }
 
 /* Enhanced Touch Targets for Mobile */
-button, 
-.btn, 
-a[role="button"],
-input[type="submit"],
-input[type="button"] {
+button:not(.tooltip-trigger), 
+.btn:not(.tooltip-trigger), 
+a[role="button"]:not(.tooltip-trigger),
+input[type="submit"]:not(.tooltip-trigger),
+input[type="button"]:not(.tooltip-trigger) {
   min-height: 44px;
   min-width: 44px;
   padding: 12px 16px;

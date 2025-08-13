@@ -45,19 +45,34 @@ class TooltipSystem {
       if (trigger) {
         const container = trigger.closest('.tooltip-container');
         if (!container) return;
-        
+
         const isActive = container.classList.contains('is-active');
 
         // First, close all other active tooltips
         document.querySelectorAll('.tooltip-container.is-active').forEach(openContainer => {
           if (openContainer !== container) {
             openContainer.classList.remove('is-active');
+            openContainer.querySelector('.tooltip-content').style = ''; // Reset styles
           }
         });
 
         // Then, toggle the state of the clicked tooltip's container
         container.classList.toggle('is-active');
-        
+
+        // Handle mobile-specific positioning
+        const tooltipContent = container.querySelector('.tooltip-content');
+        if (window.innerWidth <= 768) {
+          if (container.classList.contains('is-active')) {
+            tooltipContent.style.position = 'fixed';
+            tooltipContent.style.top = '50%';
+            tooltipContent.style.left = '50%';
+            tooltipContent.style.transform = 'translate(-50%, -50%)';
+            tooltipContent.style.zIndex = '9999';
+          } else {
+            tooltipContent.style = ''; // Reset styles
+          }
+        }
+
         return; // Stop further processing
       }
 
@@ -66,6 +81,7 @@ class TooltipSystem {
       if (!e.target.closest('.tooltip-container.is-active')) {
         document.querySelectorAll('.tooltip-container.is-active').forEach(container => {
           container.classList.remove('is-active');
+          container.querySelector('.tooltip-content').style = ''; // Reset styles
         });
       }
     });
