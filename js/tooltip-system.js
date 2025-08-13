@@ -28,6 +28,7 @@ class TooltipSystem {
           ?
         </button>
         <div class="tooltip-content" role="tooltip">
+          <button class="tooltip-close" aria-label="Close tooltip">"x"</button>
           ${content}
           <br><br>
           <a href="refunds-policy.html" class="text-blue-300 hover:text-blue-200 text-xs underline">View Refunds Policy</a>
@@ -40,6 +41,8 @@ class TooltipSystem {
   init() {
     document.body.addEventListener('click', (e) => {
       const trigger = e.target.closest('.tooltip-trigger');
+      const closeButton = e.target.closest('.tooltip-close');
+      const overlay = e.target.closest('.tooltip-container.is-active::before');
 
       // Case 1: A tooltip trigger was clicked
       if (trigger) {
@@ -76,10 +79,27 @@ class TooltipSystem {
         return; // Stop further processing
       }
 
-      // Case 2: A click happened anywhere else on the page
-      // If the click was not inside an active tooltip, close all of them.
-      const overlay = e.target.closest('.tooltip-container.is-active::before');
-      if (!e.target.closest('.tooltip-container.is-active') && !overlay) {
+      // Case 2: The close button was clicked
+      if (closeButton) {
+        const container = closeButton.closest('.tooltip-container');
+        if (container) {
+          container.classList.remove('is-active');
+          container.querySelector('.tooltip-content').style = ''; // Reset styles
+        }
+        return; // Stop further processing
+      }
+
+      // Case 3: The overlay was clicked
+      if (overlay) {
+        document.querySelectorAll('.tooltip-container.is-active').forEach(container => {
+          container.classList.remove('is-active');
+          container.querySelector('.tooltip-content').style = ''; // Reset styles
+        });
+        return; // Stop further processing
+      }
+
+      // Case 4: A click happened anywhere else on the page
+      if (!e.target.closest('.tooltip-container.is-active')) {
         document.querySelectorAll('.tooltip-container.is-active').forEach(container => {
           container.classList.remove('is-active');
           container.querySelector('.tooltip-content').style = ''; // Reset styles
