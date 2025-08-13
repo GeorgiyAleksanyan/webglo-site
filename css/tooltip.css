@@ -1,128 +1,129 @@
-/* Tooltip System for Legal Claims and Guarantees */
+/* === Webglo Final Minimalistic Tooltip CSS === */
+
+/* 1. Base Container */
 .tooltip-container {
   position: relative;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 0.25rem; /* 4px */
 }
 
+/* 2. Tooltip Trigger Button (The '?' or SVG)
+   This is the core of the new style. No background, no circles.
+*/
 .tooltip-trigger {
+  /* Reset button styles */
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  
+  /* Appearance & Interaction */
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 16px;
-  height: 16px;
-  background: #6366f1;
-  color: white;
-  border-radius: 50%;
-  font-size: 10px;
-  font-weight: bold;
   cursor: help;
-  transition: all 0.2s ease;
-  text-decoration: none;
-  border: none;
-  outline: none;
+  color: inherit; /* IMPORTANT: Inherits color from parent text (e.g., text-gray-700 or text-white/80) */
+  transition: color 0.2s ease-in-out;
 }
 
+/* 3. Active & Hover State
+   Applies the theme gradient to the text or SVG icon.
+*/
+.tooltip-container.is-active .tooltip-trigger,
 .tooltip-trigger:hover {
-  background: #4f46e5;
-  transform: scale(1.1);
+  /* Fallback for browsers that don't support background-clip */
+  color: #a855f7; /* A fallback purple from your gradient */
+  
+  /* Gradient text effect */
+  background-image: linear-gradient(to right, #df00ff, #0cead9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
+/* Ensure SVGs inside the trigger also get the gradient color */
+.tooltip-trigger svg {
+  fill: currentColor; 
+}
+
+
+/* --- The rest of the system remains the same --- */
+
+
+/* 4. Tooltip Content Box (The Popup) */
 .tooltip-content {
   position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #1f2937;
-  color: white;
-  padding: 16px 20px;
-  border-radius: 12px;
-  font-size: 13px;
-  line-height: 1.5;
-  white-space: nowrap;
-  max-width: 350px;
-  white-space: normal;
-  min-width: 250px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  top: 50%;
+  left: 100%;
+  margin-left: 8px;
+  transform: translateY(-50%) translateX(-4px);
   z-index: 1000;
+  background: #1f2937;
+  color: #f9fafb;
+  border-radius: 8px;
+  padding: 12px 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  width: max-content;
+  min-width: 220px;
+  max-width: 300px;
+  white-space: normal;
+  font-size: 0.875rem;
+  line-height: 1.6;
   opacity: 0;
   visibility: hidden;
-  transition: all 0.3s ease;
-  margin-bottom: 12px;
-  word-wrap: break-word;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
 }
 
 .tooltip-content::after {
   content: '';
   position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
   border: 6px solid transparent;
-  border-top-color: #1f2937;
+  border-right-color: #1f2937;
 }
 
-.tooltip-container:hover .tooltip-content {
+/* 5. Active State (Controlled by JS) */
+.tooltip-container.is-active .tooltip-content {
   opacity: 1;
   visibility: visible;
+  transform: translateY(-50%) translateX(0);
 }
 
-/* Mobile adjustments */
+/* 6. Mobile Experience (Unchanged) */
 @media (max-width: 768px) {
-  .tooltip-content {
+  .tooltip-container.is-active::before {
+    content: '';
     position: fixed;
-    bottom: auto;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 300px;
-    min-width: 280px;
-    margin: 0;
-    padding: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
   }
   
+  .tooltip-content {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    transform: translateY(100%);
+    max-width: 100%;
+    margin-left: 0;
+    border-radius: 12px 12px 0 0;
+    padding: 24px 20px 20px;
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .tooltip-container.is-active .tooltip-content {
+    transform: translateY(0);
+  }
+
   .tooltip-content::after {
     display: none;
   }
-}
-
-/* Specific tooltip variants */
-.tooltip-guarantee {
-  background: #059669;
-}
-
-.tooltip-guarantee:hover {
-  background: #047857;
-}
-
-.tooltip-refund {
-  background: #dc2626;
-}
-
-.tooltip-refund:hover {
-  background: #b91c1c;
-}
-
-.tooltip-delivery {
-  background: #7c3aed;
-}
-
-.tooltip-delivery:hover {
-  background: #6d28d9;
-}
-
-/* Navigation Spacing Utilities */
-body {
-  padding-top: 64px; /* Space for fixed navigation */
-}
-
-/* Override for specific sections that need different spacing */
-.hero-section {
-  margin-top: -64px !important;
-  padding-top: 80px !important; /* 64px nav + 16px margin */
-}
-
-.main-content {
-  padding-top: 20px; /* Additional spacing for main content */
 }

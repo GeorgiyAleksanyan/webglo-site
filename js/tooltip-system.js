@@ -1,6 +1,8 @@
-// Tooltip Utility for Legal Claims and Guarantees
+// === Webglo Refactored TooltipSystem.js ===
+
 class TooltipSystem {
   constructor() {
+    // This part of your structure is great. We'll keep it as is.
     this.tooltips = {
       '48hour-guarantee': 'Delivery within 48 hours of order confirmation and receipt of all materials, or full refund applies. Development begins within 4 hours of order.',
       'money-back': 'Full refund available if delivery deadline is missed or within 4-hour cancellation window. See our refunds policy for complete terms.',
@@ -11,7 +13,7 @@ class TooltipSystem {
     };
   }
 
-  // Create tooltip HTML structure
+  // Your createTooltip method is perfect and does not need to change.
   createTooltip(text, tooltipKey, variant = 'default') {
     const content = this.tooltips[tooltipKey] || 'See our terms and conditions for full details.';
     const variantClass = variant !== 'default' ? `tooltip-${variant}` : '';
@@ -34,64 +36,42 @@ class TooltipSystem {
     `;
   }
 
-  // Initialize tooltips on page load
+  // REFACTORED: Simplified and universal event handling.
   init() {
-    // Add tooltip CSS if not already included
-    if (!document.querySelector('link[href*="tooltip.css"]')) {
-      const link = document.createElement('link');
-      link.rel = 'stylesheet';
-      link.href = 'css/tooltip.css';
-      document.head.appendChild(link);
-    }
+    document.body.addEventListener('click', (e) => {
+      const trigger = e.target.closest('.tooltip-trigger');
 
-    // Add click handlers for mobile
-    document.addEventListener('click', (e) => {
-      if (e.target.matches('.tooltip-trigger')) {
-        e.preventDefault();
-        this.handleMobileTooltip(e.target);
-      }
-    });
-
-    // Close tooltips when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!e.target.closest('.tooltip-container')) {
-        this.closeAllMobileTooltips();
-      }
-    });
-  }
-
-  // Handle mobile tooltip display
-  handleMobileTooltip(trigger) {
-    if (window.innerWidth <= 768) {
-      const tooltip = trigger.nextElementSibling;
-      const isVisible = tooltip.style.opacity === '1';
-      
-      // Close all other tooltips
-      this.closeAllMobileTooltips();
-      
-      // Toggle current tooltip
-      if (!isVisible) {
-        tooltip.style.opacity = '1';
-        tooltip.style.visibility = 'visible';
-        trigger.setAttribute('aria-expanded', 'true');
-      }
-    }
-  }
-
-  // Close all mobile tooltips
-  closeAllMobileTooltips() {
-    const tooltips = document.querySelectorAll('.tooltip-content');
-    tooltips.forEach(tooltip => {
-      tooltip.style.opacity = '0';
-      tooltip.style.visibility = 'hidden';
-      const trigger = tooltip.previousElementSibling;
+      // Case 1: A tooltip trigger was clicked
       if (trigger) {
-        trigger.setAttribute('aria-expanded', 'false');
+        const container = trigger.closest('.tooltip-container');
+        if (!container) return;
+        
+        const isActive = container.classList.contains('is-active');
+
+        // First, close all other active tooltips
+        document.querySelectorAll('.tooltip-container.is-active').forEach(openContainer => {
+          if (openContainer !== container) {
+            openContainer.classList.remove('is-active');
+          }
+        });
+
+        // Then, toggle the state of the clicked tooltip's container
+        container.classList.toggle('is-active');
+        
+        return; // Stop further processing
+      }
+
+      // Case 2: A click happened anywhere else on the page
+      // If the click was not inside an active tooltip, close all of them.
+      if (!e.target.closest('.tooltip-container.is-active')) {
+        document.querySelectorAll('.tooltip-container.is-active').forEach(container => {
+          container.classList.remove('is-active');
+        });
       }
     });
   }
 
-  // Helper method to wrap existing text with tooltips
+  // Your static helper method is great and does not need to change.
   static wrapText(selector, tooltipKey, variant = 'default') {
     const elements = document.querySelectorAll(selector);
     const tooltipSystem = new TooltipSystem();
