@@ -1140,79 +1140,214 @@
     </div>
   </section></svg></div></svg></div>
 
-  <!-- Client Showcase Section -->
+  <!-- Client Showcase Section (Immaculate, Responsive, Glow, Snap Animation) -->
   <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-6">
+    <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Our Work</h2>
-        <p class="text-gray-600 max-w-3xl mx-auto">See examples of websites we've built for businesses like yours. Every project is custom designed to match your brand and business goals.</p>
+        <h2 class="text-2xl md:text-3xl font-bold mb-2 text-center justify-center">Our Work</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-base md:text-lg text-center justify-center">See examples of websites we've built for businesses like yours. Every project is custom designed to match your brand and business goals.</p>
       </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Family World Incorporated Case Study -->
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
-          <div class="relative">
-            <img src="assets/case studies/family-world-incorporated/home-page.png" alt="Family World Incorporated Website" class="w-full h-56 object-cover">
-            <div class="absolute bottom-0 left-0 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white px-3 py-1 text-xs font-bold">
-              Family Entertainment
+      <!-- Mobile: Horizontal Scroll, Desktop: Grid -->
+      <div class="relative">
+        <div 
+          class="flex gap-8 overflow-x-auto pb-6 snap-x snap-mandatory lg:hidden transition-all duration-300"
+          id="clientShowcaseScroll"
+          style="scroll-snap-type: x mandatory; padding-left: 6vw; padding-right: 6vw;"
+        >
+          <!-- Card 1 -->
+          <div class="relative flex-shrink-0 snap-center min-w-[80vw] max-w-[85vw] mt-4 mb-4 first:ml-2 last:mr-2" style="margin-left:2vw; margin-right:2vw;">
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#df00ff]/25 to-[#0cead9]/25 blur-xl z-0"></div>
+            <div class="relative bg-white rounded-2xl shadow-2xl hover:shadow-[0_10px_40px_0_rgba(223,0,255,0.10)] transition-all p-5 border border-[#df00ff]/10">
+              <img src="assets/case studies/family-world-incorporated/home-page.png" alt="Family World Incorporated Website" class="w-full h-40 object-cover rounded-lg mb-4 shadow-md">
+              <div class="text-xs text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] px-2 py-1 rounded mb-2 w-max shadow">Family Entertainment</div>
+              <h3 class="text-base font-semibold mb-1 text-gray-900">Family World Incorporated</h3>
+              <p class="text-xs text-gray-600 mb-2">Modern family entertainment website with mobile-optimized design and online booking.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">Professional</span>
+                <a href="case-studies.html" class="text-xs text-purple-600 font-medium hover:underline">View →</a>
+              </div>
             </div>
           </div>
-          <div class="p-6">
-            <h3 class="text-lg font-semibold mb-2">Family World Incorporated</h3>
-            <p class="text-gray-600 mb-4">Modern family entertainment website with mobile-optimized design and online booking capabilities.</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sm text-gray-500">Professional Package</span>
-              <a href="case-studies.html" class="text-purple-600 font-medium hover:text-purple-800">View Case Study →</a>
+          <!-- Card 2 -->
+          <div class="relative flex-shrink-0 snap-center min-w-[80vw] max-w-[85vw] mt-4 mb-4" style="margin-left:2vw; margin-right:2vw;">
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#df00ff]/25 to-[#0cead9]/25 blur-xl z-0"></div>
+            <div class="relative bg-white rounded-2xl shadow-2xl hover:shadow-[0_10px_40px_0_rgba(223,0,255,0.10)] transition-all p-5 border border-[#df00ff]/10">
+              <img src="assets/case studies/clear-sky-cleaning/homepage-hero.png" alt="Clear Sky Cleaning Website" class="w-full h-40 object-cover rounded-lg mb-4 shadow-md">
+              <div class="text-xs text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] px-2 py-1 rounded mb-2 w-max shadow">Service Business</div>
+              <h3 class="text-base font-semibold mb-1 text-gray-900">Clear Sky Cleaning</h3>
+              <p class="text-xs text-gray-600 mb-2">Professional site with lead forms and service areas. Quote requests up 65%.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">Professional</span>
+                <a href="case-studies.html" class="text-xs text-purple-600 font-medium hover:underline">View →</a>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="relative flex-shrink-0 snap-center min-w-[80vw] max-w-[85vw] mt-4 mb-4 last:mr-2" style="margin-left:2vw; margin-right:2vw;">
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#df00ff]/25 to-[#0cead9]/25 blur-xl z-0"></div>
+            <div class="relative bg-white rounded-2xl shadow-2xl hover:shadow-[0_10px_40px_0_rgba(223,0,255,0.10)] transition-all p-5 border border-[#df00ff]/10">
+              <img src="assets/case studies/redlined-car-club-spreadshop-ecommerce-store/home-page.png" alt="Redlined Car Club E-commerce Store" class="w-full h-40 object-cover rounded-lg mb-4 shadow-md">
+              <div class="text-xs text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] px-2 py-1 rounded mb-2 w-max shadow">E-commerce</div>
+              <h3 class="text-base font-semibold mb-1 text-gray-900">Redlined Car Club</h3>
+              <p class="text-xs text-gray-600 mb-2">E-commerce store with custom merchandise and secure checkout.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">Enterprise</span>
+                <a href="case-studies.html" class="text-xs text-purple-600 font-medium hover:underline">View →</a>
+              </div>
             </div>
           </div>
         </div>
-        
-        <!-- Clear Sky Cleaning Case Study -->
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
-          <div class="relative">
-            <img src="assets/case studies/clear-sky-cleaning/homepage-hero.png" alt="Clear Sky Cleaning Website" class="w-full h-56 object-cover">
-            <div class="absolute bottom-0 left-0 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white px-3 py-1 text-xs font-bold">
-              Service Business
+        <!-- Desktop Grid -->
+        <div class="hidden lg:grid grid-cols-3 gap-12 mt-8">
+          <!-- Card 1 -->
+          <div class="relative mt-4 mb-4">
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#df00ff]/15 to-[#0cead9]/15 blur-xl z-0"></div>
+            <div class="relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all p-8 border border-[#df00ff]/10">
+              <img src="assets/case studies/family-world-incorporated/home-page.png" alt="Family World Incorporated Website" class="w-full h-52 object-cover rounded-lg mb-4 shadow">
+              <div class="text-xs text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] px-2 py-1 rounded mb-2 w-max shadow">Family Entertainment</div>
+              <h3 class="text-lg font-semibold mb-1 text-gray-900">Family World Incorporated</h3>
+              <p class="text-sm text-gray-600 mb-2">Modern family entertainment website with mobile-optimized design and online booking.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">Professional</span>
+                <a href="case-studies.html" class="text-xs text-purple-600 font-medium hover:underline">View →</a>
+              </div>
             </div>
           </div>
-          <div class="p-6">
-            <h3 class="text-lg font-semibold mb-2">Clear Sky Cleaning</h3>
-            <p class="text-gray-600 mb-4">Professional site with lead generation forms and service areas. Increased quote requests by 65%.</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sm text-gray-500">Professional Package</span>
-              <a href="case-studies.html" class="text-purple-600 font-medium hover:text-purple-800">View Case Study →</a>
+          <!-- Card 2 -->
+          <div class="relative mt-4 mb-4">
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#df00ff]/15 to-[#0cead9]/15 blur-xl z-0"></div>
+            <div class="relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all p-8 border border-[#df00ff]/10">
+              <img src="assets/case studies/clear-sky-cleaning/homepage-hero.png" alt="Clear Sky Cleaning Website" class="w-full h-52 object-cover rounded-lg mb-4 shadow">
+              <div class="text-xs text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] px-2 py-1 rounded mb-2 w-max shadow">Service Business</div>
+              <h3 class="text-lg font-semibold mb-1 text-gray-900">Clear Sky Cleaning</h3>
+              <p class="text-sm text-gray-600 mb-2">Professional site with lead forms and service areas. Quote requests up 65%.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">Professional</span>
+                <a href="case-studies.html" class="text-xs text-purple-600 font-medium hover:underline">View →</a>
+              </div>
             </div>
           </div>
-        </div>
-        
-        <!-- Redlined Car Club E-commerce Case Study -->
-        <div class="bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all">
-          <div class="relative">
-            <img src="assets/case studies/redlined-car-club-spreadshop-ecommerce-store/home-page.png" alt="Redlined Car Club E-commerce Store" class="w-full h-56 object-cover">
-            <div class="absolute bottom-0 left-0 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white px-3 py-1 text-xs font-bold">
-              E-commerce
-            </div>
-          </div>
-          <div class="p-6">
-            <h3 class="text-lg font-semibold mb-2">Redlined Car Club</h3>
-            <p class="text-gray-600 mb-4">E-commerce store with custom merchandise and secure checkout. Seamless shopping experience with brand consistency.</p>
-            <div class="flex items-center justify-between">
-              <span class="text-sm text-gray-500">Enterprise Package</span>
-              <a href="case-studies.html" class="text-purple-600 font-medium hover:text-purple-800">View Case Study →</a>
+          <!-- Card 3 -->
+          <div class="relative mt-4 mb-4">
+            <div class="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#df00ff]/15 to-[#0cead9]/15 blur-xl z-0"></div>
+            <div class="relative bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all p-8 border border-[#df00ff]/10">
+              <img src="assets/case studies/redlined-car-club-spreadshop-ecommerce-store/home-page.png" alt="Redlined Car Club E-commerce Store" class="w-full h-52 object-cover rounded-lg mb-4 shadow">
+              <div class="text-xs text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] px-2 py-1 rounded mb-2 w-max shadow">E-commerce</div>
+              <h3 class="text-lg font-semibold mb-1 text-gray-900">Redlined Car Club</h3>
+              <p class="text-sm text-gray-600 mb-2">E-commerce store with custom merchandise and secure checkout.</p>
+              <div class="flex items-center justify-between">
+                <span class="text-xs text-gray-500">Enterprise</span>
+                <a href="case-studies.html" class="text-xs text-purple-600 font-medium hover:underline">View →</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-      
-      <div class="text-center mt-12">
-        <a href="case-studies.html" class="inline-block px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded-lg transition-all">
-          View All Case Studies
-          <svg class="w-4 h-4 inline-block ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-          </svg>
+      <!-- Center the button and text on desktop only -->
+      <div class="mt-10 flex flex-col items-center justify-center lg:items-center lg:justify-center">
+        <a href="case-studies.html" class="inline-block px-6 py-2 bg-gradient-to-r from-[#df00ff]/10 to-[#0cead9]/10 hover:bg-gradient-to-r hover:from-[#df00ff]/20 hover:to-[#0cead9]/20 text-gray-800 font-semibold rounded-lg transition-all text-base shadow-sm">
+          View All Case Studies →
         </a>
       </div>
     </div>
+    <style>
+      /* Hide scrollbar for horizontal scroll */
+      #clientShowcaseScroll {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        scroll-behavior: smooth;
+        /* Add extra margin for left/right cards */
+        padding-bottom: 2.5rem !important;
+      }
+      #clientShowcaseScroll::-webkit-scrollbar {
+        display: none;
+      }
+      /* Responsive card sizing and text for mobile */
+      @media (max-width: 767px) {
+        #clientShowcaseScroll .p-5 {
+          padding: 1.1rem !important;
+        }
+        #clientShowcaseScroll h3 {
+          font-size: 1.08rem !important;
+        }
+        #clientShowcaseScroll p {
+          font-size: 0.93rem !important;
+        }
+        #clientShowcaseScroll img {
+          height: 8.5rem !important;
+        }
+      }
+      /* Card glow and shadow on hover */
+      #clientShowcaseScroll .relative:hover .bg-gradient-to-br,
+      .lg\:grid .relative:hover .bg-gradient-to-br {
+        filter: blur(1.5rem) brightness(1.2);
+        opacity: 0.9;
+        transition: filter 0.3s, opacity 0.3s;
+      }
+      /* Center the button and text on desktop only */
+      @media (min-width: 1024px) {
+        .mt-10.flex {
+          justify-content: center !important;
+          align-items: center !important;
+          text-align: center !important;
+        }
+      }
+    </style>
+    <script>
+      // Snap animation for mobile scroll
+      (function() {
+        const scrollEl = document.getElementById('clientShowcaseScroll');
+        if (!scrollEl) return;
+        let isTouching = false;
+        let snapTimeout = null;
+
+        function getCardCenters() {
+          const cards = Array.from(scrollEl.children);
+          return cards.map(card => {
+            const rect = card.getBoundingClientRect();
+            const scrollRect = scrollEl.getBoundingClientRect();
+            return rect.left - scrollRect.left + rect.width / 2;
+          });
+        }
+
+        function snapToNearestCard() {
+          const scrollRect = scrollEl.getBoundingClientRect();
+          const scrollCenter = scrollEl.scrollLeft + scrollRect.width / 2;
+          const cards = Array.from(scrollEl.children);
+          let minDist = Infinity, snapIndex = 0;
+          cards.forEach((card, i) => {
+            const cardRect = card.getBoundingClientRect();
+            const cardCenter = card.offsetLeft + cardRect.width / 2;
+            const dist = Math.abs(cardCenter - scrollCenter);
+            if (dist < minDist) {
+              minDist = dist;
+              snapIndex = i;
+            }
+          });
+          // Snap to the card
+          const targetCard = cards[snapIndex];
+          if (targetCard) {
+            targetCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          }
+        }
+
+        // Only on mobile
+        if (window.innerWidth < 1024) {
+          scrollEl.addEventListener('touchstart', () => { isTouching = true; });
+          scrollEl.addEventListener('touchend', () => {
+            isTouching = false;
+            clearTimeout(snapTimeout);
+            snapTimeout = setTimeout(snapToNearestCard, 120);
+          });
+          scrollEl.addEventListener('scroll', () => {
+            if (!isTouching) {
+              clearTimeout(snapTimeout);
+              snapTimeout = setTimeout(snapToNearestCard, 180);
+            }
+          });
+        }
+      })();
+    </script>
   </section>
 
   <!-- Journey to Success Section -->
@@ -1907,71 +2042,82 @@
   </section>
 
   <!-- Trust Elements Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Why Choose WebGlo</h2>
-        <p class="text-gray-600 max-w-3xl mx-auto">We combine technical expertise with business understanding to deliver websites that not only look great but drive real results</p>
+  <section class="py-12 bg-white">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold mb-3">Why Choose WebGlo</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-base">We combine technical expertise with business understanding to deliver websites that not only look great but drive real results</p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
         <!-- Trust Element 1 -->
-        <div class="bg-gray-50 p-6 rounded-xl text-center">
-          <div class="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-50 p-4 md:p-6 rounded-xl text-center flex flex-col items-center">
+          <div class="w-12 h-12 md:w-16 md:h-16 mb-3 bg-purple-100 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">Security First</h3>
-          <p class="text-gray-600">SSL encryption and security best practices come standard with all our websites</p>
+          <h3 class="text-base md:text-xl font-bold mb-1">Security First</h3>
+          <p class="text-gray-600 text-xs md:text-sm">SSL encryption and security best practices come standard with all our websites</p>
         </div>
         
         <!-- Trust Element 2 -->
-        <div class="bg-gray-50 p-6 rounded-xl text-center">
-          <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-50 p-4 md:p-6 rounded-xl text-center flex flex-col items-center">
+          <div class="w-12 h-12 md:w-16 md:h-16 mb-3 bg-blue-100 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">Lightning Fast</h3>
-          <p class="text-gray-600">Optimized code and advanced caching for websites that load in under 2 seconds</p>
+          <h3 class="text-base md:text-xl font-bold mb-1">Lightning Fast</h3>
+          <p class="text-gray-600 text-xs md:text-sm">Optimized code and advanced caching for websites that load in under 2 seconds</p>
         </div>
         
         <!-- Trust Element 3 -->
-        <div class="bg-gray-50 p-6 rounded-xl text-center">
-          <div class="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-50 p-4 md:p-6 rounded-xl text-center flex flex-col items-center">
+          <div class="w-12 h-12 md:w-16 md:h-16 mb-3 bg-green-100 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"></svg>
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">SEO Optimized</h3>
-          <p class="text-gray-600">Built with search engines in mind so your business gets found online</p>
+          <h3 class="text-base md:text-xl font-bold mb-1">SEO Optimized</h3>
+          <p class="text-gray-600 text-xs md:text-sm">Built with search engines in mind so your business gets found online</p>
         </div>
         
         <!-- Trust Element 4 -->
-        <div class="bg-gray-50 p-6 rounded-xl text-center">
-          <div class="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-50 p-4 md:p-6 rounded-xl text-center flex flex-col items-center">
+          <div class="w-12 h-12 md:w-16 md:h-16 mb-3 bg-red-100 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 md:w-8 md:h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">99.9% Uptime</h3>
-          <p class="text-gray-600">Enterprise-grade hosting ensures your website is always available to customers</p>
+          <h3 class="text-base md:text-xl font-bold mb-1">99.9% Uptime</h3>
+          <p class="text-gray-600 text-xs md:text-sm">Enterprise-grade hosting ensures your website is always available to customers</p>
         </div>
       </div>
       
       <!-- Technology Partners -->
-      <div class="mt-16">
-        <h3 class="text-center text-xl font-semibold mb-8">Our Technology Partners</h3>
-        <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-80">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=WordPress" alt="WordPress" class="h-10">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Cloudflare" alt="Cloudflare" class="h-10">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Google" alt="Google" class="h-10">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Stripe" alt="Stripe" class="h-10">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Mailchimp" alt="Mailchimp" class="h-10">
+      <div class="mt-12 md:mt-16">
+        <h3 class="text-center text-lg md:text-xl font-semibold mb-6 md:mb-8">Our Technology Partners</h3>
+        <div class="flex flex-wrap justify-center items-center gap-x-6 gap-y-4 md:gap-x-12 md:gap-y-6 opacity-80">
+          <img src="https://placehold.co/100x32/e5e7eb/a3a3a3?text=WordPress" alt="WordPress" class="h-8 md:h-10">
+          <img src="https://placehold.co/100x32/e5e7eb/a3a3a3?text=Cloudflare" alt="Cloudflare" class="h-8 md:h-10">
+          <img src="https://placehold.co/100x32/e5e7eb/a3a3a3?text=Google" alt="Google" class="h-8 md:h-10">
+          <img src="https://placehold.co/100x32/e5e7eb/a3a3a3?text=Stripe" alt="Stripe" class="h-8 md:h-10">
+          <img src="https://placehold.co/100x32/e5e7eb/a3a3a3?text=Mailchimp" alt="Mailchimp" class="h-8 md:h-10">
         </div>
       </div>
     </div>
+    <style>
+      @media (max-width: 767px) {
+        /* Make trust cards more compact and text smaller on mobile */
+        .grid-cols-2 > div {
+          min-width: 0;
+        }
+        .grid-cols-2 {
+          gap: 0.75rem !important;
+        }
+      }
+    </style>
   </section>
 
   <!-- Call to Action -->
