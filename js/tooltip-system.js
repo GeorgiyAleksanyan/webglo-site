@@ -78,7 +78,8 @@ class TooltipSystem {
 
       // Case 2: A click happened anywhere else on the page
       // If the click was not inside an active tooltip, close all of them.
-      if (!e.target.closest('.tooltip-container.is-active')) {
+      const overlay = e.target.closest('.tooltip-container.is-active::before');
+      if (!e.target.closest('.tooltip-container.is-active') && !overlay) {
         document.querySelectorAll('.tooltip-container.is-active').forEach(container => {
           container.classList.remove('is-active');
           container.querySelector('.tooltip-content').style = ''; // Reset styles
