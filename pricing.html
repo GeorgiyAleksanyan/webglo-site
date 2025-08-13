@@ -31,27 +31,116 @@
   <link rel="stylesheet" href="css/mobile-first.css">
   <link rel="stylesheet" href="css/tooltip.css">
 
+  <!-- Enhanced Global Theme Styles -->
+  <style>
+    /* Global animations for the enhanced theme */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 1s ease-out;
+    }
+    
+    .glow-text {
+      text-shadow: 0 0 20px rgba(223, 0, 255, 0.5), 0 0 40px rgba(12, 234, 217, 0.3);
+    }
+    
+    /* Enhanced card hover effects */
+    .pricing-card {
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .pricing-card:hover {
+      transform: translateY(-10px) scale(1.02);
+    }
+    
+    /* Background gradient animation */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .animated-gradient {
+      background: linear-gradient(-45deg, #1f2937, #7c3aed, #1f2937, #0f172a);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+    }
+    
+    /* Enhanced tooltip styles for dark theme */
+    .tooltip-content {
+      background: rgba(31, 41, 55, 0.95) !important;
+      border: 1px solid rgba(75, 85, 99, 0.5) !important;
+      backdrop-filter: blur(10px);
+      color: #e5e7eb !important;
+    }
+    
+    /* Particle animation */
+    .particle {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    /* Smooth scrolling for the entire page */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Enhanced focus states for accessibility */
+    button:focus, a:focus {
+      outline: 2px solid #df00ff;
+      outline-offset: 2px;
+    }
+  </style>
+
 </head>
-<body class="font-inter bg-white text-gray-900">
+<body class="font-inter bg-gray-900 text-white">
   <div id="webglo-navigation"></div>
 
-  <section class="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 pt-28 pb-12 lg:pt-36 lg:pb-16 hero-section">
-    <div class="max-w-[1600px] mx-auto px-6 py-0 lg:px-8 text-center">
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-black pt-28 pb-12 lg:pt-36 lg:pb-16 hero-section">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-80 w-96 h-96 rounded-full bg-gradient-to-r from-[#df00ff] to-[#0cead9] opacity-10 blur-3xl animate-pulse"></div>
+      <div class="absolute -bottom-40 -left-80 w-96 h-96 rounded-full bg-gradient-to-r from-[#0cead9] to-[#df00ff] opacity-10 blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/3 right-1/4 w-32 h-32 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-5 blur-2xl animate-ping" style="animation-duration: 4s;"></div>
+    </div>
+    
+    <!-- Floating Particles -->
+    <div class="absolute inset-0">
+      <div class="particle absolute w-2 h-2 bg-[#df00ff] rounded-full opacity-20" style="top: 20%; left: 10%; animation: float 6s ease-in-out infinite;"></div>
+      <div class="particle absolute w-1 h-1 bg-[#0cead9] rounded-full opacity-30" style="top: 30%; right: 15%; animation: float 4s ease-in-out infinite reverse;"></div>
+      <div class="particle absolute w-3 h-3 bg-purple-400 rounded-full opacity-15" style="bottom: 30%; left: 20%; animation: float 8s ease-in-out infinite;"></div>
+    </div>
+
+    <div class="relative max-w-[1600px] mx-auto px-6 py-0 lg:px-8 text-center">
 
       <div class="my-10"></div>
 
-      <h1 class="text-4xl lg:text-8xl font-bold text-gray-900 mb-6 leading-tight">
+      <h1 class="text-4xl lg:text-8xl font-bold text-white mb-6 leading-tight fade-in-up">
         Launch
-        <span class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">
+        <span class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent glow-text">
           fast
         </span>
          with
-        <span class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">
+        <span class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent glow-text">
           affordable
         </span>
          plans and services
       </h1>
-      <p class="text-xl lg:text-2xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+      <p class="text-xl lg:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
         Transparent pricing with no hidden fees. Choose the perfect plan for your business needs and budget.
       </p>
       <div class="my-9"></div>
@@ -65,10 +154,10 @@
       </div>
       <!-- Trust Bar Section -->
       <div class="mt-8 max-w-4xl mx-auto px-6 lg:px-8">
-        <div class="flex flex-wrap sm:flex-nowrap justify-center items-center gap-x-8 gap-y-4 text-sm text-gray-600">
+        <div class="flex flex-wrap sm:flex-nowrap justify-center items-center gap-x-8 gap-y-4 text-sm text-gray-300">
           
           <!-- Item 1: 24/7 Support with Tooltip -->
-          <div class="flex items-center gap-2 tooltip-container order-2 sm:order-1">
+          <div class="flex items-center gap-2 tooltip-container order-2 sm:order-1 hover:text-[#0cead9] transition-colors duration-300">
             <button class="tooltip-trigger" type="button" aria-label="More information about 24/7 Support">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
                 <path d="M3.505 2.365A41.369 41.369 0 0 1 9 2c1.863 0 3.697.124 5.495.365 1.247.167 2.18 1.108 2.435 2.268a4.45 4.45 0 0 0-.577-.069 43.141 43.141 0 0 0-4.706 0C9.229 4.696 7.5 6.727 7.5 8.998v2.24c0 1.413.67 2.735 1.76 3.562l-2.98 2.98A.75.75 0 0 1 5 17.25v-3.443c-.501-.048-1-.106-1.495-.172C2.033 13.438 1 12.162 1 10.72V5.28c0-1.441 1.033-2.717 2.505-2.914Z" />
@@ -76,158 +165,147 @@
               </svg>
             </button>
             <span>24/7 Support</span>
-            <div class="tooltip-content" role="tooltip">
+            <div class="tooltip-content bg-gray-800 border-gray-600" role="tooltip">
               Our expert support team is available around the clock via live chat and email to assist you with any questions.
             </div>
           </div>
 
           <!-- Item 2: 30-Day Money-Back Guarantee with Tooltip -->
-          <div class="flex items-center justify-center gap-2 tooltip-container order-1 sm:order-2 w-full sm:w-auto">
+          <div class="flex items-center justify-center gap-2 tooltip-container order-1 sm:order-2 w-full sm:w-auto hover:text-[#df00ff] transition-colors duration-300">
             <button class="tooltip-trigger" type="button" aria-label="More information about the 30-Day Guarantee">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
                 <path fill-rule="evenodd" d="M9.661 2.237a.531.531 0 0 1 .678 0 11.947 11.947 0 0 0 7.078 2.749.5.5 0 0 1 .479.425c.069.52.104 1.05.104 1.59 0 5.162-3.26 9.563-7.834 11.256a.48.48 0 0 1-.332 0C5.26 16.564 2 12.163 2 7c0-.538.035-1.069.104-1.589a.5.5 0 0 1 .48-.425 11.947 11.947 0 0 0 7.077-2.75Zm4.196 5.954a.75.75 0 0 0-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clip-rule="evenodd" />
               </svg>
             </button>
             <span>30-Day Money-Back Guarantee</span>
-            <div class="tooltip-content" role="tooltip">
+            <div class="tooltip-content bg-gray-800 border-gray-600" role="tooltip">
               If you're not 100% satisfied, request a refund within 30 days. Subject to our terms.
-              <a href="refunds-policy.html" class="text-sky-400 hover:text-sky-300 text-xs underline">View Refunds Policy</a>
+              <a href="refunds-policy.html" class="text-[#0cead9] hover:text-[#df00ff] text-xs underline">View Refunds Policy</a>
             </div>
           </div>
 
           <!-- Item 3: Cancel Anytime with Tooltip -->
-          <div class="flex items-center gap-2 tooltip-container order-3 sm:order-3">
+          <div class="flex items-center gap-2 tooltip-container order-3 sm:order-3 hover:text-[#0cead9] transition-colors duration-300">
             <button class="tooltip-trigger" type="button" aria-label="More information about cancelling anytime">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
                 <path d="M12.75 4a.75.75 0 0 0-.75.75v10.5c0 .414.336.75.75.75h.5a.75.75 0 0 0 .75-.75V4.75a.75.75 0 0 0-.75-.75h-.5ZM17.75 4a.75.75 0 0 0-.75.75v10.5c0 .414.336.75.75.75h.5a.75.75 0 0 0 .75-.75V4.75a.75.75 0 0 0-.75-.75h-.5ZM3.288 4.819A1.5 1.5 0 0 0 1 6.095v7.81a1.5 1.5 0 0 0 2.288 1.277l6.323-3.906a1.5 1.5 0 0 0 0-2.552L3.288 4.819Z" />
               </svg>
             </button>
             <span>Cancel Anytime</span>
-            <div class="tooltip-content" role="tooltip">
+            <div class="tooltip-content bg-gray-800 border-gray-600" role="tooltip">
               No long-term contracts. You can cancel your subscription at any time without any hidden fees or penalties. Subject to our terms of service policy.
-              <a href="terms-of-service.html" class="text-sky-400 hover:text-sky-300 text-xs underline">View Our Terms Of Service</a>
-
+              <a href="terms-of-service.html" class="text-[#0cead9] hover:text-[#df00ff] text-xs underline">View Our Terms Of Service</a>
             </div>
           </div>
 
         </div>
       </div>
 
-    </div>
-  </section>
-  
-  <!-- Pricing Toggle -->
-  <section class="py-1 bg-white">
-    <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-      <div role="tablist" aria-label="Pricing plans" class="bg-gray-100 p-1 rounded-xl inline-flex">
-        <button id="one-time-tab" role="tab" aria-selected="true" aria-controls="one-time-packages" class="px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-lg transition-all duration-300">
-          One-Time Projects
-        </button>
-        <button id="monthly-tab" role="tab" aria-selected="false" aria-controls="monthly-plans" class="px-6 py-3 text-sm font-semibold text-gray-600 hover:text-gray-900 rounded-lg transition-all duration-300">
-          Monthly Plans
-        </button>
+      <div class="my-9"></div>
+
+      <!-- Pricing Toggle -->
+
+      <div class="relative max-w-4xl mx-auto px-6 lg:px-8 text-center">
+        <div role="tablist" aria-label="Pricing plans" class="bg-gray-900/50 backdrop-blur-sm border border-gray-700/50 p-2 rounded-2xl inline-flex shadow-2xl">
+          <button id="one-time-tab" role="tab" aria-selected="true" aria-controls="one-time-packages" class="px-8 py-4 text-sm font-semibold text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl">
+            One-Time Projects
+          </button>
+          <button id="monthly-tab" role="tab" aria-selected="false" aria-controls="monthly-plans" class="px-8 py-4 text-sm font-semibold text-gray-300 hover:text-white rounded-xl transition-all duration-300 hover:bg-gray-800/50">
+            Monthly Plans
+          </button>
+        </div>
       </div>
+
     </div>
   </section>
 
   <!-- One-Time Packages -->
-  <section id="one-time-packages" role="tabpanel" aria-labelledby="one-time-tab" class="py-10 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-8">Perfect for businesses that need a professional website built once with full ownership.</p>
-
-        <!-- All Packages Include Section -->
-        <div class="bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl p-6 max-w-4xl mx-auto">
-          <p class="text-lg font-semibold text-gray-900 mb-4">All packages include:</p>
-          <div class="flex flex-wrap justify-center items-center gap-8 text-gray-700">
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9v-9m0-9v9"></path>
-              </svg>
-              <span class="font-medium">Custom domain</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
-              </svg>
-              <span class="font-medium">Reliable web hosting</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-              </svg>
-              <span class="font-medium">Professional design</span>
-            </div>
-            <div class="flex items-center space-x-2">
-              <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z"></path>
-              </svg>
-              <span class="font-medium">Ongoing support</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <section id="one-time-packages" role="tabpanel" aria-labelledby="one-time-tab" class="py-20 bg-gradient-to-br from-gray-900 via-purple-900 to-black relative overflow-hidden">
+    <!-- Background Effects -->
+    <div class="absolute inset-0">
+      <div class="absolute -top-40 -right-80 w-96 h-96 rounded-full bg-gradient-to-r from-[#df00ff] to-[#0cead9] opacity-5 blur-3xl animate-pulse"></div>
+      <div class="absolute -bottom-40 -left-80 w-96 h-96 rounded-full bg-gradient-to-r from-[#0cead9] to-[#df00ff] opacity-5 blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+    
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <div class="text-center mb-9">
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-12">Perfect for businesses that need a professional website built once with full ownership.</p>
+        <br><br>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Starter Package -->
-        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+        <div class="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm p-8 rounded-3xl border border-gray-700/50 hover:border-green-500/50 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-green-500/20">
           <div class="text-center mb-8">
-            <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
-            <p class="text-gray-600 mb-4">Perfect for new businesses</p>
+            <h3 class="text-2xl font-bold text-white mb-2">Starter</h3>
+            <p class="text-gray-300 mb-4">Perfect for new businesses</p>
             <div class="mb-4">
-              <span class="text-4xl font-bold text-[#df00ff]">$599</span>
-              <span class="text-gray-500 ml-2">one-time</span>
+              <span class="text-4xl font-bold bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">$599</span>
+              <span class="text-gray-400 ml-2">one-time</span>
             </div>
-            <div class="px-4 py-2 bg-gray-100 rounded-lg mb-4">
-              <p class="text-sm text-gray-700"><strong>ROI:</strong> Professional web presence to establish credibility & attract clients</p>
+            
+            <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-green-400 to-emerald-500 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-green-500/30 transform hover:-translate-y-1 transition-all duration-300 mb-4 hover:scale-105">
+              Get Started
+            </a>
+            
+            <div class="px-4 py-3 bg-gray-700/50 border border-gray-600/50 rounded-xl mb-4 backdrop-blur-sm">
+              <p class="text-sm text-gray-200"><strong class="text-green-400">ROI:</strong> Professional web presence to establish credibility & attract clients</p>
             </div>
             <div class="flex flex-wrap justify-center gap-2 mb-4">
-              <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Startups</span>
-              <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Freelancers</span>
-              <span class="px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">Small businesses</span>
+              <span class="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-medium rounded-full backdrop-blur-sm">Startups</span>
+              <span class="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-medium rounded-full backdrop-blur-sm">Freelancers</span>
+              <span class="px-3 py-1 bg-green-500/20 border border-green-500/30 text-green-300 text-xs font-medium rounded-full backdrop-blur-sm">Small businesses</span>
             </div>
           </div>
 
           <ul class="space-y-4 mb-8">
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Up to 5 pages</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-gray-200 group-hover:text-white transition-colors duration-300">Up to 5 pages</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Mobile responsive design</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-gray-200 group-hover:text-white transition-colors duration-300">Mobile responsive design</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Basic SEO optimization</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-green-300 transition-colors duration-300">Basic SEO optimization</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Contact forms</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-green-300 transition-colors duration-300">Contact forms</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">2 rounds of revisions</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-green-300 transition-colors duration-300">2 rounds of revisions</span>
             </li>
           </ul>
 
           <div class="mb-6">
-            <button class="show-features-btn js-toggle-button block w-full text-center px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg mb-4 hover:bg-gray-50 transition-all duration-200" data-package="starter" aria-expanded="false" aria-controls="features-starter">
+            <button class="show-features-btn js-toggle-button block w-full text-center px-4 py-3 border border-gray-600/50 text-gray-300 font-medium rounded-lg mb-4 hover:bg-gray-700/30 hover:border-[#df00ff]/30 transition-all duration-200" data-package="starter" aria-expanded="false" aria-controls="features-starter">
               <div class="flex items-center justify-center">
                 <span>Show Features</span>
                 <svg class="feature-toggle-icon js-toggle-icon w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -235,213 +313,292 @@
                 </svg>
               </div>
             </button>
-            <div id="features-starter" class="features-details hidden bg-gray-50 p-4 rounded-lg mt-4 overflow-hidden">
+            <div id="features-starter" class="features-details hidden bg-gray-700/50 border border-gray-600/50 p-4 rounded-lg mt-4 overflow-hidden">
               <div class="text-sm space-y-3 pb-2">
-                <h4 class="font-semibold text-base border-b pb-2 mb-3">Starter Package Details</h4>
+                <h4 class="font-semibold text-base border-b border-gray-600/50 pb-2 mb-3 text-white">Starter Package Details</h4>
                 <div class="mb-3">
-                  <p class="font-medium mb-1">Basic Responsive Design</p>
-                  <p class="text-gray-600">Mobile-friendly templates optimized for phones and tablets with simple design elements.</p>
+                  <p class="font-medium mb-1 text-green-300">Basic Responsive Design</p>
+                  <p class="text-gray-300">Mobile-friendly templates optimized for phones and tablets with simple design elements.</p>
                 </div>
                 <div class="mb-3">
-                  <p class="font-medium mb-1">Content Integration</p>
-                  <p class="text-gray-600">We'll add your existing content and optimize up to 5 pages for better readability.</p>
+                  <p class="font-medium mb-1 text-green-300">Content Integration</p>
+                  <p class="text-gray-300">We'll add your existing content and optimize up to 5 pages for better readability.</p>
                 </div>
                 <div class="mb-3">
-                  <p class="font-medium mb-1">SEO Foundation</p>
-                  <p class="text-gray-600">Basic meta tags, page titles, and site structure optimized for search engines.</p>
+                  <p class="font-medium mb-1 text-green-300">SEO Foundation</p>
+                  <p class="text-gray-300">Basic meta tags, page titles, and site structure optimized for search engines.</p>
                 </div>
                 <div class="mb-3">
-                  <p class="font-medium mb-1">Basic Contact Form</p>
-                  <p class="text-gray-600">Simple form that collects visitor information and sends it to your email.</p>
+                  <p class="font-medium mb-1 text-green-300">Basic Contact Form</p>
+                  <p class="text-gray-300">Simple form that collects visitor information and sends it to your email.</p>
                 </div>
                 <div class="mb-3">
-                  <p class="font-medium mb-1">Technical Support</p>
-                  <p class="text-gray-600">30 days of email support after website launch for technical questions.</p>
+                  <p class="font-medium mb-1 text-green-300">Technical Support</p>
+                  <p class="text-gray-300">30 days of email support after website launch for technical questions.</p>
                 </div>
               </div>
             </div>
           </div>
-          
-          <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-green-400 to-emerald-500 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
-            Get Started
-          </a>
         </div>
 
         <!-- Professional Package -->
-        <div class="bg-gradient-to-b from-white to-gray-50 p-8 rounded-2xl shadow-xl border-2 border-[#df00ff] hover:border-[#0cead9] transition-all duration-300 scale-105">
-          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-            <span class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+        <div class="relative bg-gradient-to-br from-gray-800/90 to-purple-900/90 backdrop-blur-sm p-8 rounded-3xl border-2 border-[#df00ff] hover:border-[#0cead9] transition-all duration-500 scale-105 hover:scale-110 shadow-2xl hover:shadow-[#df00ff]/30">
+          <!-- Glowing effect -->
+          <div class="absolute inset-0 bg-gradient-to-br from-[#df00ff]/10 to-[#0cead9]/10 rounded-3xl blur-xl"></div>
+          
+          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+            <span class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white px-8 py-3 rounded-full text-sm font-bold shadow-2xl animate-pulse">
               Most Popular
             </span>
           </div>
           
-          <div class="text-center mb-8 mt-4">
-            <div class="w-16 h-16 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-xl flex items-center justify-center mx-auto mb-6">
-              <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="relative text-center mb-8 mt-4">
+            <div class="w-20 h-20 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-2xl flex items-center justify-center mx-auto mb-6 hover:scale-110 transition-transform duration-300 shadow-lg shadow-[#df00ff]/30">
+              <svg class="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Professional</h3>
-            <p class="text-gray-600 mb-4">Perfect for growing businesses</p>
-            <div class="mb-4">
-              <span class="text-4xl font-bold text-[#df00ff]">$1,299</span>
-              <span class="text-gray-500 ml-2">one-time</span>
+            <h3 class="text-3xl font-bold text-white mb-2">Professional</h3>
+            <p class="text-gray-300 mb-4">Perfect for growing businesses</p>
+            <div class="mb-6">
+              <span class="text-5xl font-bold bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">$1,299</span>
+              <span class="text-gray-400 ml-2">one-time</span>
             </div>
-            <div class="px-4 py-2 bg-gray-100 rounded-lg mb-4">
-              <p class="text-sm text-gray-700"><strong>ROI:</strong> Typically pays for itself within 3-4 months through increased leads and conversions</p>
+            
+            <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-xl hover:shadow-2xl hover:shadow-[#df00ff]/40 transform hover:-translate-y-2 transition-all duration-300 mb-6 hover:scale-105 relative overflow-hidden group">
+              <span class="relative z-10">Get Started</span>
+              <div class="absolute inset-0 bg-gradient-to-r from-[#0cead9] to-[#df00ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </a>
+            
+            <div class="px-4 py-3 bg-gradient-to-r from-gray-700/50 to-purple-700/50 border border-[#df00ff]/30 rounded-xl mb-4 backdrop-blur-sm">
+              <p class="text-sm text-gray-200"><strong class="text-[#df00ff]">ROI:</strong> Typically pays for itself within 3-4 months through increased leads and conversions</p>
             </div>
             <div class="flex flex-wrap justify-center gap-2 mb-4">
-              <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Service businesses</span>
-              <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Consultants</span>
-              <span class="px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full">Small retailers</span>
+              <span class="px-3 py-1 bg-[#df00ff]/20 border border-[#df00ff]/30 text-[#df00ff] text-xs font-medium rounded-full backdrop-blur-sm">Service businesses</span>
+              <span class="px-3 py-1 bg-[#0cead9]/20 border border-[#0cead9]/30 text-[#0cead9] text-xs font-medium rounded-full backdrop-blur-sm">Consultants</span>
+              <span class="px-3 py-1 bg-purple-500/20 border border-purple-500/30 text-purple-300 text-xs font-medium rounded-full backdrop-blur-sm">Small retailers</span>
             </div>
           </div>
 
-          <ul class="space-y-4 mb-8">
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Up to 10 pages</span>
+          <ul class="relative space-y-4 mb-8">
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#df00ff] transition-colors duration-300">Up to 10 pages</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Custom design + branding</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#df00ff] transition-colors duration-300">Custom design + branding</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Advanced SEO optimization</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#df00ff] transition-colors duration-300">Advanced SEO optimization</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Blog integration</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#df00ff] transition-colors duration-300">Blog integration</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Analytics setup</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#df00ff] transition-colors duration-300">Analytics setup</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">3 rounds of revisions</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#df00ff] transition-colors duration-300">4 rounds of revisions</span>
             </li>
           </ul>
 
           <div class="mb-6">
-            <button class="show-features-btn js-toggle-button block w-full text-center px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg mb-4 hover:bg-gray-50 transition-all duration-200" data-package="professional" aria-expanded="false" aria-controls="features-professional">
+            <button class="show-features-btn js-toggle-button block w-full text-center px-4 py-3 border border-[#df00ff]/50 text-white font-medium rounded-lg mb-4 hover:bg-[#df00ff]/20 hover:border-[#df00ff] transition-all duration-200" data-package="professional" aria-expanded="false" aria-controls="features-professional">
               <div class="flex items-center justify-center">
                 <span>Show Features</span>
-                <svg class="feature-toggle-icon js-toggle-icon w-5 h-5 ml-2 transition-transform duration-3
+                <svg class="feature-toggle-icon js-toggle-icon w-5 h-5 ml-2 transition-transform duration-300 text-[#df00ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </div>
             </button>
           </div>
-          
-          <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-            Get Started
-          </a>
         </div>
 
         <!-- Enterprise Package -->
-        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 p-8 rounded-2xl hover:border-[#0cead9]/30 transition-all duration-300 hover:transform hover:scale-105">
           <div class="text-center mb-8">
-            <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div class="w-16 h-16 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#df00ff]/25">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
-            <p class="text-gray-600 mb-4">For established businesses</p>
+            <h3 class="text-2xl font-bold text-white mb-2">Enterprise</h3>
+            <p class="text-gray-300 mb-4">For established businesses</p>
             <div class="mb-4">
-              <span class="text-4xl font-bold text-[#df00ff]">$2,499</span>
-              <span class="text-gray-500 ml-2">one-time</span>
+              <span class="text-4xl font-bold bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">$2,499</span>
+              <span class="text-gray-400 ml-2">one-time</span>
             </div>
-            <div class="px-4 py-2 bg-gray-100 rounded-lg mb-4">
-              <p class="text-sm text-gray-700"><strong>ROI:</strong> Comprehensive digital solution driving significant business growth & customer acquisition</p>
+            
+            <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#df00ff]/25 transform hover:-translate-y-1 transition-all duration-300 mb-4">
+              Get Started
+            </a>
+            
+            <div class="px-4 py-2 bg-gray-700/50 border border-gray-600/50 rounded-lg mb-4">
+              <p class="text-sm text-gray-300"><strong class="text-white">ROI:</strong> Comprehensive digital solution driving significant business growth & customer acquisition</p>
             </div>
             <div class="flex flex-wrap justify-center gap-2 mb-4">
-              <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Established businesses</span>
-              <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">E-commerce</span>
-              <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full">Multi-location businesses</span>
+              <span class="px-3 py-1 bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 border border-[#df00ff]/30 text-[#df00ff] text-xs font-medium rounded-full">Established businesses</span>
+              <span class="px-3 py-1 bg-gradient-to-r from-[#0cead9]/20 to-[#df00ff]/20 border border-[#0cead9]/30 text-[#0cead9] text-xs font-medium rounded-full">E-commerce</span>
+              <span class="px-3 py-1 bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 border border-[#df00ff]/30 text-[#df00ff] text-xs font-medium rounded-full">Multi-location businesses</span>
             </div>
           </div>
 
           <ul class="space-y-4 mb-8">
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Unlimited pages</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#0cead9] transition-colors duration-300">Unlimited pages</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">E-commerce integration</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#0cead9] transition-colors duration-300">E-commerce integration</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Premium SEO & marketing</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#0cead9] transition-colors duration-300">Premium SEO & marketing</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Complete branding package</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#0cead9] transition-colors duration-300">Complete branding package</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Priority support</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#0cead9] transition-colors duration-300">Priority support</span>
             </li>
-            <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-              </svg>
-              <span class="text-gray-700">Unlimited revisions</span>
+            <li class="flex items-center group">
+              <div class="w-6 h-6 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full flex items-center justify-center mr-3 group-hover:scale-110 transition-transform duration-300">
+                <svg class="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <span class="text-white group-hover:text-[#0cead9] transition-colors duration-300">Unlimited revisions</span>
             </li>
           </ul>
 
           <div class="mb-6">
-            <button class="show-features-btn block w-full text-center px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg mb-4 hover:bg-gray-50 transition-all duration-200" data-package="enterprise">
+            <button class="show-features-btn block w-full text-center px-4 py-3 border border-[#0cead9]/50 text-white font-medium rounded-lg mb-4 hover:bg-[#0cead9]/20 hover:border-[#0cead9] transition-all duration-200" data-package="enterprise">
               <div class="flex items-center justify-center">
                 <span>Show Features</span>
+                <svg class="feature-toggle-icon w-5 h-5 ml-2 transition-transform duration-300 text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </div>
+            </button>
+          </div>
                 <svg class="feature-toggle-icon w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                 </svg>
               </div>
             </button>
           </div>
-          
-          <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
             Get Started
           </a>
         </div>
       </div>
+
+      <!-- All Packages Include Section -->
+      <div class="bg-gradient-to-r from-gray-800/50 to-purple-800/50 backdrop-blur-sm border border-gray-700/50 rounded-3xl px-12 py-6 max-w-5xl mx-auto shadow-2xl">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+          <span class="text-base font-semibold text-white mb-2 md:mb-0">All packages include:</span>
+          <div class="flex flex-wrap md:flex-nowrap justify-center items-center gap-x-10 gap-y-4 text-gray-300">
+        <div class="flex items-center gap-2 hover:text-[#0cead9] transition-colors duration-300">
+          <span class="inline-flex items-center justify-center w-8 h-8 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
+              <path fillRule="evenodd" d="M3.757 4.5c.18.217.376.42.586.608.153-.61.354-1.175.596-1.678A5.53 5.53 0 0 0 3.757 4.5ZM8 1a6.994 6.994 0 0 0-7 7 7 7 0 1 0 7-7Zm0 1.5c-.476 0-1.091.386-1.633 1.427-.293.564-.531 1.267-.683 2.063A5.48 5.48 0 0 0 8 6.5a5.48 5.48 0 0 0 2.316-.51c-.152-.796-.39-1.499-.683-2.063C9.09 2.886 8.476 2.5 8 2.5Zm3.657 2.608a8.823 8.823 0 0 0-.596-1.678c.444.298.842.659 1.182 1.07-.18.217-.376.42-.586.608Zm-1.166 2.436A6.983 6.983 0 0 1 8 8a6.983 6.983 0 0 1-2.49-.456 10.703 10.703 0 0 0 .202 2.6c.72.231 1.49.356 2.288.356.798 0 1.568-.125 2.29-.356a10.705 10.705 0 0 0 .2-2.6Zm1.433 1.85a12.652 12.652 0 0 0 .018-2.609c.405-.276.78-.594 1.117-.947a5.48 5.48 0 0 1 .44 2.262 7.536 7.536 0 0 1-1.575 1.293Zm-2.172 2.435a9.046 9.046 0 0 1-3.504 0c.039.084.078.166.12.244C6.907 13.114 7.523 13.5 8 13.5s1.091-.386 1.633-1.427c.04-.078.08-.16.12-.244Zm1.31.74a8.5 8.5 0 0 0 .492-1.298c.457-.197.893-.43 1.307-.696a5.526 5.526 0 0 1-1.8 1.995Zm-6.123 0a8.507 8.507 0 0 1-.493-1.298 8.985 8.985 0 0 1-1.307-.696 5.526 5.526 0 0 0 1.8 1.995ZM2.5 8.1c.463.5.993.935 1.575 1.293a12.652 12.652 0 0 1-.018-2.608 7.037 7.037 0 0 1-1.117-.947 5.48 5.48 0 0 0-.44 2.262Z" clipRule="evenodd" />
+            </svg>
+          </span>
+          <span class="font-medium text-sm">Custom domain</span>
+        </div>
+        <div class="flex items-center gap-2 hover:text-[#df00ff] transition-colors duration-300">
+          <span class="inline-flex items-center justify-center w-8 h-8 bg-gradient-to-r from-[#0cead9] to-[#df00ff] rounded-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
+              <path d="M5.354 2a2 2 0 0 0-1.857 1.257l-.338.845C3.43 4.035 3.71 4 4 4h8c.29 0 .571.035.84.102l-.337-.845A2 2 0 0 0 10.646 2H5.354Z" />
+              <path fillRule="evenodd" d="M2 13a2 2 0 0 1 2-2h8a2 2 0 1 1 0 4H4a2 2 0 0 1-2-2Zm10.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9 13.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM4 5.5a2 2 0 1 0 0 4h8a2 2 0 1 0 0-4H4Zm8 2.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM9.75 7.5a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" clipRule="evenodd" />
+            </svg>
+          </span>
+          <span class="font-medium text-sm">Reliable hosting</span>
+        </div>
+        <div class="flex items-center gap-2 hover:text-[#0cead9] transition-colors duration-300">
+          <span class="inline-flex items-center justify-center w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="size-4">
+              <path d="M1 4a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V4ZM10 5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V5ZM4 10a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1H4Z" />
+            </svg>
+          </span>
+          <span class="font-medium text-sm">Professional design</span>
+        </div>
+        <div class="flex items-center gap-2 hover:text-[#df00ff] transition-colors duration-300">
+          <span class="inline-flex items-center justify-center w-8 h-8 bg-gradient-to-r from-green-500 to-emerald-500 rounded-xl">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-5 w-5">
+                <path d="M3.505 2.365A41.369 41.369 0 0 1 9 2c1.863 0 3.697.124 5.495.365 1.247.167 2.18 1.108 2.435 2.268a4.45 4.45 0 0 0-.577-.069 43.141 43.141 0 0 0-4.706 0C9.229 4.696 7.5 6.727 7.5 8.998v2.24c0 1.413.67 2.735 1.76 3.562l-2.98 2.98A.75.75 0 0 1 5 17.25v-3.443c-.501-.048-1-.106-1.495-.172C2.033 13.438 1 12.162 1 10.72V5.28c0-1.441 1.033-2.717 2.505-2.914Z" />
+                <path d="M14 6c-.762 0-1.52.02-2.271.062C10.157 6.148 9 7.472 9 8.998v2.24c0 1.519 1.147 2.839 2.71 2.935.214.013.428.024.642.034.2.009.385.09.518.224l2.35 2.35a.75.75 0 0 0 1.28-.531v-2.07c1.453-.195 2.5-1.463 2.5-2.915V8.998c0-1.526-1.157-2.85-2.729-2.936A41.645 41.645 0 0 0 14 6Z" />
+              </svg>
+          </span>
+          <span class="font-medium text-sm">Ongoing support</span>
+        </div>
+          </div>
+        </div>
+      </div>
       
       <!-- VAT Disclosure -->
-      <div class="text-center mt-8 text-sm text-gray-500">
-        <p>All prices exclude VAT where applicable. For UK businesses, VAT will be added at the standard rate.</p>
+      <div class="text-center mt-12 text-sm text-gray-400">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-4 max-w-2xl mx-auto">
+          <p>All prices exclude VAT where applicable. For UK businesses, VAT will be added at the standard rate.</p>
+        </div>
       </div>
       
       <!-- Compare All Packages Button -->
-      <div class="text-center mt-10">
-        <button id="compare-packages-btn" class="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+      <div class="text-center mt-12">
+        <button id="compare-packages-btn" class="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-2xl hover:shadow-2xl hover:shadow-[#df00ff]/30 transform hover:-translate-y-2 transition-all duration-300 hover:scale-105 group">
           <span>Compare All Packages</span>
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
           </svg>
         </button>
@@ -450,59 +607,76 @@
   </section>
 
   <!-- Monthly Plans -->
-  <section id="monthly-plans" class="py-20 bg-gray-50 hidden">
-    <div class="max-w-7xl mx-auto px-6 lg:px-8">
+  <section id="monthly-plans" class="py-20 bg-gradient-to-br from-gray-900 via-purple-900 to-black relative overflow-hidden hidden">
+    <!-- Background Effects -->
+    <div class="absolute inset-0">
+      <div class="absolute -top-40 -right-80 w-96 h-96 rounded-full bg-gradient-to-r from-[#df00ff] to-[#0cead9] opacity-5 blur-3xl animate-pulse"></div>
+      <div class="absolute -bottom-40 -left-80 w-96 h-96 rounded-full bg-gradient-to-r from-[#0cead9] to-[#df00ff] opacity-5 blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+    </div>
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
       <div class="text-center mb-16">
-        <h2 class="text-3xl lg:text-5xl font-bold text-gray-900 mb-6">Monthly Support Plans</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ongoing website maintenance, content updates, and growth optimization.</p>
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Monthly Support Plans</h2>
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto">Ongoing website maintenance, content updates, and growth optimization.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
         <!-- Essential Plan -->
-        <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 p-8 rounded-2xl hover:border-[#0cead9]/30 transition-all duration-300 hover:transform hover:scale-105">
           <div class="text-center mb-8">
-            <div class="w-16 h-16 bg-gradient-to-r from-green-400 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div class="w-16 h-16 bg-gradient-to-r from-[#0cead9] to-[#df00ff] rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#0cead9]/25">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Essential</h3>
-            <p class="text-gray-600 mb-4">Perfect for maintenance</p>
-            <div class="mb-6">
-              <span class="text-4xl font-bold text-[#df00ff]">$199</span>
-              <span class="text-gray-500 ml-2">/month</span>
+            <h3 class="text-2xl font-bold text-white mb-2">Essential</h3>
+            <p class="text-gray-300 mb-4">Perfect for maintenance</p>
+            <div class="mb-4">
+              <span class="text-4xl font-bold bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">$199</span>
+              <span class="text-gray-400 ml-2">/month</span>
+            </div>
+            
+            <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-[#0cead9] to-[#df00ff] text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-[#0cead9]/25 transform hover:-translate-y-1 transition-all duration-300 mb-4">
+              Start Plan
+            </a>
+            
+            <div class="px-4 py-2 bg-white/10 border border-white/20 rounded-lg mb-4">
+              <p class="text-sm text-white"><strong>ROI:</strong> Maintain professional online presence with ongoing support</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 mb-4">
+              <span class="px-3 py-1 bg-gradient-to-r from-[#0cead9]/20 to-[#df00ff]/20 border border-[#0cead9]/30 text-white text-xs font-medium rounded-full">Small businesses</span>
+              <span class="px-3 py-1 bg-gradient-to-r from-[#0cead9]/20 to-[#df00ff]/20 border border-[#0cead9]/30 text-white text-xs font-medium rounded-full">Maintenance</span>
             </div>
           </div>
 
           <ul class="space-y-4 mb-8">
             <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-[#0cead9] mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-700">Content updates (5 hours/month)</span>
+              <span class="text-white">Content updates (5 hours/month)</span>
             </li>
             <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-[#0cead9] mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-700">Security monitoring & updates</span>
+              <span class="text-white">Security monitoring & updates</span>
             </li>
             <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-[#0cead9] mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-700">Performance optimization</span>
+              <span class="text-white">Performance optimization</span>
             </li>
             <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-[#0cead9] mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-700">Monthly analytics report</span>
+              <span class="text-white">Monthly analytics report</span>
             </li>
           </ul>
 
           <div class="mb-6">
-            <button class="show-features-btn block w-full text-center px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg mb-4 hover:bg-gray-50 transition-all duration-200" data-package="essential">
+            <button class="show-features-btn block w-full text-center px-4 py-3 border border-[#0cead9]/30 text-white font-medium rounded-lg mb-4 hover:bg-white/10 hover:border-[#df00ff]/50 transition-all duration-200" data-package="essential">
               <div class="flex items-center justify-center">
                 <span>Show Features</span>
                 <svg class="feature-toggle-icon w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -511,14 +685,11 @@
               </div>
             </button>
           </div>
-          
-          <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-green-400 to-emerald-500 text-white font-semibold rounded-xl hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300">
-            Start Plan
           </a>
         </div>
 
         <!-- Growth Plan -->
-        <div class="bg-gradient-to-b from-white to-gray-50 p-8 rounded-2xl shadow-xl border-2 border-[#df00ff] hover:border-[#0cead9] transition-all duration-300">
+        <div class="relative bg-gradient-to-b from-gray-900 via-purple-900/50 to-black p-8 rounded-2xl shadow-xl border-2 border-[#df00ff] hover:border-[#0cead9] transition-all duration-300 transform hover:scale-105">
           <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
             <span class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
               Most Popular
@@ -526,54 +697,66 @@
           </div>
           
           <div class="text-center mb-8 mt-4">
-            <div class="w-16 h-16 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-xl flex items-center justify-center mx-auto mb-6">
+            <div class="w-16 h-16 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-[#df00ff]/25">
               <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
               </svg>
             </div>
-            <h3 class="text-2xl font-bold text-gray-900 mb-2">Growth</h3>
-            <p class="text-gray-600 mb-4">For active businesses</p>
-            <div class="mb-6">
+            <h3 class="text-2xl font-bold text-white mb-2">Growth</h3>
+            <p class="text-gray-300 mb-4">For active businesses</p>
+            <div class="mb-4">
               <span class="text-4xl font-bold text-[#df00ff]">$399</span>
-              <span class="text-gray-500 ml-2">/month</span>
+              <span class="text-gray-400 ml-2">/month</span>
+            </div>
+            
+            <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-xl hover:shadow-xl hover:shadow-[#df00ff]/25 transform hover:-translate-y-1 transition-all duration-300 mb-4">
+              Start Plan
+            </a>
+            
+            <div class="px-4 py-2 bg-white/10 border border-white/20 rounded-lg mb-4">
+              <p class="text-sm text-white"><strong>ROI:</strong> Drive growth with content marketing and ongoing optimization</p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-2 mb-4">
+              <span class="px-3 py-1 bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 border border-[#df00ff]/30 text-white text-xs font-medium rounded-full">Growing businesses</span>
+              <span class="px-3 py-1 bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 border border-[#df00ff]/30 text-white text-xs font-medium rounded-full">Content marketing</span>
             </div>
           </div>
 
           <ul class="space-y-4 mb-8">
             <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-[#0cead9] mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-700">Everything in Essential</span>
+              <span class="text-white">Everything in Essential</span>
             </li>
             <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-[#0cead9] mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-700">Content creation (10 hours/month)</span>
+              <span class="text-white">Content creation (10 hours/month)</span>
             </li>
             <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-[#0cead9] mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-700">SEO optimization & monitoring</span>
+              <span class="text-white">SEO optimization & monitoring</span>
             </li>
             <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-[#0cead9] mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-700">Social media integration</span>
+              <span class="text-white">Social media integration</span>
             </li>
             <li class="flex items-center">
-              <svg class="w-5 h-5 text-green-500 mr-3" fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-5 h-5 text-[#0cead9] mr-3" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
               </svg>
-              <span class="text-gray-700">Priority support</span>
+              <span class="text-white">Priority support</span>
             </li>
           </ul>
 
           <div class="mb-6">
-            <button class="show-features-btn block w-full text-center px-4 py-3 border border-gray-300 text-gray-700 font-medium rounded-lg mb-4 hover:bg-gray-50 transition-all duration-200" data-package="growth">
+            <button class="show-features-btn block w-full text-center px-4 py-3 border border-[#df00ff]/30 text-white font-medium rounded-lg mb-4 hover:bg-white/10 hover:border-[#0cead9]/50 transition-all duration-200" data-package="growth">
               <div class="flex items-center justify-center">
                 <span>Show Features</span>
                 <svg class="feature-toggle-icon w-5 h-5 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -582,15 +765,12 @@
               </div>
             </button>
           </div>
-          
-          <a href="contact.html" class="block w-full text-center px-8 py-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-semibold rounded-xl hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
-            Start Plan
           </a>
         </div>
       </div>
       
       <!-- VAT Disclosure for Monthly Plans -->
-      <div class="text-center mt-8 text-sm text-gray-500">
+      <div class="text-center mt-8 text-sm text-gray-300">
         <p>All prices exclude VAT where applicable. For UK businesses, VAT will be added at the standard rate.</p>
       </div>
       
@@ -609,45 +789,52 @@
   <!-- Comparison Tables Container -->
   <div id="comparison-tables-container">
     <!-- Packages Comparison Table (Initially Hidden) -->
-    <section id="packages-comparison-table" class="comparison-table hidden py-16 bg-gray-50">
-      <div class="max-w-7xl mx-auto px-6">
+    <section id="packages-comparison-table" class="comparison-table hidden py-16 bg-gradient-to-br from-gray-900 via-purple-900 to-black relative overflow-hidden">
+      <!-- Floating particles background -->
+      <div class="absolute inset-0 overflow-hidden">
+        <div class="absolute w-3 h-3 bg-[#df00ff]/20 rounded-full animate-float" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="absolute w-4 h-4 bg-[#0cead9]/20 rounded-full animate-float" style="top: 70%; left: 80%; animation-delay: 3s;"></div>
+        <div class="absolute w-2 h-2 bg-[#df00ff]/30 rounded-full animate-float" style="top: 40%; left: 90%; animation-delay: 1s;"></div>
+      </div>
+      
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-2">Compare Packages</h2>
-          <p class="text-gray-600">See exactly what's included in each one-time package</p>
+          <h2 class="text-3xl font-bold mb-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">Compare Packages</h2>
+          <p class="text-gray-300">See exactly what's included in each one-time package</p>
         </div>
         
         <div class="overflow-x-auto">
-          <table class="w-full border-collapse">
+          <table class="w-full border-collapse bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden">
             <thead>
-              <tr class="bg-gray-100">
-                <th class="text-left p-4 border-b-2 border-gray-200">Feature</th>
-                <th class="text-center p-4 border-b-2 border-gray-200">Starter</th>
-                <th class="text-center p-4 border-b-2 border-gray-200 bg-gradient-to-r from-purple-50 to-pink-50">Professional</th>
-                <th class="text-center p-4 border-b-2 border-gray-200">Enterprise</th>
+              <tr class="bg-gray-700/50">
+                <th class="text-left p-4 border-b-2 border-gray-600/50 text-white">Feature</th>
+                <th class="text-center p-4 border-b-2 border-gray-600/50 text-white">Starter</th>
+                <th class="text-center p-4 border-b-2 border-gray-600/50 bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 text-white">Professional</th>
+                <th class="text-center p-4 border-b-2 border-gray-600/50 text-white">Enterprise</th>
               </tr>
             </thead>
             <tbody>
               <!-- Website Design -->
-              <tr class="bg-gradient-to-r from-gray-100 to-gray-50">
-                <td colspan="4" class="p-4 font-semibold text-gray-700">Website Design & Development</td>
+              <tr class="bg-gradient-to-r from-gray-700/50 to-gray-600/50">
+                <td colspan="4" class="p-4 font-semibold text-white">Website Design & Development</td>
               </tr>
-              <tr>
-                <td class="p-4 border-b border-gray-200">Pages Included</td>
-                <td class="text-center p-4 border-b border-gray-200">Up to 5 pages</td>
-                <td class="text-center p-4 border-b border-gray-200">Up to 10 pages</td>
-                <td class="text-center p-4 border-b border-gray-200">Unlimited</td>
+              <tr class="hover:bg-gray-700/30 transition-colors duration-200">
+                <td class="p-4 border-b border-gray-600/50 text-gray-300">Pages Included</td>
+                <td class="text-center p-4 border-b border-gray-600/50 text-gray-300">Up to 5 pages</td>
+                <td class="text-center p-4 border-b border-gray-600/50 text-gray-300">Up to 10 pages</td>
+                <td class="text-center p-4 border-b border-gray-600/50 text-gray-300">Unlimited</td>
               </tr>
-              <tr>
-                <td class="p-4 border-b border-gray-200">Custom Design</td>
-                <td class="text-center p-4 border-b border-gray-200">Basic</td>
-                <td class="text-center p-4 border-b border-gray-200">Advanced</td>
-                <td class="text-center p-4 border-b border-gray-200">Premium</td>
+              <tr class="hover:bg-gray-700/30 transition-colors duration-200">
+                <td class="p-4 border-b border-gray-600/50 text-gray-300">Custom Design</td>
+                <td class="text-center p-4 border-b border-gray-600/50 text-gray-300">Basic</td>
+                <td class="text-center p-4 border-b border-gray-600/50 text-gray-300">Advanced</td>
+                <td class="text-center p-4 border-b border-gray-600/50 text-gray-300">Premium</td>
               </tr>
-              <tr>
-                <td class="p-4 border-b border-gray-200">Mobile Responsive</td>
-                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
-                <td class="text-center p-4 border-b border-gray-200"><svg class="w-5 h-5 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+              <tr class="hover:bg-gray-700/30 transition-colors duration-200">
+                <td class="p-4 border-b border-gray-600/50 text-gray-300">Mobile Responsive</td>
+                <td class="text-center p-4 border-b border-gray-600/50"><svg class="w-5 h-5 text-[#0cead9] mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-600/50"><svg class="w-5 h-5 text-[#0cead9] mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
+                <td class="text-center p-4 border-b border-gray-600/50"><svg class="w-5 h-5 text-[#0cead9] mx-auto" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></td>
               </tr>
               <tr>
                 <td class="p-4 border-b border-gray-200">Revision Rounds</td>
@@ -857,112 +1044,119 @@
   </div>
 
   <!-- Expandable Feature Categories -->
-  <section class="py-16 bg-white">
-    <div class="max-w-4xl mx-auto px-6">
+  <section class="py-16 bg-gradient-to-br from-gray-900 via-purple-900 to-black relative overflow-hidden">
+    <!-- Floating particles background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute w-3 h-3 bg-[#df00ff]/20 rounded-full animate-float" style="top: 15%; left: 85%; animation-delay: 0s;"></div>
+      <div class="absolute w-4 h-4 bg-[#0cead9]/20 rounded-full animate-float" style="top: 70%; left: 15%; animation-delay: 3s;"></div>
+      <div class="absolute w-2 h-2 bg-[#df00ff]/30 rounded-full animate-float" style="top: 45%; left: 75%; animation-delay: 1s;"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto px-6 relative z-10">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Detailed Features</h2>
-        <p class="text-gray-600 max-w-3xl mx-auto">Explore everything included in our packages to understand exactly what you're getting</p>
+        <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">Detailed Features</h2>
+        <p class="text-gray-300 max-w-3xl mx-auto">Explore everything included in our packages to understand exactly what you're getting</p>
       </div>
       
       <div class="space-y-6">
         <!-- Design & Branding Features -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden">
-          <button class="feature-category-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50" data-target="design-content">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-[#df00ff]/30 transition-all duration-300">
+          <button class="feature-category-toggle w-full flex justify-between items-center p-6 hover:bg-gray-700/30 transition-all duration-300" data-target="design-content">
             <div class="flex items-center">
-              <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center mr-4">
-                <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 border border-[#df00ff]/30 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-[#df00ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path>
                 </svg>
               </div>
-              <span class="text-xl font-semibold">Design & Branding</span>
+              <span class="text-xl font-semibold text-white">Design & Branding</span>
             </div>
-            <svg class="w-6 h-6 transform transition-transform feature-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 transform transition-transform feature-toggle-icon text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           
-          <div id="design-content" class="feature-content hidden p-6 bg-gray-50 border-t border-gray-200">
+          <div id="design-content" class="feature-content hidden p-6 bg-gray-900/50 border-t border-gray-600/50">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 class="font-semibold text-gray-800 mb-2">Custom Website Design</h4>
-                <p class="text-gray-600 mb-4">Tailored to your brand identity with unique layouts, color schemes, and visual elements that set your business apart from competitors.</p>
-                <h4 class="font-semibold text-gray-800 mb-2">Mobile Responsiveness</h4>
-                <p class="text-gray-600 mb-4">Sites that automatically adjust to look perfect on any device - desktops, tablets, and smartphones of all sizes.</p>
+                <h4 class="font-semibold text-white mb-2">Custom Website Design</h4>
+                <p class="text-gray-300 mb-4">Tailored to your brand identity with unique layouts, color schemes, and visual elements that set your business apart from competitors.</p>
+                <h4 class="font-semibold text-white mb-2">Mobile Responsiveness</h4>
+                <p class="text-gray-300 mb-4">Sites that automatically adjust to look perfect on any device - desktops, tablets, and smartphones of all sizes.</p>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-800 mb-2">Visual Branding Elements</h4>
-                <p class="text-gray-600 mb-4">Creation of cohesive brand elements including logo refinement, typography selection, and color palette development.</p>
-                <h4 class="font-semibold text-gray-800 mb-2">User Experience (UX) Design</h4>
-                <p class="text-gray-600">Intuitive navigation and interface design that guides visitors toward key actions while providing an enjoyable browsing experience.</p>
+                <h4 class="font-semibold text-white mb-2">Visual Branding Elements</h4>
+                <p class="text-gray-300 mb-4">Creation of cohesive brand elements including logo refinement, typography selection, and color palette development.</p>
+                <h4 class="font-semibold text-white mb-2">User Experience (UX) Design</h4>
+                <p class="text-gray-300">Intuitive navigation and interface design that guides visitors toward key actions while providing an enjoyable browsing experience.</p>
               </div>
             </div>
           </div>
         </div>
         
         <!-- SEO & Marketing Features -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden">
-          <button class="feature-category-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50" data-target="seo-content">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-[#0cead9]/30 transition-all duration-300">
+          <button class="feature-category-toggle w-full flex justify-between items-center p-6 hover:bg-gray-700/30 transition-all duration-300" data-target="seo-content">
             <div class="flex items-center">
-              <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
-                <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#0cead9]/20 to-[#df00ff]/20 border border-[#0cead9]/30 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                 </svg>
               </div>
-              <span class="text-xl font-semibold">SEO & Marketing</span>
+              <span class="text-xl font-semibold text-white">SEO & Marketing</span>
             </div>
-            <svg class="w-6 h-6 transform transition-transform feature-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 transform transition-transform feature-toggle-icon text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           
-          <div id="seo-content" class="feature-content hidden p-6 bg-gray-50 border-t border-gray-200">
+          <div id="seo-content" class="feature-content hidden p-6 bg-gray-900/50 border-t border-gray-600/50">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 class="font-semibold text-gray-800 mb-2">On-Page SEO Optimization</h4>
-                <p class="text-gray-600 mb-4">Strategic keyword placement, meta descriptions, title tags, and content structure to help search engines understand and rank your site.</p>
-                <h4 class="font-semibold text-gray-800 mb-2">Google Analytics Setup</h4>
-                <p class="text-gray-600 mb-4">Installation and configuration of analytics tools to track website performance, visitor behavior, and conversion metrics.</p>
+                <h4 class="font-semibold text-white mb-2">On-Page SEO Optimization</h4>
+                <p class="text-gray-300 mb-4">Strategic keyword placement, meta descriptions, title tags, and content structure to help search engines understand and rank your site.</p>
+                <h4 class="font-semibold text-white mb-2">Google Analytics Setup</h4>
+                <p class="text-gray-300 mb-4">Installation and configuration of analytics tools to track website performance, visitor behavior, and conversion metrics.</p>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-800 mb-2">Local SEO (Enterprise Only)</h4>
-                <p class="text-gray-600 mb-4">Google Business Profile optimization and local citation management to improve visibility in local search results.</p>
-                <h4 class="font-semibold text-gray-800 mb-2">Content Strategy</h4>
-                <p class="text-gray-600">Development of content that engages visitors while strategically incorporating relevant keywords and calls-to-action.</p>
+                <h4 class="font-semibold text-white mb-2">Local SEO (Enterprise Only)</h4>
+                <p class="text-gray-300 mb-4">Google Business Profile optimization and local citation management to improve visibility in local search results.</p>
+                <h4 class="font-semibold text-white mb-2">Content Strategy</h4>
+                <p class="text-gray-300">Development of content that engages visitors while strategically incorporating relevant keywords and calls-to-action.</p>
               </div>
             </div>
           </div>
         </div>
         
         <!-- Technical Features -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden">
-          <button class="feature-category-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50" data-target="tech-content">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-[#df00ff]/30 transition-all duration-300">
+          <button class="feature-category-toggle w-full flex justify-between items-center p-6 hover:bg-gray-700/30 transition-all duration-300" data-target="tech-content">
             <div class="flex items-center">
-              <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
-                <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="w-10 h-10 bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 border border-[#df00ff]/30 rounded-lg flex items-center justify-center mr-4">
+                <svg class="w-6 h-6 text-[#df00ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
               </div>
-              <span class="text-xl font-semibold">Technical Features</span>
+              <span class="text-xl font-semibold text-white">Technical Features</span>
             </div>
-            <svg class="w-6 h-6 transform transition-transform feature-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-6 h-6 transform transition-transform feature-toggle-icon text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           
-          <div id="tech-content" class="feature-content hidden p-6 bg-gray-50 border-t border-gray-200">
+          <div id="tech-content" class="feature-content hidden p-6 bg-gray-900/50 border-t border-gray-600/50">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <h4 class="font-semibold text-gray-800 mb-2">Performance Optimization</h4>
-                <p class="text-gray-600 mb-4">Advanced techniques to ensure fast loading speeds, including image optimization, caching, and code minification.</p>
-                <h4 class="font-semibold text-gray-800 mb-2">Security Features</h4>
-                <p class="text-gray-600 mb-4">Implementation of SSL certificates, secure forms, and protection against common vulnerabilities and attacks.</p>
+                <h4 class="font-semibold text-white mb-2">Performance Optimization</h4>
+                <p class="text-gray-300 mb-4">Advanced techniques to ensure fast loading speeds, including image optimization, caching, and code minification.</p>
+                <h4 class="font-semibold text-white mb-2">Security Features</h4>
+                <p class="text-gray-300 mb-4">Implementation of SSL certificates, secure forms, and protection against common vulnerabilities and attacks.</p>
               </div>
               <div>
-                <h4 class="font-semibold text-gray-800 mb-2">Content Management System</h4>
-                <p class="text-gray-600 mb-4">User-friendly admin interface allowing you to update content, add pages, and manage your website without technical knowledge.</p>
-                <h4 class="font-semibold text-gray-800 mb-2">Third-Party Integrations</h4>
-                <p class="text-gray-600">Connection with essential business tools like email marketing platforms, CRM systems, and scheduling software.</p>
+                <h4 class="font-semibold text-white mb-2">Content Management System</h4>
+                <p class="text-gray-300 mb-4">User-friendly admin interface allowing you to update content, add pages, and manage your website without technical knowledge.</p>
+                <h4 class="font-semibold text-white mb-2">Third-Party Integrations</h4>
+                <p class="text-gray-300">Connection with essential business tools like email marketing platforms, CRM systems, and scheduling software.</p>
               </div>
             </div>
           </div>
@@ -972,11 +1166,18 @@
   </section>
   
   <!-- Client Showcase Section -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-6">
+  <section class="py-16 bg-gradient-to-br from-gray-900 via-purple-900 to-black relative overflow-hidden">
+    <!-- Floating particles background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute w-4 h-4 bg-[#df00ff]/20 rounded-full animate-float" style="top: 25%; left: 15%; animation-delay: 0s;"></div>
+      <div class="absolute w-3 h-3 bg-[#0cead9]/20 rounded-full animate-float" style="top: 75%; left: 85%; animation-delay: 2s;"></div>
+      <div class="absolute w-2 h-2 bg-[#df00ff]/30 rounded-full animate-float" style="top: 50%; left: 70%; animation-delay: 4s;"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Our Work</h2>
-        <p class="text-gray-600 max-w-3xl mx-auto">See examples of websites we've built for businesses like yours. Every project is custom designed to match your brand and business goals.</p>
+        <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">Our Work</h2>
+        <p class="text-gray-300 max-w-3xl mx-auto">See examples of websites we've built for businesses like yours. Every project is custom designed to match your brand and business goals.</p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -1046,240 +1247,582 @@
     </div>
   </section>
 
-  <!-- Process Timeline Section -->
-  <section class="py-20 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold mb-4">Our Simple Process</h2>
-        <p class="text-gray-600 max-w-3xl mx-auto">From initial consultation to launch, we make website development transparent and stress-free</p>
+  <!-- Journey to Success Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-gray-900 via-purple-900 to-black py-24 lg:py-32">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-40 -right-80 w-96 h-96 rounded-full bg-gradient-to-r from-[#df00ff] to-[#0cead9] opacity-20 blur-3xl animate-pulse"></div>
+      <div class="absolute -bottom-40 -left-80 w-96 h-96 rounded-full bg-gradient-to-r from-[#0cead9] to-[#df00ff] opacity-20 blur-3xl animate-pulse" style="animation-delay: 2s;"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 opacity-10 blur-2xl animate-ping" style="animation-duration: 4s;"></div>
+    </div>
+    
+    <!-- Floating Particles -->
+    <div class="absolute inset-0">
+      <div class="particle absolute w-2 h-2 bg-[#df00ff] rounded-full opacity-30" style="top: 20%; left: 10%; animation: float 6s ease-in-out infinite;"></div>
+      <div class="particle absolute w-1 h-1 bg-[#0cead9] rounded-full opacity-40" style="top: 30%; right: 15%; animation: float 4s ease-in-out infinite reverse;"></div>
+      <div class="particle absolute w-3 h-3 bg-purple-400 rounded-full opacity-20" style="bottom: 30%; left: 20%; animation: float 8s ease-in-out infinite;"></div>
+      <div class="particle absolute w-2 h-2 bg-pink-400 rounded-full opacity-30" style="bottom: 20%; right: 25%; animation: float 5s ease-in-out infinite reverse;"></div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center mb-20 fade-in-up">
+        <div class="inline-block mb-6 p-3 rounded-2xl bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 border border-[#df00ff]/30">
+          <svg class="w-8 h-8 text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h2 class="text-4xl lg:text-6xl font-bold text-white mb-6">
+          From <span class="bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">Vision</span> to <span class="bg-gradient-to-r from-[#0cead9] to-[#df00ff] bg-clip-text text-transparent">Victory</span>
+        </h2>
+        <p class="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+          Watch your business transform from a simple idea into a thriving digital empire. Our proven methodology doesn't just build websites—we architect success stories.
+        </p>
       </div>
-      
+
+      <!-- Journey Steps -->
       <div class="relative">
-        <!-- Timeline Line -->
-        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-blue-200"></div>
-        
-        <!-- Timeline Steps -->
-        <div class="space-y-20 md:space-y-0 relative">
-          <!-- Step 1 -->
-          <div class="md:flex items-center justify-between">
-            <div class="md:w-5/12 md:pr-16 md:text-right mb-8 md:mb-0">
-              <h3 class="text-xl font-bold text-blue-600 mb-2">1. Discovery</h3>
-              <p class="text-gray-700">We begin with a detailed discussion about your business goals, target audience, and design preferences to create a strategic roadmap for your project.</p>
-            </div>
-            
-            <div class="absolute md:left-1/2 md:transform md:-translate-x-1/2 md:flex md:items-center md:justify-center hidden">
-              <div class="rounded-full border-4 border-blue-200 bg-blue-600 w-10 h-10 flex items-center justify-center text-white font-bold">1</div>
-            </div>
-            
-            <div class="md:w-5/12 md:pl-16">
-              <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
-                <span class="text-sm font-medium text-blue-600 block mb-1">Timeline: 1-3 Days</span>
-                <ul class="text-gray-600 space-y-2">
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+        <!-- Animated Progress Line -->
+        <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-[#df00ff] via-purple-500 to-[#0cead9] opacity-50"></div>
+        <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2 top-0 h-full w-1 bg-gradient-to-b from-[#df00ff] to-[#0cead9] progress-line"></div>
+
+        <div class="space-y-24 lg:space-y-32">
+          <!-- Step 1: Brand Conception -->
+          <div class="step-container fade-in-left" data-step="1">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+              <div class="mb-12 lg:mb-0 text-left">
+                <div class="flex items-center mb-6">
+                  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#df00ff] to-purple-600 flex items-center justify-center mr-6 step-icon">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                     </svg>
-                    Initial consultation call
-                  </li>
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Project brief development
-                  </li>
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Proposal and timeline agreement
-                  </li>
-                </ul>
+                  </div>
+                  <div>
+                    <span class="text-[#0cead9] font-mono text-sm tracking-wider uppercase">Step 01</span>
+                    <h3 class="text-3xl font-bold text-white">Brand Conception</h3>
+                  </div>
+                </div>
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                  We dive deep into your vision, understanding not just what you do, but why you do it. This isn't just consultation—it's the birth of your digital identity.
+                </p>
+                <div class="space-y-4">
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-[#df00ff] mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Strategic brand positioning workshop</span>
+                  </div>
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-[#0cead9] mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Target audience psychology analysis</span>
+                  </div>
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-purple-400 mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Competitive landscape mapping</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="relative">
+                <div class="bg-gradient-to-br from-purple-900/50 to-black/50 backdrop-blur-sm rounded-3xl p-8 border border-[#df00ff]/20 hover:border-[#df00ff]/40 transition-all duration-500 hover:scale-105">
+                  <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-2xl bg-gradient-to-br from-[#df00ff]/20 to-purple-600/20 border border-[#df00ff]/30 mb-4">
+                      <svg class="w-12 h-12 text-[#df00ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                      </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Discovery Deep-Dive</h4>
+                    <div class="text-[#0cead9] font-mono text-sm mb-4">1-3 Days</div>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="flex justify-between items-center p-3 rounded-xl bg-white/5 border border-white/10">
+                      <span class="text-gray-300">Business Goals Alignment</span>
+                      <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div class="flex justify-between items-center p-3 rounded-xl bg-white/5 border border-white/10">
+                      <span class="text-gray-300">Market Research</span>
+                      <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                    <div class="flex justify-between items-center p-3 rounded-xl bg-white/5 border border-white/10">
+                      <span class="text-gray-300">Success Metrics Definition</span>
+                      <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          
-          <!-- Step 2 -->
-          <div class="md:flex items-center justify-between">
-            <div class="md:w-5/12 md:pr-16 md:text-right mb-8 md:mb-0 md:order-1">
-              <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
-                <span class="text-sm font-medium text-blue-600 block mb-1">Timeline: 5-10 Days</span>
-                <ul class="text-gray-600 space-y-2">
-                  <li class="flex items-center md:justify-end">
-                    <svg class="w-4 h-4 text-green-500 md:ml-2 md:order-2 mr-2 md:mr-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="md:order-1">Site architecture planning</span>
-                  </li>
-                  <li class="flex items-center md:justify-end">
-                    <svg class="w-4 h-4 text-green-500 md:ml-2 md:order-2 mr-2 md:mr-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="md:order-1">Wireframe creation</span>
-                  </li>
-                  <li class="flex items-center md:justify-end">
-                    <svg class="w-4 h-4 text-green-500 md:ml-2 md:order-2 mr-2 md:mr-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="md:order-1">Design concept approval</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            <div class="absolute md:left-1/2 md:transform md:-translate-x-1/2 md:flex md:items-center md:justify-center hidden">
-              <div class="rounded-full border-4 border-blue-200 bg-blue-600 w-10 h-10 flex items-center justify-center text-white font-bold">2</div>
-            </div>
-            
-            <div class="md:w-5/12 md:pl-16 md:order-0">
-              <h3 class="text-xl font-bold text-blue-600 mb-2">2. Design</h3>
-              <p class="text-gray-700">Our design team creates a custom visual identity for your website that aligns with your brand and appeals to your target audience.</p>
+
+          <!-- Center Connector -->
+          <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2" style="top: 25%;">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-[#df00ff] to-[#0cead9] flex items-center justify-center border-4 border-white/20 step-number pulse-glow">
+              <span class="text-white font-bold text-xl">1</span>
             </div>
           </div>
-          
-          <!-- Step 3 -->
-          <div class="md:flex items-center justify-between">
-            <div class="md:w-5/12 md:pr-16 md:text-right mb-8 md:mb-0">
-              <h3 class="text-xl font-bold text-blue-600 mb-2">3. Development</h3>
-              <p class="text-gray-700">Our developers build your website using clean, efficient code that ensures fast loading speeds, security, and compatibility across all devices.</p>
-            </div>
-            
-            <div class="absolute md:left-1/2 md:transform md:-translate-x-1/2 md:flex md:items-center md:justify-center hidden">
-              <div class="rounded-full border-4 border-blue-200 bg-blue-600 w-10 h-10 flex items-center justify-center text-white font-bold">3</div>
-            </div>
-            
-            <div class="md:w-5/12 md:pl-16">
-              <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
-                <span class="text-sm font-medium text-blue-600 block mb-1">Timeline: 10-15 Days</span>
-                <ul class="text-gray-600 space-y-2">
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+
+          <!-- Step 2: Design & Architecture -->
+          <div class="step-container fade-in-right" data-step="2">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+              <div class="lg:order-2 mb-12 lg:mb-0 text-left">
+                <div class="flex items-center mb-6">
+                  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#0cead9] to-blue-600 flex items-center justify-center mr-6 step-icon">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v14a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v14a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
                     </svg>
-                    Front-end development
-                  </li>
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    CMS implementation
-                  </li>
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Functionality testing
-                  </li>
-                </ul>
+                  </div>
+                  <div>
+                    <span class="text-[#df00ff] font-mono text-sm tracking-wider uppercase">Step 02</span>
+                    <h3 class="text-3xl font-bold text-white">Design Mastery</h3>
+                  </div>
+                </div>
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                  Your brand comes to life through stunning visual design that doesn't just look incredible—it converts visitors into customers with psychological precision.
+                </p>
+                <div class="space-y-4">
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-[#0cead9] mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Conversion-focused UI/UX design</span>
+                  </div>
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-[#df00ff] mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Mobile-first responsive architecture</span>
+                  </div>
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-purple-400 mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Brand identity integration</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="lg:order-1 relative">
+                <div class="bg-gradient-to-br from-blue-900/50 to-black/50 backdrop-blur-sm rounded-3xl p-8 border border-[#0cead9]/20 hover:border-[#0cead9]/40 transition-all duration-500 hover:scale-105">
+                  <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-2xl bg-gradient-to-br from-[#0cead9]/20 to-blue-600/20 border border-[#0cead9]/30 mb-4">
+                      <svg class="w-12 h-12 text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+                      </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Visual Excellence</h4>
+                    <div class="text-[#df00ff] font-mono text-sm mb-4">5-10 Days</div>
+                  </div>
+                  <div class="grid grid-cols-2 gap-3">
+                    <div class="p-3 rounded-xl bg-gradient-to-br from-[#0cead9]/10 to-transparent border border-[#0cead9]/20 text-center">
+                      <div class="text-2xl font-bold text-[#0cead9]">3D</div>
+                      <div class="text-xs text-gray-400">Prototypes</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-gradient-to-br from-[#df00ff]/10 to-transparent border border-[#df00ff]/20 text-center">
+                      <div class="text-2xl font-bold text-[#df00ff]">A/B</div>
+                      <div class="text-xs text-gray-400">Testing</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-gradient-to-br from-purple-500/10 to-transparent border border-purple-500/20 text-center">
+                      <div class="text-2xl font-bold text-purple-400">UX</div>
+                      <div class="text-xs text-gray-400">Research</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-gradient-to-br from-pink-500/10 to-transparent border border-pink-500/20 text-center">
+                      <div class="text-2xl font-bold text-pink-400">AI</div>
+                      <div class="text-xs text-gray-400">Analysis</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          
-          <!-- Step 4 -->
-          <div class="md:flex items-center justify-between">
-            <div class="md:w-5/12 md:pr-16 md:text-right mb-8 md:mb-0 md:order-1">
-              <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
-                <span class="text-sm font-medium text-blue-600 block mb-1">Timeline: 3-5 Days</span>
-                <ul class="text-gray-600 space-y-2">
-                  <li class="flex items-center md:justify-end">
-                    <svg class="w-4 h-4 text-green-500 md:ml-2 md:order-2 mr-2 md:mr-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="md:order-1">Client review and feedback</span>
-                  </li>
-                  <li class="flex items-center md:justify-end">
-                    <svg class="w-4 h-4 text-green-500 md:ml-2 md:order-2 mr-2 md:mr-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="md:order-1">Final adjustments</span>
-                  </li>
-                  <li class="flex items-center md:justify-end">
-                    <svg class="w-4 h-4 text-green-500 md:ml-2 md:order-2 mr-2 md:mr-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="md:order-1">Quality assurance testing</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            
-            <div class="absolute md:left-1/2 md:transform md:-translate-x-1/2 md:flex md:items-center md:justify-center hidden">
-              <div class="rounded-full border-4 border-blue-200 bg-blue-600 w-10 h-10 flex items-center justify-center text-white font-bold">4</div>
-            </div>
-            
-            <div class="md:w-5/12 md:pl-16 md:order-0">
-              <h3 class="text-xl font-bold text-blue-600 mb-2">4. Refinement</h3>
-              <p class="text-gray-700">We gather your feedback and make any necessary adjustments to ensure the final website meets your expectations and business requirements.</p>
+
+          <!-- Center Connector -->
+          <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2" style="top: 50%;">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-[#0cead9] to-[#df00ff] flex items-center justify-center border-4 border-white/20 step-number pulse-glow">
+              <span class="text-white font-bold text-xl">2</span>
             </div>
           </div>
-          
-          <!-- Step 5 -->
-          <div class="md:flex items-center justify-between">
-            <div class="md:w-5/12 md:pr-16 md:text-right mb-8 md:mb-0">
-              <h3 class="text-xl font-bold text-blue-600 mb-2">5. Launch & Support</h3>
-              <p class="text-gray-700">We deploy your website to a live server, set up analytics tracking, and provide training on how to manage your site. Ongoing support ensures your site continues to perform optimally.</p>
+
+          <!-- Step 3: Development & Innovation -->
+          <div class="step-container fade-in-left" data-step="3">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+              <div class="mb-12 lg:mb-0 text-left">
+                <div class="flex items-center mb-6">
+                  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-[#df00ff] flex items-center justify-center mr-6 step-icon">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <span class="text-[#0cead9] font-mono text-sm tracking-wider uppercase">Step 03</span>
+                    <h3 class="text-3xl font-bold text-white">Code Craftsmanship</h3>
+                  </div>
+                </div>
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                  We build more than websites—we engineer digital experiences that load instantly, rank highly, and scale effortlessly with your business growth.
+                </p>
+                <div class="space-y-4">
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-purple-400 mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Lightning-fast performance optimization</span>
+                  </div>
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-[#df00ff] mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Advanced SEO & analytics integration</span>
+                  </div>
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-[#0cead9] mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Security & scalability architecture</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="relative">
+                <div class="bg-gradient-to-br from-purple-900/50 to-black/50 backdrop-blur-sm rounded-3xl p-8 border border-purple-500/20 hover:border-purple-500/40 transition-all duration-500 hover:scale-105">
+                  <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-2xl bg-gradient-to-br from-purple-500/20 to-[#df00ff]/20 border border-purple-500/30 mb-4">
+                      <svg class="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                      </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Technical Mastery</h4>
+                    <div class="text-[#0cead9] font-mono text-sm mb-4">7-14 Days</div>
+                  </div>
+                  <div class="space-y-3">
+                    <div class="flex justify-between items-center p-3 rounded-xl bg-white/5 border border-white/10">
+                      <span class="text-gray-300">Performance Score</span>
+                      <div class="flex items-center">
+                        <div class="w-16 h-2 bg-gray-700 rounded-full mr-2">
+                          <div class="w-15 h-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-full performance-bar"></div>
+                        </div>
+                        <span class="text-[#0cead9] text-sm font-mono">98%</span>
+                      </div>
+                    </div>
+                    <div class="flex justify-between items-center p-3 rounded-xl bg-white/5 border border-white/10">
+                      <span class="text-gray-300">Security Rating</span>
+                      <div class="flex items-center">
+                        <div class="w-16 h-2 bg-gray-700 rounded-full mr-2">
+                          <div class="w-16 h-2 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full"></div>
+                        </div>
+                        <span class="text-green-400 text-sm font-mono">A+</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <div class="absolute md:left-1/2 md:transform md:-translate-x-1/2 md:flex md:items-center md:justify-center hidden">
-              <div class="rounded-full border-4 border-blue-200 bg-blue-600 w-10 h-10 flex items-center justify-center text-white font-bold">5</div>
+          </div>
+
+          <!-- Center Connector -->
+          <div class="hidden lg:block absolute left-1/2 transform -translate-x-1/2" style="top: 75%;">
+            <div class="w-20 h-20 rounded-full bg-gradient-to-br from-purple-500 to-[#df00ff] flex items-center justify-center border-4 border-white/20 step-number pulse-glow">
+              <span class="text-white font-bold text-xl">3</span>
             </div>
-            
-            <div class="md:w-5/12 md:pl-16">
-              <div class="bg-gray-50 p-6 rounded-xl shadow-sm">
-                <span class="text-sm font-medium text-blue-600 block mb-1">Timeline: 2-3 Days</span>
-                <ul class="text-gray-600 space-y-2">
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+          </div>
+
+          <!-- Step 4: Launch & Domination -->
+          <div class="step-container fade-in-right" data-step="4">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+              <div class="lg:order-2 mb-12 lg:mb-0 text-left">
+                <div class="flex items-center mb-6">
+                  <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mr-6 step-icon">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
                     </svg>
-                    Website deployment
-                  </li>
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Training and documentation
-                  </li>
-                  <li class="flex items-center">
-                    <svg class="w-4 h-4 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                    </svg>
-                    Ongoing support and maintenance
-                  </li>
-                </ul>
+                  </div>
+                  <div>
+                    <span class="text-[#df00ff] font-mono text-sm tracking-wider uppercase">Step 04</span>
+                    <h3 class="text-3xl font-bold text-white">Market Domination</h3>
+                  </div>
+                </div>
+                <p class="text-gray-300 text-lg leading-relaxed mb-8">
+                  Your website launches with explosive impact. We don't just go live—we orchestrate your digital debut to maximize visibility, engagement, and immediate results.
+                </p>
+                <div class="space-y-4">
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-green-400 mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Strategic launch campaign</span>
+                  </div>
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-[#0cead9] mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Performance monitoring & optimization</span>
+                  </div>
+                  <div class="flex items-center group">
+                    <div class="w-2 h-2 rounded-full bg-[#df00ff] mr-4 group-hover:scale-150 transition-all duration-300"></div>
+                    <span class="text-gray-200">Growth automation setup</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="lg:order-1 relative">
+                <div class="bg-gradient-to-br from-green-900/50 to-black/50 backdrop-blur-sm rounded-3xl p-8 border border-green-500/20 hover:border-green-500/40 transition-all duration-500 hover:scale-105">
+                  <div class="text-center mb-6">
+                    <div class="inline-block p-4 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 border border-green-500/30 mb-4">
+                      <svg class="w-12 h-12 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                      </svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-white mb-2">Launch Success</h4>
+                    <div class="text-[#df00ff] font-mono text-sm mb-4">2-5 Days</div>
+                  </div>
+                  <div class="grid grid-cols-3 gap-3 text-center">
+                    <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                      <div class="text-2xl font-bold text-green-400 counter" data-target="180">180</div>
+                      <div class="text-xs text-gray-400">% Traffic Boost</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                      <div class="text-2xl font-bold text-[#0cead9] counter" data-target="250">250</div>
+                      <div class="text-xs text-gray-400">% Leads Increase</div>
+                    </div>
+                    <div class="p-3 rounded-xl bg-white/5 border border-white/10">
+                      <div class="text-2xl font-bold text-[#df00ff]">99.9</div>
+                      <div class="text-xs text-gray-400">% Uptime</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-      <div class="mt-16 text-center">
-        <a href="contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-full transition duration-300">Start Your Project Today</a>
+
+      <!-- Success Metrics Dashboard -->
+      <div class="mt-32 text-center">
+        <div class="bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-sm rounded-3xl p-8 lg:p-12 border border-white/10 hover:border-white/20 transition-all duration-500">
+          <h3 class="text-3xl font-bold text-white mb-8">The Results Speak for Themselves</h3>
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="text-center">
+              <div class="text-4xl lg:text-5xl font-bold text-[#df00ff] mb-2 counter" data-target="350">350</div>
+              <div class="text-gray-300">% ROI Average</div>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl lg:text-5xl font-bold text-[#0cead9] mb-2 counter" data-target="2">2</div>
+              <div class="text-gray-300">Weeks to Launch</div>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl lg:text-5xl font-bold text-green-400 mb-2">24<span class="text-2xl">/7</span></div>
+              <div class="text-gray-300">Support</div>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl lg:text-5xl font-bold text-purple-400 mb-2 counter" data-target="98">98</div>
+              <div class="text-gray-300">% Client Satisfaction</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="mt-20 text-center">
+        <div class="inline-block">
+          <a href="contact.html" class="group relative inline-flex items-center justify-center px-12 py-6 text-xl font-bold text-white bg-gradient-to-r from-[#df00ff] to-[#0cead9] rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-[#df00ff]/25">
+            <span class="relative z-10 flex items-center">
+              Begin Your Success Story
+              <svg class="w-6 h-6 ml-3 group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+              </svg>
+            </span>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#0cead9] to-[#df00ff] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </a>
+        </div>
+        <p class="mt-6 text-gray-300 max-w-2xl mx-auto">
+          Join the ranks of successful businesses who chose WebGlo. Your transformation starts with a single conversation.
+        </p>
       </div>
     </div>
   </section>
+
+  <!-- Custom Styles for Animations -->
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(5deg); }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(223, 0, 255, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 40px rgba(223, 0, 255, 0.8), 0 0 60px rgba(12, 234, 217, 0.6);
+      }
+    }
+    
+    @keyframes progressFill {
+      from { width: 0%; }
+      to { width: 93.75%; }
+    }
+    
+    .fade-in-up {
+      animation: fadeInUp 1s ease-out;
+    }
+    
+    .fade-in-left {
+      animation: fadeInLeft 1s ease-out;
+    }
+    
+    .fade-in-right {
+      animation: fadeInRight 1s ease-out;
+    }
+    
+    .pulse-glow {
+      animation: pulseGlow 2s ease-in-out infinite;
+    }
+    
+    .step-icon {
+      transition: all 0.3s ease;
+    }
+    
+    .step-icon:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .performance-bar {
+      animation: progressFill 2s ease-in-out;
+    }
+    
+    .progress-line {
+      height: 0%;
+      transition: height 3s ease-in-out;
+    }
+    
+    .step-container.in-view .progress-line {
+      height: 100%;
+    }
+    
+    .step-number {
+      transform: scale(0);
+      transition: transform 0.5s ease-in-out;
+    }
+    
+    .step-container.in-view .step-number {
+      transform: scale(1);
+    }
+    
+    /* Scroll animations */
+    .step-container {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+    
+    .step-container.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+
+  <!-- JavaScript for Scroll Animations and Counters -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Intersection Observer for scroll animations
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            
+            // Start counter animations
+            const counters = entry.target.querySelectorAll('.counter');
+            counters.forEach(counter => {
+              animateCounter(counter);
+            });
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all step containers
+      document.querySelectorAll('.step-container').forEach(step => {
+        observer.observe(step);
+      });
+      
+      // Observe fade-in elements
+      document.querySelectorAll('.fade-in-up').forEach(element => {
+        observer.observe(element);
+      });
+      
+      // Counter animation function
+      function animateCounter(element) {
+        const target = parseInt(element.dataset.target);
+        const duration = 2000;
+        const start = 0;
+        const increment = target / (duration / 16);
+        let current = start;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          element.textContent = Math.floor(current);
+        }, 16);
+      }
+      
+      // Progress line animation
+      const progressLine = document.querySelector('.progress-line');
+      if (progressLine) {
+        setTimeout(() => {
+          progressLine.style.height = '100%';
+        }, 1000);
+      }
+    });
+  </script>
   
   <!-- FAQ Section -->
-  <section class="py-16 bg-gray-50">
-    <div class="max-w-4xl mx-auto px-6">
+  <section class="py-20 bg-gradient-to-br from-gray-800 via-purple-800 to-gray-900 relative overflow-hidden">
+    <!-- Background Effects -->
+    <div class="absolute inset-0">
+      <div class="absolute top-0 left-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-[#df00ff] to-[#0cead9] opacity-5 blur-3xl"></div>
+      <div class="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-gradient-to-r from-[#0cead9] to-[#df00ff] opacity-5 blur-3xl"></div>
+    </div>
+    
+    <div class="relative max-w-4xl mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-        <p class="text-gray-600">Have other questions? <a href="contact.html" class="text-blue-600 hover:text-blue-800">Contact us</a></p>
+        <h2 class="text-3xl lg:text-4xl font-bold text-white mb-4">Frequently Asked Questions</h2>
+        <p class="text-gray-300">Have other questions? <a href="contact.html" class="text-[#0cead9] hover:text-[#df00ff] transition-colors duration-300 underline">Contact us</a></p>
       </div>
 
       <div class="space-y-6">
         <!-- FAQ Item 1 -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden">
-          <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50" data-target="faq-1">
-            <h3 class="text-lg font-semibold text-gray-900">How long does it take to build a website?</h3>
-            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-[#df00ff]/30 transition-all duration-300">
+          <button class="faq-toggle w-full flex justify-between items-center p-6 hover:bg-gray-700/30 transition-all duration-300" data-target="faq-1">
+            <h3 class="text-lg font-semibold text-white text-left">How long does it take to build a website?</h3>
+            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           
-          <div id="faq-1" class="faq-content hidden p-6 bg-gray-50 border-t border-gray-200">
-            <p class="text-gray-600">Most websites take 2-4 weeks from start to finish, depending on the complexity and how quickly you provide feedback and content. Our Landing Page Express service can deliver a landing page in just 48 hours.</p>
-            <p class="text-gray-600 mt-3">The timeline typically breaks down like this:</p>
-            <ul class="list-disc pl-6 mt-2 text-gray-600 space-y-1">
+          <div id="faq-1" class="faq-content hidden p-6 bg-gray-900/50 border-t border-gray-600/50">
+            <p class="text-gray-300">Most websites take 2-4 weeks from start to finish, depending on the complexity and how quickly you provide feedback and content. Our Landing Page Express service can deliver a landing page in just 48 hours.</p>
+            <p class="text-gray-300 mt-3">The timeline typically breaks down like this:</p>
+            <ul class="list-disc pl-6 mt-2 text-gray-300 space-y-1">
               <li>Discovery & planning: 1-3 days</li>
               <li>Design: 5-10 days</li>
               <li>Development: 10-15 days</li>
@@ -1290,18 +1833,18 @@
         </div>
         
         <!-- FAQ Item 2 -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden">
-          <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50" data-target="faq-2">
-            <h3 class="text-lg font-semibold text-gray-900">Do I need a monthly plan if I get a one-time package?</h3>
-            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-[#df00ff]/30 transition-all duration-300">
+          <button class="faq-toggle w-full flex justify-between items-center p-6 hover:bg-gray-700/30 transition-all duration-300" data-target="faq-2">
+            <h3 class="text-lg font-semibold text-white text-left">Do I need a monthly plan if I get a one-time package?</h3>
+            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           
-          <div id="faq-2" class="faq-content hidden p-6 bg-gray-50 border-t border-gray-200">
-            <p class="text-gray-600">No, monthly plans are optional. Your website will function perfectly after the one-time build. Monthly plans are for businesses that want ongoing support, content updates, and continuous optimization.</p>
-            <p class="text-gray-600 mt-3">Benefits of monthly plans include:</p>
-            <ul class="list-disc pl-6 mt-2 text-gray-600 space-y-1">
+          <div id="faq-2" class="faq-content hidden p-6 bg-gray-900/50 border-t border-gray-600/50">
+            <p class="text-gray-300">No, monthly plans are optional. Your website will function perfectly after the one-time build. Monthly plans are for businesses that want ongoing support, content updates, and continuous optimization.</p>
+            <p class="text-gray-300 mt-3">Benefits of monthly plans include:</p>
+            <ul class="list-disc pl-6 mt-2 text-gray-300 space-y-1">
               <li>Regular content updates and maintenance</li>
               <li>Security monitoring and updates</li>
               <li>Ongoing SEO optimization</li>
@@ -1312,18 +1855,18 @@
         </div>
         
         <!-- FAQ Item 3 -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden">
-          <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50" data-target="faq-3">
-            <h3 class="text-lg font-semibold text-gray-900">Can I cancel my monthly plan anytime?</h3>
-            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-[#df00ff]/30 transition-all duration-300">
+          <button class="faq-toggle w-full flex justify-between items-center p-6 hover:bg-gray-700/30 transition-all duration-300" data-target="faq-3">
+            <h3 class="text-lg font-semibold text-white text-left">Can I cancel my monthly plan anytime?</h3>
+            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           
-          <div id="faq-3" class="faq-content hidden p-6 bg-gray-50 border-t border-gray-200">
-            <p class="text-gray-600">Yes, our monthly plans have no long-term contracts. You can cancel anytime with 30 days notice. Your website will continue to function normally after cancellation, you'll just lose access to the ongoing support and updates.</p>
-            <p class="text-gray-600 mt-3">When you cancel a monthly plan:</p>
-            <ul class="list-disc pl-6 mt-2 text-gray-600 space-y-1">
+          <div id="faq-3" class="faq-content hidden p-6 bg-gray-900/50 border-t border-gray-600/50">
+            <p class="text-gray-300">Yes, our monthly plans have no long-term contracts. You can cancel anytime with 30 days notice. Your website will continue to function normally after cancellation, you'll just lose access to the ongoing support and updates.</p>
+            <p class="text-gray-300 mt-3">When you cancel a monthly plan:</p>
+            <ul class="list-disc pl-6 mt-2 text-gray-300 space-y-1">
               <li>Your website remains online and functional</li>
               <li>You retain full ownership of your domain and content</li>
               <li>You'll need to arrange your own hosting if you were using ours</li>
@@ -1333,18 +1876,18 @@
         </div>
         
         <!-- FAQ Item 4 -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden">
-          <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50" data-target="faq-4">
-            <h3 class="text-lg font-semibold text-gray-900">Do you offer custom pricing for unique projects?</h3>
-            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-[#df00ff]/30 transition-all duration-300">
+          <button class="faq-toggle w-full flex justify-between items-center p-6 hover:bg-gray-700/30 transition-all duration-300" data-target="faq-4">
+            <h3 class="text-lg font-semibold text-white text-left">Do you offer custom pricing for unique projects?</h3>
+            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           
-          <div id="faq-4" class="faq-content hidden p-6 bg-gray-50 border-t border-gray-200">
-            <p class="text-gray-600">Absolutely! These packages cover most business needs, but we're happy to create custom proposals for unique requirements. Contact us for a free consultation and custom quote.</p>
-            <p class="text-gray-600 mt-3">Examples of projects that might need custom pricing:</p>
-            <ul class="list-disc pl-6 mt-2 text-gray-600 space-y-1">
+          <div id="faq-4" class="faq-content hidden p-6 bg-gray-900/50 border-t border-gray-600/50">
+            <p class="text-gray-300">Absolutely! These packages cover most business needs, but we're happy to create custom proposals for unique requirements. Contact us for a free consultation and custom quote.</p>
+            <p class="text-gray-300 mt-3">Examples of projects that might need custom pricing:</p>
+            <ul class="list-disc pl-6 mt-2 text-gray-300 space-y-1">
               <li>E-commerce sites with 100+ products</li>
               <li>Custom web applications with specific functionality</li>
               <li>Membership sites with restricted content</li>
@@ -1355,40 +1898,40 @@
         </div>
         
         <!-- FAQ Item 5 -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden">
-          <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50" data-target="faq-5">
-            <h3 class="text-lg font-semibold text-gray-900">What's your revision policy?</h3>
-            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-[#df00ff]/30 transition-all duration-300">
+          <button class="faq-toggle w-full flex justify-between items-center p-6 hover:bg-gray-700/30 transition-all duration-300" data-target="faq-5">
+            <h3 class="text-lg font-semibold text-white text-left">What's your revision policy?</h3>
+            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           
-          <div id="faq-5" class="faq-content hidden p-6 bg-gray-50 border-t border-gray-200">
-            <p class="text-gray-600">Our revision policy varies by package. The Starter package includes 2 rounds of revisions, Professional includes 4 rounds, and Enterprise includes unlimited revisions during the development process.</p>
-            <p class="text-gray-600 mt-3">Each revision round typically includes:</p>
-            <ul class="list-disc pl-6 mt-2 text-gray-600 space-y-1">
+          <div id="faq-5" class="faq-content hidden p-6 bg-gray-900/50 border-t border-gray-600/50">
+            <p class="text-gray-300">Our revision policy varies by package. The Starter package includes 2 rounds of revisions, Professional includes 4 rounds, and Enterprise includes unlimited revisions during the development process.</p>
+            <p class="text-gray-300 mt-3">Each revision round typically includes:</p>
+            <ul class="list-disc pl-6 mt-2 text-gray-300 space-y-1">
               <li>Design adjustments</li>
               <li>Content updates</li>
               <li>Layout modifications</li>
               <li>Color and typography changes</li>
             </ul>
-            <p class="text-gray-600 mt-3">Additional revision rounds can be purchased if needed beyond what's included in your package.</p>
+            <p class="text-gray-300 mt-3">Additional revision rounds can be purchased if needed beyond what's included in your package.</p>
           </div>
         </div>
         
         <!-- FAQ Item 6 -->
-        <div class="border border-gray-200 rounded-xl overflow-hidden">
-          <button class="faq-toggle w-full flex justify-between items-center p-6 bg-white hover:bg-gray-50" data-target="faq-6">
-            <h3 class="text-lg font-semibold text-gray-900">What happens after my website launches?</h3>
-            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl overflow-hidden hover:border-[#df00ff]/30 transition-all duration-300">
+          <button class="faq-toggle w-full flex justify-between items-center p-6 hover:bg-gray-700/30 transition-all duration-300" data-target="faq-6">
+            <h3 class="text-lg font-semibold text-white text-left">What happens after my website launches?</h3>
+            <svg class="w-6 h-6 transform transition-transform faq-toggle-icon text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
             </svg>
           </button>
           
-          <div id="faq-6" class="faq-content hidden p-6 bg-gray-50 border-t border-gray-200">
-            <p class="text-gray-600">After launch, we provide a 30-day support period for all packages where we'll address any issues that arise. We'll also provide training on how to use your content management system.</p>
-            <p class="text-gray-600 mt-3">Post-launch services include:</p>
-            <ul class="list-disc pl-6 mt-2 text-gray-600 space-y-1">
+          <div id="faq-6" class="faq-content hidden p-6 bg-gray-900/50 border-t border-gray-600/50">
+            <p class="text-gray-300">After launch, we provide a 30-day support period for all packages where we'll address any issues that arise. We'll also provide training on how to use your content management system.</p>
+            <p class="text-gray-300 mt-3">Post-launch services include:</p>
+            <ul class="list-disc pl-6 mt-2 text-gray-300 space-y-1">
               <li>CMS training sessions via video call</li>
               <li>Documentation on how to update your website</li>
               <li>30 days of post-launch technical support</li>
@@ -1402,68 +1945,76 @@
   </section>
 
   <!-- Trust Elements Section -->
-  <section class="py-16 bg-white">
-    <div class="max-w-6xl mx-auto px-6">
+  <section class="py-16 bg-gradient-to-br from-gray-900 via-purple-900 to-black relative overflow-hidden">
+    <!-- Floating particles background -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute w-4 h-4 bg-[#df00ff]/20 rounded-full animate-float" style="top: 20%; left: 10%; animation-delay: 0s;"></div>
+      <div class="absolute w-3 h-3 bg-[#0cead9]/20 rounded-full animate-float" style="top: 60%; left: 80%; animation-delay: 2s;"></div>
+      <div class="absolute w-2 h-2 bg-[#df00ff]/30 rounded-full animate-float" style="top: 40%; left: 70%; animation-delay: 4s;"></div>
+      <div class="absolute w-5 h-5 bg-[#0cead9]/15 rounded-full animate-float" style="top: 80%; left: 20%; animation-delay: 1s;"></div>
+    </div>
+    
+    <div class="max-w-6xl mx-auto px-6 relative z-10">
       <div class="text-center mb-12">
-        <h2 class="text-3xl font-bold mb-4">Why Choose WebGlo</h2>
-        <p class="text-gray-600 max-w-3xl mx-auto">We combine technical expertise with business understanding to deliver websites that not only look great but drive real results</p>
+        <h2 class="text-3xl font-bold mb-4 bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">Why Choose WebGlo</h2>
+        <p class="text-gray-300 max-w-3xl mx-auto">We combine technical expertise with business understanding to deliver websites that not only look great but drive real results</p>
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <!-- Trust Element 1 -->
-        <div class="bg-gray-50 p-6 rounded-xl text-center">
-          <div class="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 p-6 rounded-2xl text-center hover:border-[#df00ff]/30 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 rounded-full flex items-center justify-center border border-[#df00ff]/30">
+            <svg class="w-8 h-8 text-[#df00ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">Security First</h3>
-          <p class="text-gray-600">SSL encryption and security best practices come standard with all our websites</p>
+          <h3 class="text-xl font-bold mb-2 text-white">Security First</h3>
+          <p class="text-gray-300">SSL encryption and security best practices come standard with all our websites</p>
         </div>
         
         <!-- Trust Element 2 -->
-        <div class="bg-gray-50 p-6 rounded-xl text-center">
-          <div class="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 p-6 rounded-2xl text-center hover:border-[#0cead9]/30 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-[#0cead9]/20 to-[#df00ff]/20 rounded-full flex items-center justify-center border border-[#0cead9]/30">
+            <svg class="w-8 h-8 text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">Lightning Fast</h3>
-          <p class="text-gray-600">Optimized code and advanced caching for websites that load in under 2 seconds</p>
+          <h3 class="text-xl font-bold mb-2 text-white">Lightning Fast</h3>
+          <p class="text-gray-300">Optimized code and advanced caching for websites that load in under 2 seconds</p>
         </div>
         
         <!-- Trust Element 3 -->
-        <div class="bg-gray-50 p-6 rounded-xl text-center">
-          <div class="w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 p-6 rounded-2xl text-center hover:border-[#df00ff]/30 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-[#df00ff]/20 to-[#0cead9]/20 rounded-full flex items-center justify-center border border-[#df00ff]/30">
+            <svg class="w-8 h-8 text-[#df00ff]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">SEO Optimized</h3>
-          <p class="text-gray-600">Built with search engines in mind so your business gets found online</p>
+          <h3 class="text-xl font-bold mb-2 text-white">SEO Optimized</h3>
+          <p class="text-gray-300">Built with search engines in mind so your business gets found online</p>
         </div>
         
         <!-- Trust Element 4 -->
-        <div class="bg-gray-50 p-6 rounded-xl text-center">
-          <div class="w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center">
-            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 p-6 rounded-2xl text-center hover:border-[#0cead9]/30 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-[#0cead9]/20 to-[#df00ff]/20 rounded-full flex items-center justify-center border border-[#0cead9]/30">
+            <svg class="w-8 h-8 text-[#0cead9]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="text-xl font-bold mb-2">99.9% Uptime</h3>
-          <p class="text-gray-600">Enterprise-grade hosting ensures your website is always available to customers</p>
+          <h3 class="text-xl font-bold mb-2 text-white">99.9% Uptime</h3>
+          <p class="text-gray-300">Enterprise-grade hosting ensures your website is always available to customers</p>
         </div>
       </div>
       
       <!-- Technology Partners -->
       <div class="mt-16">
-        <h3 class="text-center text-xl font-semibold mb-8">Our Technology Partners</h3>
-        <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-80">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=WordPress" alt="WordPress" class="h-10">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Cloudflare" alt="Cloudflare" class="h-10">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Google" alt="Google" class="h-10">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Stripe" alt="Stripe" class="h-10">
-          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Mailchimp" alt="Mailchimp" class="h-10">
+        <h3 class="text-center text-xl font-semibold mb-8 text-white">Our Technology Partners</h3>
+        <div class="flex flex-wrap justify-center items-center gap-x-12 gap-y-6 opacity-60">
+          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=WordPress" alt="WordPress" class="h-10 filter brightness-75 hover:brightness-100 transition-all duration-300">
+          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Cloudflare" alt="Cloudflare" class="h-10 filter brightness-75 hover:brightness-100 transition-all duration-300">
+          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Google" alt="Google" class="h-10 filter brightness-75 hover:brightness-100 transition-all duration-300">
+          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Stripe" alt="Stripe" class="h-10 filter brightness-75 hover:brightness-100 transition-all duration-300">
+          <img src="https://placehold.co/120x40/e5e7eb/a3a3a3?text=Mailchimp" alt="Mailchimp" class="h-10 filter brightness-75 hover:brightness-100 transition-all duration-300">
         </div>
       </div>
     </div>
@@ -1705,6 +2256,7 @@
       // ...existing code...
       
       // Show Features button functionality
+      const showFeaturesButtons = document.querySelectorAll('.show-features-btn');
       showFeaturesButtons.forEach(button => {
         // Create expandable features container after button
         const packageType = button.getAttribute('data-package');

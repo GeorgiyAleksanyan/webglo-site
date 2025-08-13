@@ -41,6 +41,17 @@
   fill: currentColor;
 }
 
+/* Translucent variant for tooltip triggers */
+.tooltip-container .tooltip-trigger.tooltip-translucent {
+  background: rgba(128, 128, 128, 0.3); /* Gray translucent background */
+  backdrop-filter: blur(4px); /* Optional: adds a subtle blur effect */
+}
+
+.tooltip-container .tooltip-trigger.tooltip-translucent:hover,
+.tooltip-container.is-active .tooltip-trigger.tooltip-translucent {
+  background: rgba(128, 128, 128, 0.5); /* Slightly more opaque on hover/active */
+}
+
 /* 3. Active & Hover State */
 .tooltip-container.is-active .tooltip-trigger,
 .tooltip-container .tooltip-trigger:hover {
