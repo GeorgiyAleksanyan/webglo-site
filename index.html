@@ -48,6 +48,22 @@
   <script type="text/javascript" src="//widget.trustpilot.com/bootstrap/v5/tp.widget.bootstrap.min.js" async></script>
   <!-- End TrustBox script -->
 
+  <style>
+    /* Make feature cards less wide on mobile */
+    @media (max-width: 640px) {
+      .feature-runner-container {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+      .feature-runner {
+        gap: 0.75rem !important;
+      }
+      .feature-card {
+        min-width: 220px !important;
+        max-width: 220px !important;
+      }
+    }
+  </style>
 </head>
 <body class="font-inter bg-white text-gray-900">
   <div id="webglo-navigation"></div>
@@ -80,28 +96,28 @@
         <!-- Feature highlights -->
         <div class="hidden lg:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10 max-w-4xl mx-auto">
           <div class="bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
-            <span class="flex items-center gap-2 text-[#df00ff] font-semibold text-lg mb-1">
+            <span class="flex items-center gap-1 text-[#df00ff] font-semibold text-lg mb-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
               Fast Delivery
             </span>
             <p class="text-sm text-gray-600">Launch your website in as little as 7 days</p>
           </div>
           <div class="bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
-            <span class="flex items-center gap-2 text-[#0cead9] font-semibold text-lg mb-1">
+            <span class="flex items-center gap-1 text-[#0cead9] font-semibold text-lg mb-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
               30-Day Guarantee
             </span>
             <p class="text-sm text-gray-600">Full satisfaction or your money back</p>
           </div>
           <div class="bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
-            <span class="flex items-center gap-2 text-[#df00ff] font-semibold text-lg mb-1">
+            <span class="flex items-center gap-1 text-[#df00ff] font-semibold text-lg mb-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.5a9.5 9.5 0 000 19 9.5 9.5 0 000-19z"></path></svg>
               24/7 Support
             </span>
             <p class="text-sm text-gray-600">Dedicated assistance whenever you need it</p>
           </div>
           <div class="bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
-            <span class="flex items-center gap-2 text-[#0cead9] font-semibold text-lg mb-1">
+            <span class="flex items-center gap-1 text-[#0cead9] font-semibold text-lg mb-1">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 8h10M9 12h10M9 16h10M5 8a1 1 0 110-2 1 1 0 010 2zm0 4a1 1 0 110-2 1 1 0 010 2zm0 4a1 1 0 110-2 1 1 0 010 2z"></path></svg>
               All-In-One
             </span>
@@ -114,58 +130,58 @@
           <div class="feature-runner-container">
             <div class="feature-runner" id="featureRunner">
               <!-- First set of cards -->
-              <div class="feature-card">
-                <span class="flex items-center gap-2 text-[#df00ff] font-semibold text-lg mb-1">
+              <div class="feature-card bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
+                <span class="flex items-center gap-1 text-[#df00ff] font-semibold text-lg mb-1">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                   Fast Delivery
                 </span>
                 <p class="text-sm text-gray-600">Launch your website in as little as 7 days</p>
               </div>
-              <div class="feature-card">
-                <span class="flex items-center gap-2 text-[#0cead9] font-semibold text-lg mb-1">
+              <div class="feature-card bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
+                <span class="flex items-center gap-1 text-[#0cead9] font-semibold text-lg mb-1">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                   30-Day Guarantee
                 </span>
                 <p class="text-sm text-gray-600">Full satisfaction or your money back</p>
               </div>
-              <div class="feature-card">
-                <span class="flex items-center gap-2 text-[#df00ff] font-semibold text-lg mb-1">
+              <div class="feature-card bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
+                <span class="flex items-center gap-1 text-[#df00ff] font-semibold text-lg mb-1">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.5a9.5 9.5 0 000 19 9.5 9.5 0 000-19z"></path></svg>
                   24/7 Support
                 </span>
                 <p class="text-sm text-gray-600">Dedicated assistance whenever you need it</p>
               </div>
-              <div class="feature-card">
-                <span class="flex items-center gap-2 text-[#0cead9] font-semibold text-lg mb-1">
+              <div class="feature-card bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
+                <span class="flex items-center gap-1 text-[#0cead9] font-semibold text-lg mb-1">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 8h10M9 12h10M9 16h10M5 8a1 1 0 110-2 1 1 0 010 2zm0 4a1 1 0 110-2 1 1 0 010 2zm0 4a1 1 0 110-2 1 1 0 010 2z"></path></svg>
                   All-In-One
                 </span>
                 <p class="text-sm text-gray-600">Domain, hosting, design, and more</p>
               </div>
               <!-- Duplicate set for seamless loop -->
-              <div class="feature-card">
-                <span class="flex items-center gap-2 text-[#df00ff] font-semibold text-lg mb-1">
+              <div class="feature-card bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
+                <span class="flex items-center gap-1 text-[#df00ff] font-semibold text-lg mb-1">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
                   Fast Delivery
                 </span>
                 <p class="text-sm text-gray-600">Launch your website in as little as 7 days</p>
               </div>
-              <div class="feature-card">
-                <span class="flex items-center gap-2 text-[#0cead9] font-semibold text-lg mb-1">
+              <div class="feature-card bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
+                <span class="flex items-center gap-1 text-[#0cead9] font-semibold text-lg mb-1">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
                   30-Day Guarantee
                 </span>
                 <p class="text-sm text-gray-600">Full satisfaction or your money back</p>
               </div>
-              <div class="feature-card">
-                <span class="flex items-center gap-2 text-[#df00ff] font-semibold text-lg mb-1">
+              <div class="feature-card bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
+                <span class="flex items-center gap-1 text-[#df00ff] font-semibold text-lg mb-1">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.5a9.5 9.5 0 000 19 9.5 9.5 0 000-19z"></path></svg>
                   24/7 Support
                 </span>
                 <p class="text-sm text-gray-600">Dedicated assistance whenever you need it</p>
               </div>
-              <div class="feature-card">
-                <span class="flex items-center gap-2 text-[#0cead9] font-semibold text-lg mb-1">
+              <div class="feature-card bg-white p-4 rounded-2xl shadow-md flex items-center justify-center flex-col text-center">
+                <span class="flex items-center gap-1 text-[#0cead9] font-semibold text-lg mb-1">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 8h10M9 12h10M9 16h10M5 8a1 1 0 110-2 1 1 0 010 2zm0 4a1 1 0 110-2 1 1 0 010 2zm0 4a1 1 0 110-2 1 1 0 010 2z"></path></svg>
                   All-In-One
                 </span>
@@ -175,7 +191,7 @@
           </div>
         </div>
         
-        <p class="text-base text-[#0cead9] font-semibold mb-4">Start your project with a <span class="text-[#df00ff]">free consultation</span>—no credit card required.</p>
+        <p class="text-base text-2xl lg:text-3xl text-gray-600 font-semibold mb-4">Start your project with a <span class="font-bold mb-6 leading-[1.25] pb-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] bg-clip-text text-transparent">free consultation</span>—no credit card required.</p>
         <div class="flex flex-col sm:flex-row gap-6 justify-center mb-4">
           <a href="contact.html" class="inline-flex items-center justify-center px-10 py-5 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white font-bold rounded-2xl text-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105">
             Start Your Project
