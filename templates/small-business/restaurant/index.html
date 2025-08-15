@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFDSVY8Y4N"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);} 
+            gtag('js', new Date());
+            gtag('config', 'G-BFDSVY8Y4N');
+        </script>
 
     <!-- 
       SEO Meta Tags 
@@ -12,9 +20,14 @@
     <meta name="description" content="The Gilded Spoon offers a modern take on classic cuisine, featuring locally-sourced ingredients in a beautifully designed setting. Book your table today for an unforgettable dining experience.">
     <meta name="keywords" content="restaurant, fine dining, modern cuisine, local ingredients, best restaurant, book a table">
     <meta name="author" content="The Gilded Spoon">
+    <link rel="canonical" href="https://webglo.org/templates/small-business/restaurant/" />
+    <meta name="robots" content="index,follow,noarchive" />
+    <meta name="original-source" content="Template demo page. Customize before production use." />
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for CTA banner icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -243,8 +256,35 @@
         }
 
     </style>
+    <style>
+        /* Webglo CTA Banner */
+        .webglo-cta-banner {
+            background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(124, 58, 237, 0.3);
+        }
+        body.has-webglo-cta { padding-top: 60px; }
+    </style>
 </head>
-<body class="antialiased">
+<body class="antialiased has-webglo-cta">
+    <!-- Webglo CTA Banner -->
+    <div id="webglo-cta-banner" class="webglo-cta-banner fixed top-0 left-0 right-0 z-50 py-3 px-4">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-rocket text-white text-sm"></i>
+                </div>
+                <p class="text-sm md:text-base font-medium">
+                    <span class="font-bold">Love this design?</span> Let's build your site fast with Webglo.
+                </p>
+            </div>
+            <div class="flex gap-2">
+                <a href="https://www.webglo.org/contact" target="_blank" class="bg-white/20 hover:bg-white/30 text-white text-sm font-semibold py-2 px-4 rounded-full transition-all duration-300 backdrop-blur-sm border border-white/20 hover:scale-105">Free Consultation</a>
+                <a href="https://www.webglo.org/services" target="_blank" class="bg-white text-purple-700 text-sm font-semibold py-2 px-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg">View Services</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Header & Sticky Navigation -->
     <header id="header" class="bg-[#1a1a1a]/80 backdrop-blur-lg sticky top-0 z-50 transition-all duration-300 border-b border-gray-800/50">

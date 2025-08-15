@@ -3,12 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-BFDSVY8Y4N"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);} 
+            gtag('js', new Date());
+            gtag('config', 'G-BFDSVY8Y4N');
+        </script>
     <title>Precision Financials - Expert Accounting & Tax Services</title>
     <meta name="description" content="Precision Financials offers expert tax preparation, bookkeeping, and financial consulting for individuals and businesses. Let our certified professionals secure your financial future.">
     <meta name="keywords" content="accountant, tax services, bookkeeping, financial consulting, CPA, business accounting">
     <meta name="author" content="Precision Financials">
+    <link rel="canonical" href="https://webglo.org/templates/small-business/accounting-firm/" />
+    <meta name="robots" content="index,follow,noarchive" />
+    <meta name="original-source" content="Template demo page. Customize before production use." />
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for CTA banner icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
@@ -231,9 +244,34 @@
             width: 90%;
             text-align: center;
         }
+            /* Webglo CTA Banner */
+            .webglo-cta-banner {
+                background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+                backdrop-filter: blur(20px);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                box-shadow: 0 4px 30px rgba(124, 58, 237, 0.3);
+            }
+            body.has-webglo-cta { padding-top: 60px; }
     </style>
 </head>
-<body class="text-gray-700">
+<body class="text-gray-700 has-webglo-cta">
+    <!-- Webglo CTA Banner -->
+    <div id="webglo-cta-banner" class="webglo-cta-banner fixed top-0 left-0 right-0 z-50 py-3 px-4">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-rocket text-white text-sm"></i>
+                </div>
+                <p class="text-sm md:text-base font-medium">
+                    <span class="font-bold">Love this design?</span> Let's build your site fast with Webglo.
+                </p>
+            </div>
+            <div class="flex gap-2">
+                <a href="https://www.webglo.org/contact" target="_blank" class="bg-white/20 hover:bg-white/30 text-white text-sm font-semibold py-2 px-4 rounded-full transition-all duration-300 backdrop-blur-sm border border-white/20 hover:scale-105">Free Consultation</a>
+                <a href="https://www.webglo.org/services" target="_blank" class="bg-white text-purple-700 text-sm font-semibold py-2 px-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg">View Services</a>
+            </div>
+        </div>
+    </div>
 
     <div id="website-context" class="hidden">
         <!-- This hidden div holds all the text content for the AI's context -->
