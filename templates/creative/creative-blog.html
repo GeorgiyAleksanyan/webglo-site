@@ -1,0 +1,1784 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusFlow Blog - A Webglo Template</title>
+    <meta name="description" content="An extraordinary, cutting-edge blog template designed by Webglo. Features dynamic content, immersive experiences, and jaw-dropping design.">
+    <meta name="author" content="Webglo">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+    <style>
+        /* Custom styles for the extraordinary template */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        /* Animated background particles */
+        .bg-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: rgba(124, 58, 237, 0.5);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0px); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a2e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #8b5cf6, #f472b6);
+        }
+        
+        /* Webglo CTA Banner */
+        .webglo-cta-banner {
+            background: linear-gradient(135deg, #7c3aed 0%, #ec4899 100%);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(124, 58, 237, 0.3);
+        }
+
+        /* Floating navigation */
+        .floating-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Morphing navigation button */
+        .nav-morph {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .nav-morph::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .nav-morph:hover::before {
+            left: 100%;
+        }
+
+        /* Hero section with floating elements */
+        .hero-floating {
+            animation: heroFloat 6s ease-in-out infinite;
+        }
+        
+        @keyframes heroFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+        }
+
+        /* Blog card magic */
+        .blog-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blog-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .blog-card:hover::before {
+            opacity: 1;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-20px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(124, 58, 237, 0.3);
+            border-color: rgba(124, 58, 237, 0.5);
+        }
+        
+        .blog-card-image {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        .blog-card:hover .blog-card-image {
+            transform: scale(1.1) rotate(2deg);
+        }
+        
+        /* Glowing effects */
+        .glow-purple {
+            box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+        }
+        
+        .glow-pink {
+            box-shadow: 0 0 20px rgba(236, 72, 153, 0.5);
+        }
+        
+        /* Tag animations */
+        .tag-pill {
+            background: rgba(124, 58, 237, 0.2);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tag-pill:hover {
+            background: rgba(124, 58, 237, 0.4);
+            transform: scale(1.05);
+        }
+        
+        .tag-pill.active {
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+        }
+        
+        /* Search bar magic */
+        .search-container {
+            position: relative;
+        }
+        
+        .search-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: #7c3aed;
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.1);
+        }
+        
+        /* Single post animations */
+        .post-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Comment section */
+        .comment-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .comment-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateX(10px);
+        }
+        
+        /* Loading animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        .loading {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            .blog-card:hover {
+                transform: translateY(-10px) scale(1.01);
+            }
+            
+            .particle {
+                display: none;
+            }
+        }
+        
+        /* Newsletter section */
+        .newsletter-glow {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(236, 72, 153, 0.1));
+            border: 1px solid rgba(124, 58, 237, 0.2);
+        }
+        
+        /* Social share buttons */
+        .social-share {
+            transition: all 0.3s ease;
+        }
+        
+        .social-share:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+        
+        /* Reading progress bar */
+        .reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #7c3aed, #ec4899);
+            z-index: 1000;
+            transition: width 0.1s ease;
+        }
+        
+        /* Custom animations */
+        .animate-bounce-slow {
+            animation: bounce 3s infinite;
+        }
+        
+        .animate-pulse-glow {
+            animation: pulseGlow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulseGlow {
+            from {
+                box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
+            }
+            to {
+                box-shadow: 0 0 40px rgba(236, 72, 153, 0.8);
+            }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Animated background particles -->
+    <div class="bg-particles" id="particles-bg"></div>
+    
+    <!-- Reading progress bar -->
+    <div class="reading-progress" id="reading-progress"></div>
+
+    <!-- =================================================== -->
+    <!-- ============== WEBGLO CTA BANNER ================== -->
+    <!-- =================================================== -->
+    <div id="webglo-cta-banner" class="webglo-cta-banner fixed top-0 left-0 right-0 z-50 py-3 px-4">
+        <div class="container mx-auto flex flex-col sm:flex-row justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
+                    <i class="fas fa-rocket text-white text-sm"></i>
+                </div>
+                <p class="text-sm md:text-base font-medium">
+                    <span class="font-bold">Love this extraordinary design?</span> Let's create your digital masterpiece together.
+                </p>
+            </div>
+            <div class="flex gap-2">
+                <a href="https://www.webglo.org/contact" target="_blank" class="bg-white/20 hover:bg-white/30 text-white text-sm font-semibold py-2 px-4 rounded-full transition-all duration-300 backdrop-blur-sm border border-white/20 hover:scale-105">
+                    Free Consultation
+                </a>
+                <a href="https://www.webglo.org/services" target="_blank" class="bg-white text-purple-700 text-sm font-semibold py-2 px-4 rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg">
+                    View Services
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- =================================================== -->
+    <!-- ============ FLOATING NAVIGATION ================== -->
+    <!-- =================================================== -->
+    <nav class="fixed top-20 right-6 z-50" data-aos="fade-left" data-aos-delay="500">
+        <input type="checkbox" id="nav-toggle" class="hidden">
+        <label for="nav-toggle" class="nav-morph cursor-pointer w-16 h-16 floating-nav rounded-2xl flex items-center justify-center group">
+            <!-- Hamburger Icon -->
+            <div id="nav-icon-open" class="relative">
+                <div class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 group-hover:bg-purple-400"></div>
+                <div class="w-6 h-0.5 bg-white mb-1.5 transition-all duration-300 group-hover:bg-purple-400"></div>
+                <div class="w-6 h-0.5 bg-white transition-all duration-300 group-hover:bg-purple-400"></div>
+            </div>
+            <!-- Close Icon -->
+            <i id="nav-icon-close" class="fas fa-times text-white text-xl hidden"></i>
+        </label>
+        
+        <!-- Navigation menu -->
+        <div id="nav-menu" class="absolute top-0 right-0 w-72 mt-20 p-6 floating-nav rounded-2xl transform scale-0 origin-top-right transition-all duration-500 ease-out">
+            <ul class="space-y-4">
+                <li><a href="#home" class="flex items-center gap-3 font-semibold hover:text-purple-400 transition-colors py-2 group">
+                    <i class="fas fa-home w-5"></i>
+                    <span>Home</span>
+                    <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity ml-auto"></i>
+                </a></li>
+                <li><a href="#featured" class="flex items-center gap-3 font-semibold hover:text-purple-400 transition-colors py-2 group">
+                    <i class="fas fa-star w-5"></i>
+                    <span>Featured Posts</span>
+                    <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity ml-auto"></i>
+                </a></li>
+                <li><a href="#categories" class="flex items-center gap-3 font-semibold hover:text-purple-400 transition-colors py-2 group">
+                    <i class="fas fa-th-large w-5"></i>
+                    <span>Categories</span>
+                    <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity ml-auto"></i>
+                </a></li>
+                <li><a href="#about-author" class="flex items-center gap-3 font-semibold hover:text-purple-400 transition-colors py-2 group">
+                    <i class="fas fa-user-circle w-5"></i>
+                    <span>About Author</span>
+                    <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity ml-auto"></i>
+                </a></li>
+                <li><a href="#newsletter" class="flex items-center gap-3 font-semibold hover:text-purple-400 transition-colors py-2 group">
+                    <i class="fas fa-envelope w-5"></i>
+                    <span>Newsletter</span>
+                    <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity ml-auto"></i>
+                </a></li>
+                <li><a href="https://www.webglo.org/about" target="_blank" class="flex items-center gap-3 font-semibold text-purple-400 hover:text-purple-300 transition-colors py-2 group">
+                    <i class="fas fa-external-link-alt w-5"></i>
+                    <span>About Webglo</span>
+                    <i class="fas fa-arrow-right opacity-0 group-hover:opacity-100 transition-opacity ml-auto"></i>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <!-- Main container for all page content -->
+    <div class="pt-24">
+
+        <!-- =================================================== -->
+        <!-- ================== MAIN BLOG VIEW ================= -->
+        <!-- =================================================== -->
+        <div id="main-blog-view">
+            <!-- Hero Section -->
+            <header id="home" class="container mx-auto px-6 py-20 text-center relative overflow-hidden">
+                <div class="hero-floating" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="mb-6">
+                        <span class="inline-block px-4 py-2 bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-full text-sm font-medium text-purple-300 mb-6">
+                            <i class="fas fa-sparkles mr-2"></i>Digital Innovation Hub
+                        </span>
+                    </div>
+                    <h1 class="text-6xl md:text-8xl lg:text-9xl font-black mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-purple-200 to-pink-200 leading-tight">
+                        NexusFlow
+                    </h1>
+                    <div class="text-2xl md:text-3xl font-bold mb-6 text-purple-300">
+                        <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">Blog</span>
+                    </div>
+                    <p class="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                        Discover the future of technology, innovation, and digital transformation. 
+                        <span class="text-purple-400 font-semibold">Extraordinary insights</span> for the modern digital world.
+                    </p>
+                </div>
+                
+                <!-- Floating elements -->
+                <div class="absolute top-20 left-10 w-20 h-20 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-xl animate-bounce-slow" data-aos="fade-right" data-aos-delay="800"></div>
+                <div class="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full blur-xl animate-pulse-glow" data-aos="fade-left" data-aos-delay="1200"></div>
+            </header>
+
+            <main class="container mx-auto px-6">
+                <!-- Search and Filter Section -->
+                <div class="mb-16" data-aos="fade-up" data-aos-delay="200">
+                    <div class="max-w-4xl mx-auto">
+                        <!-- Search Bar -->
+                        <div class="search-container relative mb-8">
+                            <input type="text" id="search-bar" placeholder="Search for insights, trends, and innovations..." 
+                                class="search-input w-full py-4 px-6 pr-16 rounded-2xl text-lg focus:outline-none transition-all duration-300">
+                            <div class="absolute right-6 top-1/2 -translate-y-1/2">
+                                <i class="fas fa-search text-gray-400 text-lg"></i>
+                            </div>
+                        </div>
+                        
+                        <!-- Filter Tags -->
+                        <div class="flex flex-wrap gap-3 justify-center" id="tags-container">
+                            <!-- Tags will be dynamically inserted here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Post Section -->
+                <section id="featured" class="mb-20" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                            Featured Stories
+                        </h2>
+                        <p class="text-gray-400 text-lg">Handpicked articles that are shaping the digital landscape</p>
+                    </div>
+                    <div id="featured-posts" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <!-- Featured posts will be dynamically inserted here -->
+                    </div>
+                </section>
+
+                <!-- Categories Section -->
+                <section id="categories" class="mb-20" data-aos="fade-up" data-aos-delay="600">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                            Explore Topics
+                        </h2>
+                        <p class="text-gray-400 text-lg">Dive deep into the subjects that matter most</p>
+                    </div>
+                    <div id="categories-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        <!-- Categories will be dynamically inserted here -->
+                    </div>
+                </section>
+
+                <!-- Latest Posts Grid -->
+                <section class="mb-20" data-aos="fade-up" data-aos-delay="800">
+                    <div class="text-center mb-12">
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-green-400 to-blue-400 bg-clip-text text-transparent">
+                            Latest Insights
+                        </h2>
+                        <p class="text-gray-400 text-lg">Fresh perspectives on technology and innovation</p>
+                    </div>
+                    <div id="blog-posts-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Blog post cards will be dynamically inserted here -->
+                    </div>
+                    
+                    <!-- Load More Button -->
+                    <div class="text-center mt-12">
+                        <button id="load-more-btn" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 glow-purple">
+                            <i class="fas fa-plus mr-2"></i>Load More Articles
+                        </button>
+                    </div>
+                </section>
+
+                <!-- About Author Section -->
+                <section id="about-author" class="mb-20" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="max-w-4xl mx-auto bg-gradient-to-br from-purple-900/20 to-pink-900/20 backdrop-blur-lg border border-purple-500/20 rounded-3xl p-8 md:p-12">
+                        <div class="flex flex-col lg:flex-row items-center gap-8">
+                            <div class="w-48 h-48 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-6xl text-white font-bold">
+                                <i class="fas fa-user-astronaut"></i>
+                            </div>
+                            <div class="flex-1 text-center lg:text-left">
+                                <h3 class="text-3xl font-bold mb-4">Alex Rivera</h3>
+                                <p class="text-purple-300 text-lg mb-4">Digital Innovation Strategist & Tech Visionary</p>
+                                <p class="text-gray-300 mb-6 leading-relaxed">
+                                    With over a decade of experience in emerging technologies and digital transformation, 
+                                    Alex shares cutting-edge insights on AI, blockchain, quantum computing, and the future of human-computer interaction. 
+                                    Passionate about bridging the gap between complex technology and practical innovation.
+                                </p>
+                                <div class="flex gap-4 justify-center lg:justify-start">
+                                    <a href="#" class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                                        <i class="fab fa-twitter text-white"></i>
+                                    </a>
+                                    <a href="#" class="w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                                        <i class="fab fa-linkedin text-white"></i>
+                                    </a>
+                                    <a href="#" class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                                        <i class="fab fa-github text-white"></i>
+                                    </a>
+                                    <a href="#" class="w-12 h-12 bg-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+                                        <i class="fas fa-globe text-white"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <!-- =================================================== -->
+        <!-- =============== SINGLE POST VIEW ================== -->
+        <!-- =================================================== -->
+        <div id="single-post-view" class="hidden">
+            <!-- Single post content will be dynamically inserted here -->
+        </div>
+
+        <!-- =================================================== -->
+        <!-- ============ NEWSLETTER SECTION =================== -->
+        <!-- =================================================== -->
+        <section id="newsletter" class="container mx-auto px-6 py-20" data-aos="fade-up" data-aos-delay="1200">
+            <div class="newsletter-glow rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
+                <!-- Background decoration -->
+                <div class="absolute top-0 left-0 w-full h-full opacity-10">
+                    <div class="absolute top-10 left-10 w-20 h-20 bg-purple-500 rounded-full blur-3xl"></div>
+                    <div class="absolute bottom-10 right-10 w-32 h-32 bg-pink-500 rounded-full blur-3xl"></div>
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 bg-blue-500 rounded-full blur-3xl"></div>
+                </div>
+                
+                <div class="relative z-10">
+                    <div class="mb-8">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-paper-plane text-white text-2xl"></i>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">
+                            Stay Ahead of the Curve
+                        </h2>
+                        <p class="text-gray-300 max-w-2xl mx-auto mb-8 text-lg leading-relaxed">
+                            Get exclusive insights, breakthrough technologies, and innovative strategies delivered directly to your inbox. 
+                            Join over <span class="text-purple-400 font-semibold">10,000+</span> forward-thinking professionals.
+                        </p>
+                    </div>
+                    
+                    <form id="email-form" class="max-w-lg mx-auto">
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <div class="flex-1 relative">
+                                <input type="email" id="email-input" placeholder="your.email@innovation.com" required 
+                                    class="w-full bg-white/10 border-2 border-purple-400/30 rounded-2xl py-4 px-6 text-white placeholder-gray-400 focus:outline-none focus:border-purple-400 focus:bg-white/15 transition-all duration-300">
+                                <div class="absolute right-4 top-1/2 -translate-y-1/2">
+                                    <i class="fas fa-envelope text-gray-400"></i>
+                                </div>
+                            </div>
+                            <button type="submit" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 hover:scale-105 glow-purple whitespace-nowrap">
+                                <i class="fas fa-rocket mr-2"></i>Subscribe Now
+                            </button>
+                        </div>
+                        <p class="text-gray-400 text-sm mt-4">
+                            <i class="fas fa-lock mr-1"></i>
+                            No spam, unsubscribe at any time. We respect your privacy.
+                        </p>
+                    </form>
+                    
+                    <div id="email-success-message" class="mt-6 p-4 bg-green-500/20 border border-green-500/30 rounded-xl text-green-300 hidden">
+                        <i class="fas fa-check-circle mr-2"></i>
+                        <strong>Welcome aboard!</strong> Check your inbox for a confirmation email.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div> <!-- End of main content container -->
+
+
+    <!-- =================================================== -->
+    <!-- ===================== FOOTER ====================== -->
+    <!-- =================================================== -->
+    <footer class="relative overflow-hidden">
+        <!-- Footer background -->
+        <div class="absolute inset-0 bg-gradient-to-br from-gray-900/50 to-black/80 backdrop-blur-sm"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent"></div>
+        
+        <div class="relative z-10 border-t border-white/10">
+            <div class="container mx-auto px-6 py-16">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                    <!-- Logo and Description -->
+                    <div class="md:col-span-2">
+                        <div class="flex items-center gap-3 mb-6">
+                            <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center">
+                                <i class="fas fa-atom text-white text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent">NexusFlow</h3>
+                                <p class="text-gray-400 text-sm">Digital Innovation Hub</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            Exploring the intersection of technology, innovation, and human potential. 
+                            Join us on a journey through the digital frontier.
+                        </p>
+                        <div class="flex gap-4">
+                            <a href="#" class="social-share w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center hover:bg-blue-500">
+                                <i class="fab fa-twitter text-white"></i>
+                            </a>
+                            <a href="#" class="social-share w-12 h-12 bg-blue-800 rounded-xl flex items-center justify-center hover:bg-blue-700">
+                                <i class="fab fa-linkedin text-white"></i>
+                            </a>
+                            <a href="#" class="social-share w-12 h-12 bg-gray-700 rounded-xl flex items-center justify-center hover:bg-gray-600">
+                                <i class="fab fa-github text-white"></i>
+                            </a>
+                            <a href="#" class="social-share w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center hover:bg-red-500">
+                                <i class="fab fa-youtube text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-6 text-white">Quick Links</h4>
+                        <ul class="space-y-3">
+                            <li><a href="#home" class="text-gray-400 hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs"></i>Home
+                            </a></li>
+                            <li><a href="#featured" class="text-gray-400 hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs"></i>Featured Posts
+                            </a></li>
+                            <li><a href="#categories" class="text-gray-400 hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs"></i>Categories
+                            </a></li>
+                            <li><a href="#about-author" class="text-gray-400 hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs"></i>About Author
+                            </a></li>
+                            <li><a href="#newsletter" class="text-gray-400 hover:text-purple-400 transition-colors flex items-center gap-2">
+                                <i class="fas fa-chevron-right text-xs"></i>Newsletter
+                            </a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div>
+                        <h4 class="text-lg font-semibold mb-6 text-white">Connect</h4>
+                        <ul class="space-y-3">
+                            <li class="text-gray-400 flex items-center gap-3">
+                                <i class="fas fa-envelope text-purple-400"></i>
+                                <span>hello@nexusflow.blog</span>
+                            </li>
+                            <li class="text-gray-400 flex items-center gap-3">
+                                <i class="fas fa-globe text-purple-400"></i>
+                                <span>nexusflow.blog</span>
+                            </li>
+                            <li class="text-gray-400 flex items-center gap-3">
+                                <i class="fas fa-map-marker-alt text-purple-400"></i>
+                                <span>Digital Realm</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Bottom section -->
+                <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <p class="text-gray-400 text-center md:text-left">
+                        &copy; <span id="current-year"></span> NexusFlow Blog Template. 
+                        <span class="text-purple-400">Powered by</span> 
+                        <a href="https://www.webglo.org" target="_blank" class="font-semibold text-purple-400 hover:text-purple-300 transition-colors">
+                            Webglo
+                        </a>
+                    </p>
+                    <div class="flex gap-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+
+        // ===================================================
+        // ================== ENHANCED DATABASE ==============
+        // ===================================================
+        const blogPostsData = [
+            {
+                id: 1,
+                title: "The Rise of Quantum Computing: Beyond Classical Limitations",
+                author: "Alex Rivera",
+                publishDate: "August 14, 2025",
+                readTime: 8,
+                imageUrl: "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Quantum Computing", "Technology", "Future Tech"],
+                category: "Emerging Technologies",
+                likes: 342,
+                views: 1250,
+                featured: true,
+                comments: [
+                    { id: 1, user: "Dr. Sarah Chen", avatar: "SC", text: "Fascinating insights into quantum supremacy! The implications for cryptography are mind-blowing.", timestamp: "2 hours ago" },
+                    { id: 2, user: "Marcus Thompson", avatar: "MT", text: "Great explanation of complex concepts. Looking forward to seeing quantum computers in everyday applications.", timestamp: "5 hours ago" },
+                    { id: 3, user: "Elena Rodriguez", avatar: "ER", text: "The potential for drug discovery and climate modeling is incredible. Thanks for this deep dive!", timestamp: "1 day ago" }
+                ],
+                content: `
+                    <p class="mb-6 text-lg">Quantum computing represents one of the most significant technological breakthroughs of our time, promising to solve problems that would take classical computers millennia to complete. As we stand on the brink of the quantum revolution, it's crucial to understand not just the technology itself, but its profound implications for every aspect of our digital future.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">The Quantum Advantage</h3>
+                    <p class="mb-6">Unlike classical bits that exist in either 0 or 1 states, quantum bits (qubits) can exist in superposition, simultaneously representing multiple states. This fundamental difference enables quantum computers to process vast amounts of information in parallel, exponentially increasing computational power for specific types of problems.</p>
+                    
+                    <div class="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/20 rounded-2xl p-6 mb-8">
+                        <h4 class="text-xl font-bold mb-4 text-purple-300">Key Applications on the Horizon</h4>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-400"></i> <strong>Cryptography:</strong> Breaking current encryption while enabling quantum-safe security</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-400"></i> <strong>Drug Discovery:</strong> Simulating molecular interactions at unprecedented scales</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-400"></i> <strong>Financial Modeling:</strong> Optimizing portfolios and risk assessment in real-time</li>
+                            <li class="flex items-center gap-3"><i class="fas fa-check text-green-400"></i> <strong>Climate Science:</strong> Modeling complex environmental systems</li>
+                        </ul>
+                    </div>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">Current Challenges and Solutions</h3>
+                    <p class="mb-6">Quantum computers are notoriously fragile, requiring near absolute zero temperatures and isolation from electromagnetic interference. However, recent advances in error correction and quantum algorithms are bringing us closer to practical, fault-tolerant quantum systems.</p>
+                    
+                    <p class="mb-6">Companies like IBM, Google, and emerging startups are racing to achieve quantum advantage in practical applications. Google's Sycamore processor already demonstrated quantum supremacy in 2019, and IBM's roadmap promises 1000+ qubit systems by 2026.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">The Path Forward</h3>
+                    <p>As quantum computing matures, we'll likely see hybrid classical-quantum systems become the norm, with quantum processors handling specific computational tasks while classical computers manage everything else. The organizations that understand and prepare for this transition today will be the leaders of tomorrow's quantum-powered economy.</p>
+                `
+            },
+            {
+                id: 2,
+                title: "AI-Driven Creativity: When Machines Become Artists",
+                author: "Alex Rivera",
+                publishDate: "August 12, 2025",
+                readTime: 6,
+                excerpt: "Artificial Intelligence has transcended its traditional role as a tool for analysis and automation, emerging as a powerful creative force that's reshaping art, music, literature, and design.",
+                imageUrl: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Artificial Intelligence", "Creativity", "Digital Art"],
+                category: "AI & Machine Learning",
+                likes: 298,
+                views: 987,
+                featured: true,
+                comments: [
+                    { id: 1, user: "Creative Director", avatar: "CD", text: "As a designer, I'm both excited and concerned about AI's creative capabilities. The collaboration potential is huge!", timestamp: "3 hours ago" },
+                    { id: 2, user: "Art Enthusiast", avatar: "AE", text: "The examples you shared are incredible. I can't tell which ones were AI-generated!", timestamp: "6 hours ago" }
+                ],
+                content: `
+                    <p class="mb-6 text-lg">Artificial Intelligence has transcended its traditional role as a tool for analysis and automation, emerging as a powerful creative force that's reshaping art, music, literature, and design. From generating stunning visuals to composing symphonies, AI is not just mimicking human creativity—it's expanding the very definition of what it means to create.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">The Creative Revolution</h3>
+                    <p class="mb-6">Modern AI systems like DALL-E, Midjourney, and Stable Diffusion have democratized visual creation, allowing anyone to generate professional-quality artwork with simple text prompts. Similarly, AI music composers can create original scores, while language models craft poetry and prose that rivals human authors.</p>
+                    
+                    <div class="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/20 rounded-2xl p-6 mb-8">
+                        <h4 class="text-xl font-bold mb-4 text-blue-300">Creative AI Applications</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <h5 class="font-bold mb-2">Visual Arts</h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Concept art generation</li>
+                                    <li>• Style transfer and enhancement</li>
+                                    <li>• Logo and brand design</li>
+                                    <li>• Photo manipulation and restoration</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-bold mb-2">Content Creation</h5>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Music composition and production</li>
+                                    <li>• Creative writing and storytelling</li>
+                                    <li>• Video editing and effects</li>
+                                    <li>• Interactive media design</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">The Human-AI Collaboration</h3>
+                    <p class="mb-6">Rather than replacing human creativity, AI is becoming the ultimate creative partner. Artists use AI to explore new styles, overcome creative blocks, and iterate rapidly on ideas. This symbiotic relationship is producing entirely new forms of art that neither humans nor machines could create alone.</p>
+                    
+                    <p>The future of creativity lies not in competition between human and artificial intelligence, but in their collaboration—a fusion that promises to unlock creative possibilities we've only begun to imagine.</p>
+                `
+            },
+            {
+                id: 3,
+                title: "Metaverse Architecture: Building Tomorrow's Virtual Worlds",
+                author: "Maya Patel",
+                publishDate: "August 10, 2025",
+                readTime: 7,
+                excerpt: "The metaverse requires entirely new approaches to digital architecture, blending immersive design with scalable technology infrastructure to create believable virtual worlds.",
+                imageUrl: "https://images.unsplash.com/photo-1592478411213-6153e4ebc696?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Metaverse", "Virtual Reality", "Architecture", "Web3"],
+                category: "Virtual Worlds",
+                likes: 156,
+                views: 743,
+                featured: false,
+                comments: [
+                    { id: 1, user: "VR Developer", avatar: "VD", text: "The architectural principles outlined here are spot-on. Immersion is indeed key to creating believable virtual spaces.", timestamp: "1 hour ago" },
+                    { id: 2, user: "Blockchain Enthusiast", avatar: "BE", text: "Excited to see how NFTs and digital ownership evolve in these virtual environments.", timestamp: "4 hours ago" }
+                ],
+                content: `
+                    <p class="mb-6 text-lg">The metaverse represents the next evolution of the internet, where digital and physical realities converge in immersive, shared virtual spaces. Building these worlds requires a fundamental rethinking of architecture, user experience, and technology infrastructure.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">Core Design Principles</h3>
+                    <p class="mb-6">Successful metaverse environments must balance several key elements: immersion that makes virtual spaces feel real, interactivity that enables meaningful user engagement, persistence that maintains world state across sessions, and scalability that supports millions of concurrent users.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">Technical Infrastructure</h3>
+                    <p class="mb-6">The backbone of the metaverse relies on cutting-edge technologies including cloud computing, edge networks, blockchain for digital ownership, and advanced graphics rendering. Companies like Meta, Microsoft, and NVIDIA are investing billions in creating the infrastructure needed to support these virtual worlds.</p>
+                    
+                    <p>The metaverse isn't just about technology—it's about creating new economic models where digital assets, virtual real estate, and creator economies can thrive.</p>
+                `
+            },
+            {
+                id: 4,
+                title: "Sustainable Tech: Green Innovation for a Better Planet",
+                author: "Dr. Elena Vasquez",
+                publishDate: "August 8, 2025",
+                readTime: 5,
+                excerpt: "Technology is becoming a powerful force for environmental sustainability, from renewable energy optimization to carbon capture innovations that could reshape our climate future.",
+                imageUrl: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Sustainability", "Green Tech", "Climate Change", "Innovation"],
+                category: "Sustainable Technology",
+                likes: 203,
+                views: 892,
+                featured: false,
+                comments: [
+                    { id: 1, user: "Climate Scientist", avatar: "CS", text: "Carbon capture technology is indeed promising, though scaling remains a significant challenge.", timestamp: "2 hours ago" },
+                    { id: 2, user: "Renewable Energy Engineer", avatar: "RE", text: "Smart grids are the future. Great to see AI being used for sustainability applications.", timestamp: "6 hours ago" }
+                ],
+                content: `
+                    <p class="mb-6 text-lg">As climate change accelerates, technology is emerging as one of our most powerful tools for environmental sustainability. From optimizing renewable energy systems to developing breakthrough carbon capture technologies, innovation is driving the green revolution.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">Smart Energy Systems</h3>
+                    <p class="mb-6">AI-powered smart grids are revolutionizing how we distribute and consume energy. Machine learning algorithms can predict energy demand, optimize renewable sources like solar and wind, and reduce waste throughout the power grid.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">Carbon Capture Innovation</h3>
+                    <p class="mb-6">Direct air capture technology is moving from science fiction to reality. Companies like Climeworks are deploying industrial-scale systems that can remove CO2 directly from the atmosphere and store it underground or convert it into useful products.</p>
+                    
+                    <p>The convergence of IoT sensors, blockchain technology, and AI is enabling new circular economy models where waste becomes input for other processes, creating truly sustainable technological ecosystems.</p>
+                `
+            },
+            {
+                id: 3,
+                title: "The Metaverse Economy: Digital Real Estate and Virtual Commerce",
+                author: "Alex Rivera",
+                publishDate: "August 10, 2025",
+                readTime: 7,
+                imageUrl: "https://images.unsplash.com/photo-1622979135225-d2ba269cf1ac?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Metaverse", "Virtual Reality", "Digital Economy"],
+                category: "Virtual Worlds",
+                likes: 189,
+                views: 756,
+                featured: false,
+                comments: [
+                    { id: 1, user: "VR Developer", avatar: "VD", text: "The economic models you describe are already emerging in platforms like Horizon Worlds and VRChat.", timestamp: "4 hours ago" }
+                ],
+                content: `
+                    <p class="mb-6 text-lg">The metaverse is evolving from a science fiction concept into a tangible economic ecosystem where virtual assets hold real-world value. As major tech companies invest billions in virtual worlds, understanding the economics of digital spaces becomes crucial for businesses and individuals alike.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">Virtual Real Estate Boom</h3>
+                    <p class="mb-6">Digital land parcels in platforms like Decentraland and The Sandbox are selling for millions of dollars, with prime locations commanding prices comparable to physical real estate in major cities. This virtual land serves as the foundation for digital businesses, entertainment venues, and social spaces.</p>
+                    
+                    <p>The metaverse economy represents a fundamental shift in how we think about ownership, value, and commerce in digital spaces. As these virtual worlds mature, they're creating new opportunities for entrepreneurship and investment that exist purely in the digital realm.</p>
+                `
+            },
+            {
+                id: 4,
+                title: "Sustainable Tech: Green Computing and Carbon-Neutral Innovation",
+                author: "Alex Rivera",
+                publishDate: "August 8, 2025",
+                readTime: 5,
+                imageUrl: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Sustainability", "Green Tech", "Environment"],
+                category: "Sustainable Technology",
+                likes: 267,
+                views: 892,
+                featured: false,
+                comments: [
+                    { id: 1, user: "EcoTech Advocate", avatar: "EA", text: "Finally, someone addressing the environmental impact of our digital transformation!", timestamp: "1 hour ago" },
+                    { id: 2, user: "Climate Researcher", avatar: "CR", text: "The statistics on data center energy consumption are eye-opening. We need more innovations like these.", timestamp: "3 hours ago" }
+                ],
+                content: `
+                    <p class="mb-6 text-lg">As our digital infrastructure expands exponentially, the environmental cost of computing has become impossible to ignore. Data centers now consume more electricity than entire countries, making sustainable technology not just an ethical imperative but a business necessity.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">The Carbon Cost of Computing</h3>
+                    <p class="mb-6">Every search query, video stream, and cloud storage operation contributes to global carbon emissions. The IT sector now accounts for approximately 4% of global greenhouse gas emissions—a figure that's projected to double by 2030 without significant intervention.</p>
+                    
+                    <p>Green computing initiatives are revolutionizing how we design, deploy, and operate technology systems. From renewable-powered data centers to energy-efficient algorithms, the tech industry is pioneering solutions that prove sustainability and innovation can go hand in hand.</p>
+                `
+            },
+            {
+                id: 5,
+                title: "Blockchain Beyond Cryptocurrency: Real-World Applications",
+                author: "Alex Rivera",
+                publishDate: "August 6, 2025",
+                readTime: 6,
+                imageUrl: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Blockchain", "Cryptocurrency", "Fintech"],
+                category: "Blockchain Technology",
+                likes: 156,
+                views: 634,
+                featured: false,
+                comments: [],
+                content: `
+                    <p class="mb-6 text-lg">While cryptocurrency captures headlines, blockchain technology's most transformative applications extend far beyond digital currency. From supply chain transparency to digital identity verification, blockchain is quietly revolutionizing how we establish trust and verify transactions in the digital age.</p>
+                    
+                    <p>Smart contracts, decentralized autonomous organizations (DAOs), and non-fungible tokens (NFTs) represent just the beginning of blockchain's potential to reshape business models and create new forms of digital value exchange.</p>
+                `
+            },
+            {
+                id: 6,
+                title: "Neural Interfaces: The Future of Human-Computer Interaction",
+                author: "Alex Rivera",
+                publishDate: "August 4, 2025",
+                readTime: 9,
+                imageUrl: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Neural Tech", "Brain-Computer Interface", "Neuroscience"],
+                category: "Emerging Technologies",
+                likes: 423,
+                views: 1456,
+                featured: true,
+                comments: [
+                    { id: 1, user: "Neuroscientist", avatar: "NS", text: "The ethical implications you raise are crucial. We need robust frameworks before widespread adoption.", timestamp: "2 hours ago" },
+                    { id: 2, user: "Tech Ethicist", avatar: "TE", text: "Brain-computer interfaces will redefine privacy and human agency. Excellent coverage of both opportunities and risks.", timestamp: "5 hours ago" }
+                ],
+                content: `
+                    <p class="mb-6 text-lg">Brain-computer interfaces (BCIs) represent the ultimate convergence of biology and technology, promising to eliminate the traditional barriers between human thought and digital action. As companies like Neuralink push the boundaries of what's possible, we're approaching a future where controlling computers with our minds becomes as natural as speaking.</p>
+                    
+                    <h3 class="text-3xl font-bold mb-6 text-purple-300">From Medical Marvel to Mainstream Technology</h3>
+                    <p class="mb-6">Initially developed to help paralyzed patients regain mobility and communication, BCIs are expanding into cognitive enhancement, direct brain-to-brain communication, and seamless integration with artificial intelligence systems.</p>
+                    
+                    <p>The implications are staggering: imagine downloading skills like in The Matrix, sharing memories and experiences directly, or accessing the internet through pure thought. While these capabilities remain years away, the foundational technology is advancing rapidly.</p>
+                `
+            },
+            {
+                id: 7,
+                title: "Edge Computing: Bringing Intelligence to the Network's Edge",
+                author: "Alex Rivera",
+                publishDate: "August 2, 2025",
+                readTime: 4,
+                imageUrl: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Edge Computing", "IoT", "Network Technology"],
+                category: "Infrastructure",
+                likes: 134,
+                views: 523,
+                featured: false,
+                comments: [],
+                content: `
+                    <p class="mb-6 text-lg">Edge computing is transforming how we process and analyze data by moving computational power closer to where it's needed. Instead of sending everything to distant cloud servers, edge computing enables real-time processing at the source, reducing latency and improving efficiency.</p>
+                    
+                    <p>This paradigm shift is particularly crucial for applications requiring instant responses—from autonomous vehicles to industrial automation to augmented reality experiences. Edge computing makes these technologies practical and reliable.</p>
+                `
+            },
+            {
+                id: 8,
+                title: "Digital Twins: Mirroring Reality in Virtual Space",
+                author: "Alex Rivera",
+                publishDate: "July 30, 2025",
+                readTime: 5,
+                imageUrl: "https://images.unsplash.com/photo-1581833971358-2c8b550f87b3?q=80&w=2070&auto=format&fit=crop",
+                tags: ["Digital Twins", "Simulation", "Industry 4.0"],
+                category: "Simulation Technology",
+                likes: 89,
+                views: 412,
+                featured: false,
+                comments: [
+                    { id: 1, user: "Industrial Engineer", avatar: "IE", text: "We're using digital twins in our manufacturing processes. The predictive maintenance capabilities are game-changing.", timestamp: "6 hours ago" }
+                ],
+                content: `
+                    <p class="mb-6 text-lg">Digital twins—virtual replicas of physical objects, processes, or systems—are revolutionizing how we design, monitor, and optimize everything from jet engines to entire cities. By creating real-time digital counterparts of physical assets, organizations can test scenarios, predict failures, and optimize performance without real-world risks.</p>
+                    
+                    <p>From NASA using digital twins to monitor spacecraft to cities creating virtual models for urban planning, this technology is enabling unprecedented levels of insight and control over complex systems.</p>
+                `
+            }
+        ];
+
+        // Enhanced categories data
+        const categoriesData = [
+            { name: "Emerging Technologies", count: 3, icon: "fas fa-rocket", color: "from-purple-500 to-blue-500" },
+            { name: "AI & Machine Learning", count: 1, icon: "fas fa-brain", color: "from-pink-500 to-red-500" },
+            { name: "Virtual Worlds", count: 1, icon: "fas fa-vr-cardboard", color: "from-green-500 to-teal-500" },
+            { name: "Sustainable Technology", count: 1, icon: "fas fa-leaf", color: "from-green-400 to-emerald-500" },
+            { name: "Blockchain Technology", count: 1, icon: "fas fa-link", color: "from-yellow-500 to-orange-500" },
+            { name: "Infrastructure", count: 1, icon: "fas fa-server", color: "from-gray-500 to-gray-700" },
+            { name: "Simulation Technology", count: 1, icon: "fas fa-cube", color: "from-indigo-500 to-purple-500" }
+        ];
+
+        // ===================================================
+        // ================== DOM ELEMENTS ===================
+        // ===================================================
+        const blogPostsGrid = document.getElementById('blog-posts-grid');
+        const featuredPostsContainer = document.getElementById('featured-posts');
+        const categoriesGrid = document.getElementById('categories-grid');
+        const tagsContainer = document.getElementById('tags-container');
+        const searchBar = document.getElementById('search-bar');
+        const mainBlogView = document.getElementById('main-blog-view');
+        const singlePostView = document.getElementById('single-post-view');
+        const emailForm = document.getElementById('email-form');
+        const emailInput = document.getElementById('email-input');
+        const emailSuccessMessage = document.getElementById('email-success-message');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const readingProgress = document.getElementById('reading-progress');
+        
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        let currentPage = 1;
+        const postsPerPage = 6;
+        let currentFilter = 'All';
+        let currentSearchTerm = '';
+
+        // ===================================================
+        // ================ UTILITY FUNCTIONS ================
+        // ===================================================
+        
+        // Create particles background
+        const createParticles = () => {
+            const particlesContainer = document.getElementById('particles-bg');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        };
+
+        // Update reading progress
+        const updateReadingProgress = () => {
+            const scrollTop = window.pageYOffset;
+            const docHeight = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            readingProgress.style.width = scrollPercent + '%';
+        };
+
+        // Smooth scroll to element
+        const smoothScrollTo = (element) => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        // Format number with commas
+        const formatNumber = (num) => {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        };
+
+        // Calculate time ago
+        const timeAgo = (timestamp) => {
+            // For demo purposes, return the timestamp as is
+            return timestamp;
+        };
+
+        // ===================================================
+        // ================== RENDER LOGIC ===================
+        // ===================================================
+        
+        // Render tags filter
+        const renderTags = () => {
+            if (!tagsContainer) return;
+            // Collect unique tags
+            const tagSet = new Set();
+            blogPostsData.forEach(p => (p.tags || []).forEach(t => tagSet.add(t)));
+
+            // Start with "All"
+            const tags = ['All', ...Array.from(tagSet).sort()];
+            tagsContainer.innerHTML = '';
+
+            tags.forEach((tag) => {
+                const btn = document.createElement('button');
+                btn.className = `tag-btn tag-pill py-2 px-4 rounded-full text-sm font-medium bg-gray-800 text-gray-300 hover:scale-105 transition-transform ${tag === 'All' ? 'active bg-purple-600 text-white' : ''}`;
+                btn.textContent = tag;
+                tagsContainer.appendChild(btn);
+            });
+        };
+
+        // Filter by category helper (lightweight)
+        const filterByCategory = (categoryName) => {
+            currentPage = 1;
+            const filtered = blogPostsData.filter(p => p.category === categoryName);
+            const pageSlice = filtered.slice(0, postsPerPage);
+            renderBlogPosts(pageSlice, false);
+            updateLoadMoreVisibility(filtered.length);
+            // Scroll to results
+            const grid = document.getElementById('blog-posts-grid');
+            if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        // Render blog post cards
+        const renderBlogPosts = (postsToRender, append = false) => {
+            if (!append) {
+                blogPostsGrid.innerHTML = '';
+            }
+            
+            if (postsToRender.length === 0 && !append) {
+                blogPostsGrid.innerHTML = `
+                    <div class="col-span-full text-center py-16">
+                        <div class="w-24 h-24 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-search text-4xl text-gray-400"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-gray-300">No articles found</h3>
+                        <p class="text-gray-400">Try adjusting your search or filters</p>
+                    </div>
+                `;
+                return;
+            }
+
+            postsToRender.forEach((post, index) => {
+                const card = document.createElement('div');
+                card.className = 'blog-card rounded-3xl overflow-hidden cursor-pointer group';
+                card.dataset.postId = post.id;
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', (index * 100).toString());
+                
+                card.innerHTML = `
+                    <div class="relative h-56 overflow-hidden">
+                        <img class="blog-card-image w-full h-full object-cover" src="${post.imageUrl}" alt="${post.title}" 
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a2e/ffffff?text=NexusFlow';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold py-1.5 px-3 rounded-full">
+                                ${post.category}
+                            </span>
+                        </div>
+                        <div class="absolute bottom-4 right-4 flex gap-2">
+                            <span class="bg-black/40 backdrop-blur-sm text-white text-xs py-1 px-2 rounded-full">
+                                <i class="fas fa-eye mr-1"></i>${formatNumber(post.views)}
+                            </span>
+                            <span class="bg-black/40 backdrop-blur-sm text-white text-xs py-1 px-2 rounded-full">
+                                ${post.readTime} min
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            ${post.tags.slice(0, 2).map(tag => `
+                                <span class="tag-pill text-xs font-medium py-1 px-3 rounded-full">${tag}</span>
+                            `).join('')}
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-purple-300 transition-colors line-clamp-2">
+                            ${post.title}
+                        </h3>
+                        <div class="flex justify-between items-center text-gray-400 text-sm mb-4">
+                            <span>${post.publishDate}</span>
+                            <span>${post.author}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-4 text-gray-400">
+                                <div class="flex items-center gap-1">
+                                    <i class="fas fa-heart text-pink-500"></i>
+                                    <span>${formatNumber(post.likes)}</span>
+                                </div>
+                                <div class="flex items-center gap-1">
+                                    <i class="fas fa-comment text-blue-500"></i>
+                                    <span>${post.comments.length}</span>
+                                </div>
+                            </div>
+                            <button class="text-purple-400 hover:text-purple-300 transition-colors font-medium">
+                                Read More <i class="fas fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => openSinglePost(post.id));
+                blogPostsGrid.appendChild(card);
+            });
+
+            // Refresh animations for newly added elements
+            if (window.AOS && typeof AOS.refresh === 'function') {
+                AOS.refresh();
+            }
+        };
+
+        // Render featured posts
+        const renderFeaturedPosts = () => {
+            const featuredPosts = blogPostsData.filter(post => post.featured).slice(0, 2);
+            featuredPostsContainer.innerHTML = '';
+            
+            featuredPosts.forEach((post, index) => {
+                const card = document.createElement('div');
+                card.className = 'blog-card rounded-3xl overflow-hidden cursor-pointer group relative h-96';
+                card.dataset.postId = post.id;
+                card.setAttribute('data-aos', 'fade-up');
+                card.setAttribute('data-aos-delay', (index * 200).toString());
+                
+                card.innerHTML = `
+                    <div class="absolute inset-0">
+                        <img class="blog-card-image w-full h-full object-cover" src="${post.imageUrl}" alt="${post.title}"
+                             onerror="this.onerror=null;this.src='https://placehold.co/800x600/1a1a2e/ffffff?text=Featured';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    </div>
+                    <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                        <div class="mb-4">
+                            <span class="bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-xs font-bold py-1.5 px-3 rounded-full">
+                                <i class="fas fa-star mr-1"></i>Featured
+                            </span>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
+                            ${post.title}
+                        </h3>
+                        <div class="flex justify-between items-center text-gray-300">
+                            <span class="text-sm">${post.publishDate}</span>
+                            <div class="flex items-center gap-4">
+                                <span class="text-sm"><i class="fas fa-heart text-pink-500 mr-1"></i>${formatNumber(post.likes)}</span>
+                                <span class="text-sm"><i class="fas fa-clock mr-1"></i>${post.readTime} min</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => openSinglePost(post.id));
+                featuredPostsContainer.appendChild(card);
+            });
+        };
+
+        // Render categories
+        const renderCategories = () => {
+            categoriesGrid.innerHTML = '';
+            
+            categoriesData.forEach((category, index) => {
+                const categoryCard = document.createElement('div');
+                categoryCard.className = 'group cursor-pointer';
+                categoryCard.setAttribute('data-aos', 'fade-up');
+                categoryCard.setAttribute('data-aos-delay', (index * 100).toString());
+                
+                categoryCard.innerHTML = `
+                    <div class="bg-gradient-to-br ${category.color} p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                <i class="${category.icon} text-2xl text-white"></i>
+                            </div>
+                            <h3 class="font-bold text-white mb-2 text-sm">${category.name}</h3>
+                            <p class="text-white/80 text-xs">${category.count} articles</p>
+                        </div>
+                    </div>
+                `;
+                
+                categoryCard.addEventListener('click', () => {
+                    filterByCategory(category.name);
+                });
+                categoriesGrid.appendChild(categoryCard);
+            });
+        };
+
+        // Render single post view
+        const renderSinglePost = (post) => {
+            singlePostView.innerHTML = `
+                <div class="post-content container mx-auto px-6 max-w-5xl">
+                    <button id="back-to-blog" class="flex items-center gap-3 text-purple-400 font-semibold mb-8 hover:text-purple-300 transition-colors group">
+                        <div class="w-10 h-10 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/30 transition-colors">
+                            <i class="fas fa-arrow-left"></i>
+                        </div>
+                        <span>Back to All Articles</span>
+                    </button>
+                    
+                    <!-- Post Header -->
+                    <header class="text-center mb-12">
+                        <div class="mb-6">
+                            <span class="inline-block px-4 py-2 bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-full text-sm font-medium text-purple-300">
+                                ${post.category}
+                            </span>
+                        </div>
+                        <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight">
+                            ${post.title}
+                        </h1>
+                        <div class="flex flex-col md:flex-row items-center justify-center gap-6 text-gray-400 mb-8">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                                    ${post.author.charAt(0)}
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-white">${post.author}</p>
+                                    <p class="text-sm">${post.publishDate}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-6 text-sm">
+                                <span><i class="fas fa-clock mr-2"></i>${post.readTime} min read</span>
+                                <span><i class="fas fa-eye mr-2"></i>${formatNumber(post.views)} views</span>
+                                <span><i class="fas fa-heart text-pink-500 mr-2"></i><span id="post-likes">${formatNumber(post.likes)}</span></span>
+                            </div>
+                        </div>
+                    </header>
+
+                    <!-- Featured Image -->
+                    <div class="mb-12 rounded-3xl overflow-hidden">
+                        <img src="${post.imageUrl}" alt="${post.title}" class="w-full h-auto max-h-[600px] object-cover"
+                             onerror="this.onerror=null;this.src='https://placehold.co/1200x600/1a1a2e/ffffff?text=NexusFlow';">
+                    </div>
+
+                    <!-- Article Content -->
+                    <article class="prose prose-invert prose-xl max-w-none mx-auto text-gray-300 prose-headings:text-white prose-a:text-purple-400 prose-strong:text-white prose-code:text-purple-300 prose-blockquote:border-purple-500 prose-blockquote:text-gray-300 mb-16">
+                        ${post.content}
+                    </article>
+
+                    <!-- Tags -->
+                    <div class="mb-12">
+                        <h3 class="text-xl font-bold mb-4">Tags</h3>
+                        <div class="flex flex-wrap gap-3">
+                            ${post.tags.map(tag => `
+                                <span class="tag-pill py-2 px-4 rounded-full text-sm font-medium cursor-pointer hover:scale-105 transition-transform">
+                                    <i class="fas fa-tag mr-2"></i>${tag}
+                                </span>
+                            `).join('')}
+                        </div>
+                    </div>
+
+                    <!-- Interaction Section -->
+                    <div class="mb-16 py-8 border-y border-white/10">
+                        <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                            <div class="flex items-center gap-6">
+                                <button data-like-btn-id="${post.id}" class="flex items-center gap-3 text-lg font-semibold hover:text-pink-400 transition-colors group">
+                                    <div class="w-12 h-12 bg-pink-500/20 rounded-full flex items-center justify-center group-hover:bg-pink-500/30 transition-colors">
+                                        <i class="fas fa-heart text-pink-500"></i>
+                                    </div>
+                                    <span id="like-count">${formatNumber(post.likes)}</span> Likes
+                                </button>
+                                <div class="flex items-center gap-3 text-gray-400">
+                                    <div class="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-comment text-blue-500"></i>
+                                    </div>
+                                    <span><span id="comment-count">${post.comments.length}</span> Comments</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="font-semibold text-gray-300">Share this article:</span>
+                                <div class="flex gap-3">
+                                    <a href="https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${window.location.href}" target="_blank" 
+                                       class="social-share w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center text-white hover:bg-blue-600">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.facebook.com/sharer/sharer.php?u=${window.location.href}" target="_blank"
+                                       class="social-share w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center text-white hover:bg-blue-800">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=${window.location.href}" target="_blank"
+                                       class="social-share w-12 h-12 bg-blue-800 rounded-full flex items-center justify-center text-white hover:bg-blue-900">
+                                        <i class="fab fa-linkedin-in"></i>
+                                    </a>
+                                    <button onclick="navigator.clipboard.writeText(window.location.href)" 
+                                            class="social-share w-12 h-12 bg-gray-600 rounded-full flex items-center justify-center text-white hover:bg-gray-700">
+                                        <i class="fas fa-link"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div id="comments-section" class="mb-16">
+                        <h3 class="text-3xl font-bold mb-8">
+                            <span id="comment-count-header">${post.comments.length}</span> 
+                            ${post.comments.length === 1 ? 'Comment' : 'Comments'}
+                        </h3>
+                        
+                        <!-- Comment Form -->
+                        <form id="comment-form" data-post-id="${post.id}" class="mb-12 p-8 bg-gradient-to-br from-purple-900/10 to-pink-900/10 border border-purple-500/20 rounded-2xl">
+                            <h4 class="text-2xl font-bold mb-6">Join the Discussion</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium mb-2 text-gray-300">Your Name</label>
+                                    <input type="text" id="comment-user" placeholder="Enter your name" required 
+                                           class="w-full bg-white/5 border-2 border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500 transition-colors">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium mb-2 text-gray-300">Email (optional)</label>
+                                    <input type="email" id="comment-email" placeholder="your.email@example.com"
+                                           class="w-full bg-white/5 border-2 border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500 transition-colors">
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium mb-2 text-gray-300">Your Comment</label>
+                                <textarea id="comment-text" placeholder="Share your thoughts..." required rows="4" 
+                                          class="w-full bg-white/5 border-2 border-white/10 rounded-xl py-3 px-4 focus:outline-none focus:border-purple-500 transition-colors"></textarea>
+                            </div>
+                            <button type="submit" class="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105">
+                                <i class="fas fa-paper-plane mr-2"></i>Post Comment
+                            </button>
+                        </form>
+                        
+                        <!-- Comments List -->
+                        <div id="comments-list" class="space-y-6">
+                            <!-- Comments will be rendered here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommended Posts -->
+                <div class="bg-gradient-to-br from-gray-900/50 to-black/50 py-20">
+                    <div class="container mx-auto px-6">
+                        <h2 class="text-center text-4xl md:text-5xl font-bold mb-12 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                            Continue Reading
+                        </h2>
+                        <div id="recommended-posts" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                            <!-- Recommended post cards will be inserted here -->
+                        </div>
+                    </div>
+                </div>
+            `;
+            renderComments(post.id);
+            renderRecommendedPosts(post.id);
+            addSinglePostEventListeners(post.id);
+        };
+        
+        // Render comments
+        const renderComments = (postId) => {
+            const post = blogPostsData.find(p => p.id === postId);
+            const commentsList = document.getElementById('comments-list');
+            if (!commentsList) return;
+            
+            commentsList.innerHTML = '';
+            
+            if (post.comments.length === 0) {
+                commentsList.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-comments text-2xl text-gray-400"></i>
+                        </div>
+                        <p class="text-gray-400 text-lg">Be the first to share your thoughts!</p>
+                    </div>
+                `;
+            } else {
+                post.comments.forEach((comment, index) => {
+                    const commentEl = document.createElement('div');
+                    commentEl.className = 'comment-card p-6 rounded-2xl';
+                    
+                    commentEl.innerHTML = `
+                        <div class="flex gap-4">
+                            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-pink-500 rounded-full flex-shrink-0 flex items-center justify-center font-bold text-white text-xl">
+                                ${comment.avatar || comment.user.charAt(0)}
+                            </div>
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <h4 class="font-bold text-white">${comment.user}</h4>
+                                    <span class="text-gray-400 text-sm">${comment.timestamp}</span>
+                                </div>
+                                <p class="text-gray-300 leading-relaxed">${comment.text}</p>
+                                <div class="flex items-center gap-4 mt-4 text-sm text-gray-400">
+                                    <button class="hover:text-purple-400 transition-colors">
+                                        <i class="fas fa-thumbs-up mr-1"></i>Like
+                                    </button>
+                                    <button class="hover:text-purple-400 transition-colors">
+                                        <i class="fas fa-reply mr-1"></i>Reply
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    commentsList.appendChild(commentEl);
+                });
+            }
+        };
+
+        // Render recommended posts
+        const renderRecommendedPosts = (currentPostId) => {
+            const recommendedPostsContainer = document.getElementById('recommended-posts');
+            if (!recommendedPostsContainer) return;
+            
+            const currentPost = blogPostsData.find(p => p.id === currentPostId);
+            
+            // Get posts with similar tags or from same category
+            let recommendedPosts = blogPostsData
+                .filter(p => p.id !== currentPostId)
+                .sort((a, b) => {
+                    const aScore = (a.category === currentPost.category ? 2 : 0) + 
+                                  a.tags.filter(tag => currentPost.tags.includes(tag)).length;
+                    const bScore = (b.category === currentPost.category ? 2 : 0) + 
+                                  b.tags.filter(tag => currentPost.tags.includes(tag)).length;
+                    return bScore - aScore;
+                })
+                .slice(0, 3);
+
+            recommendedPostsContainer.innerHTML = '';
+            
+            recommendedPosts.forEach((post, index) => {
+                const card = document.createElement('div');
+                card.className = 'blog-card rounded-3xl overflow-hidden cursor-pointer group';
+                card.dataset.postId = post.id;
+                
+                card.innerHTML = `
+                    <div class="relative h-48 overflow-hidden">
+                        <img class="blog-card-image w-full h-full object-cover" src="${post.imageUrl}" alt="${post.title}"
+                             onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a2e/ffffff?text=NexusFlow';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-gradient-to-r from-purple-600 to-pink-600 text-white text-xs font-bold py-1 px-3 rounded-full">
+                                ${post.category}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-3 text-white group-hover:text-purple-300 transition-colors line-clamp-2">
+                            ${post.title}
+                        </h3>
+                        <div class="flex justify-between items-center text-gray-400 text-sm mb-4">
+                            <span>${post.publishDate}</span>
+                            <span>${post.readTime} min read</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex items-center gap-3 text-gray-400 text-sm">
+                                <span><i class="fas fa-heart text-pink-500 mr-1"></i>${formatNumber(post.likes)}</span>
+                                <span><i class="fas fa-eye mr-1"></i>${formatNumber(post.views)}</span>
+                            </div>
+                            <span class="text-purple-400 text-sm font-medium">Read More →</span>
+                        </div>
+                    </div>
+                `;
+                
+                card.addEventListener('click', () => openSinglePost(post.id));
+                recommendedPostsContainer.appendChild(card);
+            });
+        };
+
+        // ===================================================
+        // ================= EVENT LISTENERS =================
+        // ===================================================
+        
+        // Helpers for filtering
+        const getActiveTag = () => {
+            const activeTagEl = document.querySelector('.tag-btn.active');
+            return activeTagEl ? activeTagEl.textContent : 'All';
+        };
+
+        const getFilteredPosts = () => {
+            const searchTerm = (searchBar?.value || '').toLowerCase();
+            const activeTag = getActiveTag();
+
+            let filtered = blogPostsData;
+
+            if (activeTag !== 'All') {
+                filtered = filtered.filter(post => post.tags.includes(activeTag));
+            }
+
+            if (searchTerm) {
+                filtered = filtered.filter(post =>
+                    post.title.toLowerCase().includes(searchTerm) ||
+                    (post.content || '').toLowerCase().includes(searchTerm) ||
+                    post.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+                );
+            }
+            return filtered;
+        };
+
+        const updateLoadMoreVisibility = (total) => {
+            if (!loadMoreBtn) return;
+            const shown = Math.min(currentPage * postsPerPage, total);
+            if (shown >= total || total === 0) {
+                loadMoreBtn.classList.add('hidden');
+            } else {
+                loadMoreBtn.classList.remove('hidden');
+            }
+        };
+
+        // Search and filter logic
+        const filterAndRender = () => {
+            currentPage = 1;
+            const filtered = getFilteredPosts();
+            const pageSlice = filtered.slice(0, postsPerPage);
+            renderBlogPosts(pageSlice, false);
+            updateLoadMoreVisibility(filtered.length);
+        };
+
+        searchBar.addEventListener('input', filterAndRender);
+
+        tagsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('tag-btn')) {
+                document.querySelectorAll('.tag-btn').forEach(btn => {
+                    btn.classList.remove('active', 'bg-purple-600', 'text-white');
+                    btn.classList.add('bg-gray-800', 'text-gray-300');
+                });
+                e.target.classList.add('active', 'bg-purple-600', 'text-white');
+                e.target.classList.remove('bg-gray-800', 'text-gray-300');
+                filterAndRender();
+            }
+        });
+
+        // Load more pagination
+        if (loadMoreBtn) {
+            loadMoreBtn.addEventListener('click', () => {
+                const filtered = getFilteredPosts();
+                currentPage += 1;
+                const start = (currentPage - 1) * postsPerPage;
+                const next = filtered.slice(start, start + postsPerPage);
+                renderBlogPosts(next, true);
+                updateLoadMoreVisibility(filtered.length);
+                // Scroll a bit to bring new items into view
+                loadMoreBtn.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+        }
+
+        // Floating navigation toggle
+        const setupFloatingNav = () => {
+            const navToggle = document.getElementById('nav-toggle');
+            const navMenu = document.getElementById('nav-menu');
+            const iconOpen = document.getElementById('nav-icon-open');
+            const iconClose = document.getElementById('nav-icon-close');
+
+            if (!navToggle || !navMenu || !iconOpen || !iconClose) return;
+
+            const openNav = () => {
+                navMenu.classList.remove('scale-0');
+                navMenu.classList.add('scale-100');
+                iconOpen.classList.add('hidden');
+                iconClose.classList.remove('hidden');
+            };
+
+            const closeNav = () => {
+                navMenu.classList.add('scale-0');
+                navMenu.classList.remove('scale-100');
+                iconOpen.classList.remove('hidden');
+                iconClose.classList.add('hidden');
+                navToggle.checked = false;
+            };
+
+            // Initialize closed state
+            navMenu.classList.add('scale-0');
+
+            navToggle.addEventListener('change', (e) => {
+                if (navToggle.checked) openNav(); else closeNav();
+            });
+
+            // Close when clicking a menu link
+            navMenu.addEventListener('click', (e) => {
+                const target = e.target.closest('a');
+                if (target) {
+                    closeNav();
+                }
+            });
+
+            // Close on outside click
+            document.addEventListener('click', (e) => {
+                const navRoot = navMenu.parentElement;
+                if (!navRoot.contains(e.target) && navToggle.checked) {
+                    closeNav();
+                }
+            });
+
+            // Close on Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && navToggle.checked) {
+                    closeNav();
+                }
+            });
+        };
+
+        // Add event listeners for single post view (like, comment, back)
+        const addSinglePostEventListeners = (postId) => {
+            document.getElementById('back-to-blog').addEventListener('click', closeSinglePost);
+            
+            const likeBtn = document.querySelector(`[data-like-btn-id="${postId}"]`);
+            likeBtn.addEventListener('click', () => handleLike(postId));
+
+            const commentForm = document.getElementById('comment-form');
+            commentForm.addEventListener('submit', (e) => handleCommentSubmit(e, postId));
+        };
+
+        // Email form submission
+        emailForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            emailInput.value = '';
+            emailSuccessMessage.classList.remove('hidden');
+            setTimeout(() => {
+                emailSuccessMessage.classList.add('hidden');
+            }, 4000);
+        });
+
+        // ===================================================
+        // ================== ACTION HANDLERS ================
+        // ===================================================
+
+        // Open a single post
+        const openSinglePost = (postId) => {
+            const post = blogPostsData.find(p => p.id === postId);
+            if (post) {
+                renderSinglePost(post);
+                mainBlogView.classList.add('hidden');
+                singlePostView.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            }
+        };
+
+        // Close single post view
+        const closeSinglePost = () => {
+            singlePostView.classList.add('hidden');
+            mainBlogView.classList.remove('hidden');
+            filterAndRender(); // Re-render main view to reflect any changes
+        };
+
+        // Handle liking a post
+        const handleLike = (postId) => {
+            const post = blogPostsData.find(p => p.id === postId);
+            const likeCountEl = document.getElementById('like-count');
+            const likeBtn = document.querySelector(`[data-like-btn-id="${postId}"]`);
+
+            post.likes++;
+            likeCountEl.textContent = post.likes;
+            likeBtn.classList.add('text-pink-500'); // Visual feedback
+        };
+        
+        // Handle submitting a new comment
+        const handleCommentSubmit = (e, postId) => {
+            e.preventDefault();
+            const post = blogPostsData.find(p => p.id === postId);
+            const user = document.getElementById('comment-user').value.trim();
+            const text = document.getElementById('comment-text').value.trim();
+
+            if (user && text) {
+                post.comments.push({ user, text });
+                
+                // Update UI
+                renderComments(postId);
+                document.getElementById('comment-count').textContent = post.comments.length;
+                
+                // Clear form
+                document.getElementById('comment-form').reset();
+            }
+        };
+
+        // ===================================================
+        // ================= INITIALIZATION ==================
+        // ===================================================
+        const init = () => {
+            // Create animated background
+            createParticles();
+            
+            // Render initial content
+            renderFeaturedPosts();
+            renderCategories();
+            renderTags();
+
+            // Initial render with pagination & filtering
+            filterAndRender();
+            
+            // Initialize AOS
+            AOS.init({
+                duration: 800,
+                easing: 'ease-out-cubic',
+                once: true,
+                offset: 100
+            });
+            
+            // Smooth scroll for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        smoothScrollTo(target);
+                    }
+                });
+            });
+            
+            // Reading progress update
+            window.addEventListener('scroll', updateReadingProgress);
+            updateReadingProgress();
+
+            // Floating nav setup
+            setupFloatingNav();
+
+            console.log('NexusFlow Blog initialized successfully!');
+        };
+
+        init();
+    });
+    </script>
+
+</body>
+</html>

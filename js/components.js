@@ -58,94 +58,98 @@ class WebGloComponents {
 
     const navHTML = `
       <nav id="main-navigation" class="bg-white shadow-lg border-b border-gray-100 fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+        <div class="w-full px-3 lg:px-6">
           <div class="flex items-center justify-between h-16">
-            <!-- Logo (keeps Home behavior) -->
-            <a id="webglo-logo" href="index.html" class="flex items-center space-x-3">
-              <img src="assets/logo.png" alt="WebGlo logo" class="h-10 w-10">
-              <span class="text-2xl font-bold bg-gradient-to-r from-[#0cead9] to-[#df00ff] bg-clip-text text-transparent">WebGlo</span>
-            </a>
+            <!-- Left side: Logo + Desktop menu items -->
+            <div class="flex items-center space-x-8">
+              <!-- Logo (keeps Home behavior) -->
+              <a id="webglo-logo" href="index.html" class="flex items-center space-x-2">
+                <img src="assets/logo.png" alt="WebGlo logo" class="h-8 w-8 lg:h-10 lg:w-10">
+                <span class="text-xl lg:text-2xl font-bold bg-gradient-to-r from-[#0cead9] to-[#df00ff] bg-clip-text text-transparent">WebGlo</span>
+              </a>
 
-            <!-- Desktop nav -->
-            <div class="hidden lg:flex items-center space-x-8">
-              <!-- Services dropdown -->
-              <div class="relative group">
-                <button class="desktop-dropdown-toggle nav-link flex items-center space-x-2 text-gray-700 hover:text-[#df00ff] font-medium">
-                  <span>Services</span>
-                  <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                  </svg>
-                </button>
-                <div class="desktop-dropdown absolute top-full left-1/2 transform -translate-x-1/2 w-[600px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible hover:opacity-100 hover:visible translate-y-2 group-hover:translate-y-0 hover:translate-y-0 z-50">
-                  <div class="p-6">
-                    <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg mb-6 border border-red-200">
-                      <a href="landing-page-express.html" class="block group">
-                        <div class="flex items-center justify-between">
-                          <div>
-                            <h4 class="font-bold text-red-600 group-hover:text-red-700">⚡ Landing Page Express</h4>
-                            <p class="text-sm text-red-500">48-hour delivery • Only $297</p>
+              <!-- Desktop nav items -->
+              <div class="hidden lg:flex items-center space-x-8">
+                <!-- Services dropdown -->
+                <div class="relative group">
+                  <button class="desktop-dropdown-toggle nav-link flex items-center space-x-2 text-gray-700 hover:text-[#df00ff] font-medium">
+                    <span>Services</span>
+                    <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                  </button>
+                  <div class="desktop-dropdown absolute top-full left-1/2 transform -translate-x-1/2 w-[600px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible hover:opacity-100 hover:visible translate-y-2 group-hover:translate-y-0 hover:translate-y-0 z-50">
+                    <div class="p-6">
+                      <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg mb-6 border border-red-200">
+                        <a href="landing-page-express.html" class="block group">
+                          <div class="flex items-center justify-between">
+                            <div>
+                              <h4 class="font-bold text-red-600 group-hover:text-red-700">⚡ Landing Page Express</h4>
+                              <p class="text-sm text-red-500">48-hour delivery • Only $297</p>
+                            </div>
+                            <div class="bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">HOT</div>
                           </div>
-                          <div class="bg-red-500 text-white px-2 py-1 rounded text-xs font-semibold">HOT</div>
-                        </div>
-                      </a>
-                    </div>
+                        </a>
+                      </div>
 
-                    <div class="grid grid-cols-3 gap-6">
-                      <div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-4">Website Solutions</h3>
-                        <ul class="space-y-2">
-                          <li><a href="services.html#design" class="block text-gray-600 hover:text-[#df00ff]">Custom Design</a></li>
-                          <li><a href="services.html#development" class="block text-gray-600 hover:text-[#df00ff]">Development</a></li>
-                          <li><a href="services.html#ecommerce" class="block text-gray-600 hover:text-[#df00ff]">E-commerce</a></li>
-                          <li><a href="services.html#domain-hosting" class="block text-gray-600 hover:text-[#df00ff]">Domain & Hosting</a></li>
-                          <li><a href="services.html#maintenance" class="block text-gray-600 hover:text-[#df00ff]">Maintenance</a></li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-4">IT Solutions</h3>
-                        <ul class="space-y-2">
-                          <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Custom Software</a></li>
-                          <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">IT Infrastructure</a></li>
-                          <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Digital Transformation</a></li>
-                          <li><a href="services.html#automation" class="block text-gray-600 hover:text-[#0cead9]">AI & Automation</a></li>
-                        </ul>
-                      </div>
-                      <div>
-                        <h3 class="text-lg font-bold text-gray-900 mb-4">Marketing & Branding</h3>
-                        <ul class="space-y-2">
-                          <li><a href="services.html#seo" class="block text-gray-600 hover:text-[#df00ff]">SEO Optimization</a></li>
-                          <li><a href="services.html#content" class="block text-gray-600 hover:text-[#df00ff]">Content Strategy</a></li>
-                          <li><a href="services.html#branding" class="block text-gray-600 hover:text-[#df00ff]">Branding</a></li>
-                        </ul>
+                      <div class="grid grid-cols-3 gap-6">
+                        <div>
+                          <h3 class="text-lg font-bold text-gray-900 mb-4">Website Solutions</h3>
+                          <ul class="space-y-2">
+                            <li><a href="services.html#design" class="block text-gray-600 hover:text-[#df00ff]">Custom Design</a></li>
+                            <li><a href="services.html#development" class="block text-gray-600 hover:text-[#df00ff]">Development</a></li>
+                            <li><a href="services.html#ecommerce" class="block text-gray-600 hover:text-[#df00ff]">E-commerce</a></li>
+                            <li><a href="services.html#domain-hosting" class="block text-gray-600 hover:text-[#df00ff]">Domain & Hosting</a></li>
+                            <li><a href="services.html#maintenance" class="block text-gray-600 hover:text-[#df00ff]">Maintenance</a></li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h3 class="text-lg font-bold text-gray-900 mb-4">IT Solutions</h3>
+                          <ul class="space-y-2">
+                            <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Custom Software</a></li>
+                            <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">IT Infrastructure</a></li>
+                            <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Digital Transformation</a></li>
+                            <li><a href="services.html#automation" class="block text-gray-600 hover:text-[#0cead9]">AI & Automation</a></li>
+                          </ul>
+                        </div>
+                        <div>
+                          <h3 class="text-lg font-bold text-gray-900 mb-4">Marketing & Branding</h3>
+                          <ul class="space-y-2">
+                            <li><a href="services.html#seo" class="block text-gray-600 hover:text-[#df00ff]">SEO Optimization</a></li>
+                            <li><a href="services.html#content" class="block text-gray-600 hover:text-[#df00ff]">Content Strategy</a></li>
+                            <li><a href="services.html#branding" class="block text-gray-600 hover:text-[#df00ff]">Branding</a></li>
+                          </ul>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                <!-- Regular Pricing link -->
+                <a href="pricing.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Pricing</a>
+
+                <!-- Free Consultation link -->
+                <a href="consulting.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Free Consultation</a>
+                
+                <a href="about.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">About</a>
+                <a href="case-studies.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Case Studies</a>
+                <a href="blog.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Blog</a>
               </div>
-
-              <!-- Regular Pricing link -->
-              <a href="pricing.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Pricing</a>
-
-              <!-- Free Consultation link -->
-              <a href="consulting.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Free Consultation</a>
-              
-              <a href="about.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">About</a>
-              <a href="case-studies.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Case Studies</a>
-              <a href="blog.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Blog</a>
-              <!-- Contact tab removed; Get Started button leads to contact page -->
-
-              <!-- Desktop CTA -->
-              <a href="contact.html" class="hidden lg:inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-xl font-semibold shadow-xl no-hover-color">Get Started</a>
             </div>
 
-            <!-- Mobile controls (small screens) -->
-            <div class="flex lg:hidden items-center gap-2">
-              <!-- small immediate CTA (kept visible before opening menu) -->
-              <a id="mobile-cta-top" href="contact.html" class="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-xl font-semibold no-hover-color">Get Started</a>
+            <!-- Right side: Desktop CTA + Mobile controls -->
+            <div class="flex items-center">
+              <!-- Desktop CTA -->
+              <a href="contact.html" class="hidden lg:inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-xl font-semibold shadow-xl no-hover-color">Get Started</a>
 
-              <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" class="text-gray-700 hover:text-[#df00ff] focus:outline-none">
-                <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-                <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            <!-- Mobile controls (small screens) -->
+            <div class="flex lg:hidden items-center gap-1">
+              <!-- small immediate CTA (kept visible before opening menu) -->
+              <a id="mobile-cta-top" href="contact.html" class="inline-flex items-center justify-center px-2 py-1.5 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-medium text-sm no-hover-color">Get Started</a>
+
+              <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" class="text-gray-700 hover:text-[#df00ff] focus:outline-none p-1">
+                <svg id="hamburger-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
               </button>
             </div>
           </div>
@@ -195,8 +199,8 @@ class WebGloComponents {
           <!-- Bottom action bar inside mobile menu -->
           <div class="mt-auto border-t p-4 bg-white">
             <div class="flex gap-3 justify-between">
-              <a href="consulting.html" id="mobile-book-btn" class="inline-flex items-center justify-center px-4 py-2 border border-gray-800 rounded-lg font-semibold">Book free call</a>
-              <a href="contact.html" id="mobile-getstarted-btn" class="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-semibold no-hover-color">Get Started</a>
+              <a href="consulting.html" id="mobile-book-btn" class="inline-flex items-center justify-center px-3 py-2 border border-gray-800 rounded-lg font-medium text-sm">Book free call</a>
+              <a href="contact.html" id="mobile-getstarted-btn" class="inline-flex items-center justify-center px-3 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-medium text-sm no-hover-color">Get Started</a>
             </div>
           </div>
         </div>
