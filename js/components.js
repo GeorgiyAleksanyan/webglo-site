@@ -78,7 +78,7 @@ class WebGloComponents {
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                   </button>
-                  <div class="desktop-dropdown absolute top-full left-1/2 transform -translate-x-1/2 w-[600px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible hover:opacity-100 hover:visible translate-y-2 group-hover:translate-y-0 hover:translate-y-0 z-50">
+                  <div class="desktop-dropdown absolute top-full left-0 transform w-[600px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible hover:opacity-100 hover:visible translate-y-2 group-hover:translate-y-0 hover:translate-y-0 z-50">
                     <div class="p-6">
                       <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg mb-6 border border-red-200">
                         <a href="landing-page-express.html" class="block group">
