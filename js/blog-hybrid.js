@@ -305,7 +305,7 @@ class WebGloBlogHybrid {
         <div class="p-6">
           <div class="flex items-center justify-between mb-3">
             <div class="flex items-center text-sm text-gray-500">
-              <img src="assets/logo.png" alt="WebGlo" class="w-6 h-6 rounded-full mr-2">
+              <img src="assets/logo.svg" alt="WebGlo" class="w-6 h-6 rounded-full mr-2">
               <span>${post.author}</span>
             </div>
             <div class="text-sm text-gray-500">

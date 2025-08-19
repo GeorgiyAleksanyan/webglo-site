@@ -1,5 +1,5 @@
 // Service Worker for WebGlo PWA - Production Optimized
-const CACHE_NAME = 'webglo-v1.0.2';
+const CACHE_NAME = 'webglo-v1.0.3';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -17,6 +17,7 @@ const urlsToCache = [
   '/js/components.js',
   '/js/blog.js',
   '/assets/logo.png',
+  '/assets/logo.svg',
   'https://cdn.tailwindcss.com',
   'https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap'
 ];

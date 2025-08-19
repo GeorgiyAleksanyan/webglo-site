@@ -64,7 +64,7 @@ class WebGloComponents {
             <div class="flex items-center space-x-8">
               <!-- Logo (keeps Home behavior) -->
               <a id="webglo-logo" href="index.html" class="flex items-center space-x-2">
-                <img src="assets/logo.png" alt="WebGlo logo" class="h-8 w-8 lg:h-10 lg:w-10">
+                <img src="assets/logo.svg" alt="WebGlo logo" class="h-8 w-8 lg:h-10 lg:w-10">
                 <span class="text-xl lg:text-2xl font-bold bg-gradient-to-r from-[#0cead9] to-[#df00ff] bg-clip-text text-transparent">WebGlo</span>
               </a>
 
@@ -246,7 +246,7 @@ class WebGloComponents {
             <!-- Company Info -->
             <div>
               <div class="flex items-center space-x-3 mb-6">
-                <img src="assets/logo.png" alt="WebGlo logo" class="h-10 w-10">
+                <img src="assets/logo.svg" alt="WebGlo logo" class="h-10 w-10">
                 <span class="text-2xl font-bold bg-gradient-to-r from-[#0cead9] to-[#df00ff] bg-clip-text text-transparent">WebGlo</span>
               </div>
               <p class="text-gray-300 mb-4">Professional web development and digital marketing services that drive growth and deliver results.</p>

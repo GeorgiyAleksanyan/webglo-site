@@ -91,7 +91,7 @@ webglo_site/
 │
 ├── 🖼️ Assets
 │   ├── assets/
-│   │   ├── logo.png           # Company logo
+│   │   ├── logo.svg           # Company logo (SVG)
 │   │   └── social-preview.png # Social media preview
 │
 ├── 📋 Configuration
