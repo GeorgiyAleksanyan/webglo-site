@@ -1,5 +1,5 @@
 // Service Worker for WebGlo PWA
-const CACHE_NAME = 'webglo-v1.0.1';
+const CACHE_NAME = 'webglo-v1.0.2';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -9,6 +9,7 @@ const urlsToCache = [
   '/contact.html',
   '/blog.html',
   '/post.html',
+  '/return-policy.html',
   '/debug.html',
   '/css/style.css',
   '/css/mobile-first.css',

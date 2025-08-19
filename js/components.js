@@ -322,6 +322,7 @@ class WebGloComponents {
                 <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
                 <a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
                 <a href="refunds-policy.html" class="text-gray-400 hover:text-white text-sm">Refunds Policy</a>
+                <a href="return-policy.html" class="text-gray-400 hover:text-white text-sm">Return Policy</a>
               </div>
             </div>
           </div>
