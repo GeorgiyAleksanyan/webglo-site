@@ -2,6 +2,9 @@
 # SECURITY-SENSITIVE FILES - DO NOT COMMIT TO PUBLIC REPOSITORY
 # =============================================================================
 
+# Development modules (work in progress)
+ai-chatbot-module/
+
 # Environment files with API keys and secrets
 .env
 .env.*
