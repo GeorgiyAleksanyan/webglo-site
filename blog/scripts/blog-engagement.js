@@ -152,6 +152,74 @@ class BlogEngagement {
   }
   
   /**
+   * Render survey widget HTML
+   */
+  renderSurvey() {
+    if (this.hasSurveyed) {
+      return `
+        <div class="survey-container bg-gradient-to-br from-green-50 to-blue-50 rounded-xl p-6 border border-green-200">
+          <div class="text-center">
+            <span class="text-4xl mb-3 block">✅</span>
+            <h3 class="text-lg font-semibold text-gray-900 mb-2">Thank You for Your Feedback!</h3>
+            <p class="text-gray-600">Your response helps us create better content.</p>
+          </div>
+        </div>
+      `;
+    }
+    
+    return `
+      <div id="survey-container" class="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl p-6 border border-gray-200">
+        <div class="text-center mb-6">
+          <h3 class="text-lg font-semibold text-gray-900 mb-2">Was this article helpful?</h3>
+          <p class="text-gray-600 text-sm">Your feedback helps us improve our content.</p>
+        </div>
+        
+        <div class="flex justify-center gap-4">
+          <button id="survey-helpful" class="survey-button flex items-center gap-2 px-6 py-3 bg-white border-2 border-green-500 text-green-700 rounded-lg hover:bg-green-50 transition-all duration-200 font-semibold shadow-sm hover:shadow-md">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+            </svg>
+            Yes, helpful!
+          </button>
+          
+          <button id="survey-not-helpful" class="survey-button flex items-center gap-2 px-6 py-3 bg-white border-2 border-red-500 text-red-700 rounded-lg hover:bg-red-50 transition-all duration-200 font-semibold shadow-sm hover:shadow-md">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M18 9.5a1.5 1.5 0 11-3 0v-6a1.5 1.5 0 013 0v6zM14 9.667v-5.43a2 2 0 00-1.105-1.79l-.05-.025A4 4 0 0011.055 2H5.64a2 2 0 00-1.962 1.608l-1.2 6A2 2 0 004.44 12H8v4a2 2 0 002 2 1 1 0 001-1v-.667a4 4 0 01.8-2.4l1.4-1.866a4 4 0 00.8-2.4z" />
+            </svg>
+            Not helpful
+          </button>
+        </div>
+        
+        <div id="survey-stats" class="mt-4 text-center text-sm text-gray-500">
+          <!-- Will be populated with stats after voting -->
+        </div>
+      </div>
+    `;
+  }
+  
+  /**
+   * Render like button widget HTML
+   */
+  renderLikeButton() {
+    const likedClass = this.hasLiked ? 'liked bg-red-500 text-white border-red-500' : 'bg-white text-gray-700 border-gray-300';
+    const disabled = this.hasLiked ? 'disabled' : '';
+    
+    return `
+      <div class="like-widget flex items-center gap-3">
+        <button id="like-button" class="flex items-center gap-2 px-4 py-2 border-2 ${likedClass} rounded-lg hover:shadow-md transition-all duration-200 font-semibold ${disabled}">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clip-rule="evenodd" />
+          </svg>
+          <span id="like-count">0</span>
+        </button>
+        <span class="text-sm text-gray-600">
+          ${this.hasLiked ? 'You liked this!' : 'Found this useful?'}
+        </span>
+      </div>
+    `;
+  }
+  
+  /**
    * Load and display all metrics
    */
   async loadMetrics() {
