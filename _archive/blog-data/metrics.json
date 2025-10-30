@@ -1,0 +1,52 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-08-05T12:00:00Z",
+  "metrics": {
+    "why-your-online-presence-matters-in-2025": {
+      "views": 847,
+      "likes": 23,
+      "shares": 12,
+      "averageReadTime": 8.5,
+      "bounceRate": 0.24
+    },
+    "react-vs-vue-2024": {
+      "views": 1200,
+      "likes": 45,
+      "shares": 23,
+      "averageReadTime": 7.2,
+      "bounceRate": 0.18
+    },
+    "seo-ranking-factors-2024": {
+      "views": 3100,
+      "likes": 89,
+      "shares": 67,
+      "averageReadTime": 12.8,
+      "bounceRate": 0.15
+    },
+    "social-media-marketing-strategy": {
+      "views": 2700,
+      "likes": 76,
+      "shares": 34,
+      "averageReadTime": 9.1,
+      "bounceRate": 0.21
+    }
+  },
+  "totals": {
+    "totalViews": 7847,
+    "totalLikes": 233,
+    "totalShares": 136,
+    "averageBounceRate": 0.195
+  },
+  "trends": {
+    "weeklyGrowth": {
+      "views": 0.12,
+      "likes": 0.18,
+      "shares": 0.25
+    },
+    "topPerformers": [
+      "seo-ranking-factors-2024",
+      "social-media-marketing-strategy",
+      "react-vs-vue-2024"
+    ]
+  }
+}

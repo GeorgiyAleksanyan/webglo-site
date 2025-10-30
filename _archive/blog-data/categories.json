@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-08-06T00:34:08.053Z",
+  "total": 5,
+  "categories": [
+    {
+      "id": "web-development",
+      "name": "Web Development",
+      "description": "Technical guides and best practices for modern web development",
+      "count": 1
+    },
+    {
+      "id": "seo",
+      "name": "SEO & Analytics",
+      "description": "Search optimization and performance tracking strategies",
+      "count": 1
+    },
+    {
+      "id": "digital-marketing",
+      "name": "Digital Marketing",
+      "description": "Marketing strategies and conversion optimization techniques",
+      "count": 2
+    },
+    {
+      "id": "tutorials",
+      "name": "Tutorials",
+      "description": "Step-by-step guides and practical tutorials",
+      "count": 1
+    },
+    {
+      "id": "digital-strategy",
+      "name": "Digital Strategy",
+      "description": "Strategic insights for digital transformation and growth",
+      "count": 1
+    }
+  ]
+}

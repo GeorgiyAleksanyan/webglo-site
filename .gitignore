@@ -98,6 +98,11 @@ debug-*.js
 *-backup.*
 backup/
 archive/
+ai-resume-builder/
+ai-watermark-remover/
+ai-website-builder/
+ai-chatbot-module/
+
 
 # Google Apps Script legacy files
 *.gs

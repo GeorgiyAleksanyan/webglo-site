@@ -1,0 +1,198 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2025-08-06T00:34:08.054Z",
+  "totalPosts": 6,
+  "categories": [
+    {
+      "id": "web-development",
+      "name": "Web Development",
+      "description": "Technical guides and best practices for modern web development",
+      "count": 1
+    },
+    {
+      "id": "seo",
+      "name": "SEO & Analytics",
+      "description": "Search optimization and performance tracking strategies",
+      "count": 1
+    },
+    {
+      "id": "digital-marketing",
+      "name": "Digital Marketing",
+      "description": "Marketing strategies and conversion optimization techniques",
+      "count": 2
+    },
+    {
+      "id": "tutorials",
+      "name": "Tutorials",
+      "description": "Step-by-step guides and practical tutorials",
+      "count": 1
+    },
+    {
+      "id": "digital-strategy",
+      "name": "Digital Strategy",
+      "description": "Strategic insights for digital transformation and growth",
+      "count": 1
+    }
+  ],
+  "tags": [
+    "business-growth",
+    "conversion",
+    "decision-guide",
+    "digital-marketing",
+    "frameworks",
+    "google",
+    "javascript",
+    "landing-page",
+    "lead-generation",
+    "marketing",
+    "online-presence",
+    "optimization",
+    "organic-traffic",
+    "rankings",
+    "react",
+    "seo",
+    "social-media",
+    "strategy",
+    "tutorial",
+    "vuejs",
+    "web-design"
+  ],
+  "posts": [
+    {
+      "id": "why-your-online-presence-matters-in-2025",
+      "title": "Why Your Online Presence Matters in 2025: Data, Strategy & WebGlo's Proven Solutions",
+      "slug": "why-your-online-presence-matters-in-2025",
+      "excerpt": "Discover why a strong online presence is essential in 2025, the data behind digital growth, and how WebGlo can help you dominate your market with web design, SEO, and digital marketing.",
+      "author": "Aura (AI) & WebGlo Team",
+      "date": "August 5, 2025",
+      "readTime": "9 min read",
+      "category": "digital-strategy",
+      "tags": [
+        "online-presence",
+        "web-design",
+        "seo",
+        "digital-marketing",
+        "lead-generation",
+        "business-growth"
+      ],
+      "image": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80",
+      "imageAlt": "Futuristic digital presence concept showing global connectivity and online growth",
+      "status": "published",
+      "featured": false,
+      "publishDate": "2025-08-06T00:34:08.051Z",
+      "url": "blog/why-your-online-presence-matters-in-2025.html"
+    },
+    {
+      "id": "why-every-business-needs-landing-page",
+      "title": "Why Every Business Needs a High-Converting Landing Page (And How to Get One Fast)",
+      "slug": "why-every-business-needs-landing-page",
+      "excerpt": "Landing pages convert 5-15 times better than regular websites. Discover the psychology behind high-converting pages and how to get yours built in just 48 hours for $297.",
+      "author": "WebGlo Team",
+      "date": "February 2, 2025",
+      "readTime": "8 min read",
+      "category": "digital-marketing",
+      "tags": [
+        "landing-page",
+        "conversion",
+        "marketing",
+        "lead-generation",
+        "web-design"
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+      "imageAlt": "High-converting landing page design with conversion optimization elements",
+      "status": "published",
+      "featured": false,
+      "publishDate": "2025-08-06T00:34:08.051Z",
+      "url": "blog/why-every-business-needs-landing-page.html"
+    },
+    {
+      "id": "social-media-marketing-strategy",
+      "title": "Build a Social Media Marketing Strategy That Converts",
+      "slug": "social-media-marketing-strategy-converts",
+      "excerpt": "Learn how to create a social media strategy that drives real business results. From content planning to conversion optimization.",
+      "author": "WebGlo Team",
+      "date": "March 5, 2024",
+      "readTime": "10 min read",
+      "category": "digital-marketing",
+      "tags": [
+        "social-media",
+        "conversion",
+        "marketing",
+        "strategy"
+      ],
+      "image": "https://images.unsplash.com/photo-1611926653458-09294b3142bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      "imageAlt": "Social media marketing strategy planning session",
+      "status": "published",
+      "featured": false,
+      "publishDate": "2025-08-06T00:34:08.050Z",
+      "url": "blog/social-media-marketing-strategy-converts.html"
+    },
+    {
+      "id": "landing-page-conversion-optimization",
+      "title": "Landing Page Optimization: Convert More Visitors Into Customers",
+      "slug": "landing-page-conversion-optimization-guide",
+      "excerpt": "Master the art of landing page optimization with proven strategies that increase conversions and drive more sales for your business.",
+      "author": "WebGlo Team",
+      "date": "February 28, 2024",
+      "readTime": "15 min read",
+      "category": "tutorials",
+      "tags": [
+        "landing-page",
+        "conversion",
+        "tutorial",
+        "optimization"
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
+      "imageAlt": "Landing page optimization analytics and conversion metrics",
+      "status": "published",
+      "featured": false,
+      "publishDate": "2025-08-06T00:34:08.050Z",
+      "url": "blog/landing-page-conversion-optimization-guide.html"
+    },
+    {
+      "id": "seo-ranking-factors-2024",
+      "title": "Top 10 SEO Ranking Factors That Actually Matter in 2024",
+      "slug": "seo-ranking-factors-2024",
+      "excerpt": "Discover the most important SEO ranking factors for 2024. Learn what Google really cares about and how to optimize your website effectively.",
+      "author": "WebGlo Team",
+      "date": "March 10, 2024",
+      "readTime": "12 min read",
+      "category": "seo",
+      "tags": [
+        "seo",
+        "rankings",
+        "organic-traffic",
+        "google"
+      ],
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
+      "imageAlt": "SEO analytics dashboard showing ranking improvements",
+      "status": "published",
+      "featured": false,
+      "publishDate": "2025-08-06T00:34:08.048Z",
+      "url": "blog/seo-ranking-factors-2024.html"
+    },
+    {
+      "id": "react-vs-vue-2024",
+      "title": "React vs Vue.js: The Ultimate 2024 Framework Decision Guide That Could Save Your Project",
+      "slug": "react-vs-vue-2024-comparison-guide",
+      "excerpt": "Choosing the wrong JavaScript framework could cost you months of development time and thousands in budget overruns. This comprehensive guide reveals exactly which framework fits your project needs.",
+      "author": "WebGlo Team",
+      "date": "March 15, 2024",
+      "readTime": "12 min read",
+      "category": "web-development",
+      "tags": [
+        "react",
+        "vuejs",
+        "javascript",
+        "frameworks",
+        "decision-guide"
+      ],
+      "image": "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      "imageAlt": "React vs Vue.js - Code editor with JavaScript frameworks",
+      "status": "published",
+      "featured": false,
+      "publishDate": "2025-08-06T00:34:08.045Z",
+      "url": "blog/react-vs-vue-2024-comparison-guide.html"
+    }
+  ]
+}
