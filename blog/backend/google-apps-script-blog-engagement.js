@@ -541,9 +541,15 @@ function createResponse(data, statusCode = 200, headers = {}) {
   const output = ContentService.createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
   
-  // Note: Google Apps Script doesn't support custom status codes or headers
-  // in ContentService, but CORS is handled automatically when deployed as Web App
-  // with "Anyone" access
+  // Apply CORS headers if provided
+  if (Object.keys(headers).length > 0) {
+    // Convert headers object to the format expected by setHeaders()
+    const headerObj = {};
+    for (const key in headers) {
+      headerObj[key] = headers[key];
+    }
+    output.setHeaders(headerObj);
+  }
   
   return output;
 }

@@ -5,7 +5,7 @@
 
 window.BLOG_CONFIG = {
   // Google Apps Script API URL (get this after deploying the backend)
-  ENGAGEMENT_API_URL: 'https://script.google.com/macros/s/AKfycby8yrfMm2Lnv_LTpcGRUzO1v-3PREUxxbsvCCPsDlFm2VkDIW3PPNj8RRoj3pL5EdEa/exec',
+  ENGAGEMENT_API_URL: 'https://script.google.com/macros/s/AKfycby3lQvG411ZQEKEzXbdwW2m05eOcrwXyQuhR_SCsVTTKhzaqCAotREaJ9f_yVAeCCHj/exec',
   
   // Blog data location (relative to blog folder)
   DATA_URL: './data/posts.json',
