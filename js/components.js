@@ -49,12 +49,26 @@ class WebGloComponents {
     }
   }
 
+  getPathPrefix() {
+    // Determine if we're in a subdirectory
+    const path = window.location.pathname;
+    // If we're in /blog/ or any other subdirectory, return '../'
+    // Otherwise return empty string
+    if (path.includes('/blog/') || path.match(/\/[^\/]+\/[^\/]+\.html$/)) {
+      return '../';
+    }
+    return '';
+  }
+
   renderNavigation() {
     // If page supplies its own header (#main-header or nav.nav-container), skip rendering
     if (document.getElementById('main-header') || document.querySelector('nav.nav-container')) {
       console.log('Static navigation exists — skipping dynamic render');
       return;
     }
+
+    // Detect if we're in a subdirectory and adjust paths accordingly
+    const pathPrefix = this.getPathPrefix();
 
     const navHTML = `
       <nav id="main-navigation" class="bg-white shadow-lg border-b border-gray-100 fixed top-0 left-0 right-0 z-50">
@@ -63,8 +77,8 @@ class WebGloComponents {
             <!-- Left side: Logo + Desktop menu items -->
             <div class="flex items-center space-x-8">
               <!-- Logo (keeps Home behavior) -->
-              <a id="webglo-logo" href="index.html" class="flex items-center space-x-2">
-                <img src="assets/logo.svg" alt="WebGlo logo" class="h-8 w-8 lg:h-10 lg:w-10">
+              <a id="webglo-logo" href="${pathPrefix}index.html" class="flex items-center space-x-2">
+                <img src="${pathPrefix}assets/logo.svg" alt="WebGlo logo" class="h-8 w-8 lg:h-10 lg:w-10">
                 <span class="text-xl lg:text-2xl font-bold bg-gradient-to-r from-[#0cead9] to-[#df00ff] bg-clip-text text-transparent">WebGlo</span>
               </a>
 
@@ -81,7 +95,7 @@ class WebGloComponents {
                   <div class="desktop-dropdown absolute top-full left-0 transform w-[600px] max-w-[95vw] bg-white shadow-2xl border border-gray-100 rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible hover:opacity-100 hover:visible translate-y-2 group-hover:translate-y-0 hover:translate-y-0 z-50">
                     <div class="p-6">
                       <div class="bg-gradient-to-r from-red-50 to-orange-50 p-4 rounded-lg mb-6 border border-red-200">
-                        <a href="landing-page-express.html" class="block group">
+                        <a href="${pathPrefix}landing-page-express.html" class="block group">
                           <div class="flex items-center justify-between">
                             <div>
                               <h4 class="font-bold text-red-600 group-hover:text-red-700">⚡ Landing Page Express</h4>
@@ -96,28 +110,28 @@ class WebGloComponents {
                         <div>
                           <h3 class="text-lg font-bold text-gray-900 mb-4">Website Solutions</h3>
                           <ul class="space-y-2">
-                            <li><a href="services.html#design" class="block text-gray-600 hover:text-[#df00ff]">Custom Design</a></li>
-                            <li><a href="services.html#development" class="block text-gray-600 hover:text-[#df00ff]">Development</a></li>
-                            <li><a href="services.html#ecommerce" class="block text-gray-600 hover:text-[#df00ff]">E-commerce</a></li>
-                            <li><a href="services.html#domain-hosting" class="block text-gray-600 hover:text-[#df00ff]">Domain & Hosting</a></li>
-                            <li><a href="services.html#maintenance" class="block text-gray-600 hover:text-[#df00ff]">Maintenance</a></li>
+                            <li><a href="${pathPrefix}services.html#design" class="block text-gray-600 hover:text-[#df00ff]">Custom Design</a></li>
+                            <li><a href="${pathPrefix}services.html#development" class="block text-gray-600 hover:text-[#df00ff]">Development</a></li>
+                            <li><a href="${pathPrefix}services.html#ecommerce" class="block text-gray-600 hover:text-[#df00ff]">E-commerce</a></li>
+                            <li><a href="${pathPrefix}services.html#domain-hosting" class="block text-gray-600 hover:text-[#df00ff]">Domain & Hosting</a></li>
+                            <li><a href="${pathPrefix}services.html#maintenance" class="block text-gray-600 hover:text-[#df00ff]">Maintenance</a></li>
                           </ul>
                         </div>
                         <div>
                           <h3 class="text-lg font-bold text-gray-900 mb-4">IT Solutions</h3>
                           <ul class="space-y-2">
-                            <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Custom Software</a></li>
-                            <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">IT Infrastructure</a></li>
-                            <li><a href="services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Digital Transformation</a></li>
-                            <li><a href="services.html#automation" class="block text-gray-600 hover:text-[#0cead9]">AI & Automation</a></li>
+                            <li><a href="${pathPrefix}services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Custom Software</a></li>
+                            <li><a href="${pathPrefix}services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">IT Infrastructure</a></li>
+                            <li><a href="${pathPrefix}services.html#it-solutions" class="block text-gray-600 hover:text-[#0cead9]">Digital Transformation</a></li>
+                            <li><a href="${pathPrefix}services.html#automation" class="block text-gray-600 hover:text-[#0cead9]">AI & Automation</a></li>
                           </ul>
                         </div>
                         <div>
                           <h3 class="text-lg font-bold text-gray-900 mb-4">Marketing & Branding</h3>
                           <ul class="space-y-2">
-                            <li><a href="services.html#seo" class="block text-gray-600 hover:text-[#df00ff]">SEO Optimization</a></li>
-                            <li><a href="services.html#content" class="block text-gray-600 hover:text-[#df00ff]">Content Strategy</a></li>
-                            <li><a href="services.html#branding" class="block text-gray-600 hover:text-[#df00ff]">Branding</a></li>
+                            <li><a href="${pathPrefix}services.html#seo" class="block text-gray-600 hover:text-[#df00ff]">SEO Optimization</a></li>
+                            <li><a href="${pathPrefix}services.html#content" class="block text-gray-600 hover:text-[#df00ff]">Content Strategy</a></li>
+                            <li><a href="${pathPrefix}services.html#branding" class="block text-gray-600 hover:text-[#df00ff]">Branding</a></li>
                           </ul>
                         </div>
                       </div>
@@ -126,26 +140,26 @@ class WebGloComponents {
                 </div>
 
                 <!-- Regular Pricing link -->
-                <a href="pricing.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Pricing</a>
+                <a href="${pathPrefix}pricing.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Pricing</a>
 
                 <!-- Free Consultation link -->
-                <a href="consulting.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Free Consultation</a>
+                <a href="${pathPrefix}consulting.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Free Consultation</a>
                 
-                <a href="about.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">About</a>
-                <a href="case-studies.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Case Studies</a>
-                <a href="blog.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Blog</a>
+                <a href="${pathPrefix}about.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">About</a>
+                <a href="${pathPrefix}case-studies.html" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Case Studies</a>
+                <a href="${pathPrefix}blog/" class="nav-link text-gray-700 hover:text-[#df00ff] font-medium">Blog</a>
               </div>
             </div>
 
             <!-- Right side: Desktop CTA + Mobile controls -->
             <div class="flex items-center">
               <!-- Desktop CTA -->
-              <a href="contact.html" class="hidden lg:inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-xl font-semibold shadow-xl no-hover-color">Get Started</a>
+              <a href="${pathPrefix}contact.html" class="hidden lg:inline-flex items-center justify-center px-6 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-xl font-semibold shadow-xl no-hover-color">Get Started</a>
 
             <!-- Mobile controls (small screens) -->
             <div class="flex lg:hidden items-center gap-1">
               <!-- small immediate CTA (kept visible before opening menu) -->
-              <a id="mobile-cta-top" href="contact.html" class="inline-flex items-center justify-center px-2 py-1.5 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-medium text-sm no-hover-color">Get Started</a>
+              <a id="mobile-cta-top" href="${pathPrefix}contact.html" class="inline-flex items-center justify-center px-2 py-1.5 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-medium text-sm no-hover-color">Get Started</a>
 
               <button id="mobile-menu-toggle" aria-expanded="false" aria-controls="mobile-menu" class="text-gray-700 hover:text-[#df00ff] focus:outline-none p-1">
                 <svg id="hamburger-icon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -167,15 +181,15 @@ class WebGloComponents {
                 <span class="transition-transform group-open:rotate-180">▾</span>
               </summary>
               <ul class="pl-4 pb-2 space-y-2">
-                <li><a href="services.html#design" class="block text-gray-700 hover:text-[#df00ff]">Custom Design</a></li>
-                <li><a href="services.html#development" class="block text-gray-700 hover:text-[#df00ff]">Development</a></li>
-                <li><a href="services.html#ecommerce" class="block text-gray-700 hover:text-[#df00ff]">E-commerce</a></li>
-                <li><a href="services.html#domain-hosting" class="block text-gray-700 hover:text-[#df00ff]">Domain & Hosting</a></li>
-                <li><a href="services.html#it-solutions" class="block text-gray-700 hover:text-[#df00ff]">IT Solutions</a></li>
-                <li><a href="services.html#maintenance" class="block text-gray-700 hover:text-[#df00ff]">Maintenance</a></li>
+                <li><a href="${pathPrefix}services.html#design" class="block text-gray-700 hover:text-[#df00ff]">Custom Design</a></li>
+                <li><a href="${pathPrefix}services.html#development" class="block text-gray-700 hover:text-[#df00ff]">Development</a></li>
+                <li><a href="${pathPrefix}services.html#ecommerce" class="block text-gray-700 hover:text-[#df00ff]">E-commerce</a></li>
+                <li><a href="${pathPrefix}services.html#domain-hosting" class="block text-gray-700 hover:text-[#df00ff]">Domain & Hosting</a></li>
+                <li><a href="${pathPrefix}services.html#it-solutions" class="block text-gray-700 hover:text-[#df00ff]">IT Solutions</a></li>
+                <li><a href="${pathPrefix}services.html#maintenance" class="block text-gray-700 hover:text-[#df00ff]">Maintenance</a></li>
                 <li class="mt-2">
                   <div class="p-3 bg-gradient-to-r from-red-50 to-orange-50 rounded-lg border border-red-200">
-                    <a href="landing-page-express.html" class="block">
+                    <a href="${pathPrefix}landing-page-express.html" class="block">
                       <div class="text-red-600 font-bold">⚡ Landing Page Express</div>
                       <div class="text-red-500 text-xs">48-hour delivery • $297</div>
                     </a>
@@ -185,22 +199,22 @@ class WebGloComponents {
             </details>
 
             <!-- Regular Pricing link -->
-            <a href="pricing.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Pricing</a>
+            <a href="${pathPrefix}pricing.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Pricing</a>
             
             <!-- Free Consultation link -->
-            <a href="consulting.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Free Consultation</a>
+            <a href="${pathPrefix}consulting.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Free Consultation</a>
 
-            <a href="about.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">About</a>
-            <a href="case-studies.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Case Studies</a>
-            <a href="blog.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Blog</a>
+            <a href="${pathPrefix}about.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">About</a>
+            <a href="${pathPrefix}case-studies.html" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Case Studies</a>
+            <a href="${pathPrefix}blog/" class="block py-3 text-lg text-gray-700 hover:text-[#df00ff]">Blog</a>
             <!-- Contact tab removed; Get Started button leads to contact page -->
           </div>
 
           <!-- Bottom action bar inside mobile menu -->
           <div class="mt-auto border-t p-4 bg-white">
             <div class="flex gap-3 justify-between">
-              <a href="consulting.html" id="mobile-book-btn" class="inline-flex items-center justify-center px-3 py-2 border border-gray-800 rounded-lg font-medium text-sm">Book free call</a>
-              <a href="contact.html" id="mobile-getstarted-btn" class="inline-flex items-center justify-center px-3 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-medium text-sm no-hover-color">Get Started</a>
+              <a href="${pathPrefix}consulting.html" id="mobile-book-btn" class="inline-flex items-center justify-center px-3 py-2 border border-gray-800 rounded-lg font-medium text-sm">Book free call</a>
+              <a href="${pathPrefix}contact.html" id="mobile-getstarted-btn" class="inline-flex items-center justify-center px-3 py-2 bg-gradient-to-r from-[#df00ff] to-[#0cead9] text-white rounded-lg font-medium text-sm no-hover-color">Get Started</a>
             </div>
           </div>
         </div>
@@ -239,6 +253,8 @@ class WebGloComponents {
       return;
     }
 
+    const pathPrefix = this.getPathPrefix();
+
     const footerHTML = `
       <footer class="bg-gray-900 text-white py-16">
         <div class="max-w-7xl mx-auto px-6 lg:px-8">
@@ -246,7 +262,7 @@ class WebGloComponents {
             <!-- Company Info -->
             <div>
               <div class="flex items-center space-x-3 mb-6">
-                <img src="assets/logo.svg" alt="WebGlo logo" class="h-10 w-10">
+                <img src="${pathPrefix}assets/logo.svg" alt="WebGlo logo" class="h-10 w-10">
                 <span class="text-2xl font-bold bg-gradient-to-r from-[#0cead9] to-[#df00ff] bg-clip-text text-transparent">WebGlo</span>
               </div>
               <p class="text-gray-300 mb-4">Professional web development and digital marketing services that drive growth and deliver results.</p>
@@ -282,11 +298,11 @@ class WebGloComponents {
             <div>
               <h3 class="text-lg font-semibold mb-6">Services</h3>
               <ul class="space-y-3">
-                <li><a href="services.html#design" class="text-gray-300 hover:text-[#df00ff] transition-colors">Web Design</a></li>
-                <li><a href="services.html#development" class="text-gray-300 hover:text-[#df00ff] transition-colors">Development</a></li>
-                <li><a href="services.html#branding" class="text-gray-300 hover:text-[#df00ff] transition-colors">Branding</a></li>
-                <li><a href="services.html#seo" class="text-gray-300 hover:text-[#df00ff] transition-colors">SEO</a></li>
-                <li><a href="services.html#automation" class="text-gray-300 hover:text-[#df00ff] transition-colors">AI & Automation</a></li>
+                <li><a href="${pathPrefix}services.html#design" class="text-gray-300 hover:text-[#df00ff] transition-colors">Web Design</a></li>
+                <li><a href="${pathPrefix}services.html#development" class="text-gray-300 hover:text-[#df00ff] transition-colors">Development</a></li>
+                <li><a href="${pathPrefix}services.html#branding" class="text-gray-300 hover:text-[#df00ff] transition-colors">Branding</a></li>
+                <li><a href="${pathPrefix}services.html#seo" class="text-gray-300 hover:text-[#df00ff] transition-colors">SEO</a></li>
+                <li><a href="${pathPrefix}services.html#automation" class="text-gray-300 hover:text-[#df00ff] transition-colors">AI & Automation</a></li>
               </ul>
             </div>
 
@@ -294,11 +310,11 @@ class WebGloComponents {
             <div>
               <h3 class="text-lg font-semibold mb-6">Company</h3>
               <ul class="space-y-3">
-                <li><a href="about.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">About Us</a></li>
-                <li><a href="case-studies.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Case Studies</a></li>
-                <li><a href="blog.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Blog</a></li>
-                <li><a href="contact.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Contact</a></li>
-                <li><a href="consulting.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Free Consultation</a></li>
+                <li><a href="${pathPrefix}about.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">About Us</a></li>
+                <li><a href="${pathPrefix}case-studies.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Case Studies</a></li>
+                <li><a href="${pathPrefix}blog/" class="text-gray-300 hover:text-[#df00ff] transition-colors">Blog</a></li>
+                <li><a href="${pathPrefix}contact.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Contact</a></li>
+                <li><a href="${pathPrefix}consulting.html" class="text-gray-300 hover:text-[#df00ff] transition-colors">Free Consultation</a></li>
               </ul>
             </div>
 
@@ -319,10 +335,10 @@ class WebGloComponents {
             <div class="flex flex-col md:flex-row justify-between items-center">
               <p class="text-gray-400 text-sm">© 2025 WebGlo. All rights reserved.</p>
               <div class="flex space-x-6 mt-4 md:mt-0">
-                <a href="privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
-                <a href="terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
-                <a href="refunds-policy.html" class="text-gray-400 hover:text-white text-sm">Refunds Policy</a>
-                <a href="return-policy.html" class="text-gray-400 hover:text-white text-sm">Return Policy</a>
+                <a href="${pathPrefix}privacy-policy.html" class="text-gray-400 hover:text-white text-sm">Privacy Policy</a>
+                <a href="${pathPrefix}terms-of-service.html" class="text-gray-400 hover:text-white text-sm">Terms of Service</a>
+                <a href="${pathPrefix}refunds-policy.html" class="text-gray-400 hover:text-white text-sm">Refunds Policy</a>
+                <a href="${pathPrefix}return-policy.html" class="text-gray-400 hover:text-white text-sm">Return Policy</a>
               </div>
             </div>
           </div>

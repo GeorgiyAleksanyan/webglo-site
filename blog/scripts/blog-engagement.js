@@ -11,7 +11,7 @@
 
 class BlogEngagement {
   constructor(config = {}) {
-    this.apiUrl = config.apiUrl || 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+    this.apiUrl = config.apiUrl || 'https://script.google.com/macros/s/AKfycby8yrfMm2Lnv_LTpcGRUzO1v-3PREUxxbsvCCPsDlFm2VkDIW3PPNj8RRoj3pL5EdEa/exec';
     this.postId = config.postId || this.getPostIdFromUrl();
     this.sessionId = this.getOrCreateSessionId();
     this.cache = new Map();
@@ -33,11 +33,18 @@ class BlogEngagement {
    */
   async init() {
     try {
+      // Check if engagement features are enabled
+      const features = window.BLOG_CONFIG?.FEATURES || {};
+      
       // Track view (once per session per post)
-      await this.trackView();
+      if (features.viewTracking !== false) {
+        await this.trackView();
+      }
       
       // Load and display metrics
-      await this.loadMetrics();
+      if (features.viewTracking !== false || features.likes !== false) {
+        await this.loadMetrics();
+      }
       
       // Set up event listeners
       this.setupEventListeners();
@@ -401,6 +408,15 @@ if (document.readyState === 'loading') {
 }
 
 function initBlogEngagement() {
+  // Check if engagement features are enabled
+  const features = window.BLOG_CONFIG?.FEATURES || {};
+  const engagementEnabled = features.viewTracking || features.likes || features.survey;
+  
+  if (!engagementEnabled) {
+    console.log('Blog engagement features disabled in config');
+    return;
+  }
+  
   // Check if we're on a blog post page
   const isPostPage = document.querySelector('[data-blog-post]') || 
                      document.querySelector('.blog-post-content') ||
@@ -412,6 +428,9 @@ function initBlogEngagement() {
     });
   }
 }
+
+// Expose BlogEngagement class globally
+window.BlogEngagement = BlogEngagement;
 
 // Export for use in other scripts
 if (typeof module !== 'undefined' && module.exports) {

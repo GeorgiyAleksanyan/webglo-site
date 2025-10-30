@@ -102,7 +102,10 @@ ai-resume-builder/
 ai-watermark-remover/
 ai-website-builder/
 ai-chatbot-module/
-
+blog/backend/ai-blog-poblishing-module
+blog/backend
+blog/docs
+docs/
 
 # Google Apps Script legacy files
 *.gs

@@ -212,7 +212,7 @@ class WebGloBlog {
         </div>
 
         <h3 class="text-xl font-bold text-gray-900 mb-3 line-clamp-2 hover:text-[#df00ff] transition-colors">
-          <a href="./post.html?id=${post.id}">${post.title}</a>
+          <a href="./${post.slug}.html">${post.title}</a>
         </h3>
 
         <p class="text-gray-600 mb-4 line-clamp-3">${post.excerpt}</p>
@@ -221,7 +221,7 @@ class WebGloBlog {
           <div class="flex items-center gap-2">
             <span class="text-sm text-gray-500">By ${post.author}</span>
           </div>
-          <a href="./post.html?id=${post.id}" 
+          <a href="./${post.slug}.html" 
              class="inline-flex items-center gap-2 text-[#df00ff] hover:text-[#0cead9] font-semibold transition-colors">
             Read More
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -283,7 +283,7 @@ class WebGloBlog {
             </p>
 
             <div class="flex items-center gap-4">
-              <a href="./post.html?id=${featured.id}" 
+              <a href="./${featured.slug}.html" 
                  class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#0cead9] to-[#df00ff] text-white rounded-lg hover:shadow-lg transition-all duration-300 font-semibold">
                 Read Full Article
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -379,7 +379,7 @@ class WebGloBlog {
         </div>
         <div class="flex-1 min-w-0">
           <h4 class="text-sm font-semibold text-gray-900 line-clamp-2 hover:text-[#df00ff] transition-colors">
-            <a href="./post.html?id=${post.id}">${post.title}</a>
+            <a href="./${post.slug}.html">${post.title}</a>
           </h4>
           <p class="text-xs text-gray-500 mt-1">${post.date}</p>
         </div>

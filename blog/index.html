@@ -23,12 +23,21 @@
     <meta property="og:image" content="../assets/social-preview.png">
     <meta property="og:url" content="https://webglo.org/blog/">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://webglo.org/blog/">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- SEO and Cookie Scripts -->
+    <script src="../js/seo-utils.js"></script>
+    <script src="../js/breadcrumb.js"></script>
+    <script src="../js/cookie-consent.js"></script>
 </head>
 <body class="font-inter bg-white text-gray-900">
     <!-- Dynamic Navigation -->
     <div id="webglo-navigation"></div>
+
+    <!-- Breadcrumb Navigation -->
+    <div id="breadcrumb-navigation" class="mt-16"></div>
 
     <!-- Blog Header -->
     <section class="relative bg-gradient-to-br from-purple-50 via-white to-blue-50 py-24 lg:py-32 mt-20">
@@ -178,6 +187,20 @@
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         console.log('Blog page loaded - initializing...');
+        
+        // Initialize breadcrumbs
+        if (typeof WebGloBreadcrumb !== 'undefined') {
+            const breadcrumb = WebGloBreadcrumb.forBlogListing();
+            breadcrumb.render('breadcrumb-navigation');
+            console.log('✓ Breadcrumbs initialized');
+        }
+        
+        // Add SEO structured data
+        if (window.WebGloSEO) {
+            window.WebGloSEO.addWebsiteSchema();
+            window.WebGloSEO.addOrganizationSchema();
+            console.log('✓ SEO structured data added');
+        }
         
         // Initialize dynamic navigation and footer
         if (typeof WebGloComponents !== 'undefined') {

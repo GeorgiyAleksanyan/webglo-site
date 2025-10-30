@@ -12,16 +12,14 @@ Disallow: /backend/
 Disallow: /cloudflare-worker/
 Disallow: /examples/
 Disallow: /blog-data/
+Disallow: /_archive/
 Disallow: /webglo-audit-tool/
 Disallow: /inspirations%20from%20other%20pages/
 Disallow: /inspirations from other pages/
 
 # Individual files not intended for indexing
-Disallow: /pricing-test.html
 Disallow: /order-landing-page-express.html
-Disallow: /fixed-script.html
 Disallow: /sw.js
 Disallow: /sw.prod.js
-Disallow: /test-google-apps-script.js
 
 Sitemap: https://webglo.org/sitemap.xml

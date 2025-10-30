@@ -102,6 +102,20 @@ function doGet(e) {
 }
 
 /**
+ * Handle OPTIONS requests - CORS preflight
+ */
+function doOptions(e) {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'Access-Control-Max-Age': '86400'
+  };
+  
+  return createResponse({}, 200, headers);
+}
+
+/**
  * Handle POST requests - Record engagement
  */
 function doPost(e) {
@@ -521,12 +535,17 @@ function generateSessionId() {
 }
 
 /**
- * Create HTTP response
+ * Create HTTP response with CORS headers
  */
 function createResponse(data, statusCode = 200, headers = {}) {
-  return ContentService
-    .createTextOutput(JSON.stringify(data))
+  const output = ContentService.createTextOutput(JSON.stringify(data))
     .setMimeType(ContentService.MimeType.JSON);
+  
+  // Note: Google Apps Script doesn't support custom status codes or headers
+  // in ContentService, but CORS is handled automatically when deployed as Web App
+  // with "Anyone" access
+  
+  return output;
 }
 
 // ============================================================================
@@ -540,17 +559,45 @@ function createResponse(data, statusCode = 200, headers = {}) {
 function initializeBlogSystem() {
   Logger.log('Initializing WebGlo Blog Engagement System...');
   
-  // Create all sheets
-  Object.values(CONFIG.SHEETS).forEach(sheetName => {
-    getSheet(sheetName);
-    Logger.log(`✓ Created sheet: ${sheetName}`);
-  });
-  
-  Logger.log('✓ Blog system initialized successfully!');
-  Logger.log('\nNext steps:');
-  Logger.log('1. Deploy as Web App');
-  Logger.log('2. Set Script Properties: SPREADSHEET_ID');
-  Logger.log('3. Copy deployment URL to your frontend config');
+  try {
+    // First, create or get the spreadsheet
+    let spreadsheetId = PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID');
+    
+    if (!spreadsheetId) {
+      // Create new spreadsheet
+      const ss = SpreadsheetApp.create('WebGlo Blog Engagement Data');
+      spreadsheetId = ss.getId();
+      
+      // Save spreadsheet ID
+      PropertiesService.getScriptProperties().setProperty('SPREADSHEET_ID', spreadsheetId);
+      Logger.log(`✓ Created new spreadsheet: ${spreadsheetId}`);
+      Logger.log(`   URL: https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit`);
+    } else {
+      Logger.log(`✓ Using existing spreadsheet: ${spreadsheetId}`);
+    }
+    
+    // Create all sheets
+    Object.values(CONFIG.SHEETS).forEach(sheetName => {
+      const sheet = getSheet(sheetName);
+      Logger.log(`✓ Created/verified sheet: ${sheetName}`);
+    });
+    
+    Logger.log('\n✓ Blog system initialized successfully!');
+    Logger.log('\nNext steps:');
+    Logger.log('1. Deploy as Web App (Execute as: Me, Access: Anyone)');
+    Logger.log('2. Copy deployment URL to your frontend config.js');
+    Logger.log(`3. View data at: https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit`);
+    
+    return {
+      success: true,
+      spreadsheetId: spreadsheetId,
+      spreadsheetUrl: `https://docs.google.com/spreadsheets/d/${spreadsheetId}/edit`
+    };
+    
+  } catch (error) {
+    Logger.log('❌ Error during initialization: ' + error.toString());
+    throw error;
+  }
 }
 
 /**
