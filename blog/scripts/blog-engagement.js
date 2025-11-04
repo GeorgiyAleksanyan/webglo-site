@@ -104,6 +104,17 @@ class BlogEngagement {
         localStorage.setItem(`liked_${this.postId}`, 'true');
         this.updateLikeCounter(response.data.likes);
         this.showNotification('Thanks for liking this post!', 'success');
+        
+        // Track in Google Analytics as Key Event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'blog_post_liked', {
+            'event_category': 'engagement',
+            'event_label': 'like_button',
+            'post_id': this.postId,
+            'post_title': document.title.replace(' | Webglo Blog', ''),
+            'value': 1
+          });
+        }
       } else {
         // Already liked
         this.showNotification('You already liked this post!', 'info');
@@ -140,6 +151,19 @@ class BlogEngagement {
         localStorage.setItem(`surveyed_${this.postId}`, 'true');
         this.showSurveyThankYou(response);
         this.showNotification('Thank you for your feedback!', 'success');
+        
+        // Track in Google Analytics as Key Event
+        if (typeof gtag !== 'undefined') {
+          const eventName = response === 'helpful' ? 'blog_survey_helpful' : 'blog_survey_not_helpful';
+          gtag('event', eventName, {
+            'event_category': 'engagement',
+            'event_label': 'usefulness_survey',
+            'post_id': this.postId,
+            'post_title': document.title.replace(' | Webglo Blog', ''),
+            'survey_response': response,
+            'value': response === 'helpful' ? 1 : 0
+          });
+        }
       } else {
         this.showNotification('You already responded to this survey!', 'info');
       }
