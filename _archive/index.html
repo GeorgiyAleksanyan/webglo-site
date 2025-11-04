@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebGlo Blog Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #0cead9 0%, #df00ff 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .stat-card .icon {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .stat-card .value {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-card .label {
+            font-size: 14px;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .actions {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 16px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #0cead9 0%, #df00ff 100%);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+        
+        .btn-warning {
+            background: #ffc107;
+            color: #212529;
+        }
+        
+        .status {
+            padding: 30px;
+            background: #f8f9fa;
+        }
+        
+        .status h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .status-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .status-label {
+            font-weight: 500;
+        }
+        
+        .status-value {
+            font-family: 'Courier New', monospace;
+            color: #6c757d;
+            font-size: 14px;
+        }
+        
+        .badge {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .loading.active {
+            display: block;
+        }
+        
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .queue-preview {
+            padding: 30px;
+        }
+        
+        .queue-preview h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        
+        .queue-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .queue-item h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .queue-item .meta {
+            font-size: 13px;
+            color: #6c757d;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .footer {
+            padding: 20px;
+            text-align: center;
+            background: #f8f9fa;
+            color: #6c757d;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📝 WebGlo Blog Automation Dashboard</h1>
+            <p>AI-Powered Content Publishing System</p>
+        </div>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="icon">📊</div>
+                <div class="value" id="total-posts">-</div>
+                <div class="label">Total Posts</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">⏳</div>
+                <div class="value" id="queued-topics">-</div>
+                <div class="label">Queued Topics</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">👀</div>
+                <div class="value" id="total-views">-</div>
+                <div class="label">Total Views</div>
+            </div>
+            <div class="stat-card">
+                <div class="icon">🚀</div>
+                <div class="value" id="this-month">-</div>
+                <div class="label">This Month</div>
+            </div>
+        </div>
+        
+        <div class="status">
+            <h2>System Status</h2>
+            <div class="status-item">
+                <span class="status-label">GitHub Connection</span>
+                <span class="badge badge-success" id="github-status">Connected</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Gemini API</span>
+                <span class="badge badge-success" id="gemini-status">Active</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">AdSense Integration</span>
+                <span class="badge badge-success">Enabled</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Last Published</span>
+                <span class="status-value" id="last-published">-</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Next Scheduled</span>
+                <span class="status-value" id="next-scheduled">Daily at 10:00 AM</span>
+            </div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-primary" onclick="publishNext()">
+                ▶️ Publish Next Post
+            </button>
+            <button class="btn btn-success" onclick="publishBulk()">
+                📚 Publish Bulk (3 posts)
+            </button>
+            <button class="btn btn-info" onclick="generateIdeas()">
+                💡 Generate Content Ideas
+            </button>
+            <button class="btn btn-warning" onclick="refreshStats()">
+                🔄 Refresh Dashboard
+            </button>
+            <button class="btn btn-secondary" onclick="viewQueue()">
+                📋 View Full Queue
+            </button>
+            <button class="btn btn-secondary" onclick="viewAnalytics()">
+                📈 View Analytics
+            </button>
+        </div>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Processing... This may take 30-60 seconds.</p>
+        </div>
+        
+        <div class="queue-preview">
+            <h2>Next in Queue</h2>
+            <div id="queue-container">
+                <p style="text-align: center; color: #6c757d; padding: 20px;">Loading...</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>WebGlo Blog Automation v1.0 | Powered by Gemini AI & GitHub Pages | Zero-Cost Operation ✅</p>
+            <p style="margin-top: 8px;">💰 AdSense Revenue Tracking: Check Google AdSense Dashboard</p>
+        </div>
+    </div>
+    
+    <script>
+        // Initialize dashboard
+        window.onload = function() {
+            refreshStats();
+        };
+        
+        function showLoading(show) {
+            document.getElementById('loading').className = show ? 'loading active' : 'loading';
+        }
+        
+        function refreshStats() {
+            showLoading(true);
+            google.script.run
+                .withSuccessHandler(function(stats) {
+                    document.getElementById('total-posts').textContent = stats.totalPosts || 0;
+                    document.getElementById('queued-topics').textContent = stats.queuedTopics || 0;
+                    document.getElementById('total-views').textContent = stats.totalViews || 0;
+                    document.getElementById('this-month').textContent = stats.thisMonth || 0;
+                    document.getElementById('last-published').textContent = stats.lastPublished || 'Never';
+                    
+                    // Update queue preview
+                    displayQueuePreview(stats.nextTopics || []);
+                    
+                    showLoading(false);
+                })
+                .withFailureHandler(function(error) {
+                    alert('Error loading stats: ' + error.message);
+                    showLoading(false);
+                })
+                .getDashboardStats();
+        }
+        
+        function displayQueuePreview(topics) {
+            const container = document.getElementById('queue-container');
+            
+            if (topics.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #6c757d; padding: 20px;">No topics in queue. Generate some ideas!</p>';
+                return;
+            }
+            
+            container.innerHTML = topics.slice(0, 5).map(topic => `
+                <div class="queue-item">
+                    <h3>${topic.title}</h3>
+                    <div class="meta">
+                        <span>📊 Score: ${topic.priorityScore}/100</span>
+                        <span>🎯 ${topic.searchIntent}</span>
+                        <span>📝 ${topic.estimatedWordCount} words</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        function publishNext() {
+            if (!confirm('Publish the next blog post? This will use the Gemini API and commit to GitHub.')) {
+                return;
+            }
+            
+            showLoading(true);
+            google.script.run
+                .withSuccessHandler(function() {
+                    alert('Post published successfully! 🎉');
+                    refreshStats();
+                })
+                .withFailureHandler(function(error) {
+                    alert('Error: ' + error.message);
+                    showLoading(false);
+                })
+                .publishNextBlogPost();
+        }
+        
+        function publishBulk() {
+            const count = prompt('How many posts would you like to publish?', '3');
+            if (!count) return;
+            
+            showLoading(true);
+            google.script.run
+                .withSuccessHandler(function() {
+                    alert('Bulk publishing complete!');
+                    refreshStats();
+                })
+                .withFailureHandler(function(error) {
+                    alert('Error: ' + error.message);
+                    showLoading(false);
+                })
+                .publishBulkBlogPosts();
+        }
+        
+        function generateIdeas() {
+            const count = prompt('How many topic ideas would you like to generate?', '10');
+            if (!count) return;
+            
+            showLoading(true);
+            google.script.run
+                .withSuccessHandler(function() {
+                    alert('Content ideas generated! Check the "Blog Themes" sheet.');
+                    refreshStats();
+                })
+                .withFailureHandler(function(error) {
+                    alert('Error: ' + error.message);
+                    showLoading(false);
+                })
+                .generateContentIdeas();
+        }
+        
+        function viewQueue() {
+            window.open('https://docs.google.com/spreadsheets/d/' + getSpreadsheetId() + '/edit#gid=' + getSheetId('Blog Themes'));
+        }
+        
+        function viewAnalytics() {
+            window.open('https://docs.google.com/spreadsheets/d/' + getSpreadsheetId() + '/edit#gid=' + getSheetId('Blog Analytics'));
+        }
+        
+        function getSpreadsheetId() {
+            return window.location.href.match(/\/d\/([a-zA-Z0-9-_]+)/)[1];
+        }
+        
+        function getSheetId(name) {
+            // This would need to be implemented server-side
+            return 0;
+        }
+    </script>
+</body>
+</html>
